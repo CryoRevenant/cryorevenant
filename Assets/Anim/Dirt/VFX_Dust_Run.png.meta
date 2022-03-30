@@ -1,0 +1,324 @@
+fileFormatVersion: 2
+guid: 2aea60d7c58eb104584338d5475978c3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7327512446290533330
+    second: VFX_Dust_Run_0
+  - first:
+      213: 1997084000665737296
+    second: VFX_Dust_Run_1
+  - first:
+      213: -8694051548190636138
+    second: VFX_Dust_Run_2
+  - first:
+      213: -8919863367853686538
+    second: VFX_Dust_Run_3
+  - first:
+      213: 7561963195736037155
+    second: VFX_Dust_Run_4
+  - first:
+      213: 1060710774229390620
+    second: VFX_Dust_Run_5
+  - first:
+      213: -4469786133487832755
+    second: VFX_Dust_Run_6
+  - first:
+      213: -418756263521600993
+    second: VFX_Dust_Run_7
+  - first:
+      213: 3464148286448983005
+    second: VFX_Dust_Run_8
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VFX_Dust_Run_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2054
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.09912407, y: 0.07279611}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24699fb0427f4a90800000000000000
+      internalID: -7327512446290533330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2054
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.11463773, y: 0.07547283}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0581c4e415117bb10800000000000000
+      internalID: 1997084000665737296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_2
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2054
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.11751342, y: 0.07889676}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69789231e26885780800000000000000
+      internalID: -8694051548190636138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1030
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.10280231, y: 0.075219154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f0cf02c687463480800000000000000
+      internalID: -8919863367853686538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1030
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.11015785, y: 0.075219154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3279c66267d71f860800000000000000
+      internalID: 7561963195736037155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_5
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1030
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.09912467, y: 0.075219154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c155f5b44d668be00800000000000000
+      internalID: 1060710774229390620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.097285666, y: 0.07338028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d41bd7b813128f1c0800000000000000
+      internalID: -4469786133487832755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_7
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 6
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.09176898, y: 0.07338028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a3351a567403af0800000000000000
+      internalID: -418756263521600993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Dust_Run_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 6
+        width: 1024
+        height: 1024
+      alignment: 9
+      pivot: {x: 0.09176922, y: 0.07338028}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbd11f3380231030800000000000000
+      internalID: 3464148286448983005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
