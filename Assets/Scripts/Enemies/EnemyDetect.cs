@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
-    [SerializeField] float radius;
+    [SerializeField] float radiusPlayer;
+    [SerializeField] float radiusEnemy;
+
     bool detect;
     public bool otherDetect;
-    ContactFilter2D contact;
+
     EnemyMove move;
 
     // Start is called before the first frame update
@@ -25,7 +27,7 @@ public class EnemyDetect : MonoBehaviour
 
     IEnumerator PreventOther()
     {
-        Collider2D[] detectEnemy = Physics2D.OverlapCircleAll(transform.position, radius);
+        Collider2D[] detectEnemy = Physics2D.OverlapCircleAll(transform.position, radiusEnemy);
         if (detectEnemy != null)
         {
             foreach (Collider2D other in detectEnemy)
@@ -39,7 +41,7 @@ public class EnemyDetect : MonoBehaviour
                         {
                             GameObject otherGO = hit2D.transform.gameObject;
 
-                            Debug.DrawLine(transform.position, hit2D.transform.position, Color.cyan, 50);
+                            Debug.DrawLine(transform.position, hit2D.transform.position, Color.cyan, 2);
 
                             otherGO.GetComponent<EnemyDetect>().otherDetect = true;
                             otherGO.GetComponent<EnemyDetect>().StartCoroutine("PreventOther");
@@ -61,15 +63,29 @@ public class EnemyDetect : MonoBehaviour
 
     IEnumerator DetectAround()
     {
-        Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radius, 1 << 0);
+        Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radiusPlayer, 1 << 0);
         if (detectCircle != null)
         {
-            Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
-            Debug.Log(detectCircle.transform.name);
-            otherDetect = true;
-            move.mustGo = true;
-            move.StartCoroutine("MoveOver", detectCircle.gameObject);
-            StartCoroutine("PreventOther");
+            RaycastHit2D hit;
+            if (hit = Physics2D.Linecast(transform.position, detectCircle.gameObject.transform.position))
+            {
+                if (hit.transform.gameObject.layer == 0)
+                {
+                    Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
+
+                    otherDetect = true;
+                    move.mustGo = true;
+
+                    move.StopCoroutine("MoveOver");
+                    move.StartCoroutine("MoveOver", detectCircle.gameObject);
+
+                    StartCoroutine("PreventOther");
+                }
+                else
+                {
+                    otherDetect = false;
+                }
+            }
         }
         yield return new WaitForSeconds(1);
         StartCoroutine("DetectAround");

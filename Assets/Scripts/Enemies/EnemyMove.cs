@@ -5,7 +5,12 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
     public bool mustGo;
+    bool isGrounded;
+
     [SerializeField] float speed;
+    [SerializeField] float speedFall;
+    [SerializeField] float rayLength;
+    [SerializeField] float bounds;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +21,24 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Physics2D.Raycast(new Vector2(transform.position.x + bounds, transform.position.y), Vector2.down, rayLength))
+        {
+            if (Physics2D.Raycast(new Vector2(transform.position.x - bounds, transform.position.y), Vector2.down, rayLength))
+            {
+                isGrounded = true;
+            }
+        }
+        else
+        {
+            isGrounded = false;
+        }
 
+        if (isGrounded == false)
+        {
+            Vector2 pos = transform.position;
+            pos.y -= Time.deltaTime * speedFall;
+            transform.position = pos;
+        }
     }
 
     IEnumerator Move()
@@ -30,7 +52,7 @@ public class EnemyMove : MonoBehaviour
         Debug.Log(lastPos.transform.position + " " + gameObject.name);
         while (mustGo == true)
         {
-            transform.position = new Vector3(Mathf.Lerp(transform.position.x, posToGo.x, Time.deltaTime * speed), Mathf.Lerp(transform.position.y, posToGo.y, Time.deltaTime * speed), 0);
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, posToGo.x, Time.deltaTime * speed), transform.position.y, 0);
             if (Vector3.Distance(transform.position, posToGo) < 1f)
             {
                 Reset(lastPos);
