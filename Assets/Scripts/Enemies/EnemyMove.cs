@@ -52,8 +52,9 @@ public class EnemyMove : MonoBehaviour
         Debug.Log(lastPos.transform.position + " " + gameObject.name);
         while (mustGo == true)
         {
-            transform.position = new Vector3(Mathf.Lerp(transform.position.x, posToGo.x, Time.deltaTime * speed), transform.position.y, 0);
-            if (Vector3.Distance(transform.position, posToGo) < 1f)
+            //transform.position = new Vector3(Mathf.Lerp(transform.position.x, posToGo.x, Time.deltaTime * speed), transform.position.y, 0);
+            transform.position = Vector3.MoveTowards(transform.position,new Vector3(posToGo.x, transform.position.y, 0),Time.deltaTime*speed);
+            if (Vector3.Distance(transform.position, posToGo) < 0.5f)
             {
                 Reset(lastPos);
             }

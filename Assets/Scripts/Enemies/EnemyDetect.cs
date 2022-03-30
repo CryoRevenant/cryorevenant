@@ -47,6 +47,7 @@ public class EnemyDetect : MonoBehaviour
                             otherGO.GetComponent<EnemyDetect>().StartCoroutine("PreventOther");
 
                             otherGO.GetComponent<EnemyMove>().mustGo = true;
+                            otherGO.GetComponent<EnemyMove>().StopCoroutine("MoveOver");
                             otherGO.GetComponent<EnemyMove>().StartCoroutine("MoveOver", gameObject);
 
                         }
@@ -81,11 +82,11 @@ public class EnemyDetect : MonoBehaviour
 
                     StartCoroutine("PreventOther");
                 }
-                else
-                {
-                    otherDetect = false;
-                }
             }
+        }
+        else
+        {
+            otherDetect = false;
         }
         yield return new WaitForSeconds(1);
         StartCoroutine("DetectAround");
