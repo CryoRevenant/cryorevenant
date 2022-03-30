@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 608801529}
   - component: {fileID: 608801528}
   - component: {fileID: 608801527}
+  - component: {fileID: 608801531}
   m_Layer: 3
   m_Name: 1
   m_TagString: Untagged
@@ -182,8 +183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   otherDetect: 0
-  mustGo: 0
-  speed: 0.1
 --- !u!212 &608801529
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -249,6 +248,20 @@ Transform:
   m_Father: {fileID: 1616195598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &608801531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608801526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcb7e91020518348be80f8f000da88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mustGo: 0
+  speed: 1
 --- !u!1 &1055257655
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +274,7 @@ GameObject:
   - component: {fileID: 1055257658}
   - component: {fileID: 1055257657}
   - component: {fileID: 1055257656}
+  - component: {fileID: 1055257660}
   m_Layer: 3
   m_Name: 4
   m_TagString: Untagged
@@ -308,8 +322,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   otherDetect: 0
-  mustGo: 0
-  speed: 0.1
 --- !u!212 &1055257658
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -369,12 +381,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055257655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1374745, y: 1.5358207, z: -1.6928018}
+  m_LocalPosition: {x: 2.5, y: 1.56, z: -1.6928018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1616195598}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1055257660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055257655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcb7e91020518348be80f8f000da88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mustGo: 0
+  speed: 1
 --- !u!1 &1085012624
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +522,7 @@ GameObject:
   - component: {fileID: 1222811927}
   - component: {fileID: 1222811926}
   - component: {fileID: 1222811925}
+  - component: {fileID: 1222811929}
   m_Layer: 3
   m_Name: 3
   m_TagString: Untagged
@@ -543,8 +570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   otherDetect: 0
-  mustGo: 0
-  speed: 0.1
 --- !u!212 &1222811927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -604,12 +629,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222811924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.2974744, y: 0.62582076, z: -1.6928018}
+  m_LocalPosition: {x: 5.58, y: -0.1, z: -1.6928018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1616195598}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1222811929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222811924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcb7e91020518348be80f8f000da88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mustGo: 0
+  speed: 1
 --- !u!1 &1616195597
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +878,7 @@ GameObject:
   - component: {fileID: 1971712895}
   - component: {fileID: 1971712894}
   - component: {fileID: 1971712893}
+  - component: {fileID: 1971712897}
   m_Layer: 3
   m_Name: 5
   m_TagString: Untagged
@@ -886,8 +926,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   otherDetect: 0
-  mustGo: 0
-  speed: 5
 --- !u!212 &1971712895
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -947,12 +985,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971712892}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3574748, y: -3.7541792, z: -1.6928018}
+  m_LocalPosition: {x: 1.53, y: -3.52, z: -1.6928018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1616195598}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1971712897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971712892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcb7e91020518348be80f8f000da88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mustGo: 0
+  speed: 1
 --- !u!1 &2144830174
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +1017,7 @@ GameObject:
   - component: {fileID: 2144830176}
   - component: {fileID: 2144830175}
   - component: {fileID: 2144830178}
+  - component: {fileID: 2144830179}
   m_Layer: 3
   m_Name: 2
   m_TagString: Untagged
@@ -986,8 +1039,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 4
   otherDetect: 0
-  mustGo: 0
-  speed: 0.1
 --- !u!212 &2144830176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1047,7 +1098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144830174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.987475, y: -1.8941791, z: -1.6928018}
+  m_LocalPosition: {x: 5.04, y: -2.48, z: -1.6928018}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1616195598}
@@ -1079,3 +1130,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2144830179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144830174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dcb7e91020518348be80f8f000da88d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mustGo: 0
+  speed: 1
