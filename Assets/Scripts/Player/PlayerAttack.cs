@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
 
-        Debug.Log(col.Length);
+        //Debug.Log(col.Length);
 
         for (int i = 0; i < col.Length; i++)
         {
