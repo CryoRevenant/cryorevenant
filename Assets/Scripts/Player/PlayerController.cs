@@ -8,10 +8,16 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerInput controls;
     private Rigidbody2D rb;
-    private SpriteRenderer sprite;
+    [Header("Player")]
     [SerializeField] private float jumpForce;
+    [SerializeField] private float heighjumpForce;
     [SerializeField] private float maxSpeed;
+    // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float velocitySpeed;
+    [SerializeField]private SpriteRenderer playerSprite;
+    [SerializeField]private SpriteRenderer leftDustSprite;
+    [SerializeField]private SpriteRenderer rightDustSprite;
+    [Header("MainCamera")]
     [SerializeField] private Transform camOffset;
     [SerializeField] private Vector2 offset;
     [SerializeField] private CinemachineVirtualCamera vcam;
@@ -20,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float camCenterTimer;
     private float maxJumpForce;
+    private float maxheighJumpForce;
     private float speed;
     private float maxCamCenterTimer;
     private float movement;
@@ -33,11 +40,24 @@ public class PlayerController : MonoBehaviour
         canJump = false;
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        sprite = gameObject.GetComponent<SpriteRenderer>();
-        camOffset.position = new Vector3(transform.position.x - offset.x, transform.position.y + offset.y, camOffset.position.z);
         speed = 0;
         maxCamCenterTimer = camCenterTimer;
         maxJumpForce = jumpForce;
+        maxheighJumpForce = heighjumpForce;
+
+        if (!playerSprite.flipX)
+        {
+            camOffset.position = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, camOffset.position.z);
+            leftDustSprite.enabled = true;
+            rightDustSprite.enabled = false;
+        }
+
+        if (playerSprite.flipX)
+        {
+            camOffset.position = new Vector3(transform.position.x - offset.x, transform.position.y + offset.y, camOffset.position.z);
+            leftDustSprite.enabled = false;
+            rightDustSprite.enabled = true;
+        }
     }
 
     private void Update()
@@ -47,12 +67,16 @@ public class PlayerController : MonoBehaviour
         if(xAxis > 0)
         {
             camOffset.position = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, camOffset.position.z);
-            sprite.flipX = false;
+            playerSprite.flipX = false;
+            leftDustSprite.enabled = true;
+            rightDustSprite.enabled = false;
         }
         if (xAxis < 0)
         {
             camOffset.position = new Vector3(transform.position.x - offset.x, transform.position.y + offset.y, camOffset.position.z);
-            sprite.flipX = true;
+            playerSprite.flipX = true;
+            leftDustSprite.enabled = false;
+            rightDustSprite.enabled = true;
         }
 
         //Debug.Log(xAxis);
@@ -61,7 +85,7 @@ public class PlayerController : MonoBehaviour
         if (controls.currentActionMap.FindAction("HighJump").triggered)
         {
             Debug.Log("double saut");
-            jumpForce = maxJumpForce * 1.25f;
+            jumpForce = maxheighJumpForce;
         }
 
         if (controls.currentActionMap.FindAction("Jump").triggered && isGrounded)
@@ -76,7 +100,7 @@ public class PlayerController : MonoBehaviour
             timer = 0;
         }
 
-        Debug.Log(jumpForce);
+        //Debug.Log(jumpForce);
 
         float distance = 1f;
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -transform.up, distance);
