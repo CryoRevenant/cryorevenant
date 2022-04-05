@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float velocitySpeed;
-    [SerializeField]private SpriteRenderer playerSprite;
-    [SerializeField]private SpriteRenderer leftDustSprite;
-    [SerializeField]private SpriteRenderer rightDustSprite;
+    [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private SpriteRenderer leftDustSprite;
+    [SerializeField] private SpriteRenderer rightDustSprite;
     [Header("MainCamera")]
     [SerializeField] private Transform camOffset;
     [SerializeField] private Vector2 offset;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
 
-        if(xAxis > 0)
+        if (xAxis > 0)
         {
             camOffset.position = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, camOffset.position.z);
             playerSprite.flipX = false;
@@ -82,11 +82,11 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(xAxis);
         movement = xAxis;
 
-        if (controls.currentActionMap.FindAction("HighJump").triggered)
-        {
-            Debug.Log("double saut");
-            jumpForce = maxheighJumpForce;
-        }
+        // if (controls.currentActionMap.FindAction("HighJump").triggered)
+        // {
+        //     Debug.Log("double saut");
+        //     jumpForce = maxheighJumpForce;
+        // }
 
         if (controls.currentActionMap.FindAction("Jump").triggered && isGrounded)
         {
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(jumpForce);
 
         float distance = 1f;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -transform.up, distance);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -transform.up, distance, 1 << 6);
 
         Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1), -transform.up * 1f, Color.red, 1);
         if (hit)
@@ -116,15 +116,15 @@ public class PlayerController : MonoBehaviour
 
             //speed = maxSpeed;
         }
-        else
-        {
-            // ralentissement dans les airs
+        // else
+        // {
+        //      ralentissement dans les airs
 
-            isGrounded = false;
-            float s = 0;
-            s = maxSpeed;
-            speed = s / 2;
-        }
+        //     isGrounded = false;
+        //     float s = 0;
+        //     s = maxSpeed;
+        //     speed = s / 2;
+        // }
 
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
         {
             camCenterTimer -= Time.deltaTime;
             //Debug.Log((int)camCenterTimer);
-            if(camCenterTimer <= 0)
+            if (camCenterTimer <= 0)
             {
                 //Debug.Log("center");
                 vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 3;
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         if (canJump)
         {
             timer += Time.deltaTime;
-            if(timer > 0.1f)
+            if (timer > 0.1f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.deltaTime);
                 canJump = false;
