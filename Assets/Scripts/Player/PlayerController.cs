@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInput controls;
     private Rigidbody2D rb;
     [Header("Player")]
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float heighjumpForce;
+    [SerializeField] private float lowJumpForce;
+    [SerializeField] private float heighJumpForce;
     [SerializeField] private float maxSpeed;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float velocitySpeed;
@@ -42,8 +42,8 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         speed = 0;
         maxCamCenterTimer = camCenterTimer;
-        maxJumpForce = jumpForce;
-        maxheighJumpForce = heighjumpForce;
+        maxJumpForce = lowJumpForce;
+        maxheighJumpForce = heighJumpForce;
 
         if (!playerSprite.flipX)
         {
@@ -82,16 +82,16 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(xAxis);
         movement = xAxis;
 
-        // if (controls.currentActionMap.FindAction("HighJump").triggered)
-        // {
-        //     Debug.Log("double saut");
-        //     jumpForce = maxheighJumpForce;
-        // }
+        if (controls.currentActionMap.FindAction("HighJump").triggered)
+        {
+            Debug.Log("double saut");
+            lowJumpForce = maxheighJumpForce;
+        }
 
         if (controls.currentActionMap.FindAction("Jump").triggered && isGrounded)
         {
             Debug.Log("saut normal");
-            jumpForce = maxJumpForce;
+            lowJumpForce = maxJumpForce;
             canJump = true;
         }
 
@@ -116,15 +116,15 @@ public class PlayerController : MonoBehaviour
 
             //speed = maxSpeed;
         }
-        // else
-        // {
-        //      ralentissement dans les airs
+        else
+        {
+            //ralentissement dans les airs
 
-        //     isGrounded = false;
-        //     float s = 0;
-        //     s = maxSpeed;
-        //     speed = s / 2;
-        // }
+            isGrounded = false;
+            float s = 0;
+            s = maxSpeed;
+            speed = s / 2;
+        }
 
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 0.1f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce * Time.deltaTime);
+                rb.velocity = new Vector2(rb.velocity.x, lowJumpForce * Time.deltaTime);
                 canJump = false;
             }
         }

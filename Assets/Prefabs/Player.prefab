@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7778891271201975950}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: CamOffset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7778891271729684174}
   - component: {fileID: 7778891271729684175}
   - component: {fileID: 7778891271729684173}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d73d701d185bd47a2f369787a97a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 800
-  heighjumpForce: 950
+  lowJumpForce: 900
+  heighJumpForce: 1100
   maxSpeed: 700
   velocitySpeed: 1500
   playerSprite: {fileID: 7778891271954775128}
@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7778891271889976448}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: AttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 7778891271954775130}
   - component: {fileID: 7778891271954775131}
   - component: {fileID: 7778891271954775128}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Graph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
