@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private float maxJumpForce;
     private float maxheighJumpForce;
     private float speed;
+    private float maxMovementInertia;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -79,7 +80,8 @@ public class PlayerController : MonoBehaviour
             rightDustSprite.enabled = true;
         }
 
-        //Debug.Log(xAxis);
+        Debug.Log(movement);
+
         movement = xAxis;
 
         if (controls.currentActionMap.FindAction("HighJump").triggered)

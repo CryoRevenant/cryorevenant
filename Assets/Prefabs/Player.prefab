@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d73d701d185bd47a2f369787a97a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowJumpForce: 900
-  heighJumpForce: 1100
+  lowJumpForce: 850
+  heighJumpForce: 1000
   maxSpeed: 700
   velocitySpeed: 1500
   playerSprite: {fileID: 7778891271954775128}
@@ -174,9 +174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPos: {fileID: 7778891271889976448}
+  attackPosDistance: {x: 15, y: 0}
   attackRange: 1.5
   damage: 1
-  attackInput: {fileID: -5394107474354986200, guid: 4e4a517c35ce92848afe6e03195ee3bd, type: 3}
   attackCooldown: 0.5
 --- !u!1 &7778891271889976451
 GameObject:
@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778891271889976451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271729684176}
