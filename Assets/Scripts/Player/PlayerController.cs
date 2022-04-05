@@ -123,9 +123,6 @@ public class PlayerController : MonoBehaviour
             //ralentissement dans les airs
 
             isGrounded = false;
-            float s = 0;
-            s = maxSpeed;
-            speed = s / 2;
         }
 
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;

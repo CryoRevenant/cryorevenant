@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49a36376d1d34c4194679e9c379a443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusPlayer: 6
-  radiusEnemy: 8
+  radiusPlayer: 12
+  radiusEnemy: 15
   otherDetect: 0
 --- !u!114 &1439228575004212923
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mustGo: 0
-  speed: 10
+  speed: 18
   speedFall: 4
   rayLength: 0.5
   bounds: 0.5
