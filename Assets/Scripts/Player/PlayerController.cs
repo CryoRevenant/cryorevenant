@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private float timer = 0;
     private bool isGrounded;
     private bool canJump;
+    private bool canInertia;
 
     void Awake()
     {
@@ -58,6 +59,8 @@ public class PlayerController : MonoBehaviour
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
+
+        canInertia = true;
     }
 
     private void Update()
@@ -79,9 +82,19 @@ public class PlayerController : MonoBehaviour
             rightDustSprite.enabled = true;
         }
 
-        Debug.Log(movement);
+        //Debug.Log(movement);
 
         movement = xAxis;
+
+        if(xAxis == 0 && canInertia)
+        {
+            Debug.Log("push");
+            canInertia = false;
+        }
+        else
+        {
+            canInertia = true;
+        }
 
         if (controls.currentActionMap.FindAction("HighJump").triggered)
         {
