@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float vcamMoveYSpeed;
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float camCenterTimer;
-    private float maxJumpForce;
+    private float maxLowJumpForce;
     private float maxheighJumpForce;
     private float speed;
     private float maxMovementInertia;
@@ -43,7 +41,7 @@ public class PlayerController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         speed = 0;
         maxCamCenterTimer = camCenterTimer;
-        maxJumpForce = lowJumpForce;
+        maxLowJumpForce = lowJumpForce;
         maxheighJumpForce = heighJumpForce;
 
         if (!playerSprite.flipX)
@@ -93,7 +91,7 @@ public class PlayerController : MonoBehaviour
         if (controls.currentActionMap.FindAction("Jump").triggered && isGrounded)
         {
             Debug.Log("saut normal");
-            lowJumpForce = maxJumpForce;
+            lowJumpForce = maxLowJumpForce;
             canJump = true;
         }
 
@@ -151,7 +149,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         speed += Time.deltaTime * velocitySpeed;
-        rb.velocity = new Vector2(movement * Time.deltaTime * Mathf.Clamp(speed, 0, maxSpeed), rb.velocity.y);
+        //Debug.Log(speed);
+        rb.AddRelativeForce(new Vector2(movement * Time.deltaTime * Mathf.Clamp(speed, 0, maxSpeed), rb.velocity.y), ForceMode2D.Force);
         if (canJump)
         {
             timer += Time.deltaTime;
