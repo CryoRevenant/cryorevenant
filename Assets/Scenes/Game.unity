@@ -1567,8 +1567,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2128325746}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: maxSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: lowJumpForce
       value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: velocitySpeed
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: heighJumpForce
@@ -1992,6 +2000,10 @@ PrefabInstance:
     - target: {fileID: 2351439850516828741, guid: 8b6546f62311ac348b3bc04f60a7651b, type: 3}
       propertyPath: m_Name
       value: Boss Zone
+      objectReference: {fileID: 0}
+    - target: {fileID: 2351439850516828741, guid: 8b6546f62311ac348b3bc04f60a7651b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2351439850516828761, guid: 8b6546f62311ac348b3bc04f60a7651b, type: 3}
       propertyPath: baseVCam
