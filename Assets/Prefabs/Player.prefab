@@ -207,8 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowJumpForce: 800
   heighJumpForce: 900
-  maxSpeed: 35
-  velocitySpeed: 300
+  velocitySpeed: 500
   velocity: 0
   playerSprite: {fileID: 7778891271954775128}
   leftDustSprite: {fileID: 1277820202575207455}
