@@ -1568,6 +1568,7 @@ PrefabInstance:
       objectReference: {fileID: 2128325746}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: maxSpeed
+<<<<<<< Updated upstream
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
@@ -1581,6 +1582,17 @@ PrefabInstance:
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: heighJumpForce
       value: 850
+=======
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: velocitySpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: heighJumpForce
+      value: 900
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: movementInertia
@@ -1644,7 +1656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.6
+      value: -147.7
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1722,7 +1734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.6
+      value: -147.7
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1864,7 +1876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1725477058
 Transform:
   m_ObjectHideFlags: 0
@@ -2250,7 +2262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1895211865
 Transform:
   m_ObjectHideFlags: 0
@@ -2368,8 +2380,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930665709}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.424349, y: -11.053669, z: 3.8033204}
-  m_LocalScale: {x: 180.33247, y: 5.354777, z: 1}
+  m_LocalPosition: {x: 44.0646, y: -11.053669, z: 3.8033204}
+  m_LocalScale: {x: 458.0148, y: 5.354777, z: 1}
   m_Children: []
   m_Father: {fileID: 1521054491}
   m_RootOrder: 2
@@ -2708,7 +2720,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1998419561
 Transform:
   m_ObjectHideFlags: 0
@@ -3028,7 +3040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.6
+      value: -147.7
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.y

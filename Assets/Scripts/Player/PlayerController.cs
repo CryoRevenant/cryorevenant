@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [Header("Player")]
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
-    [SerializeField] private float maxSpeed;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float velocitySpeed;
     [SerializeField] private float velocity;
@@ -28,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float camCenterTimer;
     private float maxJumpForce;
     private float maxheighJumpForce;
-    private float speed;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -41,7 +39,6 @@ public class PlayerController : MonoBehaviour
         canJump = false;
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
-        speed = 0;
         maxCamCenterTimer = camCenterTimer;
         maxJumpForce = lowJumpForce;
         maxheighJumpForce = heighJumpForce;
@@ -135,7 +132,6 @@ public class PlayerController : MonoBehaviour
                 camOffset.position = new Vector3(transform.position.x, transform.position.y + offset.y, camOffset.position.z);
                 camCenterTimer = 0;
             }
-            speed = 0;
         }
         else
         {
@@ -146,17 +142,24 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(movement != 0)
+        velocity = rb.velocity.magnitude;
+
+        if (movement == 1)
         {
-            speed += velocitySpeed * Time.deltaTime;
-            speed = Mathf.Clamp(speed, 0, maxSpeed);
-            velocity = rb.velocity.magnitude;
-            //Debug.Log(speed);
+            rb.velocity = new Vector2(velocitySpeed * Time.deltaTime, rb.velocity.y);
+        }
+        if (movement == -1)
+        {
+            rb.velocity = new Vector2(-velocitySpeed * Time.deltaTime, rb.velocity.y);
         }
 
-        if(velocity < maxSpeed)
+        if(isGrounded)
         {
-            rb.AddRelativeForce(new Vector2(movement * speed, rb.velocity.y), ForceMode2D.Force);
+            rb.AddForceAtPosition(new Vector2(movement, rb.velocity.y), transform.position);
+        }
+        else if (!isGrounded)
+        {
+            rb.AddForceAtPosition(new Vector2(movement, rb.velocity.y), transform.position);
         }
 
         if (canJump)
