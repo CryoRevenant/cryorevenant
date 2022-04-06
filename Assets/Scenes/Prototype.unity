@@ -713,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 717466359}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: maxSpeed
-      value: 3000
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: jumpForce
@@ -721,7 +721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: velocitySpeed
-      value: 3000
+      value: 1750
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684175, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: heighjumpForce
