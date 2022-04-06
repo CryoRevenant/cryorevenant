@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float velocitySpeed;
+    [SerializeField] private float velocity;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
@@ -33,7 +34,6 @@ public class PlayerController : MonoBehaviour
     private float timer = 0;
     private bool isGrounded;
     private bool canJump;
-    private bool canInertia;
 
     void Awake()
     {
@@ -59,8 +59,6 @@ public class PlayerController : MonoBehaviour
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
-
-        canInertia = true;
     }
 
     private void Update()
@@ -85,16 +83,6 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(movement);
 
         movement = xAxis;
-
-        if(xAxis == 0 && canInertia)
-        {
-            Debug.Log("push");
-            canInertia = false;
-        }
-        else
-        {
-            canInertia = true;
-        }
 
         if (controls.currentActionMap.FindAction("HighJump").triggered)
         {
@@ -127,13 +115,9 @@ public class PlayerController : MonoBehaviour
             {
                 isGrounded = true;
             }
-
-            //speed = maxSpeed;
         }
         else
         {
-            //ralentissement dans les airs
-
             isGrounded = false;
         }
 
@@ -162,9 +146,19 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        speed += Time.deltaTime * velocitySpeed;
-        speed = Mathf.Clamp(speed, 0, maxSpeed);
-        rb.velocity = new Vector2(movement * Time.deltaTime * speed, rb.velocity.y);
+        if(movement != 0)
+        {
+            speed += velocitySpeed * Time.deltaTime;
+            speed = Mathf.Clamp(speed, 0, maxSpeed);
+            velocity = rb.velocity.magnitude;
+            //Debug.Log(speed);
+        }
+
+        if(velocity < maxSpeed)
+        {
+            rb.AddRelativeForce(new Vector2(movement * speed, rb.velocity.y), ForceMode2D.Force);
+        }
+
         if (canJump)
         {
             timer += Time.deltaTime;
