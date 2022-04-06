@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1439228575004212923}
   - component: {fileID: 1439228575004212919}
   - component: {fileID: 6333482225369344818}
+  - component: {fileID: 6731416200743094211}
   m_Layer: 3
   m_Name: Soldat
   m_TagString: Enemy
@@ -157,3 +158,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
+--- !u!114 &6731416200743094211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439228575004212918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb4d092d9f341fc46b6b06b756216a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3

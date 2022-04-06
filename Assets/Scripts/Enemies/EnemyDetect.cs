@@ -11,11 +11,13 @@ public class EnemyDetect : MonoBehaviour
     public bool otherDetect;
 
     EnemyMove move;
+    EnemyAttack attack;
 
     // Start is called before the first frame update
     void Start()
     {
         move = GetComponent<EnemyMove>();
+        attack = GetComponent<EnemyAttack>();
         StartCoroutine("DetectAround");
     }
 
@@ -76,6 +78,8 @@ public class EnemyDetect : MonoBehaviour
 
                     otherDetect = true;
                     move.mustGo = true;
+
+                    attack.CheckAttack(hit.transform.gameObject);
 
                     move.StopCoroutine("MoveOver");
                     move.StartCoroutine("MoveOver", detectCircle.gameObject);
