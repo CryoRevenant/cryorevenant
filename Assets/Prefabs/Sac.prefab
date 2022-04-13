@@ -103,6 +103,8 @@ MonoBehaviour:
   radiusPlayer: 12
   radiusEnemy: 15
   otherDetect: 0
+  move: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!114 &2228592839236001599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +122,7 @@ MonoBehaviour:
   speedFall: 2.5
   rayLength: 1
   bounds: 0.5
+  maxStoppingDist: 1
 --- !u!70 &2228592839236001596
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

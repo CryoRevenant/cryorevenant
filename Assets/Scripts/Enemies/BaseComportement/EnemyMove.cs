@@ -11,6 +11,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] float speedFall;
     [SerializeField] float rayLength;
     [SerializeField] float bounds;
+    public float maxStoppingDist;
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +50,12 @@ public class EnemyMove : MonoBehaviour
     IEnumerator MoveOver(GameObject lastPos)
     {
         Vector3 posToGo = lastPos.transform.position;
-        Debug.Log(lastPos.transform.position + " " + gameObject.name);
+        //Debug.Log(lastPos.transform.position + " " + gameObject.name);
         while (mustGo == true)
         {
             transform.LookAt(new Vector3(transform.position.x, transform.position.y,lastPos.transform.position.x));
             transform.position = Vector3.MoveTowards(transform.position,new Vector3(posToGo.x, transform.position.y, 0),Time.deltaTime*speed);
-            if (Vector3.Distance(transform.position, posToGo) < 1f)
+            if (Vector3.Distance(transform.position, posToGo) < maxStoppingDist)
             {
                 Reset(lastPos);
             }
