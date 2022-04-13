@@ -8,15 +8,13 @@ public class Parallaxe : MonoBehaviour
     [SerializeField] GameObject cam;
     [SerializeField] float parallaxEffect;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         startPos = transform.position.x;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);

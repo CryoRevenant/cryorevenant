@@ -1,62 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1453143682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1453143683}
-  - component: {fileID: 1453143684}
-  m_Layer: 0
-  m_Name: Detect
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1453143683
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453143682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71, y: 0.61, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7778891271729684176}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1453143684
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453143682}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.34, y: 1}
-  m_EdgeRadius: 0.7
 --- !u!1 &7778891271201975953
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,12 +60,11 @@ Transform:
   m_GameObject: {fileID: 7778891271729684178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -38.4, y: -0.08, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 7778891271954775130}
   - {fileID: 7778891271201975950}
   - {fileID: 7778891271889976448}
-  - {fileID: 1453143683}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -160,8 +102,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.1647415, y: -1.6688211}
-  m_Size: {x: 9.607823, y: 14.177152}
+  m_Offset: {x: 0.32117206, y: -1.6688211}
+  m_Size: {x: 6.6359963, y: 14.177152}
   m_Direction: 0
 --- !u!114 &7778891271729684174
 MonoBehaviour:
@@ -205,15 +147,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d73d701d185bd47a2f369787a97a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowJumpForce: 800
-  heighJumpForce: 900
-  velocitySpeed: 500
+  lowJumpForce: 750
+  heighJumpForce: 850
+  jumpDistance: 50
+  velocitySpeed: 850
   velocity: 0
+  inertia: 0
+  yRaycastGrounded: 2
   playerSprite: {fileID: 7778891271954775128}
   leftDustSprite: {fileID: 1277820202575207455}
   rightDustSprite: {fileID: 1277820202332141261}
   camOffset: {fileID: 7778891271201975950}
-  offset: {x: 5, y: 3}
+  offset: {x: 5, y: 5}
   vcam: {fileID: 0}
   vcamMoveXSpeed: 2
   vcamMoveYSpeed: 5
@@ -232,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPos: {fileID: 7778891271889976448}
-  attackPosDistance: {x: 15, y: 0}
+  attackPosDistance: {x: 9, y: 0}
   attackRange: 1.5
   damage: 1
   attackCooldown: 0.5

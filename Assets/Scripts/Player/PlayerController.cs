@@ -9,11 +9,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput controls;
     private Rigidbody2D rb;
     [Header("Player")]
-    [SerializeField] private float lowJumpForce;
-    [SerializeField] private float heighJumpForce;
-    // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
-    [SerializeField] private float velocitySpeed;
-    [SerializeField] private float velocity;
+    [SerializeField] private float yRaycastGrounded;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
@@ -25,11 +21,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float vcamMoveYSpeed;
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float camCenterTimer;
-    private float maxJumpForce;
-    private float maxheighJumpForce;
+    [Header("Velocity")]
+    [SerializeField] private float velocity;
+    [SerializeField] private float lowJumpForce;
+    [SerializeField] private float heighJumpForce;
+    [SerializeField] private float jumpDistance;
+    // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
+    [SerializeField] private float velocitySpeed;
+    [SerializeField] private float inertia;
+    private float currJumpForce;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
+    private float maxVelocitySpeed;
     private bool isGrounded;
     private bool canJump;
 
@@ -40,8 +44,7 @@ public class PlayerController : MonoBehaviour
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         maxCamCenterTimer = camCenterTimer;
-        maxJumpForce = lowJumpForce;
-        maxheighJumpForce = heighJumpForce;
+        maxVelocitySpeed = velocitySpeed;
 
         if (!playerSprite.flipX)
         {
@@ -84,13 +87,13 @@ public class PlayerController : MonoBehaviour
         if (controls.currentActionMap.FindAction("HighJump").triggered)
         {
             Debug.Log("double saut");
-            lowJumpForce = maxheighJumpForce;
+            currJumpForce = heighJumpForce;
         }
 
         if (controls.currentActionMap.FindAction("Jump").triggered && isGrounded)
         {
             Debug.Log("saut normal");
-            lowJumpForce = maxJumpForce;
+            currJumpForce = lowJumpForce;
             canJump = true;
         }
 
@@ -102,9 +105,9 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(jumpForce);
 
         float distance = 1f;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1), -transform.up, distance, 1 << 6);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up, distance, 1 << 6);
 
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1), -transform.up * 1f, Color.red, 1);
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up * 1f, Color.red, 1);
         if (hit)
         {
             //Debug.Log(hit.collider.gameObject.name);
@@ -153,21 +156,24 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(-velocitySpeed * Time.deltaTime, rb.velocity.y);
         }
 
-        if(isGrounded)
+        if (isGrounded)
         {
-            rb.AddForceAtPosition(new Vector2(movement, rb.velocity.y), transform.position);
+            velocitySpeed = maxVelocitySpeed;
+            rb.AddForceAtPosition(new Vector2(movement * inertia, rb.velocity.y), transform.position);
         }
         else if (!isGrounded)
         {
-            rb.AddForceAtPosition(new Vector2(movement, rb.velocity.y), transform.position);
+            velocitySpeed = jumpDistance;
+            rb.AddForceAtPosition(new Vector2(movement * inertia, rb.velocity.y), transform.position);
         }
 
         if (canJump)
         {
             timer += Time.deltaTime;
-            if (timer > 0.1f)
+            if (timer > 0.05f)
             {
-                rb.velocity = new Vector2(rb.velocity.x, lowJumpForce * Time.deltaTime);
+                Debug.Log(velocitySpeed);
+                rb.velocity = new Vector2(rb.velocity.x, currJumpForce * Time.deltaTime);
                 canJump = false;
             }
         }
