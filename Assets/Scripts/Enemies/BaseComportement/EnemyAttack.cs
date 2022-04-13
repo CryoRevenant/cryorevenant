@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour
     GameObject triggerHit;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         triggerHit = transform.GetChild(0).gameObject;
     }
@@ -24,14 +24,14 @@ public class EnemyAttack : MonoBehaviour
     public void CheckAttack(GameObject player)
     {
         RaycastHit2D hit;
-        if (hit = Physics2D.Raycast(transform.position,(player.transform.position - transform.position).normalized, radius, 1<<0))
+        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
             Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);
             Attack();
         }
     }
 
-    void Attack()
+    public virtual void Attack()
     {
         triggerHit.SetActive(true);
         Invoke("StopAttack", timer);

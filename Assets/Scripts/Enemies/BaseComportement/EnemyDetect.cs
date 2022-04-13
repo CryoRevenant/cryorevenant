@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
-    [SerializeField] float radiusPlayer;
-    [SerializeField] float radiusEnemy;
+    public float radiusPlayer;
+    public float radiusEnemy;
 
     bool detect;
     public bool otherDetect;
 
-    EnemyMove move;
-    EnemyAttack attack;
+    public EnemyMove move;
+    public EnemyAttack attack;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +64,7 @@ public class EnemyDetect : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator DetectAround()
+    public virtual IEnumerator DetectAround()
     {
         Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radiusPlayer, 1 << 0);
         if (detectCircle != null)
