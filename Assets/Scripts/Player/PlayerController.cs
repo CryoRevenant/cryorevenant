@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float camCenterTimer;
     [Header("Velocity")]
-    [SerializeField] private float velocity;
+    [SerializeField] private float velocityVisualizer;
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
     [SerializeField] private float jumpDistance;
@@ -48,14 +48,14 @@ public class PlayerController : MonoBehaviour
 
         if (!playerSprite.flipX)
         {
-            camOffset.position = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, camOffset.position.z);
+            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
         }
 
         if (playerSprite.flipX)
         {
-            camOffset.position = new Vector3(transform.position.x - offset.x, transform.position.y + offset.y, camOffset.position.z);
+            camOffset.position = new Vector3(transform.position.x - offset.x, offset.y, camOffset.position.z);
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
@@ -67,14 +67,14 @@ public class PlayerController : MonoBehaviour
 
         if (xAxis > 0)
         {
-            camOffset.position = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, camOffset.position.z);
+            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
             playerSprite.flipX = false;
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
         }
         if (xAxis < 0)
         {
-            camOffset.position = new Vector3(transform.position.x - offset.x, transform.position.y + offset.y, camOffset.position.z);
+            camOffset.position = new Vector3(transform.position.x - offset.x, offset.y, camOffset.position.z);
             playerSprite.flipX = true;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
@@ -84,18 +84,9 @@ public class PlayerController : MonoBehaviour
 
         movement = xAxis;
 
-        if (controls.currentActionMap.FindAction("HighJump").triggered)
-        {
-            Debug.Log("double saut");
-            currJumpForce = heighJumpForce;
-        }
+        controls.currentActionMap.FindAction("HeighJump").performed += _ => PerformHighJump();
 
-        if (controls.currentActionMap.FindAction("Jump").triggered && isGrounded)
-        {
-            Debug.Log("saut normal");
-            currJumpForce = lowJumpForce;
-            canJump = true;
-        }
+        controls.currentActionMap.FindAction("Jump").started += _ => PerformJump();
 
         if (!canJump)
         {
@@ -119,6 +110,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             isGrounded = false;
+            leftDustSprite.enabled = false;
+            rightDustSprite.enabled = false;
         }
 
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
@@ -145,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        velocity = rb.velocity.magnitude;
+        velocityVisualizer = rb.velocity.magnitude;
 
         if (movement == 1)
         {
@@ -159,23 +152,36 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             velocitySpeed = maxVelocitySpeed;
-            rb.AddForceAtPosition(new Vector2(movement * inertia, rb.velocity.y), transform.position);
+            //rb.AddForceAtPosition(new Vector2(movement * inertia, rb.velocity.y), transform.position);
         }
         else if (!isGrounded)
         {
             velocitySpeed = jumpDistance;
-            rb.AddForceAtPosition(new Vector2(movement * inertia, rb.velocity.y), transform.position);
+            //rb.AddForceAtPosition(new Vector2(movement * inertia, rb.velocity.y), transform.position);
         }
 
         if (canJump)
         {
             timer += Time.deltaTime;
-            if (timer > 0.05f)
+            if (timer > 0.1f && isGrounded)
             {
-                Debug.Log(velocitySpeed);
+                //Debug.Log(currJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, currJumpForce * Time.deltaTime);
                 canJump = false;
             }
         }
+    }
+
+    void PerformHighJump()
+    {
+        //Debug.Log("double saut");
+        currJumpForce = heighJumpForce;
+    }
+
+    void PerformJump()
+    {
+        //Debug.Log("saut normal");
+        currJumpForce = lowJumpForce;
+        canJump = true;
     }
 }
