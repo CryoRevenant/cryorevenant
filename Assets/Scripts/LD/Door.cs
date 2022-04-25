@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] GameObject doorIdle;
     [SerializeField] GameObject doorDebris;
+    [SerializeField] Transform expPos;
     // Start is called before the first frame update
     void Start()
     {
