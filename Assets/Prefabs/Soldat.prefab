@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.3207547, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -177,7 +177,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -202,6 +202,8 @@ MonoBehaviour:
   radiusPlayer: 12
   radiusEnemy: 15
   otherDetect: 0
+  move: {fileID: 0}
+  attack: {fileID: 0}
 --- !u!114 &1439228575004212923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +221,7 @@ MonoBehaviour:
   speedFall: 4
   rayLength: 0.5
   bounds: 0.5
+  maxStoppingDist: 0
 --- !u!61 &1439228575004212919
 BoxCollider2D:
   m_ObjectHideFlags: 0
