@@ -115,9 +115,10 @@ MonoBehaviour:
   mustGo: 0
   speed: 6
   speedFall: 2.5
-  rayLength: 0.5
-  bounds: 0.5
+  rayLength: 1.4
+  bounds: 0.3
   maxStoppingDist: 1
+  showRays: 1
 --- !u!114 &386261862525074429
 MonoBehaviour:
   m_ObjectHideFlags: 0

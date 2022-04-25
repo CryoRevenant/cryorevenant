@@ -120,9 +120,10 @@ MonoBehaviour:
   mustGo: 0
   speed: 18
   speedFall: 4
-  rayLength: 0.5
-  bounds: 0.5
+  rayLength: 1.4
+  bounds: 0.8
   maxStoppingDist: 0
+  showRays: 1
 --- !u!61 &404204908336340058
 BoxCollider2D:
   m_ObjectHideFlags: 0

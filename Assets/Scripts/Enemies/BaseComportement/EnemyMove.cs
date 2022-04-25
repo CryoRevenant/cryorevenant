@@ -12,6 +12,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] float rayLength;
     [SerializeField] float bounds;
     public float maxStoppingDist;
+    [SerializeField] bool showRays;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,11 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (showRays)
+        {
+            Debug.DrawRay(new Vector2(transform.position.x + bounds, transform.position.y), Vector2.down * rayLength, Color.cyan, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x - bounds, transform.position.y), Vector2.down * rayLength, Color.cyan, 0.2f);
+        }
         if (Physics2D.Raycast(new Vector2(transform.position.x + bounds, transform.position.y), Vector2.down, rayLength))
         {
             if (Physics2D.Raycast(new Vector2(transform.position.x - bounds, transform.position.y), Vector2.down, rayLength))
@@ -53,8 +59,8 @@ public class EnemyMove : MonoBehaviour
         //Debug.Log(lastPos.transform.position + " " + gameObject.name);
         while (mustGo == true)
         {
-            transform.LookAt(new Vector3(transform.position.x, transform.position.y,lastPos.transform.position.x));
-            transform.position = Vector3.MoveTowards(transform.position,new Vector3(posToGo.x, transform.position.y, 0),Time.deltaTime*speed);
+            transform.LookAt(new Vector3(transform.position.x, transform.position.y, lastPos.transform.position.x));
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
             if (Vector3.Distance(transform.position, posToGo) < maxStoppingDist)
             {
                 Reset(lastPos);
