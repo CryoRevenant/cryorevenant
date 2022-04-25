@@ -14,8 +14,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
     [Header("MainCamera")]
-    [SerializeField] private Transform camOffset;
-    [SerializeField] private Vector2 offset;
+    [SerializeField] private Vector3 offset;
     [SerializeField] private CinemachineVirtualCamera vcam;
     [SerializeField] private float vcamMoveXSpeed;
     [SerializeField] private float vcamMoveYSpeed;
@@ -48,14 +47,14 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (!playerSprite.flipX)
         {
-            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
+            vcam.transform.position = new Vector3(transform.position.x + offset.x, offset.y, offset.z);
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
         }
 
         if (playerSprite.flipX)
         {
-            camOffset.position = new Vector3(transform.position.x - offset.x, offset.y, camOffset.position.z);
+            vcam.transform.position = new Vector3(transform.position.x - offset.x, offset.y, offset.z);
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
@@ -67,19 +66,27 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (xAxis > 0)
         {
-            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
+            vcam.transform.position = new Vector3(transform.position.x + offset.x, offset.y, offset.z);
             playerSprite.flipX = false;
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
             curVelocitySpeed += accelSpeed.Evaluate(Time.deltaTime);
+            if (curVelocitySpeed >= moveSpeed)
+            {
+                curVelocitySpeed = moveSpeed;
+            }
         }
         if (xAxis < 0)
         {
-            camOffset.position = new Vector3(transform.position.x - offset.x, offset.y, camOffset.position.z);
+            vcam.transform.position = new Vector3(transform.position.x - offset.x, offset.y, offset.z);
             playerSprite.flipX = true;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
             curVelocitySpeed += accelSpeed.Evaluate(Time.deltaTime);
+            if (curVelocitySpeed >= moveSpeed)
+            {
+                curVelocitySpeed = moveSpeed;
+            }
         }
 
         //Debug.Log(movement);
@@ -121,14 +128,18 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (xAxis == 0)
         {
-            curVelocitySpeed = 0;
+            curVelocitySpeed -= accelSpeed.Evaluate(Time.deltaTime/2);
+            if(curVelocitySpeed <= 0)
+            {
+                curVelocitySpeed = 0;
+            }
             camCenterTimer -= Time.deltaTime;
             //Debug.Log((int)camCenterTimer);
             if (camCenterTimer <= 0)
             {
                 //Debug.Log("center");
                 vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 3;
-                camOffset.position = new Vector3(transform.position.x, transform.position.y + offset.y, camOffset.position.z);
+                vcam.transform.position = new Vector3(transform.position.x, offset.y, offset.z);
                 camCenterTimer = 0;
             }
         }
@@ -142,8 +153,8 @@ public class PlayerControllerV2 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 nextPosition = new Vector3(transform.position.x + movement, transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * Mathf.Clamp(curVelocitySpeed,0,moveSpeed));
-        Debug.Log(curVelocitySpeed);
+        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * curVelocitySpeed);
+        Debug.Log((int)curVelocitySpeed);
 
         if (canJump)
         {
