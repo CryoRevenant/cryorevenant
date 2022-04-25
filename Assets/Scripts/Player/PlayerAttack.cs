@@ -36,11 +36,18 @@ public class PlayerAttack : MonoBehaviour
                 col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
                 timer = attackCooldown;
             }
+
+            if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+            {
+                //Debug.Log("hit Enemy");
+                col[i].gameObject.GetComponent<Door>().DestroyDoor();
+                timer = attackCooldown;
+            }
         }
 
         float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
 
-        if(xAxis > 0)
+        if (xAxis > 0)
         {
             attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
         }
