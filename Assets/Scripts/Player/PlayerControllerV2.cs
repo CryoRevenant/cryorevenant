@@ -22,7 +22,6 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float camCenterTimer;
     [Header("Velocity")]
-    [SerializeField] private float velocityVisualizer;
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
     [SerializeField] private float jumpDistance;
@@ -138,10 +137,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        velocityVisualizer = rb.velocity.magnitude;
-
         Vector3 nextPosition = new Vector3(transform.position.x + movement, transform.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * velocitySpeed);
+        Debug.Log(velocitySpeed);
 
         if (canJump)
         {
