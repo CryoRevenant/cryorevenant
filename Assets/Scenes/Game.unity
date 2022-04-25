@@ -326,9 +326,9 @@ GameObject:
   - component: {fileID: 22310733}
   - component: {fileID: 22310735}
   - component: {fileID: 22310734}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slab (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,9 +455,9 @@ GameObject:
   - component: {fileID: 45737247}
   - component: {fileID: 45737249}
   - component: {fileID: 45737248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -775,9 +775,9 @@ GameObject:
   - component: {fileID: 83114993}
   - component: {fileID: 83114995}
   - component: {fileID: 83114994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1017,7 +1017,7 @@ GameObject:
   - component: {fileID: 120429279}
   m_Layer: 0
   m_Name: Door (5)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1180,9 +1180,9 @@ GameObject:
   - component: {fileID: 159682815}
   - component: {fileID: 159682816}
   - component: {fileID: 159682817}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1398,9 +1398,9 @@ GameObject:
   - component: {fileID: 177102060}
   - component: {fileID: 177102061}
   - component: {fileID: 177102062}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 184482693}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1606,11 +1606,34 @@ MonoBehaviour:
   vcamMoveYSpeed: 3
   vcamMoveYawSpeed: 0.5
   camCenterTimer: 5
-  velocityVisualizer: 0
   lowJumpForce: 800
   heighJumpForce: 1000
   jumpDistance: 800
-  velocitySpeed: 20
+  moveSpeed: 20
+  accelSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   inertia: 2
 --- !u!1 &201897822
 GameObject:
@@ -1706,9 +1729,9 @@ GameObject:
   - component: {fileID: 203027307}
   - component: {fileID: 203027309}
   - component: {fileID: 203027308}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2040,9 +2063,9 @@ GameObject:
   - component: {fileID: 268125795}
   - component: {fileID: 268125797}
   - component: {fileID: 268125796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2168,9 +2191,9 @@ GameObject:
   - component: {fileID: 273405295}
   - component: {fileID: 273405296}
   - component: {fileID: 273405297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (15)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2278,7 +2301,7 @@ GameObject:
   - component: {fileID: 274697914}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2360,7 +2383,7 @@ GameObject:
   - component: {fileID: 307430333}
   m_Layer: 0
   m_Name: Door (2)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2796,9 +2819,9 @@ GameObject:
   - component: {fileID: 375898507}
   - component: {fileID: 375898509}
   - component: {fileID: 375898508}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2923,9 +2946,10 @@ GameObject:
   m_Component:
   - component: {fileID: 387303876}
   - component: {fileID: 387303877}
-  m_Layer: 0
+  - component: {fileID: 387303878}
+  m_Layer: 6
   m_Name: Ground2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2995,6 +3019,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &387303878
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387303875}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &409258073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,9 +3159,9 @@ GameObject:
   - component: {fileID: 425392746}
   - component: {fileID: 425392748}
   - component: {fileID: 425392747}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3269,9 +3319,9 @@ GameObject:
   - component: {fileID: 435584632}
   - component: {fileID: 435584634}
   - component: {fileID: 435584633}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3527,9 +3577,9 @@ GameObject:
   - component: {fileID: 530124445}
   - component: {fileID: 530124447}
   - component: {fileID: 530124446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4019,6 +4069,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7778891271954775128, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
 --- !u!4 &603750657 stripped
@@ -4037,9 +4091,9 @@ GameObject:
   - component: {fileID: 608515920}
   - component: {fileID: 608515921}
   - component: {fileID: 608515922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4146,9 +4200,9 @@ GameObject:
   - component: {fileID: 654014571}
   - component: {fileID: 654014572}
   - component: {fileID: 654014573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4256,9 +4310,9 @@ GameObject:
   - component: {fileID: 654582156}
   - component: {fileID: 654582158}
   - component: {fileID: 654582157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4760,7 +4814,7 @@ GameObject:
   - component: {fileID: 793685314}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4924,7 +4978,7 @@ GameObject:
   - component: {fileID: 820800205}
   m_Layer: 0
   m_Name: Door (4)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5041,9 +5095,9 @@ GameObject:
   - component: {fileID: 883456753}
   - component: {fileID: 883456755}
   - component: {fileID: 883456754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5287,7 +5341,7 @@ GameObject:
   - component: {fileID: 940834764}
   m_Layer: 0
   m_Name: Door (7)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5614,9 +5668,9 @@ GameObject:
   - component: {fileID: 996902738}
   - component: {fileID: 996902739}
   - component: {fileID: 996902740}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5723,9 +5777,9 @@ GameObject:
   - component: {fileID: 997456245}
   - component: {fileID: 997456246}
   - component: {fileID: 997456247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6354,9 +6408,9 @@ GameObject:
   - component: {fileID: 1127633321}
   - component: {fileID: 1127633323}
   - component: {fileID: 1127633322}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6487,7 +6541,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1131305982
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7043,9 +7097,9 @@ GameObject:
   - component: {fileID: 1190983940}
   - component: {fileID: 1190983942}
   - component: {fileID: 1190983941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7471,9 +7525,9 @@ GameObject:
   - component: {fileID: 1226286543}
   - component: {fileID: 1226286544}
   - component: {fileID: 1226286545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7663,9 +7717,9 @@ GameObject:
   - component: {fileID: 1275851471}
   - component: {fileID: 1275851473}
   - component: {fileID: 1275851472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7796,9 +7850,9 @@ GameObject:
   - component: {fileID: 1287697655}
   - component: {fileID: 1287697656}
   - component: {fileID: 1287697657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8502,7 +8556,7 @@ GameObject:
   - component: {fileID: 1409162813}
   m_Layer: 0
   m_Name: 'Door '
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8774,9 +8828,9 @@ GameObject:
   - component: {fileID: 1417280904}
   - component: {fileID: 1417280905}
   - component: {fileID: 1417280906}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9074,9 +9128,9 @@ GameObject:
   - component: {fileID: 1461361813}
   - component: {fileID: 1461361814}
   - component: {fileID: 1461361815}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9183,9 +9237,9 @@ GameObject:
   - component: {fileID: 1499833283}
   - component: {fileID: 1499833284}
   - component: {fileID: 1499833285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9365,7 +9419,7 @@ GameObject:
   - component: {fileID: 1524765073}
   m_Layer: 0
   m_Name: Door (8)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9446,9 +9500,9 @@ GameObject:
   - component: {fileID: 1551015943}
   - component: {fileID: 1551015944}
   - component: {fileID: 1551015946}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9555,9 +9609,9 @@ GameObject:
   - component: {fileID: 1562882489}
   - component: {fileID: 1562882490}
   - component: {fileID: 1562882491}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10171,9 +10225,9 @@ GameObject:
   - component: {fileID: 1683944871}
   - component: {fileID: 1683944872}
   - component: {fileID: 1683944873}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10328,7 +10382,7 @@ GameObject:
   - component: {fileID: 1692875824}
   m_Layer: 0
   m_Name: Door (3)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10683,7 +10737,7 @@ GameObject:
   - component: {fileID: 1739402344}
   m_Layer: 0
   m_Name: Door (1)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10874,9 +10928,9 @@ GameObject:
   - component: {fileID: 1776661497}
   - component: {fileID: 1776661499}
   - component: {fileID: 1776661498}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11003,9 +11057,9 @@ GameObject:
   - component: {fileID: 1815076677}
   - component: {fileID: 1815076679}
   - component: {fileID: 1815076678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TransparentFloor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11219,9 +11273,9 @@ GameObject:
   - component: {fileID: 1839024644}
   - component: {fileID: 1839024646}
   - component: {fileID: 1839024645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11862,9 +11916,9 @@ GameObject:
   - component: {fileID: 1916113997}
   - component: {fileID: 1916113999}
   - component: {fileID: 1916113998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Box (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11991,9 +12045,9 @@ GameObject:
   - component: {fileID: 1917805499}
   - component: {fileID: 1917805501}
   - component: {fileID: 1917805500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TransparentFloor (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13064,9 +13118,9 @@ GameObject:
   - component: {fileID: 2027873057}
   - component: {fileID: 2027873058}
   - component: {fileID: 2027873059}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13283,9 +13337,9 @@ GameObject:
   - component: {fileID: 2056545240}
   - component: {fileID: 2056545242}
   - component: {fileID: 2056545241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Slab
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13582,7 +13636,7 @@ GameObject:
   - component: {fileID: 2106889984}
   m_Layer: 0
   m_Name: Door (6)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

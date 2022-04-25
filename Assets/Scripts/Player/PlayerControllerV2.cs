@@ -26,13 +26,14 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float heighJumpForce;
     [SerializeField] private float jumpDistance;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
-    [SerializeField] private float velocitySpeed;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private AnimationCurve accelSpeed;
     [SerializeField] private float inertia;
     private float currJumpForce;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
-    private float maxVelocitySpeed;
+    private float curVelocitySpeed;
     private bool isGrounded;
     private bool canJump;
 
@@ -43,7 +44,7 @@ public class PlayerControllerV2 : MonoBehaviour
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         maxCamCenterTimer = camCenterTimer;
-        maxVelocitySpeed = velocitySpeed;
+        curVelocitySpeed = 0;
 
         if (!playerSprite.flipX)
         {
@@ -70,6 +71,7 @@ public class PlayerControllerV2 : MonoBehaviour
             playerSprite.flipX = false;
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
+            curVelocitySpeed += accelSpeed.Evaluate(Time.deltaTime);
         }
         if (xAxis < 0)
         {
@@ -77,6 +79,7 @@ public class PlayerControllerV2 : MonoBehaviour
             playerSprite.flipX = true;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
+            curVelocitySpeed += accelSpeed.Evaluate(Time.deltaTime);
         }
 
         //Debug.Log(movement);
@@ -118,6 +121,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (xAxis == 0)
         {
+            curVelocitySpeed = 0;
             camCenterTimer -= Time.deltaTime;
             //Debug.Log((int)camCenterTimer);
             if (camCenterTimer <= 0)
@@ -138,8 +142,8 @@ public class PlayerControllerV2 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 nextPosition = new Vector3(transform.position.x + movement, transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * velocitySpeed);
-        Debug.Log(velocitySpeed);
+        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * Mathf.Clamp(curVelocitySpeed,0,moveSpeed));
+        Debug.Log(curVelocitySpeed);
 
         if (canJump)
         {

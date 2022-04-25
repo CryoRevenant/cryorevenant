@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778891271201975953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.4, y: 20.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271729684176}
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7778891271729684174}
   - component: {fileID: 7778891271729684175}
   - component: {fileID: 7778891271729684173}
+  - component: {fileID: 187057646}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -60,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 7778891271729684178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -38.4, y: -0.08, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.17, y: 0.17, z: 1}
   m_Children:
   - {fileID: 7778891271954775130}
   - {fileID: 7778891271201975950}
@@ -142,28 +143,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7778891271729684178}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21d73d701d185bd47a2f369787a97a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowJumpForce: 750
-  heighJumpForce: 850
-  jumpDistance: 50
-  velocitySpeed: 850
-  velocity: 0
-  inertia: 0
-  yRaycastGrounded: 2
+  yRaycastGrounded: 1
   playerSprite: {fileID: 7778891271954775128}
   leftDustSprite: {fileID: 1277820202575207455}
   rightDustSprite: {fileID: 1277820202332141261}
   camOffset: {fileID: 7778891271201975950}
-  offset: {x: 5, y: 5}
+  offset: {x: 5, y: 0}
   vcam: {fileID: 0}
   vcamMoveXSpeed: 2
   vcamMoveYSpeed: 5
   vcamMoveYawSpeed: 3
   camCenterTimer: 5
+  velocityVisualizer: 0
+  lowJumpForce: 800
+  heighJumpForce: 1000
+  jumpDistance: 800
+  velocitySpeed: 850
+  inertia: 0
 --- !u!114 &7778891271729684173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +182,58 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 1
   attackCooldown: 0.5
+--- !u!114 &187057646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778891271729684178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9c1ff5d940bd7f41a13a3d775408bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yRaycastGrounded: 1
+  playerSprite: {fileID: 7778891271954775128}
+  leftDustSprite: {fileID: 1277820202575207455}
+  rightDustSprite: {fileID: 1277820202332141261}
+  camOffset: {fileID: 7778891271201975950}
+  offset: {x: 5, y: 0}
+  vcam: {fileID: 0}
+  vcamMoveXSpeed: 0.5
+  vcamMoveYSpeed: 3
+  vcamMoveYawSpeed: 0.5
+  camCenterTimer: 5
+  lowJumpForce: 800
+  heighJumpForce: 1000
+  jumpDistance: 800
+  moveSpeed: 20
+  accelSpeed:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  inertia: 2
 --- !u!1 &7778891271889976451
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +356,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 761046168104156870, guid: 382a5b836f523fe4eb60ebd7211d06ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
