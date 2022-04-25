@@ -1578,11 +1578,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &187057640 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-  m_PrefabInstance: {fileID: 603750656}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &201897822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2736,7 +2731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &348019981
 Transform:
   m_ObjectHideFlags: 0
@@ -2745,8 +2740,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348019980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.343533, y: 5.134473, z: -29.119347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 57.343533, y: 1.3, z: -29.119347}
+  m_LocalScale: {x: 0.69, y: 0.69, z: 0.69}
   m_Children:
   - {fileID: 409258075}
   - {fileID: 1185083387}
@@ -3921,10 +3916,6 @@ PrefabInstance:
       propertyPath: vcam
       value: 
       objectReference: {fileID: 1058006256}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: inertia
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3975,6 +3966,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+--- !u!4 &603750657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1067519118563828432, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+  m_PrefabInstance: {fileID: 603750656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &608515919
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,10 +5855,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2702040782396227639, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
-      propertyPath: m_FollowOffset.z
-      value: -30
-      objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -5910,15 +5902,7 @@ PrefabInstance:
     - target: {fileID: 2702040783645361041, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 187057640}
-    - target: {fileID: 2702040783645361041, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
-      propertyPath: m_LookAt
-      value: 
-      objectReference: {fileID: 187057640}
-    - target: {fileID: 2702040783645361041, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 5.5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 603750657}
     - target: {fileID: 2702040783645361043, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_Name
       value: VCamBase

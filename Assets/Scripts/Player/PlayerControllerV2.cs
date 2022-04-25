@@ -14,50 +14,72 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
     [Header("MainCamera")]
+    [SerializeField] private Transform camOffset;
     [SerializeField] private Vector3 offset;
     [SerializeField] private CinemachineVirtualCamera vcam;
     [SerializeField] private float vcamMoveXSpeed;
     [SerializeField] private float vcamMoveYSpeed;
     [SerializeField] private float vcamMoveYawSpeed;
+    [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
     [Header("Velocity")]
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
     [SerializeField] private float jumpDistance;
+    [SerializeField] private float jumpAnalogImpact;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float moveSpeed;
-    [SerializeField] private AnimationCurve accelSpeed;
+    [SerializeField] private float dashForce;
+    [SerializeField] private float dashDistance;
+    [SerializeField] private float accelSpeed;
+    [SerializeField] private AnimationCurve accelCurve;
+    [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float inertia;
     private float currJumpForce;
+    private float currdashForce;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
     private float curVelocitySpeed;
+    private float result;
+    private float yAxis;
+
     private bool isGrounded;
     private bool canJump;
+    private bool canDash;
+    private bool canResetCurMoveSpeed;
+    private bool canReverse;
 
     void Awake()
     {
         isGrounded = false;
         canJump = false;
+        canDash = false;
+        canReverse = true;
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         maxCamCenterTimer = camCenterTimer;
         curVelocitySpeed = 0;
+        currdashForce = dashForce;
 
         if (!playerSprite.flipX)
         {
-            vcam.transform.position = new Vector3(transform.position.x + offset.x, offset.y, offset.z);
+            result = transform.position.x + offset.x;
+            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
         }
 
         if (playerSprite.flipX)
         {
-            vcam.transform.position = new Vector3(transform.position.x - offset.x, offset.y, offset.z);
+            canReverse = true;
+            result = transform.position.x - offset.x;
+            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
+
+        canResetCurMoveSpeed = false;
     }
 
     private void Update()
@@ -66,11 +88,17 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (xAxis > 0)
         {
-            vcam.transform.position = new Vector3(transform.position.x + offset.x, offset.y, offset.z);
+            canReverse = true;
+            if (canResetCurMoveSpeed)
+            {
+                curVelocitySpeed = 0;
+                canResetCurMoveSpeed = false;
+            }
+            result = transform.position.x + offset.x;
             playerSprite.flipX = false;
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
-            curVelocitySpeed += accelSpeed.Evaluate(Time.deltaTime);
+            curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
             if (curVelocitySpeed >= moveSpeed)
             {
                 curVelocitySpeed = moveSpeed;
@@ -78,28 +106,53 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         if (xAxis < 0)
         {
-            vcam.transform.position = new Vector3(transform.position.x - offset.x, offset.y, offset.z);
+            canReverse = true;
+            if (canResetCurMoveSpeed)
+            {
+                curVelocitySpeed = 0;
+                canResetCurMoveSpeed = false;
+            }
+            result = transform.position.x - offset.x;
             playerSprite.flipX = true;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
-            curVelocitySpeed += accelSpeed.Evaluate(Time.deltaTime);
+            curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
             if (curVelocitySpeed >= moveSpeed)
             {
                 curVelocitySpeed = moveSpeed;
             }
         }
 
+        if(controls.currentActionMap.FindAction("DashRight").triggered)
+        {
+            playerSprite.flipX = false;
+            dashForce = currdashForce;
+            canDash = true;
+        }
+        else if (controls.currentActionMap.FindAction("DashLeft").triggered)
+        {
+            playerSprite.flipX = true;
+            dashForce = -currdashForce;
+            canDash = true;
+        }
+
         //Debug.Log(movement);
 
         movement = xAxis;
 
-        controls.currentActionMap.FindAction("HeighJump").performed += _ => PerformHighJump();
+        if (controls.currentActionMap.FindAction("Jump").triggered)
+        {
+            //Debug.Log("saut normal");
+            canJump = true;
+        }
 
-        controls.currentActionMap.FindAction("Jump").started += _ => PerformJump();
+        currJumpForce = lowJumpForce * yAxis;
+        yAxis += jumpCurve.Evaluate(controls.currentActionMap.FindAction("Jump").ReadValue<float>() * Time.deltaTime * jumpAnalogImpact);
 
         if (!canJump)
         {
             timer = 0;
+            yAxis = 0;
         }
 
         //Debug.Log(jumpForce);
@@ -128,7 +181,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (xAxis == 0)
         {
-            curVelocitySpeed -= accelSpeed.Evaluate(Time.deltaTime/2);
+            canResetCurMoveSpeed = true;
+            curVelocitySpeed -= accelCurve.Evaluate(Time.deltaTime*accelSpeed);
             if(curVelocitySpeed <= 0)
             {
                 curVelocitySpeed = 0;
@@ -138,46 +192,53 @@ public class PlayerControllerV2 : MonoBehaviour
             if (camCenterTimer <= 0)
             {
                 //Debug.Log("center");
+                canReverse = false;
                 vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 3;
-                vcam.transform.position = new Vector3(transform.position.x, offset.y, offset.z);
+                camOffset.position = new Vector3(transform.position.x, offset.y, camOffset.position.z);
                 camCenterTimer = 0;
             }
         }
         else
         {
-            vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = vcamMoveXSpeed;
+            vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0.5f;
             camCenterTimer = maxCamCenterTimer;
         }
     }
 
     void FixedUpdate()
     {
+        // accel
         Vector3 nextPosition = new Vector3(transform.position.x + movement, transform.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * curVelocitySpeed);
-        Debug.Log((int)curVelocitySpeed);
+        //Debug.Log((int)curVelocitySpeed);
 
+        // dash
+        if (canDash)
+        {
+            Vector3 nextDashPos = new Vector3(transform.position.x + dashForce, transform.position.y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, nextDashPos, Time.deltaTime * dashDistance);
+            canDash = false;
+        }
+
+        // mouvement de la caméra sur l'axe x lors que le personnage se tourne
+        if (canReverse)
+        {
+            Vector3 nextReverse = new Vector3(result, offset.y, camOffset.position.z);
+            camOffset.position = Vector3.Lerp(camOffset.position, nextReverse, Time.deltaTime * reverseSpeed);
+        }
+
+        // jump
         if (canJump)
         {
+            //Debug.Log(yAxis);
+            //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
             if (timer > 0.1f && isGrounded)
             {
                 //Debug.Log(currJumpForce);
-                rb.velocity = new Vector2(rb.velocity.x, currJumpForce * Time.deltaTime);
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
                 canJump = false;
             }
         }
-    }
-
-    void PerformHighJump()
-    {
-        //Debug.Log("double saut");
-        currJumpForce = heighJumpForce;
-    }
-
-    void PerformJump()
-    {
-        //Debug.Log("saut normal");
-        currJumpForce = lowJumpForce;
-        canJump = true;
     }
 }

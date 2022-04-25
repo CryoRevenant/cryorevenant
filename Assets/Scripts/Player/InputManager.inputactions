@@ -16,20 +16,11 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "9c745439-3ddf-4344-9124-7027931f3930",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "HeighJump",
-                    "type": "Button",
-                    "id": "41f801df-ecb2-41fe-95f2-c76781c31b11",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": true
                 },
                 {
@@ -49,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DashRight",
+                    "type": "Button",
+                    "id": "89d6787f-dc26-4743-b9b2-21fde0bb0525",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "DashLeft",
+                    "type": "Button",
+                    "id": "0f0dfebc-d1d2-4686-a031-c422487a11e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -109,7 +118,7 @@
                 },
                 {
                     "name": "",
-                    "id": "0c1b1dd2-3518-46b9-b575-367b87b40b49",
+                    "id": "cbef8d35-3f7e-4994-b60c-9cb33b2a0869",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
@@ -137,28 +146,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6e70e961-e37e-4875-8140-4dcd7363ad1a",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HeighJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8962167a-6595-48f5-b2c5-9d8ccd8509b9",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "HeighJump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -192,6 +179,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "377291a4-31a2-4cf1-874d-5ccefefe8d26",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6cccebcf-aace-425a-9828-2143fdc22002",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
