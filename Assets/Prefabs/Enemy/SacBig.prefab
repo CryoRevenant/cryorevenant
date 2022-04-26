@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radiusPlayer: 12
   radiusEnemy: 15
+  waitTime: 0.7
   otherDetect: 0
   move: {fileID: 0}
   attack: {fileID: 0}
@@ -216,11 +217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dcb7e91020518348be80f8f000da88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showRays: 0
+  showRays: 1
   mustGo: 0
   speed: 15
   speedFall: 2.5
-  rayLength: 1.3
+  rayLengthDown: 1.3
+  rayLengthSide: 1.3
   bounds: 0.8
   maxStoppingDist: 1
 --- !u!70 &6663877524622379849

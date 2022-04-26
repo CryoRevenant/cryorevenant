@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetectSniper : EnemyDetect
 {
     [SerializeField] float maxStoppingDetect;
+
     public override IEnumerator DetectAround()
     {
         Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radiusPlayer, 1 << 0);
@@ -32,7 +33,7 @@ public class DetectSniper : EnemyDetect
             GetComponent<EnemyMove>().maxStoppingDist = 1;
             otherDetect = false;
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(waitTime);
         StartCoroutine("DetectAround");
     }
 }
