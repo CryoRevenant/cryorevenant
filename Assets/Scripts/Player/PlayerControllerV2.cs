@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
+    [Header("Player")]
     private PlayerInput controls;
     private Rigidbody2D rb;
-    [Header("Player")]
     [SerializeField] private float yRaycastGrounded;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private SpriteRenderer leftDustSprite;
@@ -15,27 +15,29 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private Transform camOffset;
     [SerializeField] private Vector3 offset;
     [SerializeField] private CinemachineVirtualCamera vcam;
-    [SerializeField] private float vcamMoveXSpeed;
     [SerializeField] private float vcamMoveYSpeed;
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
-    [Header("Velocity")]
+    [Header("Jump")]
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
-    [SerializeField] private float jumpDistance;
     [SerializeField] private float jumpAnalogImpact;
+    [SerializeField] private AnimationCurve jumpCurve;
+    [Header("Movement")]
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float dashDist;
-    [SerializeField] private float dashSpeed;
     [SerializeField] private float accelSpeed;
     [SerializeField] private AnimationCurve accelCurve;
-    [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float inertia;
+    [Header("Dash")]
+    [SerializeField] private float dashDistance;
+    [SerializeField] private float dashSpeed;
+
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
-    private float currJumpForce;
+
+    private float curJumpForce;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -60,11 +62,21 @@ public class PlayerControllerV2 : MonoBehaviour
         canJump = false;
         canDash = false;
         canReverse = true;
+        canResetCurMoveSpeed = false;
+        canGoDown = false;
+
+        curSpeed = Vector2.zero;
+
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        // défini maxCamCenterTimer à la valeur camCenterTimer dans l'inspecteur
         maxCamCenterTimer = camCenterTimer;
+        // la vitesse actuelle du player est à zéro au début, car le player n'a pas encore bougé
         curVelocitySpeed = 0;
 
+        // rotation de la caméra et des sprites en fonction de l'orientation du player
+        #region Sprites & Cam : setup
         if (!playerSprite.flipX)
         {
             result = transform.position.x + offset.x;
@@ -81,14 +93,12 @@ public class PlayerControllerV2 : MonoBehaviour
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
-
-        canResetCurMoveSpeed = false;
-        canGoDown = false;
-        curSpeed = Vector2.zero;
+        #endregion
     }
 
     private void Update()
     {
+        #region le déplacement
         if (!canDash)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
@@ -159,9 +169,11 @@ public class PlayerControllerV2 : MonoBehaviour
                 camCenterTimer = maxCamCenterTimer;
             }
         }
-
+        #endregion
+        
         //Debug.Log(result);
-
+        
+        #region le dash
         if (!canDash)
         {
             dashValue = controls.currentActionMap.FindAction("Dash").ReadValue<float>();
@@ -177,7 +189,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
-                    dashTime = dashDist / dashSpeed;
+                    dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
 
@@ -192,7 +204,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
-                    dashTime = dashDist / dashSpeed;
+                    dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
 
@@ -206,14 +218,16 @@ public class PlayerControllerV2 : MonoBehaviour
                 isDashing = true;
             }
         }
+        #endregion
 
+        #region saut
         if (controls.currentActionMap.FindAction("Jump").triggered)
         {
             //Debug.Log("saut normal");
             canJump = true;
         }
 
-        currJumpForce = lowJumpForce * yAxis;
+        curJumpForce = lowJumpForce * yAxis;
         yAxis += jumpCurve.Evaluate(controls.currentActionMap.FindAction("Jump").ReadValue<float>() * Time.deltaTime * jumpAnalogImpact);
 
         if (!canJump)
@@ -224,6 +238,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(jumpForce);
 
+        #endregion
+
+        #region isGrounded
         float distance = 1f;
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up, distance, 1 << 6);
 
@@ -242,10 +259,14 @@ public class PlayerControllerV2 : MonoBehaviour
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
         }
+        #endregion
 
+        #region vcam set Speed
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
+        #endregion
 
+        #region idle vcam offset
         if (canReverse)
         {
             switch (playerSprite.flipX)
@@ -258,8 +279,10 @@ public class PlayerControllerV2 : MonoBehaviour
                     break;
             }
         }
+        #endregion
 
-        if(controls.currentActionMap.FindAction("Down").triggered)
+        #region goDown
+        if (controls.currentActionMap.FindAction("Down").triggered)
         {
             canGoDown = true;
             //Debug.Log("input down");
@@ -286,6 +309,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("ignore layer");
             gameObject.layer = 8;
         }
+        #endregion
     }
 
     void FixedUpdate()
@@ -336,7 +360,7 @@ public class PlayerControllerV2 : MonoBehaviour
             if (timer > 0.1f && isGrounded)
             {
                 //Debug.Log(currJumpForce);
-                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
                 canJump = false;
             }
         }
