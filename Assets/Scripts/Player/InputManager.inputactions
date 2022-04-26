@@ -183,6 +183,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "2bbf9f47-1eeb-4acf-b1c0-b19f3b222215",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "1D Axis",
                     "id": "f34133d1-8cc4-4658-92a7-9080a6d52bb4",
                     "path": "1DAxis",
