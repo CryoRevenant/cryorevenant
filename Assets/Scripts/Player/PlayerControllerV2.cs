@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
@@ -29,24 +27,30 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float jumpAnalogImpact;
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float dashForce;
-    [SerializeField] private float dashDistance;
+    [SerializeField] private float dashDist;
+    [SerializeField] private float dashSpeed;
     [SerializeField] private float accelSpeed;
     [SerializeField] private AnimationCurve accelCurve;
     [SerializeField] private AnimationCurve jumpCurve;
     [SerializeField] private float inertia;
+    private Vector2 curSpeed;
+    private Vector2 curDashSpeed;
+    private float curDashVelocity;
     private float currJumpForce;
-    private float currdashForce;
+    private float curDashForce;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
     private float curVelocitySpeed;
     private float result;
     private float yAxis;
+    private float dashValue;
+    private float dashTime;
 
     private bool isGrounded;
     private bool canJump;
     private bool canDash;
+    private bool isDashing;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
 
@@ -60,7 +64,7 @@ public class PlayerControllerV2 : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         maxCamCenterTimer = camCenterTimer;
         curVelocitySpeed = 0;
-        currdashForce = dashForce;
+        curDashForce = 1;
 
         if (!playerSprite.flipX)
         {
@@ -80,6 +84,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         canResetCurMoveSpeed = false;
+        curSpeed = Vector2.zero;
     }
 
     private void Update()
@@ -123,17 +128,45 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
 
-        if(controls.currentActionMap.FindAction("DashRight").triggered)
+        if (!canDash)
         {
-            playerSprite.flipX = false;
-            dashForce = currdashForce;
-            canDash = true;
-        }
-        else if (controls.currentActionMap.FindAction("DashLeft").triggered)
-        {
-            playerSprite.flipX = true;
-            dashForce = -currdashForce;
-            canDash = true;
+            dashValue = controls.currentActionMap.FindAction("Dash").ReadValue<float>();
+            if(dashValue != 0)
+            {
+                dashValue = Mathf.Sign(dashValue);
+            }
+            //Debug.Log(dashValue);
+
+            if (dashValue > 0)
+            {
+                canReverse = true;
+                result = transform.position.x + offset.x;
+                playerSprite.flipX = false;
+                if (isDashing)
+                {
+                    canDash = true;
+                    dashTime = dashDist / dashSpeed;
+                    isDashing = false;
+                }
+            }
+
+            if (dashValue < 0)
+            {
+                canReverse = true;
+                result = transform.position.x - offset.x;
+                playerSprite.flipX = true;
+                if (isDashing)
+                {
+                    canDash = true;
+                    dashTime = dashDist / dashSpeed;
+                    isDashing = false;
+                }
+            }
+
+            if (dashValue == 0 && !canDash)
+            {
+                isDashing = true;
+            }
         }
 
         //Debug.Log(movement);
@@ -189,7 +222,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             camCenterTimer -= Time.deltaTime;
             //Debug.Log((int)camCenterTimer);
-            if (camCenterTimer <= 0)
+            if (camCenterTimer <= 0 && dashValue == 0)
             {
                 //Debug.Log("center");
                 canReverse = false;
@@ -208,15 +241,32 @@ public class PlayerControllerV2 : MonoBehaviour
     void FixedUpdate()
     {
         // accel
-        Vector3 nextPosition = new Vector3(transform.position.x + movement, transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, nextPosition, Time.deltaTime * curVelocitySpeed);
+        float curseurAccel = 1;
+        if (movement == 0)
+        {
+            curseurAccel = Time.deltaTime * inertia;
+        }
+        curSpeed = Vector2.Lerp(curSpeed, new Vector2(curVelocitySpeed, curSpeed.y) * movement, curseurAccel);
+        Vector3 nextPosition = new Vector3(transform.position.x + curSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
+        rb.position = nextPosition;
         //Debug.Log((int)curVelocitySpeed);
 
         // dash
-        if (canDash)
+        float curseurDash = 1;
+        if (dashValue == 0)
         {
-            Vector3 nextDashPos = new Vector3(transform.position.x + dashForce, transform.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, nextDashPos, Time.deltaTime * dashDistance);
+            curseurDash = Time.deltaTime * inertia;
+        }
+
+        if (canDash && dashTime>0)
+        {
+            dashTime -= Time.deltaTime;
+            curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * dashValue, curseurDash);
+            Vector3 nextDashPos = new Vector3(transform.position.x + dashSpeed * dashValue * Time.deltaTime, transform.position.y, transform.position.z);
+            //Debug.Log(nextDashPos);
+            rb.position = nextDashPos;
+
+            if(dashTime<=0)
             canDash = false;
         }
 
