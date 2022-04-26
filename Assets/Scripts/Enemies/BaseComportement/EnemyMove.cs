@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    [SerializeField] bool showRays;
-
-    public bool mustGo;
     bool canMove = true;
     bool isGrounded;
+    bool lookLeft;
 
+    [Header("Déplacement")]
     [SerializeField] float speed;
     [SerializeField] float speedFall;
+    public float maxStoppingDist;
+    public bool mustGo;
+
+    [Header("Raycasts")]
     [SerializeField] float rayLengthDown;
     [SerializeField] float rayLengthSide;
     [SerializeField] float bounds;
 
-    public float maxStoppingDist;
+    [Header("Debug")]
+    [SerializeField] bool showRays;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Bool pour debug et ajuster les rays
         #region ShowRays
         if (showRays)
         {
@@ -37,6 +42,7 @@ public class EnemyMove : MonoBehaviour
         }
         #endregion
 
+        //Rays dessous pour la gravité 
         #region RaysDown
         if (Physics2D.Raycast(new Vector2(transform.position.x + bounds, transform.position.y), Vector2.down, rayLengthDown))
         {
@@ -51,13 +57,14 @@ public class EnemyMove : MonoBehaviour
         }
         #endregion
 
-        #region SideRays
+        //Rays sur les côtés pour éviter que l'ennemi passe au travers des murs
+        #region RaysSide
 
         if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide))
         {
-            Debug.Log("helo");
             canMove = false;
             StopCoroutine("MoveOver");
+            Offset();
         }
         else
         {
@@ -74,16 +81,31 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+    //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
     IEnumerator MoveOver(GameObject lastPos)
     {
         if (canMove == true)
         {
             Vector3 posToGo = lastPos.transform.position;
 
+            //Tant que l'ennemi doit bouger
             while (mustGo == true)
             {
-                transform.LookAt(new Vector3(transform.position.x, transform.position.y, lastPos.transform.position.x));
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
+
+                //Le joueur est à gauche ?
+                if (posToGo.x < transform.localPosition.x)
+                {
+                    lookLeft = true;
+                    LookDirection();
+                }
+                else
+                {
+                    lookLeft = false;
+                    LookDirection();
+                }
+
+                //Si l'ennemi est assez proche, il s'arrête
                 if (Vector3.Distance(transform.position, posToGo) < maxStoppingDist)
                 {
                     Reset(lastPos);
@@ -93,9 +115,37 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
+    //Reset de la position donnée dans la coroutine pour que l'ennemi s'arrête
     void Reset(GameObject player)
     {
         player = null;
         mustGo = false;
+    }
+
+    //Décalage de l'ennemi quand il touche un mur pour ne pas qu'il se bloque dedans
+    void Offset()
+    {
+        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, 1 << 6))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - 0.1f, transform.position.y, 0), Time.deltaTime * speed);
+        }
+
+        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, 1 << 6))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + 0.1f, transform.position.y, 0), Time.deltaTime * speed);
+        }
+    }
+
+    //Flip de l'ennemi pour qu'il regarde dans la direction du joueur
+    void LookDirection()
+    {
+        if (lookLeft)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }

@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemyDetect : MonoBehaviour
 {
+    [Header("Détection")]
     public float radiusPlayer;
     public float radiusEnemy;
+    public bool otherDetect;
+    public float waitTime;
 
     bool detect;
-    public bool otherDetect;
 
+    [Header("Scripts")]
     public EnemyMove move;
     public EnemyAttack attack;
 
@@ -27,6 +30,7 @@ public class EnemyDetect : MonoBehaviour
 
     }
 
+    //Si le joueur est détecté, alerte les ennemis à proximité et les fait venir
     IEnumerator PreventOther()
     {
         Collider2D[] detectEnemy = Physics2D.OverlapCircleAll(transform.position, radiusEnemy);
@@ -64,6 +68,7 @@ public class EnemyDetect : MonoBehaviour
         yield return null;
     }
 
+    //Détection du joueur, appel du déplacement vers lui, appel alerte autres ennemis et vérification de la distance pour attaquer
     public virtual IEnumerator DetectAround()
     {
         Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radiusPlayer, 1 << 0);
@@ -72,10 +77,9 @@ public class EnemyDetect : MonoBehaviour
             RaycastHit2D hit;
             if (hit = Physics2D.Linecast(transform.position, detectCircle.gameObject.transform.position))
             {
+                Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
                 if (hit.transform.gameObject.layer == 0)
                 {
-                    Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
-
                     otherDetect = true;
                     move.mustGo = true;
 
@@ -92,7 +96,7 @@ public class EnemyDetect : MonoBehaviour
         {
             otherDetect = false;
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(waitTime);
         StartCoroutine("DetectAround");
     }
 }
