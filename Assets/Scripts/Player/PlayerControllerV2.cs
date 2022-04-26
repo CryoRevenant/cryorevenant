@@ -35,9 +35,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float inertia;
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
-    private float curDashVelocity;
     private float currJumpForce;
-    private float curDashForce;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -46,6 +44,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float yAxis;
     private float dashValue;
     private float dashTime;
+    private float goDownCooldown;
 
     private bool isGrounded;
     private bool canJump;
@@ -53,6 +52,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool isDashing;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
+    private bool canGoDown;
 
     void Awake()
     {
@@ -64,7 +64,6 @@ public class PlayerControllerV2 : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         maxCamCenterTimer = camCenterTimer;
         curVelocitySpeed = 0;
-        curDashForce = 1;
 
         if (!playerSprite.flipX)
         {
@@ -84,49 +83,84 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         canResetCurMoveSpeed = false;
+        canGoDown = false;
         curSpeed = Vector2.zero;
     }
 
     private void Update()
     {
-        float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
+        if (!canDash)
+        {
+            float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
 
-        if (xAxis > 0)
-        {
-            canReverse = true;
-            if (canResetCurMoveSpeed)
+            if (xAxis > 0)
             {
-                curVelocitySpeed = 0;
-                canResetCurMoveSpeed = false;
+                if (canResetCurMoveSpeed)
+                {
+                    curVelocitySpeed = 0;
+                    canResetCurMoveSpeed = false;
+                }
+                playerSprite.flipX = false;
+                leftDustSprite.enabled = true;
+                rightDustSprite.enabled = false;
+                curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
+                if (curVelocitySpeed >= moveSpeed)
+                {
+                    curVelocitySpeed = moveSpeed;
+                }
+
+                canReverse = true;
             }
-            result = transform.position.x + offset.x;
-            playerSprite.flipX = false;
-            leftDustSprite.enabled = true;
-            rightDustSprite.enabled = false;
-            curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
-            if (curVelocitySpeed >= moveSpeed)
+            if (xAxis < 0)
             {
-                curVelocitySpeed = moveSpeed;
+                if (canResetCurMoveSpeed)
+                {
+                    curVelocitySpeed = 0;
+                    canResetCurMoveSpeed = false;
+                }
+                playerSprite.flipX = true;
+                leftDustSprite.enabled = false;
+                rightDustSprite.enabled = true;
+                curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
+                if (curVelocitySpeed >= moveSpeed)
+                {
+                    curVelocitySpeed = moveSpeed;
+                }
+
+                canReverse = true;
+            }
+
+            //Debug.Log(movement);
+
+            movement = xAxis;
+
+            if (xAxis == 0 && dashValue == 0)
+            {
+                canResetCurMoveSpeed = true;
+                curVelocitySpeed -= accelCurve.Evaluate(Time.deltaTime * accelSpeed);
+                if (curVelocitySpeed <= 0)
+                {
+                    curVelocitySpeed = 0;
+                }
+                camCenterTimer -= Time.deltaTime;
+                //Debug.Log((int)camCenterTimer);
+                if (camCenterTimer <= 0)
+                {
+                    //Debug.Log("center");
+                    canReverse = false;
+                    vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 3;
+                    camOffset.position = new Vector3(transform.position.x, offset.y, camOffset.position.z);
+                    camCenterTimer = 0;
+                }
+            }
+            else
+            {
+                vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0.5f;
+                camCenterTimer = maxCamCenterTimer;
             }
         }
-        if (xAxis < 0)
-        {
-            canReverse = true;
-            if (canResetCurMoveSpeed)
-            {
-                curVelocitySpeed = 0;
-                canResetCurMoveSpeed = false;
-            }
-            result = transform.position.x - offset.x;
-            playerSprite.flipX = true;
-            leftDustSprite.enabled = false;
-            rightDustSprite.enabled = true;
-            curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
-            if (curVelocitySpeed >= moveSpeed)
-            {
-                curVelocitySpeed = moveSpeed;
-            }
-        }
+
+        //Debug.Log(result);
 
         if (!canDash)
         {
@@ -139,8 +173,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (dashValue > 0)
             {
-                canReverse = true;
-                result = transform.position.x + offset.x;
                 playerSprite.flipX = false;
                 if (isDashing)
                 {
@@ -148,12 +180,14 @@ public class PlayerControllerV2 : MonoBehaviour
                     dashTime = dashDist / dashSpeed;
                     isDashing = false;
                 }
+
+                leftDustSprite.enabled = true;
+                rightDustSprite.enabled = false;
+                canReverse = true;
             }
 
             if (dashValue < 0)
             {
-                canReverse = true;
-                result = transform.position.x - offset.x;
                 playerSprite.flipX = true;
                 if (isDashing)
                 {
@@ -161,6 +195,10 @@ public class PlayerControllerV2 : MonoBehaviour
                     dashTime = dashDist / dashSpeed;
                     isDashing = false;
                 }
+
+                leftDustSprite.enabled = false;
+                rightDustSprite.enabled = true;
+                canReverse = true;
             }
 
             if (dashValue == 0 && !canDash)
@@ -168,10 +206,6 @@ public class PlayerControllerV2 : MonoBehaviour
                 isDashing = true;
             }
         }
-
-        //Debug.Log(movement);
-
-        movement = xAxis;
 
         if (controls.currentActionMap.FindAction("Jump").triggered)
         {
@@ -212,29 +246,45 @@ public class PlayerControllerV2 : MonoBehaviour
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
 
-        if (xAxis == 0)
+        if (canReverse)
         {
-            canResetCurMoveSpeed = true;
-            curVelocitySpeed -= accelCurve.Evaluate(Time.deltaTime*accelSpeed);
-            if(curVelocitySpeed <= 0)
+            switch (playerSprite.flipX)
             {
-                curVelocitySpeed = 0;
+                case true:
+                    result = transform.position.x - offset.x;
+                    break;
+                case false:
+                    result = transform.position.x + offset.x;
+                    break;
             }
-            camCenterTimer -= Time.deltaTime;
-            //Debug.Log((int)camCenterTimer);
-            if (camCenterTimer <= 0 && dashValue == 0)
-            {
-                //Debug.Log("center");
-                canReverse = false;
-                vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 3;
-                camOffset.position = new Vector3(transform.position.x, offset.y, camOffset.position.z);
-                camCenterTimer = 0;
-            }
+        }
+
+        if(controls.currentActionMap.FindAction("Down").triggered)
+        {
+            canGoDown = true;
+            //Debug.Log("input down");
+        }
+
+        Debug.Log(canGoDown);
+
+        if (!canGoDown)
+        {
+            gameObject.layer = 0;
         }
         else
         {
-            vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0.5f;
-            camCenterTimer = maxCamCenterTimer;
+            goDownCooldown += Time.deltaTime;
+            if (goDownCooldown >= 1f)
+            {
+                goDownCooldown = 0.25f;
+                canGoDown = false;
+            }
+        }
+
+        if (canGoDown)
+        {
+            //Debug.Log("ignore layer");
+            gameObject.layer = 8;
         }
     }
 

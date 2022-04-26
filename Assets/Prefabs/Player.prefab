@@ -181,8 +181,8 @@ MonoBehaviour:
   jumpDistance: 800
   jumpAnalogImpact: 60
   moveSpeed: 14
-  dashForce: 10
-  dashDistance: 500
+  dashDist: 10
+  dashSpeed: 25
   accelSpeed: 25
   accelCurve:
     serializedVersion: 2
