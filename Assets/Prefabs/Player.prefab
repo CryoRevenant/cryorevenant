@@ -171,18 +171,39 @@ MonoBehaviour:
   camOffset: {fileID: 1067519118563828432}
   offset: {x: 5, y: 0, z: -30}
   vcam: {fileID: 0}
-  vcamMoveXSpeed: 0.5
   vcamMoveYSpeed: 20
   vcamMoveYawSpeed: 0.5
   reverseSpeed: 2
   camCenterTimer: 5
+  xCameraDeadZone: 15
   lowJumpForce: 800
   heighJumpForce: 1000
-  jumpDistance: 800
   jumpAnalogImpact: 60
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   moveSpeed: 14
-  dashDistance: 10
-  dashSpeed: 25
   accelSpeed: 25
   accelCurve:
     serializedVersion: 2
@@ -208,31 +229,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  jumpCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   inertia: 3
+  dashDistance: 10
+  dashSpeed: 25
 --- !u!1 &7778891271889976451
 GameObject:
   m_ObjectHideFlags: 0
