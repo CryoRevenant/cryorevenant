@@ -19,6 +19,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
+    [SerializeField] private float xCameraDeadZone;
     [Header("Jump")]
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
@@ -288,7 +289,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("input down");
         }
 
-        Debug.Log(canGoDown);
+        //Debug.Log(canGoDown);
 
         if (!canGoDown)
         {
@@ -347,7 +348,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
         if (canReverse)
         {
-            Vector3 nextReverse = new Vector3(result, offset.y, camOffset.position.z);
+            Vector3 nextReverse = new Vector3(Mathf.Clamp(result, xCameraDeadZone, result), offset.y, camOffset.position.z);
             camOffset.position = Vector3.Lerp(camOffset.position, nextReverse, Time.deltaTime * reverseSpeed);
         }
 
