@@ -39,8 +39,12 @@ public class PlayerAttack : MonoBehaviour
 
             if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
             {
-                //Debug.Log("hit Enemy");
                 col[i].gameObject.GetComponent<Door>().DestroyDoor();
+                timer = attackCooldown;
+            }
+            if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+            {
+                col[i].gameObject.GetComponent<FuzeBox>().DestoyFuze();
                 timer = attackCooldown;
             }
         }
