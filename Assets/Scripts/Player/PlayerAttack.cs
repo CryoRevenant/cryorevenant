@@ -28,7 +28,7 @@ public class PlayerAttack : MonoBehaviour
 
         for (int i = 0; i < col.Length; i++)
         {
-            //Debug.Log(col[i].gameObject.name);
+            Debug.Log(col[i].gameObject.name);
             timer -= Time.deltaTime;
             if (col[i].gameObject.CompareTag("Enemy") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
             {
