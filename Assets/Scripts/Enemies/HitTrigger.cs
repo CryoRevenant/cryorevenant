@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HitTrigger : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() != null)
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("HitPlayer");
+            other.gameObject.GetComponent<PlayerHP>().Death();
         }
     }
 }
