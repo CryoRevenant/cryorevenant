@@ -14,15 +14,14 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
     [Header("MainCamera")]
-    [SerializeField] private Transform camOffset;
-    [SerializeField] private CinemachineVirtualCamera vcam;
     public Vector3 offset;
     [SerializeField] private float vcamMoveYSpeed;
-    [SerializeField] private float vcamUpMoveYSpeed;
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
     [SerializeField] private float xCameraDeadZone;
+    [SerializeField] private Transform camOffset;
+    [SerializeField] private CinemachineVirtualCamera vcam;
     [Header("Jump")]
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
@@ -32,8 +31,8 @@ public class PlayerControllerV2 : MonoBehaviour
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float moveSpeed;
     [SerializeField] private float accelSpeed;
-    [SerializeField] private AnimationCurve accelCurve;
     [SerializeField] private float inertia;
+    [SerializeField] private AnimationCurve accelCurve;
     [Header("Dash")]
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashSpeed;
@@ -265,8 +264,13 @@ public class PlayerControllerV2 : MonoBehaviour
             isGrounded = false;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
+        }
+
+        if (rb.velocity.y > 0.25f)
+        {
             vcamMoveYSpeed = 20;
         }
+
         #endregion
 
         #region vcam set Speed
@@ -298,7 +302,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(canGoDown);
 
-        if (!canGoDown)
+        if (!canGoDown && gameObject.layer != 6)
         {
             gameObject.layer = 0;
         }

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6597822618541989882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271729684176}
@@ -168,15 +168,14 @@ MonoBehaviour:
   playerSprite: {fileID: 7778891271954775128}
   leftDustSprite: {fileID: 1277820202575207455}
   rightDustSprite: {fileID: 1277820202332141261}
-  camOffset: {fileID: 1067519118563828432}
-  vcam: {fileID: 0}
   offset: {x: 5, y: 0, z: -30}
   vcamMoveYSpeed: 1.5
-  vcamUpMoveYSpeed: 1.5
   vcamMoveYawSpeed: 0.5
   reverseSpeed: 2
   camCenterTimer: 5
   xCameraDeadZone: 15
+  camOffset: {fileID: 1067519118563828432}
+  vcam: {fileID: 0}
   lowJumpForce: 800
   heighJumpForce: 1000
   jumpAnalogImpact: 60
@@ -206,6 +205,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   moveSpeed: 14
   accelSpeed: 25
+  inertia: 3
   accelCurve:
     serializedVersion: 2
     m_Curve:
@@ -230,7 +230,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  inertia: 3
   dashDistance: 10
   dashSpeed: 25
 --- !u!1 &7778891271889976451
