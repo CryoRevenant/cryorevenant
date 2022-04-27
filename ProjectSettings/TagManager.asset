@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Door
   - FuzeBox
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

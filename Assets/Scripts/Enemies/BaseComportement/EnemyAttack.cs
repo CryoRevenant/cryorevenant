@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float radius;
-    [SerializeField] float timer;
+    [SerializeField] float attackTime;
+    [SerializeField] float timeBeforeFirstAttack;
 
     GameObject triggerHit;
 
@@ -27,14 +28,14 @@ public class EnemyAttack : MonoBehaviour
         if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
             Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);
-            Attack();
+            Invoke("Attack", timeBeforeFirstAttack);
         }
     }
 
     public virtual void Attack()
     {
         triggerHit.SetActive(true);
-        Invoke("StopAttack", timer);
+        Invoke("StopAttack", attackTime);
     }
 
     void StopAttack()
