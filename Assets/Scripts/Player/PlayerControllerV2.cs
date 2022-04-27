@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,9 +15,11 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private SpriteRenderer rightDustSprite;
     [Header("MainCamera")]
     [SerializeField] private Transform camOffset;
-    [SerializeField] private Vector3 offset;
     [SerializeField] private CinemachineVirtualCamera vcam;
+    [SerializeField] private Vector3 offset;
     [SerializeField] private float vcamMoveYSpeed;
+    [SerializeField] private float vcamUpMoveYSpeed;
+    [SerializeField] private float vcamUpMoveYTime;
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
@@ -38,11 +42,13 @@ public class PlayerControllerV2 : MonoBehaviour
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
 
+    [HideInInspector] public float ynewOffset;
     private float curJumpForce;
+    private float curVelocitySpeed;
+    private float curVcamMoveYSpeed;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
-    private float curVelocitySpeed;
     private float result;
     private float yAxis;
     private float dashValue;
@@ -67,6 +73,7 @@ public class PlayerControllerV2 : MonoBehaviour
         canGoDown = false;
 
         curSpeed = Vector2.zero;
+        curVcamMoveYSpeed = vcamMoveYSpeed;
 
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -365,5 +372,14 @@ public class PlayerControllerV2 : MonoBehaviour
                 canJump = false;
             }
         }
+    }
+
+    public IEnumerator MoveCamUp()
+    {
+        vcamMoveYSpeed = vcamUpMoveYSpeed;
+
+        yield return new WaitForSeconds(vcamUpMoveYTime);
+
+        vcamMoveYSpeed = curVcamMoveYSpeed;
     }
 }
