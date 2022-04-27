@@ -6,7 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     bool canMove = true;
     bool isGrounded;
-    bool lookLeft;
+    public bool lookLeft;
 
     [Header("Déplacement")]
     [SerializeField] float speed;
@@ -94,7 +94,7 @@ public class EnemyMove : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
 
                 //Le joueur est à gauche ?
-                if (posToGo.x < transform.localPosition.x)
+                if (posToGo.x < transform.position.x)
                 {
                     lookLeft = true;
                     LookDirection();
@@ -125,12 +125,14 @@ public class EnemyMove : MonoBehaviour
     //Décalage de l'ennemi quand il touche un mur pour ne pas qu'il se bloque dedans
     void Offset()
     {
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, 1 << 6))
+        int layerMask = ~LayerMask.GetMask("Default");
+
+        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask))
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - 0.1f, transform.position.y, 0), Time.deltaTime * speed);
         }
 
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, 1 << 6))
+        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + 0.1f, transform.position.y, 0), Time.deltaTime * speed);
         }
