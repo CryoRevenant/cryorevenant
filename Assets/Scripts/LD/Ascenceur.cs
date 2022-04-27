@@ -75,7 +75,7 @@ public class Ascenceur : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerAttack>().enabled = true;
-            //isIn = false;
+            isIn = false;
         }
     }
     #endregion

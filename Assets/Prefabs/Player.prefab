@@ -171,10 +171,8 @@ MonoBehaviour:
   camOffset: {fileID: 1067519118563828432}
   vcam: {fileID: 0}
   offset: {x: 5, y: 0, z: -30}
-  yAddOffset: 8
-  vcamMoveYSpeed: 20
+  vcamMoveYSpeed: 1.5
   vcamUpMoveYSpeed: 1.5
-  vcamUpMoveYTime: 1
   vcamMoveYawSpeed: 0.5
   reverseSpeed: 2
   camCenterTimer: 5

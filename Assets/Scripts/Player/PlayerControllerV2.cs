@@ -16,10 +16,9 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("MainCamera")]
     [SerializeField] private Transform camOffset;
     [SerializeField] private CinemachineVirtualCamera vcam;
-    [SerializeField] private Vector3 offset;
+    public Vector3 offset;
     [SerializeField] private float vcamMoveYSpeed;
     [SerializeField] private float vcamUpMoveYSpeed;
-    [SerializeField] private float vcamUpMoveYTime;
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
@@ -42,7 +41,6 @@ public class PlayerControllerV2 : MonoBehaviour
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
 
-    [HideInInspector] public float ynewOffset;
     private float curJumpForce;
     private float curVelocitySpeed;
     private float curVcamMoveYSpeed;
@@ -88,7 +86,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!playerSprite.flipX)
         {
             result = transform.position.x + offset.x;
-            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
+            camOffset.position = new Vector3(transform.position.x + offset.x, camOffset.position.y, camOffset.position.z);
             leftDustSprite.enabled = true;
             rightDustSprite.enabled = false;
         }
@@ -97,7 +95,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             canReverse = true;
             result = transform.position.x - offset.x;
-            camOffset.position = new Vector3(transform.position.x + offset.x, offset.y, camOffset.position.z);
+            camOffset.position = new Vector3(transform.position.x + offset.x, camOffset.position.y, camOffset.position.z);
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
@@ -167,7 +165,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     //Debug.Log("center");
                     canReverse = false;
                     vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 3;
-                    camOffset.position = new Vector3(transform.position.x, offset.y, camOffset.position.z);
+                    camOffset.position = new Vector3(transform.position.x, camOffset.position.y, camOffset.position.z);
                     camCenterTimer = 0;
                 }
             }
@@ -259,6 +257,7 @@ public class PlayerControllerV2 : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 isGrounded = true;
+                vcamMoveYSpeed = curVcamMoveYSpeed;
             }
         }
         else
@@ -266,6 +265,7 @@ public class PlayerControllerV2 : MonoBehaviour
             isGrounded = false;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
+            vcamMoveYSpeed = 20;
         }
         #endregion
 
@@ -355,7 +355,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
         if (canReverse)
         {
-            Vector3 nextReverse = new Vector3(Mathf.Clamp(result, xCameraDeadZone, result), offset.y, camOffset.position.z);
+            Vector3 nextReverse = new Vector3(Mathf.Clamp(result, xCameraDeadZone, result), camOffset.position.y, camOffset.position.z);
             camOffset.position = Vector3.Lerp(camOffset.position, nextReverse, Time.deltaTime * reverseSpeed);
         }
 
@@ -372,14 +372,5 @@ public class PlayerControllerV2 : MonoBehaviour
                 canJump = false;
             }
         }
-    }
-
-    public IEnumerator MoveCamUp()
-    {
-        vcamMoveYSpeed = vcamUpMoveYSpeed;
-
-        yield return new WaitForSeconds(vcamUpMoveYTime);
-
-        vcamMoveYSpeed = curVcamMoveYSpeed;
     }
 }
