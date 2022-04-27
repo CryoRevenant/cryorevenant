@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
             if (alphaMod.a <= 0)
             {
+                player.layer = 0;
                 StopCoroutine("Fade");
             }
         }
