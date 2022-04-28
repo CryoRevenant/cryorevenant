@@ -6,7 +6,7 @@ public class PlayerHP : MonoBehaviour
 {
 
     public bool isDead;
-    [SerializeField] bool canDie;
+    public bool canDie;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

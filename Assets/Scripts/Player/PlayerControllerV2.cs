@@ -52,9 +52,9 @@ public class PlayerControllerV2 : MonoBehaviour
     private float dashTime;
     private float goDownCooldown;
 
-    private bool isGrounded;
+    public bool isGrounded;
     private bool canJump;
-    private bool canDash;
+    public bool canDash;
     private bool isDashing;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
@@ -193,6 +193,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
+                    gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
@@ -207,6 +208,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
+                    gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
@@ -260,7 +262,7 @@ public class PlayerControllerV2 : MonoBehaviour
         else
         {
             //vcamMoveYSpeed = 20;
-            isGrounded = false;
+            Invoke("Grounded", 0.2f);
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
         }
@@ -342,14 +344,19 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDash && dashTime>0)
         {
+            //Debug.Log("is dashing");
+
             dashTime -= Time.deltaTime;
             curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * dashValue, curseurDash);
             Vector3 nextDashPos = new Vector3(transform.position.x + dashSpeed * dashValue * Time.deltaTime, transform.position.y, transform.position.z);
             //Debug.Log(nextDashPos);
             rb.position = nextDashPos;
 
-            if(dashTime<=0)
-            canDash = false;
+            if (dashTime <= 0)
+            {
+                canDash = false;
+                gameObject.GetComponent<PlayerHP>().canDie = true;
+            }
         }
 
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
@@ -365,12 +372,18 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
-            if (timer > 0.1f && isGrounded)
+            if (timer > 0.1f && isGrounded && isDashing)
             {
                 //Debug.Log(currJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
+                isGrounded = false;
                 canJump = false;
             }
         }
+    }
+
+    void Grounded()
+    {
+        isGrounded = false;
     }
 }
