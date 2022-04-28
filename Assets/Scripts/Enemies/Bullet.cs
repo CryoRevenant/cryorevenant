@@ -8,7 +8,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.layer == 0)
         {
-            Destroy(gameObject);
+            other.gameObject.GetComponent<PlayerHP>().Death();
         }
+        if (other.gameObject.layer == 0 || other.gameObject.layer == 6)
+            Destroy(gameObject);
     }
 }

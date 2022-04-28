@@ -9,6 +9,7 @@ public class FuzeBox : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam;
 
     bool isDestroyed;
+    bool canDestroy;
 
     GameObject player;
 
@@ -17,9 +18,25 @@ public class FuzeBox : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            canDestroy = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            canDestroy = true;
+        }
+    }
+
     public void DestoyFuze()
     {
-        if (isDestroyed == false)
+        if (isDestroyed == false && canDestroy == true)
         {
             vcam.m_Priority = 40;
 

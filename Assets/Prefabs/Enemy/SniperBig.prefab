@@ -136,10 +136,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 12
-  attackTime: 1
-  timeBeforeFirstAttack: 1
+  attackDuration: 0.4
+  cooldown: 2
   bullet: {fileID: 655664403629932564, guid: 55a1319756466f9448671ae013c1a268, type: 3}
-  force: 20
+  force: 25
 --- !u!61 &386261862525074427
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   radiusPlayer: 15
   radiusEnemy: 6
   otherDetect: 0
-  waitTime: 0.7
+  waitTime: 0.5
   move: {fileID: 0}
   attack: {fileID: 0}
   maxStoppingDetect: 12

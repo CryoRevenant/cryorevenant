@@ -60,7 +60,9 @@ public class EnemyMove : MonoBehaviour
         //Rays sur les côtés pour éviter que l'ennemi passe au travers des murs
         #region RaysSide
 
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide))
+        int layerMask = ~LayerMask.GetMask("Box");
+
+        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
         {
             canMove = false;
             StopCoroutine("MoveOver");

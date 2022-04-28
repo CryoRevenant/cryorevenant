@@ -215,7 +215,7 @@ MonoBehaviour:
   radiusPlayer: 12
   radiusEnemy: 15
   otherDetect: 0
-  waitTime: 0.7
+  waitTime: 0.4
   move: {fileID: 0}
   attack: {fileID: 0}
 --- !u!114 &6663877524622379850
@@ -283,5 +283,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  attackTime: 0.5
-  timeBeforeFirstAttack: 0.5
+  attackDuration: 0.4
+  cooldown: 1

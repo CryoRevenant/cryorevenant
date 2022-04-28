@@ -7,7 +7,7 @@ public class Ascenceur : MonoBehaviour
     List<GameObject> enemyList = new List<GameObject>();
     [SerializeField] GameObject otherElevator;
 
-    bool isOpen;
+    public bool isOpen;
     public bool isIn;
 
     private PlayerInput controls = null;
@@ -34,6 +34,7 @@ public class Ascenceur : MonoBehaviour
 
     void CheckOpen()
     {
+        Debug.Log(enemyList.Count);
         if (enemyList.Count == 0)
         {
             Debug.Log(gameObject.name + " is open");

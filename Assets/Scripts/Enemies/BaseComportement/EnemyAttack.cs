@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float radius;
-    [SerializeField] float attackTime;
-    [SerializeField] float timeBeforeFirstAttack;
+    [SerializeField] float attackDuration;
+    public float cooldown;
+
+    bool attack = true;
 
     GameObject triggerHit;
 
@@ -25,21 +27,27 @@ public class EnemyAttack : MonoBehaviour
     public void CheckAttack(GameObject player)
     {
         RaycastHit2D hit;
+
         if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
             Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);
-            Invoke("Attack", timeBeforeFirstAttack);
+            Invoke("Attack", cooldown);
         }
     }
 
     public virtual void Attack()
     {
-        triggerHit.SetActive(true);
-        Invoke("StopAttack", attackTime);
+        if (attack == true)
+        {
+            attack = false;
+            triggerHit.SetActive(true);
+            Invoke("StopAttack", attackDuration);
+        }
     }
 
     void StopAttack()
     {
+        attack = true;
         triggerHit.SetActive(false);
     }
 }

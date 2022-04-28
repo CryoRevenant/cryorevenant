@@ -22,6 +22,12 @@ public class EnemyDetect : MonoBehaviour
         move = GetComponent<EnemyMove>();
         attack = GetComponent<EnemyAttack>();
         StartCoroutine("DetectAround");
+
+        int layer1 = 0;
+        int layer2 = 6;
+        LayerMask layermask1 = 1 << layer1;
+        LayerMask layermask2 = 1 << layer2;
+        LayerMask finalmask = layermask1 | layermask2;
     }
 
     // Update is called once per frame
@@ -71,11 +77,12 @@ public class EnemyDetect : MonoBehaviour
     //Détection du joueur, appel du déplacement vers lui, appel alerte autres ennemis et vérification de la distance pour attaquer
     public virtual IEnumerator DetectAround()
     {
+        LayerMask layerMask = ~LayerMask.GetMask("Box");
         Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radiusPlayer, 1 << 0);
         if (detectCircle != null)
         {
             RaycastHit2D hit;
-            if (hit = Physics2D.Linecast(transform.position, detectCircle.gameObject.transform.position))
+            if (hit = Physics2D.Linecast(transform.position, detectCircle.gameObject.transform.position, layerMask))
             {
                 Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
                 if (hit.transform.gameObject.layer == 0)
