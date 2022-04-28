@@ -18,8 +18,8 @@ public class PlayerHP : MonoBehaviour
     public void Death()
     {
         Debug.Log("die");
-        // gameObject.layer = 6;
-        // GameManager.instance.StopCoroutine("Fade");
-        // GameManager.instance.StartCoroutine("Fade");
+        gameObject.layer = 6;
+        GameManager.instance.StopCoroutine("Fade");
+        GameManager.instance.StartCoroutine("Fade");
     }
 }
