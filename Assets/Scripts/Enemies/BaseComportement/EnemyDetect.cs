@@ -58,7 +58,6 @@ public class EnemyDetect : MonoBehaviour
                             otherGO.GetComponent<EnemyDetect>().otherDetect = true;
                             otherGO.GetComponent<EnemyDetect>().StartCoroutine("PreventOther");
 
-                            otherGO.GetComponent<EnemyMove>().mustGo = true;
                             otherGO.GetComponent<EnemyMove>().StopCoroutine("MoveOver");
                             otherGO.GetComponent<EnemyMove>().StartCoroutine("MoveOver", gameObject);
 
@@ -88,7 +87,6 @@ public class EnemyDetect : MonoBehaviour
                 if (hit.transform.gameObject.layer == 0)
                 {
                     otherDetect = true;
-                    move.mustGo = true;
 
                     attack.CheckAttack(hit.transform.gameObject);
 

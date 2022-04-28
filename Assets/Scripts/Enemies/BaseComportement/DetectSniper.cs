@@ -17,7 +17,6 @@ public class DetectSniper : EnemyDetect
                 Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
 
                 otherDetect = true;
-                move.mustGo = true;
 
                 attack.CheckAttack(hit.transform.gameObject);
                 GetComponent<EnemyMove>().maxStoppingDist = maxStoppingDetect;

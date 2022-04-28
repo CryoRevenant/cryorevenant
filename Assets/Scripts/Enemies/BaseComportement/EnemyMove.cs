@@ -95,7 +95,7 @@ public class EnemyMove : MonoBehaviour
             Vector3 posToGo = lastPos.transform.position;
 
             //Tant que l'ennemi doit bouger
-            while (mustGo == true)
+            while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
 
