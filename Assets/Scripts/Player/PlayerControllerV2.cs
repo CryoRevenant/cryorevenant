@@ -49,12 +49,12 @@ public class PlayerControllerV2 : MonoBehaviour
     private float result;
     private float yAxis;
     private float dashValue;
-    public float dashTime;
+    private float dashTime;
     private float goDownCooldown;
 
     public bool isGrounded;
     private bool canJump;
-    private bool canDash;
+    public bool canDash;
     private bool isDashing;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
@@ -344,6 +344,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDash && dashTime>0)
         {
+            //Debug.Log("is dashing");
+
             dashTime -= Time.deltaTime;
             curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * dashValue, curseurDash);
             Vector3 nextDashPos = new Vector3(transform.position.x + dashSpeed * dashValue * Time.deltaTime, transform.position.y, transform.position.z);

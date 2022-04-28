@@ -22,6 +22,12 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        if (controls.currentActionMap.FindAction("Attack").triggered)
+        {
+            gameObject.GetComponent<PlayerControllerV2>().canDash = false;
+            //Debug.Log("stop dashing");
+        }
+
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
 
         //Debug.Log(col.Length);
