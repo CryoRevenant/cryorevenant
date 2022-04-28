@@ -119,16 +119,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookLeft: 0
-  speed: 18
+  speed: 17
   speedFall: 4
   maxStoppingDist: 0
   mustGo: 0
-  speedDash: 30
-  distDash: 3
+  speedDash: 70
+  distDash: 5
   rayLengthDown: 1.3
   rayLengthSide: 1.3
   bounds: 0.8
-  showRays: 1
+  showRays: 0
 --- !u!61 &404204908336340058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   attackDuration: 0.4
-  cooldown: 0.8
+  cooldown: 1.3
 --- !u!1 &1329534814613357652
 GameObject:
   m_ObjectHideFlags: 0

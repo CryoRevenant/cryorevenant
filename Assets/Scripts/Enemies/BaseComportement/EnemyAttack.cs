@@ -30,32 +30,20 @@ public class EnemyAttack : MonoBehaviour
 
         if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
-            int i = Random.Range(0, 6);
-
-            switch (i)
+            if (attack)
             {
-                case 1:
-                    int j = Random.Range(0, 2);
-                    Debug.Log("Dash");
-                    gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash");
-                    break;
-                default:
-                    Invoke("Attack", cooldown);
-                    Debug.Log("Attack");
-                    break;
+                Invoke("Attack", cooldown);
             }
-            Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);
         }
+        Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);
     }
+
 
     public virtual void Attack()
     {
-        if (attack == true)
-        {
-            attack = false;
-            triggerHit.SetActive(true);
-            Invoke("StopAttack", attackDuration);
-        }
+        attack = false;
+        triggerHit.SetActive(true);
+        Invoke("StopAttack", attackDuration);
     }
 
     void StopAttack()
