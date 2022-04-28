@@ -49,10 +49,10 @@ public class PlayerControllerV2 : MonoBehaviour
     private float result;
     private float yAxis;
     private float dashValue;
-    private float dashTime;
+    public float dashTime;
     private float goDownCooldown;
 
-    private bool isGrounded;
+    public bool isGrounded;
     private bool canJump;
     private bool canDash;
     private bool isDashing;
@@ -193,6 +193,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
+                    gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
@@ -207,6 +208,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
+                    gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
@@ -260,7 +262,7 @@ public class PlayerControllerV2 : MonoBehaviour
         else
         {
             //vcamMoveYSpeed = 20;
-            isGrounded = false;
+            Invoke("Grounded", 0.2f);
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
         }
@@ -348,8 +350,11 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(nextDashPos);
             rb.position = nextDashPos;
 
-            if(dashTime<=0)
-            canDash = false;
+            if (dashTime <= 0)
+            {
+                canDash = false;
+                gameObject.GetComponent<PlayerHP>().canDie = true;
+            }
         }
 
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
@@ -365,12 +370,18 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
-            if (timer > 0.1f && isGrounded)
+            if (timer > 0.1f && isGrounded && isDashing)
             {
                 //Debug.Log(currJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
+                isGrounded = false;
                 canJump = false;
             }
         }
+    }
+
+    void Grounded()
+    {
+        isGrounded = false;
     }
 }
