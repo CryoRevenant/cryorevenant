@@ -14,6 +14,10 @@ public class EnemyMove : MonoBehaviour
     public float maxStoppingDist;
     public bool mustGo;
 
+    [Header("Dash")]
+    [SerializeField] float speedDash;
+    [SerializeField] float distDash;
+
     [Header("Raycasts")]
     [SerializeField] float rayLengthDown;
     [SerializeField] float rayLengthSide;
@@ -64,8 +68,7 @@ public class EnemyMove : MonoBehaviour
 
         if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
         {
-            canMove = false;
-            StopCoroutine("MoveOver");
+            StopMove();
             Offset();
         }
         else
@@ -84,7 +87,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
-    IEnumerator MoveOver(GameObject lastPos)
+    public IEnumerator MoveOver(GameObject lastPos)
     {
         if (canMove == true)
         {
@@ -120,8 +123,8 @@ public class EnemyMove : MonoBehaviour
     //Reset de la position donnée dans la coroutine pour que l'ennemi s'arrête
     void Reset(GameObject player)
     {
-        player = null;
         mustGo = false;
+        player = null;
     }
 
     //Décalage de l'ennemi quand il touche un mur pour ne pas qu'il se bloque dedans
@@ -152,4 +155,46 @@ public class EnemyMove : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
+
+    public void StopMove()
+    {
+        canMove = false;
+        StopCoroutine("MoveOver");
+    }
+
+    public IEnumerator Dash()
+    {
+        StopMove();
+        int dir = Random.Range(0, 2);
+        Vector3 newPos;
+
+        if (dir == 0)
+        {
+            newPos = new Vector3(transform.position.x - distDash, transform.position.y, 0);
+        }
+        else
+        {
+            newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
+        }
+
+        while (transform.position != newPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
+
+            //Le joueur est à gauche ?
+            if (newPos.x < transform.position.x)
+            {
+                lookLeft = true;
+                LookDirection();
+            }
+            else
+            {
+                lookLeft = false;
+                LookDirection();
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        canMove = true;
+    }
 }
+
