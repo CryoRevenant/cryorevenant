@@ -253,13 +253,13 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("Ground"))
             {
-                vcamMoveYSpeed = curVcamMoveYSpeed;
+                //vcamMoveYSpeed = curVcamMoveYSpeed;
                 isGrounded = true;
             }
         }
         else
         {
-            vcamMoveYSpeed = 20;
+            //vcamMoveYSpeed = 20;
             isGrounded = false;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
