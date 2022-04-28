@@ -190,7 +190,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (dashValue > 0)
             {
-                playerSprite.flipX = false;
                 if (isDashing)
                 {
                     canDash = true;
@@ -205,7 +204,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (dashValue < 0)
             {
-                playerSprite.flipX = true;
                 if (isDashing)
                 {
                     canDash = true;
@@ -247,7 +245,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region isGrounded
         float distance = 1f;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up, distance, 1 << 6);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up, distance);
 
         Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up * 1f, Color.red, 1);
         if (hit)
@@ -255,21 +253,19 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("Ground"))
             {
-                isGrounded = true;
                 vcamMoveYSpeed = curVcamMoveYSpeed;
+                isGrounded = true;
             }
         }
         else
         {
+            vcamMoveYSpeed = 20;
             isGrounded = false;
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
         }
 
-        if (rb.velocity.y > 0.25f)
-        {
-            vcamMoveYSpeed = 20;
-        }
+        //Debug.Log(rb.velocity.y);
 
         #endregion
 
