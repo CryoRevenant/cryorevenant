@@ -10,6 +10,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private PlayerInput controls;
     private Rigidbody2D rb;
     [SerializeField] private float yRaycastGrounded;
+    [SerializeField] private float yRaycastSize;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
@@ -26,6 +27,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float lowJumpForce;
     [SerializeField] private float heighJumpForce;
     [SerializeField] private float jumpAnalogImpact;
+    [SerializeField] private float jumpBufferCooldown;
     [SerializeField] private AnimationCurve jumpCurve;
     [Header("Movement")]
     // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
@@ -51,11 +53,13 @@ public class PlayerControllerV2 : MonoBehaviour
     private float dashValue;
     private float dashTime;
     private float goDownCooldown;
+    private float jumpBufferTimer = 0;
 
     public bool isGrounded;
+    private bool isDashing;
+    private bool isBuffing;
     private bool canJump;
     public bool canDash;
-    private bool isDashing;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
     private bool canGoDown;
@@ -68,6 +72,7 @@ public class PlayerControllerV2 : MonoBehaviour
         canReverse = true;
         canResetCurMoveSpeed = false;
         canGoDown = false;
+        isBuffing = true;
 
         curSpeed = Vector2.zero;
         curVcamMoveYSpeed = vcamMoveYSpeed;
@@ -226,10 +231,14 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         #region saut
-        if (controls.currentActionMap.FindAction("Jump").triggered)
+        if (controls.currentActionMap.FindAction("Jump").triggered && isDashing)
         {
             //Debug.Log("saut normal");
-            canJump = true;
+            if (isBuffing)
+            {
+                canJump = true;
+                isBuffing = false;
+            }
         }
 
         curJumpForce = lowJumpForce * yAxis;
@@ -241,6 +250,13 @@ public class PlayerControllerV2 : MonoBehaviour
             yAxis = 0;
         }
 
+        jumpBufferTimer += Time.deltaTime;
+        if (jumpBufferTimer >= jumpBufferCooldown)
+        {
+            isBuffing = true;
+            jumpBufferTimer = 0;
+        }
+
         //Debug.Log(jumpForce);
 
         #endregion
@@ -249,7 +265,7 @@ public class PlayerControllerV2 : MonoBehaviour
         float distance = 1f;
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up, distance);
 
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up * 1f, Color.red, 1);
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up * yRaycastSize, Color.red, 1);
         if (hit)
         {
             //Debug.Log(hit.collider.gameObject.name);
@@ -262,7 +278,14 @@ public class PlayerControllerV2 : MonoBehaviour
         else
         {
             //vcamMoveYSpeed = 20;
-            Invoke("Grounded", 0.2f);
+            if (rb.velocity.y < 0)
+            {
+                Invoke("Grounded", 0.2f);
+            }
+            else
+            {
+                isGrounded = false;
+            }
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
         }
@@ -372,11 +395,11 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
-            if (timer > 0.1f && isGrounded && isDashing)
+            if (timer > 0.1f && isGrounded)
             {
+                Debug.Log("jump");
                 //Debug.Log(currJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
-                isGrounded = false;
                 canJump = false;
             }
         }

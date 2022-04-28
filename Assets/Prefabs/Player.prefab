@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6597822618541989882}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 19, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271729684176}
@@ -166,11 +166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   yRaycastGrounded: 1
+  yRaycastSize: 1
   playerSprite: {fileID: 7778891271954775128}
   leftDustSprite: {fileID: 1277820202575207455}
   rightDustSprite: {fileID: 1277820202332141261}
   offset: {x: 5, y: 0, z: -30}
-  vcamMoveYSpeed: 1.5
+  vcamMoveYSpeed: 0
   vcamMoveYawSpeed: 0.5
   reverseSpeed: 2
   camCenterTimer: 5
@@ -180,6 +181,7 @@ MonoBehaviour:
   lowJumpForce: 800
   heighJumpForce: 1000
   jumpAnalogImpact: 60
+  jumpBufferCooldown: 0.75
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -233,6 +235,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   dashDistance: 10
   dashSpeed: 25
+  isGrounded: 0
+  canDash: 0
 --- !u!114 &869028044059294363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
+  canDie: 0
 --- !u!1 &7778891271889976451
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +373,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7384168923014208375, guid: 7a474f72ab874e54d927397dda32113f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
