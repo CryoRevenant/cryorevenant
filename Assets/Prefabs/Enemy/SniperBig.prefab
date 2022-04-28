@@ -119,6 +119,8 @@ MonoBehaviour:
   speedFall: 2.5
   maxStoppingDist: 1
   mustGo: 0
+  speedDash: 30
+  distDash: 3
   rayLengthDown: 1.5
   rayLengthSide: 1.3
   bounds: 0.3

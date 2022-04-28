@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &6806165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7438,19 +7438,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7778891271729684178, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
   m_PrefabInstance: {fileID: 1263332388}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1073761588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1073761587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c1c744da6fd147a8c3062a57b9249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDead: 0
 --- !u!1 &1080058244
 GameObject:
   m_ObjectHideFlags: 0
@@ -15246,30 +15233,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 633307904}
     m_Modifications:
-    - target: {fileID: 404204908336340053, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: waitTime
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: distDash
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: showRays
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: speedDash
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: rayLengthDown
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: rayLengthSide
-      value: 1.3
-      objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -15317,10 +15280,6 @@ PrefabInstance:
     - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_Name
       value: SoldatBig
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}

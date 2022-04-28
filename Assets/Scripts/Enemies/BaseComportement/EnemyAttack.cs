@@ -34,14 +34,14 @@ public class EnemyAttack : MonoBehaviour
 
             switch (i)
             {
-                default:
-                    Invoke("Attack", cooldown);
-                    Debug.Log("Attack");
-                    break;
                 case 1:
                     int j = Random.Range(0, 2);
                     Debug.Log("Dash");
                     gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash");
+                    break;
+                default:
+                    Invoke("Attack", cooldown);
+                    Debug.Log("Attack");
                     break;
             }
             Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);

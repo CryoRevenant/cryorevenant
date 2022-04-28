@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
             if (alphaMod.a <= 0)
             {
                 player.layer = 0;
+                player.GetComponent<PlayerAttack>().enabled = true;
+                player.GetComponent<PlayerControllerV2>().enabled = true;
                 StopCoroutine("Fade");
             }
         }

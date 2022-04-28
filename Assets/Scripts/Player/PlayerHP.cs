@@ -6,6 +6,7 @@ public class PlayerHP : MonoBehaviour
 {
 
     public bool isDead;
+    [SerializeField] bool canDie;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,9 +18,17 @@ public class PlayerHP : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("die");
-        gameObject.layer = 6;
-        GameManager.instance.StopCoroutine("Fade");
-        GameManager.instance.StartCoroutine("Fade");
+        if (canDie)
+        {
+            Debug.Log("die");
+
+            gameObject.layer = 6;
+
+            GetComponent<PlayerControllerV2>().enabled = false;
+            GetComponent<PlayerAttack>().enabled = false;
+
+            GameManager.instance.StopCoroutine("Fade");
+            GameManager.instance.StartCoroutine("Fade");
+        }
     }
 }
