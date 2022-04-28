@@ -30,11 +30,21 @@ public class PlayerAttack : MonoBehaviour
         {
             // Debug.Log(col[i].gameObject.name);
             timer -= Time.deltaTime;
-            if (col[i].gameObject.CompareTag("Enemy") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+            if (col[i].gameObject.CompareTag("Enemy"))
             {
-                //Debug.Log("hit Enemy");
-                col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-                timer = attackCooldown;
+                int j = Random.Range(0, 150);
+
+                if (j == 1)
+                {
+                    Debug.Log("dash");
+                    col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash");
+                }
+                if (controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+                {
+                    //Debug.Log("hit Enemy");
+                    col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                    timer = attackCooldown;
+                }
             }
 
             if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)

@@ -6,6 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     bool canMove = true;
     bool isGrounded;
+    bool isDashing;
     public bool lookLeft;
 
     [Header("Déplacement")]
@@ -164,37 +165,42 @@ public class EnemyMove : MonoBehaviour
 
     public IEnumerator Dash()
     {
-        StopMove();
-        int dir = Random.Range(0, 2);
-        Vector3 newPos;
-
-        if (dir == 0)
+        if (isDashing == false)
         {
-            newPos = new Vector3(transform.position.x - distDash, transform.position.y, 0);
-        }
-        else
-        {
-            newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
-        }
+            isDashing = true;
+            StopMove();
+            int dir = Random.Range(0, 2);
+            Vector3 newPos;
 
-        while (transform.position != newPos)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
-
-            //Le joueur est à gauche ?
-            if (newPos.x < transform.position.x)
+            if (dir == 0)
             {
-                lookLeft = true;
-                LookDirection();
+                newPos = new Vector3(transform.position.x - distDash, transform.position.y, 0);
             }
             else
             {
-                lookLeft = false;
-                LookDirection();
+                newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
             }
-            yield return new WaitForSeconds(0.01f);
+
+            while (transform.position != newPos)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
+
+                //Le joueur est à gauche ?
+                if (newPos.x < transform.position.x)
+                {
+                    lookLeft = true;
+                    LookDirection();
+                }
+                else
+                {
+                    lookLeft = false;
+                    LookDirection();
+                }
+                yield return new WaitForSeconds(0.01f);
+            }
+            canMove = true;
+            isDashing = false;
         }
-        canMove = true;
     }
 }
 

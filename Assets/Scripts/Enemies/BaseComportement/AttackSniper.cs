@@ -24,7 +24,6 @@ public class AttackSniper : EnemyAttack
 
     public override void Attack()
     {
-        Debug.Log("attack");
         if (canAttack == true)
         {
             canAttack = false;
@@ -36,7 +35,6 @@ public class AttackSniper : EnemyAttack
 
     void ReAttack()
     {
-        Debug.Log("canattack");
         canAttack = true;
     }
 }

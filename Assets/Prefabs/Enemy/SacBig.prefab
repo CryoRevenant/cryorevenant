@@ -231,12 +231,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookLeft: 0
-  speed: 15
+  speed: 14
   speedFall: 2.5
   maxStoppingDist: 1
   mustGo: 0
   speedDash: 20
-  distDash: 3
+  distDash: 4
   rayLengthDown: 1.4
   rayLengthSide: 1.3
   bounds: 0.8
