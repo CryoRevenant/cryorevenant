@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(fadeWaitTime);
         player.transform.position = respawnPoint.position;
+        player.GetComponent<IceBar>().StartCoroutine("ResetBar");
         score = savedScore;
 
         while (isFading == false)
