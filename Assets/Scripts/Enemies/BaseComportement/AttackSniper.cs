@@ -5,9 +5,11 @@ using UnityEngine;
 public class AttackSniper : EnemyAttack
 {
     GameObject player;
+
     [SerializeField] GameObject bullet;
 
-    bool canAttack = true;
+    public bool canAttack = true;
+    bool touchSmth;
 
     [SerializeField] float force;
     // Start is called before the first frame update
@@ -16,10 +18,8 @@ public class AttackSniper : EnemyAttack
         player = GameObject.Find("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
     }
 
     public override void Attack()
@@ -29,6 +29,7 @@ public class AttackSniper : EnemyAttack
             canAttack = false;
             GameObject shoot = Instantiate(bullet, transform.position, transform.rotation);
             shoot.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * force, ForceMode2D.Impulse);
+            GetComponentInChildren<AimRay>().StopAim();
             Invoke("ReAttack", cooldown);
         }
     }

@@ -13,7 +13,6 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float speedFall;
     public float maxStoppingDist;
-    public bool mustGo;
 
     [Header("Dash")]
     [SerializeField] float speedDash;
@@ -124,7 +123,6 @@ public class EnemyMove : MonoBehaviour
     //Reset de la position donnée dans la coroutine pour que l'ennemi s'arrête
     void Reset(GameObject player)
     {
-        mustGo = false;
         player = null;
     }
 

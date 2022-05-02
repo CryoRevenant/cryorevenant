@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private int damage;
     [SerializeField] private float attackCooldown;
+    [SerializeField] private int iceToAdd;
     private PlayerInput controls;
     private float timer;
 
@@ -24,6 +25,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (controls.currentActionMap.FindAction("Attack").triggered)
         {
+            GetComponent<IceBar>().AddBar(iceToAdd);
             gameObject.GetComponent<PlayerControllerV2>().canDash = false;
             //Debug.Log("stop dashing");
         }

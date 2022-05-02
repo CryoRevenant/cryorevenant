@@ -22,12 +22,6 @@ public class EnemyDetect : MonoBehaviour
         move = GetComponent<EnemyMove>();
         attack = GetComponent<EnemyAttack>();
         StartCoroutine("DetectAround");
-
-        int layer1 = 0;
-        int layer2 = 6;
-        LayerMask layermask1 = 1 << layer1;
-        LayerMask layermask2 = 1 << layer2;
-        LayerMask finalmask = layermask1 | layermask2;
     }
 
     // Update is called once per frame
