@@ -26,7 +26,6 @@ public class PlayerAttack : MonoBehaviour
         if (controls.currentActionMap.FindAction("Attack").triggered)
         {
             GetComponent<IceBar>().AddBar(iceToAdd);
-            gameObject.GetComponent<PlayerControllerV2>().canDash = false;
             //Debug.Log("stop dashing");
         }
 
