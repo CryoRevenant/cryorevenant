@@ -46,7 +46,7 @@
                     "type": "Value",
                     "id": "89d6787f-dc26-4743-b9b2-21fde0bb0525",
                     "expectedControlType": "Axis",
-                    "processors": "AxisDeadzone(min=0.7)",
+                    "processors": "AxisDeadzone(min=0.75,max=0.8)",
                     "interactions": "",
                     "initialStateCheck": true
                 },

@@ -233,7 +233,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  dashDistance: 10
+  dashDistance: 7.5
   dashSpeed: 25
   isGrounded: 0
   canDash: 0

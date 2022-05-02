@@ -45,6 +45,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float curJumpForce;
     private float curVelocitySpeed;
     private float curVcamMoveYSpeed;
+    private float curGravity;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -79,6 +80,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+
+        curGravity = rb.gravityScale;
 
         // défini maxCamCenterTimer à la valeur camCenterTimer dans l'inspecteur
         maxCamCenterTimer = camCenterTimer;
@@ -223,7 +226,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 canReverse = true;
             }
 
-            if (dashValue == 0 && !canDash)
+            if (dashValue == 0)
             {
                 isDashing = true;
             }
@@ -231,7 +234,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         #region saut
-        if (controls.currentActionMap.FindAction("Jump").triggered && isDashing)
+        if (controls.currentActionMap.FindAction("Jump").triggered)
         {
             //Debug.Log("saut normal");
             if (isBuffing)
@@ -368,19 +371,26 @@ public class PlayerControllerV2 : MonoBehaviour
         if (canDash && dashTime>0)
         {
             //Debug.Log("is dashing");
+            curGravity = 10;
 
             dashTime -= Time.deltaTime;
-            curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * dashValue, curseurDash);
-            Vector3 nextDashPos = new Vector3(transform.position.x + dashSpeed * dashValue * Time.deltaTime, transform.position.y, transform.position.z);
-            //Debug.Log(nextDashPos);
-            rb.position = nextDashPos;
-
-            if (dashTime <= 0)
-            {
-                canDash = false;
-                gameObject.GetComponent<PlayerHP>().canDie = true;
-            }
         }
+
+        if (canDash)
+        {
+            curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * dashValue, curseurDash);
+            Vector3 nextDashPos = new Vector3(transform.position.x + curDashSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
+            rb.position = nextDashPos;
+        }
+
+        if (dashTime <= 0 && isGrounded)
+        {
+            canDash = false;
+            curGravity = 5;
+            gameObject.GetComponent<PlayerHP>().canDie = true;
+        }
+
+        Debug.Log(curseurDash);
 
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
         if (canReverse)
@@ -397,12 +407,14 @@ public class PlayerControllerV2 : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 0.1f && isGrounded)
             {
-                Debug.Log("jump");
                 //Debug.Log(currJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
                 canJump = false;
             }
         }
+
+        //Debug.Log(rb.velocity);
+        rb.gravityScale = curGravity;
     }
 
     void Grounded()
