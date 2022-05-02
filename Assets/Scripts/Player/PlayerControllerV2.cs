@@ -297,11 +297,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #endregion
 
-        #region vcam set Speed
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
-        #endregion
-
         #region idle vcam offset
         if (canReverse)
         {
@@ -371,7 +366,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (canDash && dashTime>0)
         {
             //Debug.Log("is dashing");
-            curGravity = 10;
+            curGravity = 6;
 
             dashTime -= Time.deltaTime;
         }
@@ -402,6 +397,10 @@ public class PlayerControllerV2 : MonoBehaviour
         // jump
         if (canJump)
         {
+            if (!canDash)
+            {
+                curGravity = 10;
+            }
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
@@ -415,6 +414,22 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(rb.velocity);
         rb.gravityScale = curGravity;
+
+        #region vcam set Speed
+        if (!canJump)
+        {
+            vcamMoveYSpeed -= Time.deltaTime*50;
+            vcamMoveYSpeed = Mathf.Clamp(vcamMoveYSpeed, curVcamMoveYSpeed, 20);
+        }
+
+        if (canJump)
+        {
+            vcamMoveYSpeed = 20;
+        }
+
+        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
+        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
+        #endregion
     }
 
     void Grounded()
