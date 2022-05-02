@@ -177,7 +177,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,9 +196,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_1
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1026
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -217,9 +217,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_2
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 2052
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -238,9 +238,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_3
       rect:
         serializedVersion: 2
-        x: 3072
+        x: 3078
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,9 +259,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_4
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 4104
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -280,9 +280,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_5
       rect:
         serializedVersion: 2
-        x: 5120
+        x: 5130
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -301,9 +301,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_6
       rect:
         serializedVersion: 2
-        x: 6144
+        x: 6156
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -322,9 +322,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_7
       rect:
         serializedVersion: 2
-        x: 7168
+        x: 7182
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -343,9 +343,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_8
       rect:
         serializedVersion: 2
-        x: 8192
+        x: 8208
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -364,9 +364,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_9
       rect:
         serializedVersion: 2
-        x: 9216
+        x: 9234
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -385,9 +385,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_10
       rect:
         serializedVersion: 2
-        x: 10240
+        x: 10260
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -406,9 +406,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_11
       rect:
         serializedVersion: 2
-        x: 11264
+        x: 11286
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -427,9 +427,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_12
       rect:
         serializedVersion: 2
-        x: 12288
+        x: 12312
         y: 2048
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -450,7 +450,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -469,9 +469,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_14
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 1026
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -490,9 +490,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_15
       rect:
         serializedVersion: 2
-        x: 2048
+        x: 2052
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -511,9 +511,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_16
       rect:
         serializedVersion: 2
-        x: 3072
+        x: 3078
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -532,9 +532,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_17
       rect:
         serializedVersion: 2
-        x: 4096
+        x: 4104
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -553,9 +553,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_18
       rect:
         serializedVersion: 2
-        x: 5120
+        x: 5130
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -574,9 +574,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_19
       rect:
         serializedVersion: 2
-        x: 6144
+        x: 6156
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -595,9 +595,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_20
       rect:
         serializedVersion: 2
-        x: 7168
+        x: 7182
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -616,9 +616,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_21
       rect:
         serializedVersion: 2
-        x: 8192
+        x: 8208
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -637,9 +637,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_22
       rect:
         serializedVersion: 2
-        x: 9216
+        x: 9234
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -658,9 +658,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_23
       rect:
         serializedVersion: 2
-        x: 10240
+        x: 10260
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -679,9 +679,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_24
       rect:
         serializedVersion: 2
-        x: 11264
+        x: 11286
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -700,9 +700,9 @@ TextureImporter:
       name: Yuki_Idle_Merged_25
       rect:
         serializedVersion: 2
-        x: 12288
+        x: 12312
         y: 1024
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -723,7 +723,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
+        width: 1026
         height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
