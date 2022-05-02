@@ -21,10 +21,9 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
-    public void CheckAttack(GameObject player)
+    public virtual void CheckAttack(GameObject player)
     {
         RaycastHit2D hit;
 
@@ -32,6 +31,10 @@ public class EnemyAttack : MonoBehaviour
         {
             if (attack)
             {
+                if (GetComponentInChildren<AimRay>() != null)
+                {
+                    GetComponentInChildren<AimRay>().Aim();
+                }
                 Invoke("Attack", cooldown);
             }
         }
