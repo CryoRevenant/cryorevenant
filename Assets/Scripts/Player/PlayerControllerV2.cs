@@ -12,6 +12,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private float yRaycastGrounded;
     [SerializeField] private float yRaycastSize;
+    [SerializeField] private float xRaycastOffset;
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private SpriteRenderer leftDustSprite;
     [SerializeField] private SpriteRenderer rightDustSprite;
@@ -47,6 +48,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float curVelocitySpeed;
     private float curVcamMoveYSpeed;
     private float curGravity;
+    private float curRaycastDir;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -56,12 +58,13 @@ public class PlayerControllerV2 : MonoBehaviour
     private float dashTime;
     private float goDownCooldown;
     private float jumpBufferTimer = 0;
+    private float raycastDir;
 
-    public bool isGrounded;
+    [HideInInspector] public bool isGrounded;
     private bool isDashing;
     private bool isBuffing;
     private bool canJump;
-    public bool canDash;
+    private bool canDash;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
     private bool canGoDown;
@@ -127,6 +130,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     canResetCurMoveSpeed = false;
                 }
                 playerSprite.flipX = false;
+                raycastDir = -xRaycastOffset;
                 leftDustSprite.enabled = true;
                 rightDustSprite.enabled = false;
                 curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
@@ -145,6 +149,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     canResetCurMoveSpeed = false;
                 }
                 playerSprite.flipX = true;
+                raycastDir = xRaycastOffset;
                 leftDustSprite.enabled = false;
                 rightDustSprite.enabled = true;
                 curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
@@ -269,9 +274,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region isGrounded
         float distance = 1f;
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up, distance);
+        float xPos = transform.position.x + raycastDir;
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(xPos, transform.position.y - yRaycastGrounded), -transform.up, distance);
 
-        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - yRaycastGrounded), -transform.up * yRaycastSize, Color.red, 1);
+        Debug.DrawRay(new Vector2(xPos, transform.position.y - yRaycastGrounded), -transform.up * yRaycastSize, Color.red, 1);
         if (hit)
         {
             //Debug.Log(hit.collider.gameObject.name);
@@ -307,9 +313,11 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 case true:
                     result = transform.position.x - offset.x;
+                    raycastDir = xRaycastOffset;
                     break;
                 case false:
                     result = transform.position.x + offset.x;
+                    raycastDir = -xRaycastOffset;
                     break;
             }
         }
@@ -348,7 +356,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        // accel
+        #region accel
         float curseurAccel = 1;
         if (movement == 0)
         {
@@ -358,8 +366,9 @@ public class PlayerControllerV2 : MonoBehaviour
         Vector3 nextPosition = new Vector3(transform.position.x + curSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
         rb.position = nextPosition;
         //Debug.Log((int)curVelocitySpeed);
+        #endregion
 
-        // dash
+        #region dash
         float curseurDash = 1;
         if (dashValue == 0)
         {
@@ -388,16 +397,19 @@ public class PlayerControllerV2 : MonoBehaviour
             gameObject.GetComponent<PlayerHP>().canDie = true;
         }
 
-        Debug.Log(curseurDash);
+        //Debug.Log(curseurDash);
+        #endregion
 
+        #region vcam X Axis
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
         if (canReverse)
         {
             Vector3 nextReverse = new Vector3(Mathf.Clamp(result, xCameraDeadZone, result), camOffset.position.y, camOffset.position.z);
             camOffset.position = Vector3.Lerp(camOffset.position, nextReverse, Time.deltaTime * reverseSpeed);
         }
+        #endregion
 
-        // jump
+        #region jump
         if (canJump)
         {
             if (!canDash)
@@ -414,16 +426,21 @@ public class PlayerControllerV2 : MonoBehaviour
                 canJump = false;
             }
         }
+        #endregion
 
+        #region gravité
         //Debug.Log(rb.velocity);
         rb.gravityScale = curGravity;
+        #endregion
 
-        #region vcam set Speed
+        #region vcam Y Axis
         if (!canJump)
         {
-            vcamMoveYSpeed -= Time.deltaTime*50;
+            vcamMoveYSpeed -= Time.deltaTime*25;
             vcamMoveYSpeed = Mathf.Clamp(vcamMoveYSpeed, curVcamMoveYSpeed, 20);
         }
+
+        Debug.Log("isGrounded = " + isGrounded);
 
         if (canJump)
         {
@@ -435,6 +452,9 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
     }
 
+    /// <summary>
+    /// Coyote Time for isGrounded
+    /// </summary>
     void Grounded()
     {
         isGrounded = false;
