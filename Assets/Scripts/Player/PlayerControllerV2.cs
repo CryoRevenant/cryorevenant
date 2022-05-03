@@ -9,6 +9,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("Player")]
     private PlayerInput controls;
     private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
     [SerializeField] private float yRaycastGrounded;
     [SerializeField] private float yRaycastSize;
     [SerializeField] private SpriteRenderer playerSprite;
@@ -115,6 +116,8 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!canDash)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
+
+            animator.SetFloat("Movement", xAxis);
 
             if (xAxis > 0)
             {
