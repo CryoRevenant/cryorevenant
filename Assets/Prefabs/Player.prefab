@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7778891271729684173}
   - component: {fileID: 187057646}
   - component: {fileID: 869028044059294363}
+  - component: {fileID: 1861171816}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -153,6 +154,7 @@ MonoBehaviour:
   attackRange: 1.5
   damage: 1
   attackCooldown: 0.5
+  iceToAdd: 0
 --- !u!114 &187057646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c1ff5d940bd7f41a13a3d775408bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 7778891271954775131}
   yRaycastGrounded: 1
   yRaycastSize: 1
+  xRaycastOffset: 0.35
   playerSprite: {fileID: 7778891271954775128}
   leftDustSprite: {fileID: 1277820202575207455}
   rightDustSprite: {fileID: 1277820202332141261}
@@ -208,7 +212,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   moveSpeed: 14
   accelSpeed: 25
-  inertia: 3
+  inertia: 5
   accelCurve:
     serializedVersion: 2
     m_Curve:
@@ -236,7 +240,6 @@ MonoBehaviour:
   dashDistance: 7.5
   dashSpeed: 25
   isGrounded: 0
-  canDash: 0
 --- !u!114 &869028044059294363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +254,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   canDie: 0
+--- !u!114 &1861171816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778891271729684178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1ee52ba54ecb54f8591174c109824f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceAmount: 0
+  slide: {fileID: 0}
+  speed: 6
 --- !u!1 &7778891271889976451
 GameObject:
   m_ObjectHideFlags: 0

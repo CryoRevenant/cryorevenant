@@ -167,6 +167,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (xAxis == 0 && dashValue == 0)
             {
+                leftDustSprite.enabled = false;
+                rightDustSprite.enabled = false;
                 canResetCurMoveSpeed = true;
                 curVelocitySpeed -= accelCurve.Evaluate(Time.deltaTime * accelSpeed);
                 if (curVelocitySpeed <= 0)
@@ -434,16 +436,12 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         #region vcam Y Axis
-        if (!canJump)
-        {
-            vcamMoveYSpeed -= Time.deltaTime*25;
-            vcamMoveYSpeed = Mathf.Clamp(vcamMoveYSpeed, curVcamMoveYSpeed, 20);
-        }
+        StartCoroutine(VcamStartMove());
+        //Debug.Log("isGrounded = " + isGrounded);
 
-        Debug.Log("isGrounded = " + isGrounded);
-
-        if (canJump)
+        if (canJump && movement == 0)
         {
+            //Debug.Log("Stop");
             vcamMoveYSpeed = 20;
         }
 
@@ -458,5 +456,18 @@ public class PlayerControllerV2 : MonoBehaviour
     void Grounded()
     {
         isGrounded = false;
+    }
+
+    IEnumerator VcamStartMove()
+    {
+        yield return new WaitForSeconds(1.2f);
+
+        while (vcamMoveYSpeed > 0 && !canJump && isGrounded)
+        {
+            //Debug.Log("Play");
+            float timer = Time.deltaTime * 25;
+            vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
+            yield break;
+        }
     }
 }
