@@ -5,9 +5,14 @@ using UnityEngine;
 public class HitTrigger : MonoBehaviour
 {
     SoldatAttack parent;
+    EnemyHealth hp;
+    EnemyMove move;
+    [SerializeField] SpriteRenderer colorBox;
 
     private void Start()
     {
+        move = GetComponentInParent<EnemyMove>();
+        hp = GetComponentInParent<EnemyHealth>();
         parent = GetComponentInParent<SoldatAttack>();
     }
 
@@ -32,21 +37,25 @@ public class HitTrigger : MonoBehaviour
 
     void isVulnerable()
     {
-        GetComponentInParent<EnemyHealth>().isBlocking = false;
+        colorBox.color = Color.green;
+        hp.isBlocking = false;
     }
 
     void isBlocking()
     {
-        GetComponentInParent<EnemyHealth>().isBlocking = true;
+        colorBox.color = Color.red;
+        hp.isBlocking = true;
     }
 
     void isAttacking()
     {
-        GetComponentInParent<EnemyHealth>().isAttacking = true;
+        move.canMove = false;
+        hp.isAttacking = true;
     }
 
     void StopAttack()
     {
-        GetComponentInParent<EnemyHealth>().isAttacking = false;
+        move.canMove = true;
+        hp.isAttacking = false;
     }
 }

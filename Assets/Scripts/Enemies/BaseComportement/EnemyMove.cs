@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    bool canMove = true;
+    public bool canMove = true;
     bool isGrounded;
     bool isDashing;
     public bool lookLeft;
@@ -16,7 +16,7 @@ public class EnemyMove : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] float speedDash;
-    float distDash;
+    public float distDash;
 
     [Header("Raycasts")]
     [SerializeField] float rayLengthDown;

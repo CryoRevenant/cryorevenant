@@ -5595,11 +5595,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.791786
+      value: 34.21
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1369271
+      value: 9.77
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9213,7 +9213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1155533013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14432,6 +14432,11 @@ MonoBehaviour:
   anim: {fileID: 0}
   hp: {fileID: 0}
   index: 0
+--- !u!212 &1648459895 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 404204908336340052, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+  m_PrefabInstance: {fileID: 2034830239168303709}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1662477091
 GameObject:
   m_ObjectHideFlags: 0
@@ -16814,11 +16819,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.260002
+      value: 52.72
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1369271
+      value: 0.91
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17831,6 +17836,10 @@ PrefabInstance:
       propertyPath: isBlocking
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5266480633623781981, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: colorBox
+      value: 
+      objectReference: {fileID: 1648459895}
     m_RemovedComponents:
     - {fileID: 5408796374340134190, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
