@@ -15,7 +15,6 @@ public class HitTrigger : MonoBehaviour
     {
         parent.CheckAttack();
         parent.index++;
-        Debug.Log("check anim");
     }
 
     void ResetAnim()
@@ -29,5 +28,25 @@ public class HitTrigger : MonoBehaviour
         {
             other.gameObject.GetComponent<PlayerHP>().Death();
         }
+    }
+
+    void isVulnerable()
+    {
+        GetComponentInParent<EnemyHealth>().isBlocking = false;
+    }
+
+    void isBlocking()
+    {
+        GetComponentInParent<EnemyHealth>().isBlocking = true;
+    }
+
+    void isAttacking()
+    {
+        GetComponentInParent<EnemyHealth>().isAttacking = true;
+    }
+
+    void StopAttack()
+    {
+        GetComponentInParent<EnemyHealth>().isAttacking = false;
     }
 }

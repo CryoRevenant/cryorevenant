@@ -16,7 +16,6 @@ public class SoldatAttack : EnemyAttack
 
     public void Reset()
     {
-        Debug.Log("reset");
         index = 0;
         anim.SetBool("isPreAttack", false);
         anim.SetInteger("attackIndex", 0);

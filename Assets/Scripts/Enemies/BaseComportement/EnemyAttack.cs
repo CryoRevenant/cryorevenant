@@ -17,11 +17,13 @@ public class EnemyAttack : MonoBehaviour
     GameObject triggerHit;
 
     public Animator anim;
+    public EnemyHealth hp;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
         anim = GetComponentInChildren<Animator>();
+        hp = GetComponent<EnemyHealth>();
         player = GameObject.Find("Player");
         triggerHit = transform.GetChild(0).gameObject;
     }
@@ -60,7 +62,6 @@ public class EnemyAttack : MonoBehaviour
         {
             GetComponentInChildren<SoldatAttack>().Reset();
         }
-        Debug.Log("check " + isPlayerNear);
     }
 
 
