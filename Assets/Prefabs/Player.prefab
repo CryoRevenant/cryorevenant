@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3684784278935499521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalPosition: {x: -13, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271954775130}
@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4090795653219881510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 0, z: 0}
+  m_LocalPosition: {x: 13, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271954775130}
@@ -357,11 +357,12 @@ MonoBehaviour:
   attackPosDistance: {x: 9, y: 0}
   attackRange: 1.5
   damage: 1
-  attackCooldown: 0.5
+  damageCooldown: 0.5
+  attackCooldown: 1
   iceToAdd: 0
   slashEffect: {fileID: 4090795653219881510}
   slashEffect2: {fileID: 3684784278935499521}
-  playerSprite: {fileID: 0}
+  playerSprite: {fileID: 7778891271954775128}
 --- !u!114 &187057646
 MonoBehaviour:
   m_ObjectHideFlags: 0

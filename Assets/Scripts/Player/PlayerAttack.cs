@@ -5,16 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 attackPosDistance;
     [SerializeField] private float attackRange;
     [SerializeField] private int damage;
     [SerializeField] private float damageCooldown;
     [SerializeField] private float attackCooldown;
+    [Header("IceBar")]
     [SerializeField] private int iceToAdd;
+    [Header("Sprites")]
     [SerializeField] private GameObject slashEffect;
     [SerializeField] private GameObject slashEffect2;
     [SerializeField] private SpriteRenderer playerSprite;
+
     private PlayerInput controls;
     private float timerDamage;
     private float timerAttack;
@@ -33,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        #region attack for sprites and ice bar : with attackCooldown
         timerAttack -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack <= 0)
         {
@@ -53,7 +58,9 @@ public class PlayerAttack : MonoBehaviour
             //Debug.Log("stop dashing");
             timerAttack = attackCooldown;
         }
+        #endregion
 
+        #region attack for damages or effects : with damageCooldown
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
 
         //Debug.Log(col.Length);
@@ -90,7 +97,9 @@ public class PlayerAttack : MonoBehaviour
                 timerDamage = damageCooldown;
             }
         }
+        #endregion
 
+        #region modifications en fonction de la direction du joueur
         float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
 
         if (xAxis > 0)
@@ -107,8 +116,12 @@ public class PlayerAttack : MonoBehaviour
             slashEffect.SetActive(false);
             slashEffect.GetComponent<Animator>().SetBool("Recover", false);
         }
+        #endregion
     }
 
+    /// <summary>
+    /// feedback visuel de debug pour le rayon d'attaque
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -116,6 +129,10 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.DrawWireSphere(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
     }
 
+    /// <summary>
+    /// permet d'arrêter l'animation de slash
+    /// </summary>
+    /// <returns></returns>
     IEnumerator StopSlashAnim()
     {
         yield return new WaitForSeconds(1);
