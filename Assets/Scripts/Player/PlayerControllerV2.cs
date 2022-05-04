@@ -48,7 +48,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private float curVelocitySpeed;
     private float curVcamMoveYSpeed;
     private float curGravity;
-    private float curRaycastDir;
+    private float curPosY;
+    private float lastPosY;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -286,6 +287,7 @@ public class PlayerControllerV2 : MonoBehaviour
             if (hit.collider.CompareTag("Ground"))
             {
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
+                curPosY = rb.position.y;
                 isGrounded = true;
             }
         }
@@ -439,10 +441,10 @@ public class PlayerControllerV2 : MonoBehaviour
         StartCoroutine(VcamStartMove());
         //Debug.Log("isGrounded = " + isGrounded);
 
-        if (canJump && movement == 0)
+        if (canJump)
         {
             //Debug.Log("Stop");
-            vcamMoveYSpeed = 20;
+            vcamMoveYSpeed = 5;
         }
 
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
@@ -462,9 +464,19 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
 
-        while (vcamMoveYSpeed > 0 && !canJump && isGrounded)
+        lastPosY = rb.position.y;
+
+        while (vcamMoveYSpeed > 0 && !canJump && isGrounded || canJump && movement != 0)
         {
             //Debug.Log("Play");
+            float timer = Time.deltaTime * 25;
+            vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
+            yield break;
+        }
+
+        while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1)
+        {
+            //Debug.Log("Fall");
             float timer = Time.deltaTime * 25;
             vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
             yield break;
