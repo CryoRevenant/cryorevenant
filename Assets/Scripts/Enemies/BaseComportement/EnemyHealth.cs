@@ -52,22 +52,35 @@ public class EnemyHealth : MonoBehaviour
 
     void Block()
     {
-
+        if (move.lookLeft)
+        {
+            move.distDash = 1;
+            move.StartCoroutine("Dash", 1);
+            move.distDash = 5;
+        }
+        else
+        {
+            move.distDash = 2;
+            move.StartCoroutine("Dash", 0);
+            move.distDash = 5;
+        }
     }
 
     void Recoil()
     {
         if (move.lookLeft)
         {
+            move.distDash = 3;
             move.StartCoroutine("Dash", 1);
             anim.SetTrigger("forceReco");
-            Debug.Log("hitattack");
+            move.distDash = 5;
         }
         else
         {
-            Debug.Log("hitattack");
+            move.distDash = 3;
             anim.SetTrigger("forceReco");
             move.StartCoroutine("Dash", 0);
+            move.distDash = 5;
         }
     }
 }
