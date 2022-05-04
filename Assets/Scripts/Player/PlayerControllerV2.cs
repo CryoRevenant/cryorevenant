@@ -216,9 +216,6 @@ public class PlayerControllerV2 : MonoBehaviour
                     dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
-
-                leftDustSprite.enabled = true;
-                rightDustSprite.enabled = false;
                 canReverse = true;
             }
 
@@ -231,9 +228,6 @@ public class PlayerControllerV2 : MonoBehaviour
                     dashTime = dashDistance / dashSpeed;
                     isDashing = false;
                 }
-
-                leftDustSprite.enabled = false;
-                rightDustSprite.enabled = true;
                 canReverse = true;
             }
 
@@ -460,6 +454,10 @@ public class PlayerControllerV2 : MonoBehaviour
         isGrounded = false;
     }
 
+    /// <summary>
+    /// vcam Y Axis when player move
+    /// </summary>
+    /// <returns></returns>
     IEnumerator VcamStartMove()
     {
         yield return new WaitForSeconds(1.2f);

@@ -9,24 +9,49 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Vector2 attackPosDistance;
     [SerializeField] private float attackRange;
     [SerializeField] private int damage;
+    [SerializeField] private float damageCooldown;
     [SerializeField] private float attackCooldown;
     [SerializeField] private int iceToAdd;
+    [SerializeField] private GameObject slashEffect;
+    [SerializeField] private GameObject slashEffect2;
+    [SerializeField] private SpriteRenderer playerSprite;
     private PlayerInput controls;
-    private float timer;
+    private float timerDamage;
+    private float timerAttack;
 
     private void Awake()
     {
-        timer = attackCooldown;
+        timerDamage = damageCooldown;
+        timerAttack = attackCooldown;
         controls = gameObject.GetComponent<PlayerInput>();
         attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
+        slashEffect2.SetActive(false);
+        slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
+        slashEffect.SetActive(false);
+        slashEffect.GetComponent<Animator>().SetBool("Recover", false);
     }
 
     private void Update()
     {
-        if (controls.currentActionMap.FindAction("Attack").triggered)
+        timerAttack -= Time.deltaTime;
+        if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack <= 0)
         {
+            switch (playerSprite.flipX)
+            {
+                case true:
+                    slashEffect2.SetActive(true);
+                    slashEffect2.GetComponent<Animator>().SetBool("Recover", true);
+                    break;
+                case false:
+                    slashEffect.SetActive(true);
+                    slashEffect.GetComponent<Animator>().SetBool("Recover", true);
+                    break;
+            }
+            StartCoroutine(StopSlashAnim());
+
             GetComponent<IceBar>().AddBar(iceToAdd);
             //Debug.Log("stop dashing");
+            timerAttack = attackCooldown;
         }
 
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
@@ -36,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
         for (int i = 0; i < col.Length; i++)
         {
             // Debug.Log(col[i].gameObject.name);
-            timer -= Time.deltaTime;
+            timerDamage -= Time.deltaTime;
             if (col[i].gameObject.CompareTag("Enemy"))
             {
                 int j = Random.Range(0, 150);
@@ -46,23 +71,23 @@ public class PlayerAttack : MonoBehaviour
                     Debug.Log("dash");
                     col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash");
                 }
-                if (controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+                if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
                 {
-                    //Debug.Log("hit Enemy");
+                    Debug.Log("hit Enemy");
                     col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-                    timer = attackCooldown;
+                    timerDamage = damageCooldown;
                 }
             }
 
-            if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+            if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
             {
                 col[i].gameObject.GetComponent<Door>().DestroyDoor();
-                timer = attackCooldown;
+                timerDamage = damageCooldown;
             }
-            if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered && timer <= 0)
+            if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
             {
                 col[i].gameObject.GetComponent<FuzeBox>().DestoyFuze();
-                timer = attackCooldown;
+                timerDamage = damageCooldown;
             }
         }
 
@@ -71,10 +96,16 @@ public class PlayerAttack : MonoBehaviour
         if (xAxis > 0)
         {
             attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
+
+            slashEffect2.SetActive(false);
+            slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
         }
         if (xAxis < 0)
         {
             attackPos.localPosition = new Vector3(-attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
+
+            slashEffect.SetActive(false);
+            slashEffect.GetComponent<Animator>().SetBool("Recover", false);
         }
     }
 
@@ -83,5 +114,24 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
+    }
+
+    IEnumerator StopSlashAnim()
+    {
+        yield return new WaitForSeconds(1);
+
+        switch (playerSprite.flipX)
+        {
+            case true:
+                slashEffect2.SetActive(false);
+                slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
+                break;
+            case false:
+                slashEffect.SetActive(false);
+                slashEffect.GetComponent<Animator>().SetBool("Recover", false);
+                break;
+        }
+
+        yield break;
     }
 }
