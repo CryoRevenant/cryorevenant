@@ -60,6 +60,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float goDownCooldown;
     private float jumpBufferTimer = 0;
     private float raycastDir;
+    private float raycastDir2;
 
     [HideInInspector] public bool isGrounded;
     private bool isDashing;
@@ -132,6 +133,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
                 playerSprite.flipX = false;
                 raycastDir = -xRaycastOffset;
+                raycastDir2 = xRaycastOffset;
                 leftDustSprite.enabled = true;
                 rightDustSprite.enabled = false;
                 curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
@@ -151,6 +153,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
                 playerSprite.flipX = true;
                 raycastDir = xRaycastOffset;
+                raycastDir2 = -xRaycastOffset;
                 leftDustSprite.enabled = false;
                 rightDustSprite.enabled = true;
                 curVelocitySpeed += accelCurve.Evaluate(Time.deltaTime * accelSpeed);
@@ -269,7 +272,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #endregion
 
-        #region isGrounded
+        #region isGrounded Left
         float distance = 1f;
         float xPos = transform.position.x + raycastDir;
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(xPos, transform.position.y - yRaycastGrounded), -transform.up, distance);
@@ -301,7 +304,40 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         //Debug.Log(rb.velocity.y);
+        #endregion
 
+        #region isGrounded Right
+        float distance2 = 1f;
+        float xPos2 = transform.position.x + raycastDir2;
+        RaycastHit2D hit2 = Physics2D.Raycast(new Vector2(xPos2, transform.position.y - yRaycastGrounded), -transform.up, distance2);
+
+        Debug.DrawRay(new Vector2(xPos2, transform.position.y - yRaycastGrounded), -transform.up * yRaycastSize, Color.red, 1);
+        if (hit2)
+        {
+            //Debug.Log(hit.collider.gameObject.name);
+            if (hit2.collider.CompareTag("Ground"))
+            {
+                //vcamMoveYSpeed = curVcamMoveYSpeed;
+                curPosY = rb.position.y;
+                isGrounded = true;
+            }
+        }
+        else
+        {
+            //vcamMoveYSpeed = 20;
+            if (rb.velocity.y < 0)
+            {
+                Invoke("Grounded", 0.2f);
+            }
+            else
+            {
+                isGrounded = false;
+            }
+            leftDustSprite.enabled = false;
+            rightDustSprite.enabled = false;
+        }
+
+        //Debug.Log(rb.velocity.y);
         #endregion
 
         #region idle vcam offset
@@ -312,10 +348,12 @@ public class PlayerControllerV2 : MonoBehaviour
                 case true:
                     result = transform.position.x - offset.x;
                     raycastDir = xRaycastOffset;
+                    raycastDir2 = -xRaycastOffset;
                     break;
                 case false:
                     result = transform.position.x + offset.x;
                     raycastDir = -xRaycastOffset;
+                    raycastDir2 = xRaycastOffset;
                     break;
             }
         }

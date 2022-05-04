@@ -766,15 +766,18 @@ MonoBehaviour:
   attackPosDistance: {x: 9, y: 0}
   damage: 1
   attackRange: 1.25
-  damageCooldown: 0.5
-  attackCooldown: 0.5
-  wallCooldown: 2
   iceToAdd: 3
   slashEffect: {fileID: 4090795653219881510}
   slashEffect2: {fileID: 3684784278935499521}
+  damageCooldown: 0.5
+  attackCooldown: 0.5
   wallEffect: {fileID: 411344946077657920}
   wallEffect2: {fileID: 5729833613463931434}
   wall: {fileID: 7547172563965914818, guid: 2db83a69721383a488b4517de894b753, type: 3}
+  wallCooldown: 2
+  spike: {fileID: 7895755256247993163, guid: 64ca56e49381b4646a1f39f01fb73cab, type: 3}
+  spikeCooldown: 1
+  spikeSpeed: 25
 --- !u!114 &187057646
 MonoBehaviour:
   m_ObjectHideFlags: 0

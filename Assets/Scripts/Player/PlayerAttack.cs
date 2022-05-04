@@ -11,24 +11,37 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Vector2 attackPosDistance;
     [SerializeField] private int damage;
     [SerializeField] private float attackRange;
-    [SerializeField] private float damageCooldown;
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float wallCooldown;
+
     [Header("IceBar")]
     [SerializeField] private int iceToAdd;
     [Header("Slash")]
     [SerializeField] private GameObject slashEffect;
     [SerializeField] private GameObject slashEffect2;
+    [SerializeField] private float damageCooldown;
+    [SerializeField] private float attackCooldown;
     [Header("Wall")]
     [SerializeField] private GameObject wallEffect;
     [SerializeField] private GameObject wallEffect2;
     [SerializeField] private GameObject wall;
+    [SerializeField] private float wallCooldown;
+    [Header("Spike")]
+    [SerializeField] private GameObject spike;
+    [SerializeField] private float spikeCooldown;
+    [SerializeField] private float spikeSpeed;
+    [SerializeField] private float spikeMaxDist;
+    [SerializeField] private AnimationCurve spikeSpeedCurve;
+    private float curSpikeSpeed;
 
     private PlayerInput controls;
     private float timerDamage;
     private float timerAttack;
+    private float timerSpike;
     private float timerWall;
     private int slashOrder;
+    private Vector2 spikeLerp;
+    private Vector2 playerPos;
+    private GameObject instance;
+    private GameObject instance2;
 
     private void Awake()
     {
@@ -134,6 +147,40 @@ public class PlayerAttack : MonoBehaviour
         }
         #endregion
 
+        #region attack for sprites and ice bar and instance : with spikeCooldown
+        timerSpike -= Time.deltaTime;
+        if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0)
+        {
+            Debug.Log("ice spike");
+
+            switch (playerSprite.flipX)
+            {
+                case true:
+                    curSpikeSpeed = 0;
+                    playerPos = transform.position;
+                    instance = Instantiate(spike, new Vector2(transform.position.x - 2, transform.position.y - 0f), Quaternion.identity);
+                    instance.GetComponent<SpriteRenderer>().flipX = true;
+                    Destroy(instance, 1);
+                    break;
+                case false:
+                    curSpikeSpeed = 0;
+                    playerPos = transform.position;
+                    instance2 = Instantiate(spike, new Vector2(transform.position.x + 2, transform.position.y - 0f), Quaternion.identity);
+                    instance2.GetComponent<SpriteRenderer>().flipX = false;
+                    Destroy(instance2, 1);
+                    break;
+            }
+
+            //StartCoroutine(StopWallAnim());
+            GetComponent<IceBar>().AddBar(iceToAdd);
+            timerSpike = spikeCooldown;
+        }
+
+        curSpikeSpeed += spikeSpeedCurve.Evaluate(Time.deltaTime * spikeSpeed);
+        //Debug.Log(curSpikeSpeed);
+
+        #endregion
+
         #region attack for damages or effects : with damageCooldown
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
 
@@ -197,6 +244,34 @@ public class PlayerAttack : MonoBehaviour
             wallEffect.GetComponent<Animator>().SetBool("Build", false);
         }
         #endregion
+    }
+
+    private void FixedUpdate()
+    {
+        float curseur = 1;
+        if (instance != null)
+        {
+            float dist = transform.position.x - instance.transform.position.x;
+            //Debug.Log(dist);
+            if(dist <= spikeMaxDist)
+            {
+                spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed, spikeLerp.y) * -instance.transform.right, curseur);
+                Vector2 nextPos = new Vector2(instance.transform.position.x + spikeLerp.x * Time.deltaTime, instance.transform.position.y);
+                instance.transform.position = nextPos;
+            }
+        }
+
+        if (instance2 != null)
+        {
+            float dist = transform.position.x - instance2.transform.position.x;
+            //Debug.Log(dist);
+            if (-dist <= spikeMaxDist)
+            {
+                spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed, spikeLerp.y) * instance2.transform.right, curseur);
+                Vector2 nextPos = new Vector2(instance2.transform.position.x + spikeLerp.x * Time.deltaTime, instance2.transform.position.y);
+                instance2.transform.position = nextPos;
+            }
+        }
     }
 
     /// <summary>
