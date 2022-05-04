@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
         #endregion
 
         attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
-        slashOrder = 1;
+        slashOrder = 2;
 
         #region slash set
         slashEffect2.SetActive(false);
@@ -108,7 +108,7 @@ public class PlayerAttack : MonoBehaviour
 
         #region attack for sprites and ice bar and instance : with wallCooldown
         timerWall -= Time.deltaTime;
-        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0)
+        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && gameObject.GetComponent<PlayerControllerV2>().isGrounded && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
         {
             Debug.Log("ice wall");
 
@@ -145,7 +145,7 @@ public class PlayerAttack : MonoBehaviour
             timerDamage -= Time.deltaTime;
             if (col[i].gameObject.CompareTag("Enemy"))
             {
-                int j = Random.Range(0, 150);
+                int j = Random.Range(0, 300);
 
                 if (j == 1)
                 {

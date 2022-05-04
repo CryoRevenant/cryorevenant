@@ -377,6 +377,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             //Debug.Log("is dashing");
             curGravity = 6;
+            isBuffing = false;
 
             dashTime -= Time.deltaTime;
         }
@@ -472,7 +473,7 @@ public class PlayerControllerV2 : MonoBehaviour
             yield break;
         }
 
-        while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1)
+        while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash)
         {
             //Debug.Log("Fall");
             float timer = Time.deltaTime * 50;
