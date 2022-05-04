@@ -475,7 +475,7 @@ public class PlayerControllerV2 : MonoBehaviour
         while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1)
         {
             //Debug.Log("Fall");
-            float timer = Time.deltaTime * 25;
+            float timer = Time.deltaTime * 50;
             vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
             yield break;
         }

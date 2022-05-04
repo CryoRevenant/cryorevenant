@@ -55,6 +55,24 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Wall"",
+                    ""type"": ""Button"",
+                    ""id"": ""32d4db67-53f2-426f-914c-6af55326b9e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Spike"",
+                    ""type"": ""Button"",
+                    ""id"": ""20358cee-c6bb-47af-ab6f-b05f97a03fbe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""9de1804e-3ddf-4cc8-b2e3-7beb18a39eff"",
@@ -302,6 +320,28 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6b82b6d-b343-4526-bc01-3802c3f5bae9"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Wall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""658a4c08-779d-4885-a390-2f4adda33e87"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spike"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -313,6 +353,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Wall = m_Player.FindAction("Wall", throwIfNotFound: true);
+        m_Player_Spike = m_Player.FindAction("Spike", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
@@ -378,6 +420,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Wall;
+    private readonly InputAction m_Player_Spike;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Down;
@@ -388,6 +432,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Wall => m_Wrapper.m_Player_Wall;
+        public InputAction @Spike => m_Wrapper.m_Player_Spike;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Down => m_Wrapper.m_Player_Down;
@@ -409,6 +455,12 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAttack;
+                @Wall.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWall;
+                @Wall.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWall;
+                @Wall.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWall;
+                @Spike.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpike;
+                @Spike.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpike;
+                @Spike.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpike;
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
@@ -431,6 +483,12 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Wall.started += instance.OnWall;
+                @Wall.performed += instance.OnWall;
+                @Wall.canceled += instance.OnWall;
+                @Spike.started += instance.OnSpike;
+                @Spike.performed += instance.OnSpike;
+                @Spike.canceled += instance.OnSpike;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -449,6 +507,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnWall(InputAction.CallbackContext context);
+        void OnSpike(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
