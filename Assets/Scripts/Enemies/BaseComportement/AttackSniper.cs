@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AttackSniper : EnemyAttack
 {
-    GameObject player;
-
     [SerializeField] GameObject bullet;
 
     public bool canAttack = true;
@@ -13,10 +11,6 @@ public class AttackSniper : EnemyAttack
 
     [SerializeField] float force;
     // Start is called before the first frame update
-    public override void Start()
-    {
-        player = GameObject.Find("Player");
-    }
 
     private void Update()
     {

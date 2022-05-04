@@ -150,7 +150,7 @@ public class PlayerAttack : MonoBehaviour
                 if (j == 1)
                 {
                     Debug.Log("dash");
-                    col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash");
+                    col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
                 }
                 if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
                 {
@@ -210,7 +210,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// permet d'arrêter l'animation de slash
+    /// permet d'arrï¿½ter l'animation de slash
     /// </summary>
     /// <returns></returns>
     IEnumerator StopSlashAnim()

@@ -16,7 +16,7 @@ public class EnemyMove : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] float speedDash;
-    [SerializeField] float distDash;
+    float distDash;
 
     [Header("Raycasts")]
     [SerializeField] float rayLengthDown;
@@ -161,13 +161,19 @@ public class EnemyMove : MonoBehaviour
         StopCoroutine("MoveOver");
     }
 
-    public IEnumerator Dash()
+    public IEnumerator Dash(int direction)
     {
         if (isDashing == false)
         {
             isDashing = true;
             StopMove();
-            int dir = Random.Range(0, 2);
+
+            int dir = direction;
+            if (dir == 3)
+            {
+                dir = Random.Range(0, 2);
+            }
+
             Vector3 newPos;
 
             if (dir == 0)
