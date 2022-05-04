@@ -82,7 +82,7 @@ public class EnemyDetect : MonoBehaviour
                 {
                     otherDetect = true;
 
-                    attack.CheckAttack(hit.transform.gameObject);
+                    attack.CheckAttack();
 
                     move.StopCoroutine("MoveOver");
                     move.StartCoroutine("MoveOver", detectCircle.gameObject);

@@ -8,13 +8,21 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float attackDuration;
     public float cooldown;
 
-    bool attack = true;
+    public bool attack = true;
+    public bool isPlayerNear;
 
+    bool isAttacking;
+
+    public GameObject player;
     GameObject triggerHit;
+
+    public Animator anim;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
+        anim = GetComponentInChildren<Animator>();
+        player = GameObject.Find("Player");
         triggerHit = transform.GetChild(0).gameObject;
     }
 
@@ -23,7 +31,16 @@ public class EnemyAttack : MonoBehaviour
     {
     }
 
-    public virtual void CheckAttack(GameObject player)
+    public void BeginAttack()
+    {
+        if (isAttacking == false)
+        {
+            isAttacking = true;
+            CheckAttack();
+        }
+    }
+
+    public void CheckAttack()
     {
         RaycastHit2D hit;
 
@@ -35,23 +52,25 @@ public class EnemyAttack : MonoBehaviour
                 {
                     GetComponentInChildren<AimRay>().Aim();
                 }
-                Invoke("Attack", cooldown);
+                isPlayerNear = true;
+                Attack();
             }
         }
-        Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized, Color.green, 0.5f);
+        else
+        {
+            GetComponentInChildren<SoldatAttack>().Reset();
+        }
+        Debug.Log("check " + isPlayerNear);
     }
 
 
     public virtual void Attack()
     {
         attack = false;
-        triggerHit.SetActive(true);
-        Invoke("StopAttack", attackDuration);
     }
 
     void StopAttack()
     {
         attack = true;
-        triggerHit.SetActive(false);
     }
 }
