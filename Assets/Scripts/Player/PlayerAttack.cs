@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -20,11 +21,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float damageCooldown;
     [SerializeField] private float attackCooldown;
     [Header("Wall")]
+    [SerializeField] private RectMask2D wallUI;
     [SerializeField] private GameObject wallEffect;
     [SerializeField] private GameObject wallEffect2;
     [SerializeField] private GameObject wall;
     [SerializeField] private float wallCooldown;
     [Header("Spike")]
+    [SerializeField] private RectMask2D spikeUI;
     [SerializeField] private GameObject spike;
     [SerializeField] private float spikeCooldown;
     [SerializeField] private float spikeSpeed;
@@ -40,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
     private Vector2 spikeLerp;
     private GameObject instance;
     private GameObject instance2;
+    private bool lastFlip;
 
     private void Awake()
     {
@@ -47,6 +51,9 @@ public class PlayerAttack : MonoBehaviour
         timerDamage = damageCooldown;
         timerAttack = attackCooldown;
         timerWall = wallCooldown;
+        timerSpike = spikeCooldown;
+        wallUI.padding = new Vector4(0, 0, 0, 165);
+        spikeUI.padding = new Vector4(0, 0, 0, 135);
         #endregion
 
         #region get
@@ -74,12 +81,20 @@ public class PlayerAttack : MonoBehaviour
     private void Update()
     {
         #region attack for sprites and ice bar : with attackCooldown
+
+        if (playerSprite.flipX != lastFlip)
+        {
+            //Debug.Log("reset slash anim");
+            slashOrder = 2;
+        }
+
         timerAttack -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack <= 0)
         {
             switch (playerSprite.flipX)
             {
                 case true:
+                    lastFlip = playerSprite.flipX;
                     slashEffect2.SetActive(true);
                     switch (slashOrder)
                     {
@@ -92,8 +107,10 @@ public class PlayerAttack : MonoBehaviour
                             slashEffect2.GetComponent<Animator>().Play("SlashAttack_01");
                             break;
                     }
+                    slashEffect2.GetComponent<Animator>().SetBool("Recover", true);
                     break;
                 case false:
+                    lastFlip = playerSprite.flipX;
                     slashEffect.SetActive(true);
                     switch (slashOrder)
                     {
@@ -119,6 +136,8 @@ public class PlayerAttack : MonoBehaviour
 
         #region attack for sprites and ice bar and instance : with wallCooldown
         timerWall -= Time.deltaTime;
+        Debug.Log(timerWall);
+
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && gameObject.GetComponent<PlayerControllerV2>().isGrounded && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
         {
             //Debug.Log("ice wall");
@@ -141,12 +160,15 @@ public class PlayerAttack : MonoBehaviour
 
             StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
+            wallUI.padding = new Vector4(0, 0, 0, 165);
             timerWall = wallCooldown;
         }
         #endregion
 
         #region attack for sprites and ice bar and instance : with spikeCooldown
         timerSpike -= Time.deltaTime;
+        //Debug.Log(timerSpike);
+
         if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0)
         {
             //Debug.Log("ice spike");
@@ -169,6 +191,7 @@ public class PlayerAttack : MonoBehaviour
 
             //StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
+            spikeUI.padding = new Vector4(0, 0, 0, 135);
             timerSpike = spikeCooldown;
         }
 
@@ -244,7 +267,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        #region lerp pour les pics de glace
+        #region pics de glace
+
+        // lerp
         float curseur = 1;
         if (instance != null)
         {
@@ -260,6 +285,16 @@ public class PlayerAttack : MonoBehaviour
             Vector2 nextPos = new Vector2(instance2.transform.position.x + spikeLerp.x * Time.deltaTime, instance2.transform.position.y);
             instance2.transform.position = nextPos;
         }
+
+        // UI sliding
+        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown, 84, 135));
+        #endregion
+
+        #region mur de glace
+        // UI sliding
+        float w = wallUI.padding.w;
+        w -= wallCooldown*0.65f;
+        wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 30, 165));
         #endregion
     }
 

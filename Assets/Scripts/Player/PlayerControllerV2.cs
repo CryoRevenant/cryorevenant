@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerControllerV2 : MonoBehaviour
@@ -39,6 +40,8 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("Dash")]
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashCooldown;
+    [SerializeField] private RectMask2D dashUI;
 
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
@@ -52,10 +55,11 @@ public class PlayerControllerV2 : MonoBehaviour
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
+    private float timerDash;
     private float result;
     private float yAxis;
     private float dashValue;
-    public float dashTime;
+    [HideInInspector] public float dashTime;
     private float goDownCooldown;
     private float jumpBufferTimer = 0;
     private float raycastDir;
@@ -79,6 +83,9 @@ public class PlayerControllerV2 : MonoBehaviour
         canResetCurMoveSpeed = false;
         canGoDown = false;
         isBuffing = true;
+
+        dashUI.padding = new Vector4(0, 0, 0, 134);
+        timerDash = dashCooldown;
 
         curSpeed = Vector2.zero;
         curVcamMoveYSpeed = vcamMoveYSpeed;
@@ -196,10 +203,13 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
         #endregion
-        
+
         //Debug.Log(result);
-        
+
         #region le dash
+        timerDash -= Time.deltaTime;
+        //Debug.Log(timerDash);
+
         if (!canDash)
         {
             dashValue = controls.currentActionMap.FindAction("Dash").ReadValue<float>();
@@ -207,27 +217,31 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 dashValue = Mathf.Sign(dashValue);
             }
-            //Debug.Log(dashValue);
+            Debug.Log(dashValue);
 
-            if (dashValue > 0)
+            if (dashValue > 0 && timerDash <= 0)
             {
                 if (isDashing)
                 {
                     canDash = true;
                     gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
+                    dashUI.padding = new Vector4(0, 0, 0, 134);
+                    timerDash = dashCooldown;
                     isDashing = false;
                 }
                 canReverse = true;
             }
 
-            if (dashValue < 0)
+            if (dashValue < 0 && timerDash <= 0)
             {
                 if (isDashing)
                 {
                     canDash = true;
                     gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
+                    dashUI.padding = new Vector4(0, 0, 0, 134);
+                    timerDash = dashCooldown;
                     isDashing = false;
                 }
                 canReverse = true;
@@ -432,6 +446,8 @@ public class PlayerControllerV2 : MonoBehaviour
             curGravity = 5;
             gameObject.GetComponent<PlayerHP>().canDie = true;
         }
+
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 82, 134));
 
         //Debug.Log(curseurDash);
         #endregion

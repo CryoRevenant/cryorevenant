@@ -8,7 +8,7 @@ public class IceSpike : MonoBehaviour
     {
         if (collision.gameObject.layer == 3 || collision.gameObject.layer == 6)
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             Destroy(gameObject);
         }
     }
