@@ -28,7 +28,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject spike;
     [SerializeField] private float spikeCooldown;
     [SerializeField] private float spikeSpeed;
-    [SerializeField] private float spikeMaxDist;
     [SerializeField] private AnimationCurve spikeSpeedCurve;
     private float curSpikeSpeed;
 
@@ -39,7 +38,6 @@ public class PlayerAttack : MonoBehaviour
     private float timerWall;
     private int slashOrder;
     private Vector2 spikeLerp;
-    private Vector2 playerPos;
     private GameObject instance;
     private GameObject instance2;
 
@@ -123,20 +121,20 @@ public class PlayerAttack : MonoBehaviour
         timerWall -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && gameObject.GetComponent<PlayerControllerV2>().isGrounded && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
         {
-            Debug.Log("ice wall");
+            //Debug.Log("ice wall");
 
             switch (playerSprite.flipX)
             {
                 case true:
                     wallEffect2.SetActive(true);
                     wallEffect2.GetComponent<Animator>().SetBool("Build",true);
-                    GameObject instance = Instantiate(wall, new Vector2(transform.position.x - 3, transform.position.y - 0.3f), Quaternion.identity);
+                    GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
                     instance.GetComponent<SpriteRenderer>().flipX = true;
                     break;
                 case false:
                     wallEffect.SetActive(true);
                     wallEffect.GetComponent<Animator>().SetBool("Build",true);
-                    GameObject instance2 = Instantiate(wall, new Vector2(transform.position.x + 3, transform.position.y - 0.3f), Quaternion.identity);
+                    GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
                     instance2.GetComponent<SpriteRenderer>().flipX = false;
                     break;
             }
@@ -151,20 +149,18 @@ public class PlayerAttack : MonoBehaviour
         timerSpike -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0)
         {
-            Debug.Log("ice spike");
+            //Debug.Log("ice spike");
 
             switch (playerSprite.flipX)
             {
                 case true:
                     curSpikeSpeed = 0;
-                    playerPos = transform.position;
                     instance = Instantiate(spike, new Vector2(transform.position.x - 2, transform.position.y - 0f), Quaternion.identity);
                     instance.GetComponent<SpriteRenderer>().flipX = true;
                     Destroy(instance, 1);
                     break;
                 case false:
                     curSpikeSpeed = 0;
-                    playerPos = transform.position;
                     instance2 = Instantiate(spike, new Vector2(transform.position.x + 2, transform.position.y - 0f), Quaternion.identity);
                     instance2.GetComponent<SpriteRenderer>().flipX = false;
                     Destroy(instance2, 1);
@@ -248,30 +244,23 @@ public class PlayerAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
+        #region lerp pour les pics de glace
         float curseur = 1;
         if (instance != null)
         {
-            float dist = transform.position.x - instance.transform.position.x;
-            //Debug.Log(dist);
-            if(dist <= spikeMaxDist)
-            {
-                spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed, spikeLerp.y) * -instance.transform.right, curseur);
-                Vector2 nextPos = new Vector2(instance.transform.position.x + spikeLerp.x * Time.deltaTime, instance.transform.position.y);
-                instance.transform.position = nextPos;
-            }
+            //Debug.Log(gameObject.GetComponent<PlayerControllerV2>().curVelocitySpeed);
+            spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed - (controls.currentActionMap.FindAction("Move").ReadValue<float>()*20 - gameObject.GetComponent<PlayerControllerV2>().dashTime * 150), spikeLerp.y) * -instance.transform.right, curseur);
+            Vector2 nextPos = new Vector2(instance.transform.position.x + spikeLerp.x * Time.deltaTime, instance.transform.position.y);
+            instance.transform.position = nextPos;
         }
 
         if (instance2 != null)
         {
-            float dist = transform.position.x - instance2.transform.position.x;
-            //Debug.Log(dist);
-            if (-dist <= spikeMaxDist)
-            {
-                spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed, spikeLerp.y) * instance2.transform.right, curseur);
-                Vector2 nextPos = new Vector2(instance2.transform.position.x + spikeLerp.x * Time.deltaTime, instance2.transform.position.y);
-                instance2.transform.position = nextPos;
-            }
+            spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed + (controls.currentActionMap.FindAction("Move").ReadValue<float>()* 20 + gameObject.GetComponent<PlayerControllerV2>().dashTime * 150), spikeLerp.y) * instance2.transform.right, curseur);
+            Vector2 nextPos = new Vector2(instance2.transform.position.x + spikeLerp.x * Time.deltaTime, instance2.transform.position.y);
+            instance2.transform.position = nextPos;
         }
+        #endregion
     }
 
     /// <summary>

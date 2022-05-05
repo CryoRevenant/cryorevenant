@@ -32,7 +32,6 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float jumpBufferCooldown;
     [SerializeField] private AnimationCurve jumpCurve;
     [Header("Movement")]
-    // la velocitySpeed est la vitesse à laquelle le personnage atteint sa vitesse max
     [SerializeField] private float moveSpeed;
     [SerializeField] private float accelSpeed;
     [SerializeField] private float inertia;
@@ -56,7 +55,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float result;
     private float yAxis;
     private float dashValue;
-    private float dashTime;
+    public float dashTime;
     private float goDownCooldown;
     private float jumpBufferTimer = 0;
     private float raycastDir;

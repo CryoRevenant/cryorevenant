@@ -777,7 +777,31 @@ MonoBehaviour:
   wallCooldown: 2
   spike: {fileID: 7895755256247993163, guid: 64ca56e49381b4646a1f39f01fb73cab, type: 3}
   spikeCooldown: 1
-  spikeSpeed: 25
+  spikeSpeed: 300
+  spikeSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &187057646
 MonoBehaviour:
   m_ObjectHideFlags: 0
