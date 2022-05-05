@@ -213,11 +213,11 @@ public class PlayerAttack : MonoBehaviour
             {
                 int j = Random.Range(0, 300);
 
-                if (j == 1)
-                {
-                    Debug.Log("dash");
-                    col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
-                }
+                // if (j == 1)
+                // {
+                //     Debug.Log("dash");
+                //     col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
+                // }
                 if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
                 {
                     Debug.Log("hit Enemy");
@@ -332,7 +332,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     /// <summary>
-    /// permet d'arrêter l'animation de ice wall
+    /// permet d'arrï¿½ter l'animation de ice wall
     /// </summary>
     /// <returns></returns>
     IEnumerator StopWallAnim()

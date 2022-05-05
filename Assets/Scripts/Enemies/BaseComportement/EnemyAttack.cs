@@ -11,8 +11,6 @@ public class EnemyAttack : MonoBehaviour
     public bool attack = true;
     public bool isPlayerNear;
 
-    bool isAttacking;
-
     public GameObject player;
     GameObject triggerHit;
 
@@ -33,21 +31,13 @@ public class EnemyAttack : MonoBehaviour
     {
     }
 
-    public void BeginAttack()
-    {
-        if (isAttacking == false)
-        {
-            isAttacking = true;
-            CheckAttack();
-        }
-    }
-
     public void CheckAttack()
     {
         RaycastHit2D hit;
 
         if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
+            Debug.Log("attack");
             if (attack)
             {
                 if (GetComponentInChildren<AimRay>() != null)
@@ -63,7 +53,6 @@ public class EnemyAttack : MonoBehaviour
             GetComponentInChildren<SoldatAttack>().Reset();
         }
     }
-
 
     public virtual void Attack()
     {

@@ -7,6 +7,7 @@ public class HitTrigger : MonoBehaviour
     SoldatAttack parent;
     EnemyHealth hp;
     EnemyMove move;
+    CircleCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
 
     private void Start()
@@ -14,6 +15,7 @@ public class HitTrigger : MonoBehaviour
         move = GetComponentInParent<EnemyMove>();
         hp = GetComponentInParent<EnemyHealth>();
         parent = GetComponentInParent<SoldatAttack>();
+        trigger = GetComponent<CircleCollider2D>();
     }
 
     void Check()
@@ -38,24 +40,40 @@ public class HitTrigger : MonoBehaviour
     void isVulnerable()
     {
         colorBox.color = Color.green;
+        move.canMove = false;
         hp.isBlocking = false;
+        trigger.enabled = false;
     }
 
     void isBlocking()
     {
-        colorBox.color = Color.red;
+        colorBox.color = Color.gray;
+        move.canMove = true;
         hp.isBlocking = true;
     }
 
     void isAttacking()
     {
+        colorBox.color = Color.red;
         move.canMove = false;
         hp.isAttacking = true;
+        trigger.enabled = true;
     }
 
     void StopAttack()
     {
         move.canMove = true;
         hp.isAttacking = false;
+        trigger.enabled = false;
+    }
+
+    void StopDash()
+    {
+        parent.anim.SetBool("dash", false);
+    }
+
+    void dash()
+    {
+        GetComponentInParent<EnemyMove>().StartCoroutine("Dash", 3);
     }
 }
