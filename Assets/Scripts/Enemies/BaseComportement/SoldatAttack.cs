@@ -1,17 +1,33 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SoldatAttack : EnemyAttack
 {
+    [Header("IndexAnim")]
     public int index;
 
     public override void Attack()
     {
+        CheckDash();
         anim.SetBool("isPreAttack", true);
         anim.SetInteger("attackIndex", index);
         anim.SetBool("isPlayerNear", isPlayerNear);
+    }
+
+    private void CheckDash()
+    {
+        int i = Random.Range(0, 10);
+
+        if (i == 1)
+        {
+            GoDash();
+        }
+    }
+
+    void GoDash()
+    {
+        anim.SetBool("dash", true);
     }
 
     public void Reset()
@@ -21,4 +37,5 @@ public class SoldatAttack : EnemyAttack
         anim.SetInteger("attackIndex", 0);
         anim.SetBool("isPlayerNear", false);
     }
+
 }

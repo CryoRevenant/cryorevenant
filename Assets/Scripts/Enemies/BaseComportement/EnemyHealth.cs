@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int hp;
     [SerializeField] string elevatorToUnlock;
     [SerializeField] bool needUnlock;
+    [SerializeField] int indexIceBar;
 
     public bool isBlocking;
     public bool isAttacking;
@@ -19,11 +20,17 @@ public class EnemyHealth : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         move = GetComponent<EnemyMove>();
+
         if (needUnlock)
         {
             elevator = GameObject.Find(elevatorToUnlock);
             elevator.GetComponent<Ascenceur>().AddEnemy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        GameManager.instance.AddToList(indexIceBar, gameObject);
     }
 
     public void TakeDamage(int damage)
@@ -46,6 +53,7 @@ public class EnemyHealth : MonoBehaviour
             if (needUnlock)
                 elevator.GetComponent<Ascenceur>().RemoveEnemy(gameObject);
 
+            GameManager.instance.RemoveFromList(indexIceBar, gameObject);
             Destroy(gameObject);
         }
     }
@@ -56,13 +64,13 @@ public class EnemyHealth : MonoBehaviour
         {
             move.distDash = 1;
             move.StartCoroutine("Dash", 1);
-            move.distDash = 5;
+            move.distDash = 4;
         }
         else
         {
             move.distDash = 2;
             move.StartCoroutine("Dash", 0);
-            move.distDash = 5;
+            move.distDash = 4;
         }
     }
 
@@ -73,14 +81,14 @@ public class EnemyHealth : MonoBehaviour
             move.distDash = 3;
             move.StartCoroutine("Dash", 1);
             anim.SetTrigger("forceReco");
-            move.distDash = 5;
+            move.distDash = 4;
         }
         else
         {
             move.distDash = 3;
             anim.SetTrigger("forceReco");
             move.StartCoroutine("Dash", 0);
-            move.distDash = 5;
+            move.distDash = 4;
         }
     }
 }

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public Transform respawnPoint;
     GameObject player;
 
+    [SerializeField] List<ListOfLists> listEnemies = new List<ListOfLists>();
+
     public static GameManager instance;
 
     private void Awake()
@@ -42,6 +44,30 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void AddToList(int listIndex, GameObject newGameObject)
+    {
+        if (listEnemies.Count < listIndex)
+        {
+            ListOfLists newList = new ListOfLists();
+            listEnemies.Add(newList);
+            listEnemies[listIndex].Add(newGameObject);
+        }
+        else
+        {
+            listEnemies[listIndex].Add(newGameObject);
+        }
+    }
+
+    public void RemoveFromList(int index, GameObject newGameObject)
+    {
+        listEnemies[index].Remove(newGameObject);
+        if (listEnemies[index].Count() == 0)
+        {
+            player.GetComponent<IceBar>().StartCoroutine("ResetBar");
+            // listEnemies.Remove(listEnemies[index]);
+        }
     }
 
     public void AddScore(int scoreToAdd)

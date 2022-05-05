@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public bool canMove = true;
     bool isGrounded;
-    bool isDashing;
-    public bool lookLeft;
 
     [Header("Déplacement")]
     [SerializeField] float speed;
     [SerializeField] float speedFall;
+    public bool canMove = true;
+    public bool lookLeft;
     public float maxStoppingDist;
 
     [Header("Dash")]
     [SerializeField] float speedDash;
     public float distDash;
+    public bool isDashing;
 
     [Header("Raycasts")]
     [SerializeField] float rayLengthDown;
@@ -29,7 +29,6 @@ public class EnemyMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -163,6 +162,7 @@ public class EnemyMove : MonoBehaviour
 
     public IEnumerator Dash(int direction)
     {
+        Debug.Log("helo");
         if (isDashing == false)
         {
             isDashing = true;
@@ -185,25 +185,29 @@ public class EnemyMove : MonoBehaviour
                 newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
             }
 
-            while (transform.position != newPos)
+            while (isDashing == true)
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
 
-                //Le joueur est à gauche ?
-                if (newPos.x < transform.position.x)
+                if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
                 {
-                    lookLeft = true;
-                    LookDirection();
-                }
-                else
-                {
-                    lookLeft = false;
-                    LookDirection();
+                    isDashing = false;
                 }
                 yield return new WaitForSeconds(0.01f);
             }
+
+            //Le joueur est à gauche ?
+            if (newPos.x < transform.position.x)
+            {
+                lookLeft = true;
+                LookDirection();
+            }
+            else
+            {
+                lookLeft = false;
+                LookDirection();
+            }
             canMove = true;
-            isDashing = false;
         }
     }
 }

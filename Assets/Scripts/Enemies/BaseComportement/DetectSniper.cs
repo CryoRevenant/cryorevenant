@@ -18,7 +18,7 @@ public class DetectSniper : EnemyDetect
 
                 otherDetect = true;
 
-                attack.BeginAttack();
+                attack.CheckAttack();
                 GetComponent<EnemyMove>().maxStoppingDist = maxStoppingDetect;
 
                 move.StopCoroutine("MoveOver");
