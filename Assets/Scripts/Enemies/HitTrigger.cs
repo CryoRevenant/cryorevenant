@@ -41,6 +41,7 @@ public class HitTrigger : MonoBehaviour
     {
         colorBox.color = Color.green;
         move.canMove = false;
+        move.StopCoroutine("MoveOver");
         hp.isBlocking = false;
         trigger.enabled = false;
     }
@@ -54,8 +55,10 @@ public class HitTrigger : MonoBehaviour
 
     void isAttacking()
     {
+        hp.isBlocking = true;
         colorBox.color = Color.red;
         move.canMove = false;
+        move.StopCoroutine("MoveOver");
         hp.isAttacking = true;
         trigger.enabled = true;
     }
@@ -75,5 +78,15 @@ public class HitTrigger : MonoBehaviour
     void dash()
     {
         GetComponentInParent<EnemyMove>().StartCoroutine("Dash", 3);
+    }
+
+    void StopBlock()
+    {
+        parent.anim.SetBool("forceBlock", false);
+    }
+
+    void Nothing()
+    {
+        Debug.Log("ü");
     }
 }
