@@ -14,7 +14,10 @@ public class EnemyHealth : MonoBehaviour
     GameObject elevator;
 
     EnemyMove move;
+
     Animator anim;
+    [SerializeField] RuntimeAnimatorController normalSpeed;
+    [SerializeField] RuntimeAnimatorController slowSpeed;
 
     private void Awake()
     {

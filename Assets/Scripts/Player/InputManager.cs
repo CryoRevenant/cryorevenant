@@ -342,6 +342,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Spike"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d933f5f-7f4a-4040-a9d8-505692a1a10a"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spike"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }

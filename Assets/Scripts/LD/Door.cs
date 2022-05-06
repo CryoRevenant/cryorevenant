@@ -38,7 +38,7 @@ public class Door : MonoBehaviour
             dir.y = Random.Range(0, maxPush.y);
             go.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
         }
-        Invoke("DestroyGM", 2f);
+        Invoke("DestroyGM", 1f);
     }
 
 
