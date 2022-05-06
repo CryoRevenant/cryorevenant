@@ -64,6 +64,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float jumpBufferTimer = 0;
     private float raycastDir;
     private float raycastDir2;
+    private int playerForward;
 
     [HideInInspector] public bool isGrounded;
     private bool isDashing;
@@ -233,20 +234,6 @@ public class PlayerControllerV2 : MonoBehaviour
                 canReverse = true;
             }
 
-            if (dashValue < 0 && timerDash <= 0)
-            {
-                if (isDashing)
-                {
-                    canDash = true;
-                    gameObject.GetComponent<PlayerHP>().canDie = false;
-                    dashTime = dashDistance / dashSpeed;
-                    dashUI.padding = new Vector4(0, 0, 0, 134);
-                    timerDash = dashCooldown;
-                    isDashing = false;
-                }
-                canReverse = true;
-            }
-
             if (dashValue == 0)
             {
                 isDashing = true;
@@ -359,11 +346,13 @@ public class PlayerControllerV2 : MonoBehaviour
             switch (playerSprite.flipX)
             {
                 case true:
+                    playerForward = -1;
                     result = transform.position.x - offset.x;
                     raycastDir = xRaycastOffset;
                     raycastDir2 = -xRaycastOffset;
                     break;
                 case false:
+                    playerForward = 1;
                     result = transform.position.x + offset.x;
                     raycastDir = -xRaycastOffset;
                     raycastDir2 = xRaycastOffset;
@@ -435,7 +424,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDash)
         {
-            curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * dashValue, curseurDash);
+            curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * playerForward, curseurDash);
             Vector3 nextDashPos = new Vector3(transform.position.x + curDashSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
             rb.position = nextDashPos;
         }
