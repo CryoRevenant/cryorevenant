@@ -136,7 +136,7 @@ public class PlayerAttack : MonoBehaviour
 
         #region attack for sprites and ice bar and instance : with wallCooldown
         timerWall -= Time.deltaTime;
-        Debug.Log(timerWall);
+        //Debug.Log(timerWall);
 
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && gameObject.GetComponent<PlayerControllerV2>().isGrounded && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
         {
@@ -167,7 +167,7 @@ public class PlayerAttack : MonoBehaviour
 
         #region attack for sprites and ice bar and instance : with spikeCooldown
         timerSpike -= Time.deltaTime;
-        Debug.Log(spikeUI.padding.w);
+        //Debug.Log(spikeUI.padding.w);
 
         if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0)
         {

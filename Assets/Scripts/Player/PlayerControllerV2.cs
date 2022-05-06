@@ -217,7 +217,7 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 dashValue = Mathf.Sign(dashValue);
             }
-            Debug.Log(dashValue);
+            //Debug.Log(dashValue);
 
             if (dashValue > 0 && timerDash <= 0)
             {

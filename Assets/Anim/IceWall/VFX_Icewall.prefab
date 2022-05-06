@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 505983837962258361}
   - component: {fileID: 5004736421229200735}
   - component: {fileID: 9013956097729118429}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VFX_Icewall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
