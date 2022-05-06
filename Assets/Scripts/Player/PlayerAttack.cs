@@ -167,7 +167,7 @@ public class PlayerAttack : MonoBehaviour
 
         #region attack for sprites and ice bar and instance : with spikeCooldown
         timerSpike -= Time.deltaTime;
-        //Debug.Log(timerSpike);
+        Debug.Log(spikeUI.padding.w);
 
         if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0)
         {
@@ -287,14 +287,14 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // UI sliding
-        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown, 84, 135));
+        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown, 28, 79));
         #endregion
 
         #region mur de glace
         // UI sliding
         float w = wallUI.padding.w;
-        w -= wallCooldown*0.65f;
-        wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 30, 165));
+        w -= wallCooldown/2.2f;
+        wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 8, 99));
         #endregion
     }
 

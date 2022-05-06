@@ -447,7 +447,7 @@ public class PlayerControllerV2 : MonoBehaviour
             gameObject.GetComponent<PlayerHP>().canDie = true;
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 82, 134));
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 27, 79));
 
         //Debug.Log(curseurDash);
         #endregion
