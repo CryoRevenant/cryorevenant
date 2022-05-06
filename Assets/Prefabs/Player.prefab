@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2981120285522824885}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.67, y: -8.77, z: 0}
+  m_LocalPosition: {x: -5.67, y: -8.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271954775130}
@@ -230,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2981120285749519463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.67, y: -8.77, z: 0}
+  m_LocalPosition: {x: 5.67, y: -8.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7778891271954775130}
@@ -776,7 +776,7 @@ MonoBehaviour:
   wallEffect2: {fileID: 5729833613463931434}
   wall: {fileID: 7547172563965914818, guid: 2db83a69721383a488b4517de894b753, type: 3}
   wallCooldown: 2
-  wallUI_CooldownSpeed: 100
+  spikeUI: {fileID: 0}
   spike: {fileID: 7895755256247993163, guid: 64ca56e49381b4646a1f39f01fb73cab, type: 3}
   spikeCooldown: 1
   spikeSpeed: 300
@@ -888,6 +888,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   dashDistance: 7.5
   dashSpeed: 25
+  dashCooldown: 1
+  dashUI: {fileID: 0}
   dashTime: 0
   isGrounded: 0
 --- !u!114 &869028044059294363
