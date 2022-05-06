@@ -162,7 +162,6 @@ public class EnemyMove : MonoBehaviour
 
     public IEnumerator Dash(int direction)
     {
-        Debug.Log("helo");
         if (isDashing == false)
         {
             isDashing = true;
