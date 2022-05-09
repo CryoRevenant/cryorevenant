@@ -277,6 +277,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4829d0f6-f900-494f-90fc-88d9922e224a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Wall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""658a4c08-779d-4885-a390-2f4adda33e87"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
