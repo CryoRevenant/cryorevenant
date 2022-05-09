@@ -46,4 +46,12 @@ public class SoldatAttack : EnemyAttack
         }
     }
 
+    // public void TriggerAttack1()
+    // {
+    //     animAttack.SetTrigger("Attack1");
+    // }
+    // public void TriggerAttack2()
+    // {
+    //     animAttack.SetTrigger("Attack2");
+    // }
 }

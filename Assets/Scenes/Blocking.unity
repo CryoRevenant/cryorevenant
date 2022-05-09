@@ -10542,7 +10542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684178, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271889976451, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_Layer
@@ -18539,25 +18539,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 633307904}
     m_Modifications:
-    - target: {fileID: 1836918019, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: m_Radius
-      value: 1.7170513
-      objectReference: {fileID: 0}
-    - target: {fileID: 1836918019, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.44021025
-      objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.4385
+      value: 7.98
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6774
+      value: 3.48
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18595,18 +18587,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldatBig
       objectReference: {fileID: 0}
-    - target: {fileID: 843316230787162827, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
-    - target: {fileID: 4719808128983435743, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: slowSpeed
-      value: 
-      objectReference: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
-    - target: {fileID: 4719808128983435743, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: normalSpeed
-      value: 
-      objectReference: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
 --- !u!4 &2588037410886755152 stripped

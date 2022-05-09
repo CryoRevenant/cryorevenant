@@ -43,7 +43,6 @@ public class HitTrigger : MonoBehaviour
 
     void isVulnerable()
     {
-        Debug.Log("isVulnerable");
         colorBox.color = Color.green;
         move.canMove = false;
         move.StopCoroutine("MoveOver");
@@ -53,15 +52,14 @@ public class HitTrigger : MonoBehaviour
 
     void isBlocking()
     {
-        Debug.Log("isBlocking");
-        colorBox.color = Color.gray;
+        colorBox.color = Color.white;
         move.canMove = true;
         hp.isBlocking = true;
     }
 
     void isAttacking()
     {
-        Debug.Log("isAttacking");
+        GetComponent<SpriteRenderer>().enabled = true;
         hp.isBlocking = true;
         colorBox.color = Color.red;
         move.canMove = false;
@@ -75,6 +73,7 @@ public class HitTrigger : MonoBehaviour
         move.canMove = true;
         hp.isAttacking = false;
         trigger.enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void StopDash()
@@ -96,4 +95,5 @@ public class HitTrigger : MonoBehaviour
     {
         // Debug.Log("ü");
     }
+
 }

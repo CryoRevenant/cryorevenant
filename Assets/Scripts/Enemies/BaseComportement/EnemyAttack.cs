@@ -49,7 +49,7 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
-            //GetComponentInChildren<SoldatAttack>().Reset();
+            GetComponent<SoldatAttack>().Reset();
         }
     }
 

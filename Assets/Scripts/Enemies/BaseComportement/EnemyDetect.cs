@@ -86,7 +86,6 @@ public class EnemyDetect : MonoBehaviour
                     if (!attack.isPlayerNear)
                     {
                         attack.CheckAttack();
-                        Debug.Log("checkAttack");
                     }
 
                     move.StopCoroutine("MoveOver");
