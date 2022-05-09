@@ -541,14 +541,14 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (!canDash || !canDodge)
             {
-                curGravity = 10;
+                curGravity = 5;
             }
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
             if (timer > 0.1f && (isGroundedL || isGroundedR))
             {
-                //Debug.Log(currJumpForce);
+                //Debug.Log(curJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
                 canJump = false;
             }
