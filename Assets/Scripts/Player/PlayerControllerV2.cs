@@ -140,7 +140,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private void Update()
     {
         #region le déplacement
-        if (!canDash)
+        if (!canDash && !canDodge)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
 

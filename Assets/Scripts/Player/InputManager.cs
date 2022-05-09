@@ -32,7 +32,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""4acf6c25-ca0a-46c4-8045-fc9b2c17ea55"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone(min=0.9,max=1)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },

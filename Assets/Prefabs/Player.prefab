@@ -833,7 +833,7 @@ MonoBehaviour:
   vcam: {fileID: 0}
   lowJumpForce: 800
   heighJumpForce: 1000
-  jumpAnalogImpact: 60
+  jumpAnalogImpact: 30
   jumpBufferCooldown: 0.75
   jumpCurve:
     serializedVersion: 2
