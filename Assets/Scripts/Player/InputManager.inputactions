@@ -69,6 +69,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "5a33186b-7d0e-483c-ae96-a9656a03d1aa",
+                    "expectedControlType": "Button",
+                    "processors": "AxisDeadzone(min=0.75,max=0.8)",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Down",
                     "type": "Button",
                     "id": "bc4df807-763b-47c8-a5e2-fad74d92df49",
@@ -285,6 +294,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d8b09577-47f8-4ea0-8d44-169276aa835a",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "33dbc145-cce9-4b02-be73-85dea2d40165",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

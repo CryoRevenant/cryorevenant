@@ -91,6 +91,15 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a33186b-7d0e-483c-ae96-a9656a03d1aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": ""AxisDeadzone(min=0.75,max=0.8)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Down"",
                     ""type"": ""Button"",
                     ""id"": ""bc4df807-763b-47c8-a5e2-fad74d92df49"",
@@ -309,6 +318,28 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8b09577-47f8-4ea0-8d44-169276aa835a"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33dbc145-cce9-4b02-be73-85dea2d40165"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -324,6 +355,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Player_Spike = m_Player.FindAction("Spike", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
     }
 
@@ -391,6 +423,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Spike;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Down;
     public struct PlayerActions
     {
@@ -403,6 +436,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Spike => m_Wrapper.m_Player_Spike;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Down => m_Wrapper.m_Player_Down;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -434,6 +468,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Down.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
                 @Down.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
                 @Down.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDown;
@@ -462,6 +499,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Dash.started += instance.OnDash;
                 @Dash.performed += instance.OnDash;
                 @Dash.canceled += instance.OnDash;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
                 @Down.started += instance.OnDown;
                 @Down.performed += instance.OnDown;
                 @Down.canceled += instance.OnDown;
@@ -478,6 +518,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnSpike(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
     }
 }
