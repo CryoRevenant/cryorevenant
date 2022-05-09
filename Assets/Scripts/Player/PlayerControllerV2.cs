@@ -42,9 +42,14 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCooldown;
     [SerializeField] private RectMask2D dashUI;
+    [Header("Dodge")]
+    [SerializeField] private float dodgeDistance;
+    [SerializeField] private float dodgeSpeed;
+    [SerializeField] private float dodgeCooldown;
 
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
+    private Vector2 curDodgeSpeed;
 
     private float curJumpForce;
     private float curVelocitySpeed;
@@ -56,21 +61,27 @@ public class PlayerControllerV2 : MonoBehaviour
     private float movement;
     private float timer = 0;
     private float timerDash;
+    private float timerDodge;
     private float result;
     private float yAxis;
     private float dashValue;
+    private float dodgeValue;
     [HideInInspector] public float dashTime;
+    private float dodgeTime;
     private float goDownCooldown;
     private float jumpBufferTimer = 0;
     private float raycastDir;
     private float raycastDir2;
     private int playerForward;
+    private int playerBackward;
 
     [HideInInspector] public bool isGrounded;
     private bool isDashing;
+    private bool isDodging;
     private bool isBuffing;
     private bool canJump;
     private bool canDash;
+    private bool canDodge;
     private bool canResetCurMoveSpeed;
     private bool canReverse;
     private bool canGoDown;
@@ -80,6 +91,7 @@ public class PlayerControllerV2 : MonoBehaviour
         isGrounded = false;
         canJump = false;
         canDash = false;
+        canDodge = false;
         canReverse = true;
         canResetCurMoveSpeed = false;
         canGoDown = false;
@@ -87,6 +99,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         dashUI.padding = new Vector4(0, 0, 0, 134);
         timerDash = dashCooldown;
+        timerDodge = dodgeCooldown;
 
         curSpeed = Vector2.zero;
         curVcamMoveYSpeed = vcamMoveYSpeed;
@@ -220,7 +233,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             //Debug.Log(dashValue);
 
-            if (dashValue > 0 && timerDash <= 0)
+            if (dashValue > 0 && timerDash <= 0 && !canDodge)
             {
                 if (isDashing)
                 {
@@ -237,6 +250,40 @@ public class PlayerControllerV2 : MonoBehaviour
             if (dashValue == 0)
             {
                 isDashing = true;
+            }
+        }
+        #endregion
+
+        #region l'esquive
+        timerDodge -= Time.deltaTime;
+        //Debug.Log(timerDodge);
+
+        if (!canDodge)
+        {
+            dodgeValue = controls.currentActionMap.FindAction("Dodge").ReadValue<float>();
+            if (dodgeValue != 0)
+            {
+                dodgeValue = Mathf.Sign(dodgeValue);
+            }
+            //Debug.Log(dodgeValue);
+
+            if (dodgeValue > 0 && timerDodge <= 0 && !canDash)
+            {
+                //Debug.Log("dodge");
+                if (isDodging)
+                {
+                    canDodge = true;
+                    gameObject.GetComponent<PlayerHP>().canDie = false;
+                    dodgeTime = dodgeDistance / dodgeSpeed;
+                    timerDodge = dodgeCooldown;
+                    isDodging = false;
+                }
+                canReverse = true;
+            }
+
+            if (dodgeValue == 0)
+            {
+                isDodging = true;
             }
         }
         #endregion
@@ -347,12 +394,14 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 case true:
                     playerForward = -1;
+                    playerBackward = 1;
                     result = transform.position.x - offset.x;
                     raycastDir = xRaycastOffset;
                     raycastDir2 = -xRaycastOffset;
                     break;
                 case false:
                     playerForward = 1;
+                    playerBackward = -1;
                     result = transform.position.x + offset.x;
                     raycastDir = -xRaycastOffset;
                     raycastDir2 = xRaycastOffset;
@@ -441,6 +490,39 @@ public class PlayerControllerV2 : MonoBehaviour
         //Debug.Log(curseurDash);
         #endregion
 
+        #region dodge
+        float curseurDodge = 1;
+        if (dodgeValue == 0)
+        {
+            curseurDodge = Time.deltaTime * inertia;
+        }
+
+        if (canDodge && dodgeTime > 0)
+        {
+            //Debug.Log("is dodging");
+            curGravity = 6;
+            isBuffing = false;
+
+            dodgeTime -= Time.deltaTime;
+        }
+
+        if (canDodge)
+        {
+            curDodgeSpeed = Vector2.Lerp(curDodgeSpeed, new Vector2(dodgeSpeed, curDodgeSpeed.y) * playerBackward, curseurDodge);
+            Vector3 nextDodgePos = new Vector3(transform.position.x + curDodgeSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
+            rb.position = nextDodgePos;
+        }
+
+        if (dodgeTime <= 0 && isGrounded)
+        {
+            canDodge = false;
+            curGravity = 5;
+            gameObject.GetComponent<PlayerHP>().canDie = true;
+        }
+
+        //Debug.Log(curseurDodge);
+        #endregion
+
         #region vcam X Axis
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
         if (canReverse)
@@ -453,7 +535,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #region jump
         if (canJump)
         {
-            if (!canDash)
+            if (!canDash || !canDodge)
             {
                 curGravity = 10;
             }
@@ -515,7 +597,7 @@ public class PlayerControllerV2 : MonoBehaviour
             yield break;
         }
 
-        while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash)
+        while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash || canDodge)
         {
             //Debug.Log("Fall");
             float timer = Time.deltaTime * 50;
