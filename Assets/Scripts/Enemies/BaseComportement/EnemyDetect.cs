@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -82,7 +83,11 @@ public class EnemyDetect : MonoBehaviour
                 {
                     otherDetect = true;
 
-                    attack.CheckAttack();
+                    if (!attack.isPlayerNear)
+                    {
+                        attack.CheckAttack();
+                        Debug.Log("checkAttack");
+                    }
 
                     move.StopCoroutine("MoveOver");
                     move.StartCoroutine("MoveOver", detectCircle.gameObject);

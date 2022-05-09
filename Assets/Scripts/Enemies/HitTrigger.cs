@@ -21,6 +21,10 @@ public class HitTrigger : MonoBehaviour
     void Check()
     {
         parent.CheckAttack();
+    }
+
+    void Increase()
+    {
         parent.index++;
     }
 
@@ -39,6 +43,7 @@ public class HitTrigger : MonoBehaviour
 
     void isVulnerable()
     {
+        Debug.Log("isVulnerable");
         colorBox.color = Color.green;
         move.canMove = false;
         move.StopCoroutine("MoveOver");
@@ -48,6 +53,7 @@ public class HitTrigger : MonoBehaviour
 
     void isBlocking()
     {
+        Debug.Log("isBlocking");
         colorBox.color = Color.gray;
         move.canMove = true;
         hp.isBlocking = true;
@@ -55,6 +61,7 @@ public class HitTrigger : MonoBehaviour
 
     void isAttacking()
     {
+        Debug.Log("isAttacking");
         hp.isBlocking = true;
         colorBox.color = Color.red;
         move.canMove = false;
@@ -87,6 +94,6 @@ public class HitTrigger : MonoBehaviour
 
     void Nothing()
     {
-        Debug.Log("ü");
+        // Debug.Log("ü");
     }
 }

@@ -94,4 +94,14 @@ public class EnemyHealth : MonoBehaviour
             move.distDash = 4;
         }
     }
+
+    public void Slowed()
+    {
+        anim.runtimeAnimatorController = slowSpeed;
+    }
+
+    public void NormalSpeed()
+    {
+        anim.runtimeAnimatorController = normalSpeed;
+    }
 }

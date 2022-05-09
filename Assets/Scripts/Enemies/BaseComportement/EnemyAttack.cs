@@ -37,7 +37,6 @@ public class EnemyAttack : MonoBehaviour
 
         if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
-            Debug.Log("attack");
             if (attack)
             {
                 if (GetComponentInChildren<AimRay>() != null)
@@ -50,7 +49,7 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
-            GetComponentInChildren<SoldatAttack>().Reset();
+            //GetComponentInChildren<SoldatAttack>().Reset();
         }
     }
 
