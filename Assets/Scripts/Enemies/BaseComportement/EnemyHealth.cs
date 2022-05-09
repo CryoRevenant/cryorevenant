@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int hp;
+    [SerializeField] private float hp;
     [SerializeField] string elevatorToUnlock;
     [SerializeField] bool needUnlock;
     [SerializeField] int indexIceBar;
@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
         GameManager.instance.AddToList(indexIceBar, gameObject);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (!isBlocking)
         {
@@ -93,5 +93,15 @@ public class EnemyHealth : MonoBehaviour
             move.StartCoroutine("Dash", 0);
             move.distDash = 4;
         }
+    }
+
+    public void Slowed()
+    {
+        anim.runtimeAnimatorController = slowSpeed;
+    }
+
+    public void NormalSpeed()
+    {
+        anim.runtimeAnimatorController = normalSpeed;
     }
 }
