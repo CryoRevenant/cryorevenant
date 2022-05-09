@@ -138,7 +138,7 @@ public class PlayerAttack : MonoBehaviour
         timerWall -= Time.deltaTime;
         //Debug.Log(timerWall);
 
-        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && gameObject.GetComponent<PlayerControllerV2>().isGrounded && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
+        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
         {
             //Debug.Log("ice wall");
 

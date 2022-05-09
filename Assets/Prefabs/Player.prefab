@@ -890,8 +890,12 @@ MonoBehaviour:
   dashSpeed: 25
   dashCooldown: 1
   dashUI: {fileID: 0}
+  dodgeDistance: 3.75
+  dodgeSpeed: 15
+  dodgeCooldown: 0.5
   dashTime: 0
-  isGrounded: 0
+  isGroundedL: 0
+  isGroundedR: 0
 --- !u!114 &869028044059294363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  canDie: 0
+  canDie: 1
 --- !u!114 &1861171816
 MonoBehaviour:
   m_ObjectHideFlags: 0

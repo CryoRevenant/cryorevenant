@@ -75,7 +75,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private int playerForward;
     private int playerBackward;
 
-    [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isGroundedL;
+    [HideInInspector] public bool isGroundedR;
     private bool isDashing;
     private bool isDodging;
     private bool isBuffing;
@@ -88,7 +89,8 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Awake()
     {
-        isGrounded = false;
+        isGroundedL = false;
+        isGroundedR = false;
         canJump = false;
         canDash = false;
         canDodge = false;
@@ -330,9 +332,10 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("Ground"))
             {
+                //Debug.Log("isGrounded Left :"+isGroundedL);
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
                 curPosY = rb.position.y;
-                isGrounded = true;
+                isGroundedL = true;
             }
         }
         else
@@ -340,11 +343,11 @@ public class PlayerControllerV2 : MonoBehaviour
             //vcamMoveYSpeed = 20;
             if (rb.velocity.y < 0)
             {
-                Invoke("Grounded", 0.2f);
+                Invoke("GroundedL", 0.2f);
             }
             else
             {
-                isGrounded = false;
+                isGroundedL = false;
             }
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
@@ -364,9 +367,10 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit2.collider.CompareTag("Ground"))
             {
+                //Debug.Log("isGrounded Right :" + isGroundedR);
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
                 curPosY = rb.position.y;
-                isGrounded = true;
+                isGroundedR = true;
             }
         }
         else
@@ -374,11 +378,11 @@ public class PlayerControllerV2 : MonoBehaviour
             //vcamMoveYSpeed = 20;
             if (rb.velocity.y < 0)
             {
-                Invoke("Grounded", 0.2f);
+                Invoke("GroundedR", 0.2f);
             }
             else
             {
-                isGrounded = false;
+                isGroundedR = false;
             }
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
@@ -478,7 +482,7 @@ public class PlayerControllerV2 : MonoBehaviour
             rb.position = nextDashPos;
         }
 
-        if (dashTime <= 0 && isGrounded)
+        if (dashTime <= 0 && (isGroundedL || isGroundedR) && canDash)
         {
             canDash = false;
             curGravity = 5;
@@ -513,7 +517,7 @@ public class PlayerControllerV2 : MonoBehaviour
             rb.position = nextDodgePos;
         }
 
-        if (dodgeTime <= 0 && isGrounded)
+        if (dodgeTime <= 0 && (isGroundedL || isGroundedR) && canDodge)
         {
             canDodge = false;
             curGravity = 5;
@@ -542,7 +546,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
             timer += Time.deltaTime;
-            if (timer > 0.1f && isGrounded)
+            if (timer > 0.1f && (isGroundedL || isGroundedR))
             {
                 //Debug.Log(currJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
@@ -574,9 +578,14 @@ public class PlayerControllerV2 : MonoBehaviour
     /// <summary>
     /// Coyote Time for isGrounded
     /// </summary>
-    void Grounded()
+    void GroundedL()
     {
-        isGrounded = false;
+        isGroundedL = false;
+    }
+
+    void GroundedR()
+    {
+        isGroundedR = false;
     }
 
     /// <summary>
@@ -589,7 +598,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         lastPosY = rb.position.y;
 
-        while (vcamMoveYSpeed > 0 && !canJump && isGrounded || canJump && movement != 0)
+        while (vcamMoveYSpeed > 0 && !canJump && (isGroundedL || isGroundedR) || canJump && movement != 0)
         {
             //Debug.Log("Play");
             float timer = Time.deltaTime * 25;
