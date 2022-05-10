@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271baf58cdd767f4c9bd31f5a50fa2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 1.4
   attackDuration: 0.4
   cooldown: 5
   attack: 1
@@ -327,6 +327,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.6756272, y: 0}
+  m_Offset: {x: 2.240827, y: 0}
   serializedVersion: 2
-  m_Radius: 2.9524684
+  m_Radius: 3.5176682

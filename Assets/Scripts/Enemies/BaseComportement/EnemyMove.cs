@@ -195,6 +195,7 @@ public class EnemyMove : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
 
+            Debug.Log("turn");
             //Le joueur est à gauche ?
             if (newPos.x < transform.position.x)
             {
