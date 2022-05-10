@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] string elevatorToUnlock;
     [SerializeField] bool needUnlock;
     [SerializeField] int indexIceBar;
+    [SerializeField] float scoreToAdd;
 
     public bool isBlocking;
     public bool isAttacking;
@@ -57,6 +58,7 @@ public class EnemyHealth : MonoBehaviour
                 elevator.GetComponent<Ascenceur>().RemoveEnemy(gameObject);
 
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);
+            GameManager.instance.AddScore(scoreToAdd);
             Destroy(gameObject);
         }
     }

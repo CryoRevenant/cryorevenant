@@ -172,6 +172,7 @@ MonoBehaviour:
   elevatorToUnlock: 
   needUnlock: 0
   indexIceBar: 0
+  scoreToAdd: 200
   isBlocking: 1
   isAttacking: 0
   normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}

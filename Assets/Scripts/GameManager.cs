@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public int score;
-    int savedScore;
+    public float score;
+    float savedScore;
 
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeSpeed;
@@ -66,11 +66,10 @@ public class GameManager : MonoBehaviour
         if (listEnemies[index].Count() == 0)
         {
             player.GetComponent<IceBar>().StartCoroutine("ResetBar");
-            // listEnemies.Remove(listEnemies[index]);
         }
     }
 
-    public void AddScore(int scoreToAdd)
+    public void AddScore(float scoreToAdd)
     {
         score += scoreToAdd;
     }
