@@ -65,12 +65,15 @@ public class GameManager : MonoBehaviour
         listEnemies[index].Remove(newGameObject);
         if (listEnemies[index].Count() == 0)
         {
+            Debug.Log(player.GetComponent<IceBar>().iceAmount);
+            AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
             player.GetComponent<IceBar>().StartCoroutine("ResetBar");
         }
     }
 
     public void AddScore(float scoreToAdd)
     {
+        Debug.Log(scoreToAdd);
         score += scoreToAdd;
     }
 
