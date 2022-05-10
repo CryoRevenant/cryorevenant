@@ -5,6 +5,7 @@ using UnityEngine;
 public class IceWall : MonoBehaviour
 {
     private bool canCoroutine;
+    private Collision2D col;
     void Awake()
     {
         Destroy(gameObject, 3);
@@ -14,23 +15,29 @@ public class IceWall : MonoBehaviour
     private void Update()
     {
         Debug.Log(canCoroutine);
+
+        if (canCoroutine && col.gameObject.GetComponent<PlayerControllerV2>().dashTime > 0)
+        {
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, col.gameObject.layer);
+            StopCoroutine(StopIgnoreCol());
+            StartCoroutine(StopIgnoreCol());
+            canCoroutine = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject.GetComponent<PlayerControllerV2>());
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControllerV2>().dashTime>0 && canCoroutine)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Physics2D.IgnoreLayerCollision(this.gameObject.layer, collision.gameObject.layer);
-            StopCoroutine(StopIgnoreCol(collision));
-            StartCoroutine(StopIgnoreCol(collision));
-            canCoroutine = false;
+            col = collision;
+            canCoroutine = true;
         }
     }
 
-    IEnumerator StopIgnoreCol(Collision2D col)
+    IEnumerator StopIgnoreCol()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.3f);
 
         Physics2D.IgnoreLayerCollision(this.gameObject.layer, col.gameObject.layer, false);
         canCoroutine = true;

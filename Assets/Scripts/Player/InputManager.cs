@@ -145,8 +145,8 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ef47de5e-29ad-4fa0-b409-482002057bdb"",
-                    ""path"": ""<Gamepad>/dpad/x"",
+                    ""id"": ""9e9921f7-18f3-404d-8a6b-91ddf657c348"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
