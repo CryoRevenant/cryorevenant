@@ -16,9 +16,7 @@ public class EnemyHealth : MonoBehaviour
 
     EnemyMove move;
 
-    Animator anim;
-    [SerializeField] RuntimeAnimatorController normalSpeed;
-    [SerializeField] RuntimeAnimatorController slowSpeed;
+    public Animator anim;
 
     private void Awake()
     {
@@ -95,15 +93,5 @@ public class EnemyHealth : MonoBehaviour
             move.StartCoroutine("Dash", 0);
             move.distDash = 4;
         }
-    }
-
-    public void Slowed()
-    {
-        anim.runtimeAnimatorController = slowSpeed;
-    }
-
-    public void NormalSpeed()
-    {
-        anim.runtimeAnimatorController = normalSpeed;
     }
 }
