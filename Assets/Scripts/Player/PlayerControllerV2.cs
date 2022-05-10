@@ -606,10 +606,10 @@ public class PlayerControllerV2 : MonoBehaviour
             yield break;
         }
 
-        while(vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash || canDodge)
+        while (vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash || canDodge)
         {
             //Debug.Log("Fall");
-            float timer = Time.deltaTime * 50;
+            float timer = Time.deltaTime * 40;
             vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
             yield break;
         }
