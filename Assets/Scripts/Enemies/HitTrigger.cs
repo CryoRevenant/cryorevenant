@@ -96,4 +96,9 @@ public class HitTrigger : MonoBehaviour
         // Debug.Log("ü");
     }
 
+    void HideSprite()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
 }
