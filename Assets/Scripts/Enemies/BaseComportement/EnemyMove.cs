@@ -86,7 +86,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
-    public IEnumerator MoveOver(GameObject lastPos)
+    public virtual IEnumerator MoveOver(GameObject lastPos)
     {
         if (canMove == true)
         {
@@ -120,7 +120,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     //Reset de la position donnée dans la coroutine pour que l'ennemi s'arrête
-    void Reset(GameObject player)
+    public void Reset(GameObject player)
     {
         player = null;
     }
@@ -142,7 +142,7 @@ public class EnemyMove : MonoBehaviour
     }
 
     //Flip de l'ennemi pour qu'il regarde dans la direction du joueur
-    void LookDirection()
+    public void LookDirection()
     {
         if (lookLeft)
         {

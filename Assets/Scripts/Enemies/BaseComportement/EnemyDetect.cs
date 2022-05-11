@@ -20,7 +20,6 @@ public class EnemyDetect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        move = GetComponent<EnemyMove>();
         attack = GetComponent<EnemyAttack>();
         StartCoroutine("DetectAround");
     }
@@ -83,7 +82,7 @@ public class EnemyDetect : MonoBehaviour
                 {
                     otherDetect = true;
 
-                    if (!attack.isPlayerNear)
+                    if (GetComponent<SoldatAttack>() != null && !attack.isPlayerNear)
                     {
                         attack.CheckAttack();
                     }
