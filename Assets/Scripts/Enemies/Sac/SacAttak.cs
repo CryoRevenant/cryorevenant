@@ -5,8 +5,13 @@ using UnityEngine;
 public class SacAttak : EnemyAttack
 {
 
-    void Update()
+    public override void Attack()
     {
-        
+        anim.SetBool("isAttacking", true);
+    }
+
+    public void StopAttack()
+    {
+        anim.SetBool("isAttacking", false);
     }
 }

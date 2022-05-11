@@ -104,7 +104,7 @@ MonoBehaviour:
   radiusEnemy: 15
   otherDetect: 0
   waitTime: 0.7
-  move: {fileID: 0}
+  move: {fileID: 404204908336340054}
   attack: {fileID: 0}
 --- !u!114 &404204908336340054
 MonoBehaviour:
@@ -175,8 +175,7 @@ MonoBehaviour:
   scoreToAdd: 200
   isBlocking: 1
   isAttacking: 0
-  normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
-  slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
+  anim: {fileID: 0}
 --- !u!114 &1648459890
 MonoBehaviour:
   m_ObjectHideFlags: 0

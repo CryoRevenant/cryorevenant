@@ -20,7 +20,7 @@ public class PlayerHP : MonoBehaviour
     {
         if (canDie)
         {
-            Debug.Log("die");
+            //Debug.Log("die");
 
             gameObject.layer = 6;
 

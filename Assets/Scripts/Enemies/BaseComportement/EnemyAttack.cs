@@ -34,6 +34,7 @@ public class EnemyAttack : MonoBehaviour
     public void CheckAttack()
     {
         RaycastHit2D hit;
+        Debug.Log("attal");
 
         if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
         {
