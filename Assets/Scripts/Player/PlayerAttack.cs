@@ -52,8 +52,8 @@ public class PlayerAttack : MonoBehaviour
         timerAttack = attackCooldown;
         timerWall = wallCooldown;
         timerSpike = spikeCooldown;
-        wallUI.padding = new Vector4(0, 0, 0, 165);
-        spikeUI.padding = new Vector4(0, 0, 0, 135);
+        wallUI.padding = new Vector4(0, 0, 0, 99);
+        spikeUI.padding = new Vector4(0, 0, 0, 77);
         #endregion
 
         #region get
@@ -160,7 +160,7 @@ public class PlayerAttack : MonoBehaviour
 
             StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
-            wallUI.padding = new Vector4(0, 0, 0, 165);
+            wallUI.padding = new Vector4(0, 0, 0, 99);
             timerWall = wallCooldown;
         }
         #endregion
@@ -191,7 +191,7 @@ public class PlayerAttack : MonoBehaviour
 
             //StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
-            spikeUI.padding = new Vector4(0, 0, 0, 135);
+            spikeUI.padding = new Vector4(0, 0, 0, 77);
             timerSpike = spikeCooldown;
         }
 
@@ -287,14 +287,14 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // UI sliding
-        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown, 28, 79));
+        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown, 23, 77));
         #endregion
 
         #region mur de glace
         // UI sliding
         float w = wallUI.padding.w;
         w -= wallCooldown/2.2f;
-        wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 8, 99));
+        wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
         #endregion
     }
 

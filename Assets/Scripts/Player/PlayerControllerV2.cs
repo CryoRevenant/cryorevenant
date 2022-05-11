@@ -99,7 +99,7 @@ public class PlayerControllerV2 : MonoBehaviour
         canGoDown = false;
         isBuffing = true;
 
-        dashUI.padding = new Vector4(0, 0, 0, 134);
+        dashUI.padding = new Vector4(0, 0, 0, 78);
         timerDash = dashCooldown;
         timerDodge = dodgeCooldown;
 
@@ -242,7 +242,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     canDash = true;
                     gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
-                    dashUI.padding = new Vector4(0, 0, 0, 134);
+                    dashUI.padding = new Vector4(0, 0, 0, 78);
                     timerDash = dashCooldown;
                     isDashing = false;
                 }
@@ -293,6 +293,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #region saut
         if (controls.currentActionMap.FindAction("Jump").triggered)
         {
+            curPosY = rb.position.y;
             //Debug.Log("saut normal");
             if (isBuffing)
             {
@@ -318,7 +319,6 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         //Debug.Log(jumpForce);
-
         #endregion
 
         #region isGrounded Left
@@ -334,7 +334,6 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 //Debug.Log("isGrounded Left :"+isGroundedL);
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
-                curPosY = rb.position.y;
                 isGroundedL = true;
             }
         }
@@ -369,7 +368,6 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 //Debug.Log("isGrounded Right :" + isGroundedR);
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
-                curPosY = rb.position.y;
                 isGroundedR = true;
             }
         }
@@ -489,7 +487,7 @@ public class PlayerControllerV2 : MonoBehaviour
             gameObject.GetComponent<PlayerHP>().canDie = true;
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 27, 79));
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 27, 78));
 
         //Debug.Log(curseurDash);
         #endregion
@@ -564,11 +562,13 @@ public class PlayerControllerV2 : MonoBehaviour
         StartCoroutine(VcamStartMove());
         //Debug.Log("isGrounded = " + isGrounded);
 
-        if (canJump)
+        if (canJump && timer < 0.1f && rb.position.y > curPosY)
         {
-            //Debug.Log("Stop");
+            Debug.Log("Stop");
             vcamMoveYSpeed = 5;
         }
+        //Debug.Log(rb.position.y);
+        //Debug.Log(curPosY);
 
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
@@ -576,13 +576,16 @@ public class PlayerControllerV2 : MonoBehaviour
     }
 
     /// <summary>
-    /// Coyote Time for isGrounded
+    /// Coyote Time for isGrounded L
     /// </summary>
     void GroundedL()
     {
         isGroundedL = false;
     }
 
+    /// <summary>
+    /// Coyote Time for isGrounded R
+    /// </summary>
     void GroundedR()
     {
         isGroundedR = false;
@@ -598,7 +601,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         lastPosY = rb.position.y;
 
-        while (vcamMoveYSpeed > 0 && !canJump && (isGroundedL || isGroundedR) || canJump && movement != 0)
+        while (vcamMoveYSpeed > 0 && !canJump && (isGroundedL || isGroundedR) || canJump && movement != 0 || rb.position.y > curPosY)
         {
             //Debug.Log("Play");
             float timer = Time.deltaTime * 25;
@@ -606,7 +609,7 @@ public class PlayerControllerV2 : MonoBehaviour
             yield break;
         }
 
-        while (vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash || canDodge)
+        while (vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash || canDodge || timer > 0.1f && rb.position.y < curPosY)
         {
             //Debug.Log("Fall");
             float timer = Time.deltaTime * 40;
