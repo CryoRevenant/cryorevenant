@@ -56,7 +56,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private float curVcamMoveYSpeed;
     private float curGravity;
     private float curPosY;
-    private float lastPosY;
+    private float camOffsetPosY;
+    private float curCamOffsetPosY;
     private float maxCamCenterTimer;
     private float movement;
     private float timer = 0;
@@ -86,6 +87,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool canResetCurMoveSpeed;
     private bool canReverse;
     private bool canGoDown;
+    private bool canResetCamY;
 
     void Awake()
     {
@@ -98,6 +100,7 @@ public class PlayerControllerV2 : MonoBehaviour
         canResetCurMoveSpeed = false;
         canGoDown = false;
         isBuffing = true;
+        canResetCamY = false;
 
         dashUI.padding = new Vector4(0, 0, 0, 78);
         timerDash = dashCooldown;
@@ -134,6 +137,8 @@ public class PlayerControllerV2 : MonoBehaviour
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = true;
         }
+
+        camOffsetPosY = camOffset.localPosition.y;
         #endregion
     }
 
@@ -293,7 +298,6 @@ public class PlayerControllerV2 : MonoBehaviour
         #region saut
         if (controls.currentActionMap.FindAction("Jump").triggered && (isGroundedR || isGroundedL))
         {
-            curPosY = rb.position.y;
             //Debug.Log("saut normal");
             if (isBuffing)
             {
@@ -304,6 +308,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (isGroundedL && isGroundedR && !canJump)
         {
+            curPosY = rb.position.y;
             isBuffing = true;
             jumpBufferTimer = 0;
             //Debug.Log("can jump");
@@ -457,6 +462,71 @@ public class PlayerControllerV2 : MonoBehaviour
             gameObject.layer = 8;
         }
         #endregion
+
+        #region vcam Y Axis
+        //Debug.Log("isGrounded = " + isGrounded);
+        float dist = curPosY - rb.position.y;
+
+        // si le player saute pas
+        if (isGroundedL && isGroundedR && dist < 0.1f)
+        {
+            Debug.Log("speed");
+            canResetCamY = true;
+            if(movement != 0 && canJump)
+            {
+                float timer = Time.deltaTime * 30;
+                vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
+            }
+            else if(movement == 0)
+            {
+                float timer = Time.deltaTime * 5;
+                vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
+            }
+            float timer2 = Time.deltaTime * 3;
+            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY + 7, timer2);
+            camOffset.localPosition = new Vector2(camOffset.localPosition.x, newPos);
+            //Debug.Log(timer);
+        }
+
+        //Debug.Log(curVelocitySpeed);
+
+        // si le player saute
+        if (rb.position.y > curPosY && rb.velocity.y > -15 || canJump && isGroundedL & isGroundedR)
+        {
+            Debug.Log("slow");
+            if (canResetCamY)
+            {
+                camOffset.localPosition = new Vector2(camOffset.localPosition.x, camOffsetPosY + 7);
+                canResetCamY = false;
+            }
+            float timer = Time.deltaTime;
+            float timer2 = Time.deltaTime * 10;
+            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY, timer2);
+            camOffset.localPosition = new Vector2(camOffset.localPosition.x, newPos);
+            //Debug.Log("rb.velocity.y " + rb.velocity.y);
+            vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 20, timer);
+        }
+
+        // si le player tombe
+        if (rb.velocity.y < -10)
+        {
+            Debug.Log("fall");
+            float timer = Time.deltaTime * (2f * curCamOffsetPosY);
+            float timer2 = Time.deltaTime * (7 / curCamOffsetPosY);
+            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY - (-rb.velocity.y/1.5f), timer2);
+            camOffset.localPosition = new Vector2(camOffset.localPosition.x, newPos);
+            //Debug.Log("newPos " + newPos);
+            //Debug.Log(timer);
+            vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
+        }
+
+        curCamOffsetPosY = camOffset.localPosition.y;
+        //Debug.Log(rb.position.y);
+        //Debug.Log(curPosY);
+
+        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
+        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
+        #endregion
     }
 
     void FixedUpdate()
@@ -577,22 +647,6 @@ public class PlayerControllerV2 : MonoBehaviour
         //Debug.Log(rb.velocity);
         rb.gravityScale = curGravity;
         #endregion
-
-        #region vcam Y Axis
-        StartCoroutine(VcamStartMove());
-        //Debug.Log("isGrounded = " + isGrounded);
-
-        if (canJump && timer < 0.1f && rb.position.y > curPosY)
-        {
-            //Debug.Log("Stop");
-            vcamMoveYSpeed = 5;
-        }
-        //Debug.Log(rb.position.y);
-        //Debug.Log(curPosY);
-
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
-        #endregion
     }
 
     /// <summary>
@@ -609,32 +663,5 @@ public class PlayerControllerV2 : MonoBehaviour
     void GroundedR()
     {
         isGroundedR = false;
-    }
-
-    /// <summary>
-    /// vcam Y Axis when player move
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator VcamStartMove()
-    {
-        yield return new WaitForSeconds(1.2f);
-
-        lastPosY = rb.position.y;
-
-        while (vcamMoveYSpeed > 0 && !canJump && (isGroundedL || isGroundedR) || canJump && movement != 0 || rb.position.y > curPosY)
-        {
-            //Debug.Log("Play");
-            float timer = Time.deltaTime * 25;
-            vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
-            yield break;
-        }
-
-        while (vcamMoveYSpeed > 0 && !canJump && rb.velocity.y < -1 || canDash || canDodge || timer > 0.1f && rb.position.y < curPosY)
-        {
-            //Debug.Log("Fall");
-            float timer = Time.deltaTime * 40;
-            vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
-            yield break;
-        }
     }
 }

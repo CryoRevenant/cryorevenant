@@ -14,14 +14,17 @@ public class IceWall : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(canCoroutine);
+        //Debug.Log(canCoroutine);
 
-        if (canCoroutine && col.gameObject.GetComponent<PlayerControllerV2>().dashTime > 0)
+        if(col != null)
         {
-            Physics2D.IgnoreLayerCollision(this.gameObject.layer, col.gameObject.layer);
-            StopCoroutine(StopIgnoreCol());
-            StartCoroutine(StopIgnoreCol());
-            canCoroutine = false;
+            if (canCoroutine && col.gameObject.GetComponent<PlayerControllerV2>().dashTime > 0)
+            {
+                Physics2D.IgnoreLayerCollision(this.gameObject.layer, col.gameObject.layer);
+                StopCoroutine(StopIgnoreCol());
+                StartCoroutine(StopIgnoreCol());
+                canCoroutine = false;
+            }
         }
     }
 
