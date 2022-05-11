@@ -5795,36 +5795,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1560960766}
     - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: moveSpeed
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelSpeed
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelCurve.m_Curve.Array.data[0].inSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelCurve.m_Curve.Array.data[1].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelCurve.m_Curve.Array.data[0].outSlope
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelCurve.m_Curve.Array.data[1].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelCurve.m_Curve.Array.data[0].tangentMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: accelCurve.m_Curve.Array.data[1].tangentMode
-      value: 0
+      propertyPath: jumpBufferCooldown
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1861171816, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: slide
@@ -15248,7 +15220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Padding: {x: 0, y: 0, z: 0, w: 78}
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
 --- !u!114 &1560960767
 MonoBehaviour:

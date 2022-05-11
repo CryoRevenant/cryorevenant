@@ -291,7 +291,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         #region saut
-        if (controls.currentActionMap.FindAction("Jump").triggered)
+        if (controls.currentActionMap.FindAction("Jump").triggered && (isGroundedR || isGroundedL))
         {
             curPosY = rb.position.y;
             //Debug.Log("saut normal");
@@ -302,20 +302,32 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
 
+        if (isGroundedL && isGroundedR && !canJump)
+        {
+            isBuffing = true;
+            jumpBufferTimer = 0;
+            //Debug.Log("can jump");
+        }
+        
+        if(!isGroundedL && !isGroundedR)
+        {
+            //Debug.Log("can buff");
+
+            jumpBufferTimer += Time.deltaTime;
+            if (jumpBufferTimer >= jumpBufferCooldown && controls.currentActionMap.FindAction("Jump").triggered)
+            {
+                //Debug.Log("buff");
+                canJump = true;
+                jumpBufferTimer = 0;
+            }
+        }
+
         curJumpForce = lowJumpForce * yAxis;
         yAxis += jumpCurve.Evaluate(controls.currentActionMap.FindAction("Jump").ReadValue<float>() * Time.deltaTime * jumpAnalogImpact);
 
         if (!canJump)
         {
-            timer = 0;
             yAxis = 0;
-        }
-
-        jumpBufferTimer += Time.deltaTime;
-        if (jumpBufferTimer >= jumpBufferCooldown)
-        {
-            isBuffing = true;
-            jumpBufferTimer = 0;
         }
 
         //Debug.Log(jumpForce);
@@ -342,17 +354,19 @@ public class PlayerControllerV2 : MonoBehaviour
             //vcamMoveYSpeed = 20;
             if (rb.velocity.y < 0)
             {
+                //Debug.Log("Y < 0");
                 Invoke("GroundedL", 0.2f);
             }
             else
             {
+                //Debug.Log("Y = 0");
                 isGroundedL = false;
             }
             leftDustSprite.enabled = false;
             rightDustSprite.enabled = false;
         }
 
-        //Debug.Log(rb.velocity.y);
+        //Debug.Log("isGroundedL" + isGroundedL + "isGroundedR" + isGroundedR);
         #endregion
 
         #region isGrounded Right
@@ -376,10 +390,12 @@ public class PlayerControllerV2 : MonoBehaviour
             //vcamMoveYSpeed = 20;
             if (rb.velocity.y < 0)
             {
+                //Debug.Log("Y < 0");
                 Invoke("GroundedR", 0.2f);
             }
             else
             {
+                //Debug.Log("Y = 0");
                 isGroundedR = false;
             }
             leftDustSprite.enabled = false;
@@ -475,6 +491,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDash)
         {
+            canJump = false;
             curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * playerForward, curseurDash);
             Vector3 nextDashPos = new Vector3(transform.position.x + curDashSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
             rb.position = nextDashPos;
@@ -510,6 +527,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDodge)
         {
+            canJump = false;
             curDodgeSpeed = Vector2.Lerp(curDodgeSpeed, new Vector2(dodgeSpeed, curDodgeSpeed.y) * playerBackward, curseurDodge);
             Vector3 nextDodgePos = new Vector3(transform.position.x + curDodgeSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
             rb.position = nextDodgePos;
@@ -539,7 +557,8 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (!canDash || !canDodge)
             {
-                curGravity = 5;
+                //Debug.Log("add Gravity");
+                curGravity = 8;
             }
             //Debug.Log(yAxis);
             //Debug.Log(Mathf.Clamp(currJumpForce, lowJumpForce, heighJumpForce));
@@ -548,6 +567,7 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 //Debug.Log(curJumpForce);
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(curJumpForce, lowJumpForce, heighJumpForce) * Time.deltaTime);
+                timer = 0;
                 canJump = false;
             }
         }
@@ -564,7 +584,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canJump && timer < 0.1f && rb.position.y > curPosY)
         {
-            Debug.Log("Stop");
+            //Debug.Log("Stop");
             vcamMoveYSpeed = 5;
         }
         //Debug.Log(rb.position.y);

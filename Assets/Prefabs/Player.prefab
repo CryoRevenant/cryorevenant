@@ -831,8 +831,8 @@ MonoBehaviour:
   xCameraDeadZone: 15
   camOffset: {fileID: 1067519118563828432}
   vcam: {fileID: 0}
-  lowJumpForce: 800
-  heighJumpForce: 1000
+  lowJumpForce: 1000
+  heighJumpForce: 1200
   jumpAnalogImpact: 12
   jumpBufferCooldown: 0.75
   jumpCurve:
@@ -859,8 +859,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  moveSpeed: 14
-  accelSpeed: 25
+  moveSpeed: 16
+  accelSpeed: 35
   inertia: 5
   accelCurve:
     serializedVersion: 2
