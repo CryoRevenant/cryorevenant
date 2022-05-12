@@ -1111,10 +1111,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5418185500445267384, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b7ca648daa94f004b8c2719d5799317b, type: 2}
     - target: {fileID: 5418185500445267387, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: m_Name
       value: P_Snow
