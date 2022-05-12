@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 404204908336340053}
   - component: {fileID: 404204908336340054}
   - component: {fileID: 404204908336340058}
-  - component: {fileID: 4719808128983435743}
   - component: {fileID: 1648459890}
+  - component: {fileID: 7154254564743513250}
   m_Layer: 3
   m_Name: SoldatBig
   m_TagString: Enemy
@@ -156,26 +156,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2745018, y: 2.830015}
   m_EdgeRadius: 0
---- !u!114 &4719808128983435743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404204908336340059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd47bb8dd68ac2b46b07c143fb7af9a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 1
-  elevatorToUnlock: 
-  needUnlock: 0
-  indexIceBar: 0
-  scoreToAdd: 200
-  isBlocking: 1
-  isAttacking: 0
-  anim: {fileID: 0}
 --- !u!114 &1648459890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +177,28 @@ MonoBehaviour:
   anim: {fileID: 0}
   hp: {fileID: 0}
   index: 0
+--- !u!114 &7154254564743513250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404204908336340059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9827522c65c131a46b77aaffbe4f680a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 1
+  elevatorToUnlock: 
+  needUnlock: 0
+  indexIceBar: 0
+  scoreToAdd: 200
+  isBlocking: 0
+  isAttacking: 0
+  anim: {fileID: 0}
+  normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
+  slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
 --- !u!1 &1329534814613357652
 GameObject:
   m_ObjectHideFlags: 0
