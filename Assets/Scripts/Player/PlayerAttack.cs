@@ -236,6 +236,11 @@ public class PlayerAttack : MonoBehaviour
                 col[i].gameObject.GetComponent<FuzeBox>().DestoyFuze();
                 timerDamage = damageCooldown;
             }
+            if (col[i].gameObject.GetComponent<IceWall>() && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+            {
+                Destroy(col[i].gameObject);
+                timerDamage = damageCooldown;
+            }
         }
         #endregion
 
