@@ -360,7 +360,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit.collider.CompareTag("Ground"))
             {
-                //Debug.Log("isGrounded Left :"+isGroundedL);
+                //Debug.Log("isGrounded Left : "+isGroundedL);
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
                 isGroundedL = true;
             }
@@ -396,7 +396,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log(hit.collider.gameObject.name);
             if (hit2.collider.CompareTag("Ground"))
             {
-                //Debug.Log("isGrounded Right :" + isGroundedR);
+                //Debug.Log("isGrounded Right : " + isGroundedR);
                 //vcamMoveYSpeed = curVcamMoveYSpeed;
                 isGroundedR = true;
             }
@@ -649,7 +649,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #region jump
         if (canJump)
         {
-            if (!canDash || !canDodge)
+            if (!canDash && !canDodge)
             {
                 //Debug.Log("add Gravity");
                 curGravity = 8;
@@ -678,7 +678,10 @@ public class PlayerControllerV2 : MonoBehaviour
     /// </summary>
     void GroundedL()
     {
-        isGroundedL = false;
+        if (!isGroundedL)
+        {
+            isGroundedL = false;
+        }
     }
 
     /// <summary>
@@ -686,7 +689,10 @@ public class PlayerControllerV2 : MonoBehaviour
     /// </summary>
     void GroundedR()
     {
-        isGroundedR = false;
+        if (!isGroundedR)
+        {
+            isGroundedR = false;
+        }
     }
 
     /// <summary>
