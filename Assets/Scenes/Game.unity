@@ -5719,7 +5719,7 @@ SpriteRenderer:
   m_Size: {x: 34.784943, y: 19.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &596620876
@@ -6375,28 +6375,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &641337188 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2702040783645361043, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
-  m_PrefabInstance: {fileID: 1058006255}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &641337190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641337188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 755947569}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!1 &650611148
 GameObject:
   m_ObjectHideFlags: 0
@@ -9751,6 +9729,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 641337190, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
+      propertyPath: m_BoundingShape2D
+      value: 
+      objectReference: {fileID: 755947569}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -9810,7 +9792,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2702040783645361041, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
   m_PrefabInstance: {fileID: 1058006255}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641337188}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
