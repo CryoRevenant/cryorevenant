@@ -100,5 +100,4 @@ public class HitTrigger : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().enabled = false;
     }
-
 }

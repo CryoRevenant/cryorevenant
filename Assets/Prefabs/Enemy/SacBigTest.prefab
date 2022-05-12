@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2238911958752638062}
   - component: {fileID: 6070141095582327250}
   - component: {fileID: 2207794083631370114}
-  - component: {fileID: 6110422106994795009}
   - component: {fileID: 3817621572848472142}
   m_Layer: 9
   m_Name: Circle
@@ -101,19 +100,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6110422106994795009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109738586952384610}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b378091bfbc83b345a8740e1ec156b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorBox: {fileID: 7530075567980534543}
 --- !u!95 &3817621572848472142
 Animator:
   serializedVersion: 3
@@ -233,11 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49a36376d1d34c4194679e9c379a443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusPlayer: 12
+  radiusPlayer: 15
   radiusEnemy: 15
   otherDetect: 0
   waitTime: 0.7
-  move: {fileID: 0}
+  move: {fileID: 3817621574512399980}
   attack: {fileID: 0}
 --- !u!61 &8769684610374888664
 BoxCollider2D:
@@ -272,7 +258,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7530075567980534531}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd47bb8dd68ac2b46b07c143fb7af9a8, type: 3}
   m_Name: 
@@ -321,7 +307,7 @@ MonoBehaviour:
   speedFall: 4
   canMove: 1
   lookLeft: 0
-  maxStoppingDist: 8
+  maxStoppingDist: 1.5
   speedDash: 0
   distDash: 0
   isDashing: 0
@@ -329,5 +315,6 @@ MonoBehaviour:
   rayLengthSide: 1.3
   bounds: 0.8
   showRays: 0
+  maxAttackDist: 8
   overrideSpeed: 5
   baseSpeed: 15

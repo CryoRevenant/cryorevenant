@@ -8,9 +8,9 @@ public class SacMove : EnemyMove
 
     [SerializeField] float overrideSpeed;
     [SerializeField] float baseSpeed;
-    float speedMove;
+    public float speedMove;
 
-    bool canCall = true;
+    public bool canCall = true;
 
     SacAttak attak;
 
@@ -22,9 +22,8 @@ public class SacMove : EnemyMove
 
     public override IEnumerator MoveOver(GameObject lastPos)
     {
-        if (canMove == true && canCall)
+        if (canMove && canCall)
         {
-            canCall = false;
             Vector3 posToGo = lastPos.transform.position;
 
             //Tant que l'ennemi doit bouger
@@ -49,6 +48,7 @@ public class SacMove : EnemyMove
                     StartCoroutine("AttackMove", lastPos);
                     StopCoroutine("MoveOver");
                 }
+
                 yield return new WaitForSeconds(0.01f);
             }
         }
@@ -59,6 +59,7 @@ public class SacMove : EnemyMove
         Vector3 posToGo = lastPos.transform.position;
 
         speedMove = overrideSpeed;
+        canCall = false;
 
         attak.Attack();
 
