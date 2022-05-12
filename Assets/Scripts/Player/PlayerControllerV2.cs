@@ -41,6 +41,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCooldown;
     [SerializeField] private RectMask2D dashUI;
+    [SerializeField] private GameObject dashVFX;
     [Header("Dodge")]
     [SerializeField] private float dodgeDistance;
     [SerializeField] private float dodgeSpeed;
@@ -136,6 +137,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         camOffsetPosY = camOffset.localPosition.y;
+        dashVFX.SetActive(false);
         #endregion
     }
 
@@ -230,6 +232,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (!canDash)
         {
+            dashVFX.SetActive(false);
             dashValue = controls.currentActionMap.FindAction("Dash").ReadValue<float>();
             if(dashValue != 0)
             {
@@ -558,6 +561,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDash)
         {
+            dashVFX.SetActive(true);
             canJump = false;
             curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * playerForward, curseurDash);
             Vector3 nextDashPos = new Vector3(transform.position.x + curDashSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
