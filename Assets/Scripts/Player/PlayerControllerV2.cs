@@ -467,7 +467,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // si le player saute pas
         if (isGroundedL && isGroundedR && dist < 0.1f)
         {
-            Debug.Log("speed");
+            //Debug.Log("speed");
             canResetCamY = true;
             if(movement != 0 && canJump)
             {
@@ -490,7 +490,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // si le player saute
         if (rb.position.y > curPosY && rb.velocity.y > -15 || canJump && isGroundedL & isGroundedR)
         {
-            Debug.Log("slow");
+            //Debug.Log("slow");
             if (canResetCamY)
             {
                 camOffset.localPosition = new Vector2(camOffset.localPosition.x, camOffsetPosY);
@@ -507,7 +507,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // si le player tombe
         if (rb.velocity.y < -10)
         {
-            Debug.Log("fall");
+            //Debug.Log("fall");
             float timer = Time.deltaTime * (1.25f * curCamOffsetPosY);
             float timer2 = Time.deltaTime * (7 / curCamOffsetPosY);
             float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY - (-rb.velocity.y/1.5f), timer2);
