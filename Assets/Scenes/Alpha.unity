@@ -2632,7 +2632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &286203686
 Transform:
   m_ObjectHideFlags: 0
@@ -10750,7 +10750,7 @@ GameObject:
   - component: {fileID: 1133980518}
   - component: {fileID: 1133980517}
   - component: {fileID: 1133980516}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Checkpoint (1)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -10859,7 +10859,7 @@ GameObject:
   - component: {fileID: 1144363706}
   - component: {fileID: 1144363705}
   - component: {fileID: 1144363704}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Checkpoint
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -11463,7 +11463,7 @@ GameObject:
   - component: {fileID: 1163682214}
   - component: {fileID: 1163682213}
   - component: {fileID: 1163682212}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Checkpoint (3)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -12436,6 +12436,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404204908336340058, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 404204908336340058, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
@@ -15860,7 +15868,7 @@ GameObject:
   - component: {fileID: 1552877111}
   - component: {fileID: 1552877110}
   - component: {fileID: 1552877109}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Checkpoint (2)
   m_TagString: Checkpoint
   m_Icon: {fileID: 0}
@@ -20181,7 +20189,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
   m_FlipX: 0

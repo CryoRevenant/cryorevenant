@@ -10,9 +10,17 @@ public class SoldatAttack : EnemyAttack
     public override void Attack()
     {
         CheckDash();
-        anim.SetBool("isPreAttack", true);
+        StartCoroutine(PreAttack());
         anim.SetInteger("attackIndex", index);
         anim.SetBool("isPlayerNear", isPlayerNear);
+    }
+
+    IEnumerator PreAttack()
+    {
+        float i = Random.Range(0, 1);
+        Debug.Log(i);
+        yield return new WaitForSeconds(i);
+        anim.SetBool("isPreAttack", true);
     }
 
     private void CheckDash()
