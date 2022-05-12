@@ -679,6 +679,7 @@ Transform:
   - {fileID: 7778891271954775130}
   - {fileID: 7778891271889976448}
   - {fileID: 1067519118563828432}
+  - {fileID: 6847424797066792020}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -828,7 +829,6 @@ MonoBehaviour:
   vcamMoveYawSpeed: 0.5
   reverseSpeed: 2
   camCenterTimer: 5
-  xCameraDeadZone: 15
   camOffset: {fileID: 1067519118563828432}
   vcam: {fileID: 0}
   lowJumpForce: 1000
@@ -890,6 +890,7 @@ MonoBehaviour:
   dashSpeed: 25
   dashCooldown: 1
   dashUI: {fileID: 0}
+  dashVFX: {fileID: 2890263750738495361}
   dodgeDistance: 3.75
   dodgeSpeed: 15
   dodgeCooldown: 0.5
@@ -1063,3 +1064,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &8599774921494510261
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7778891271729684176}
+    m_Modifications:
+    - target: {fileID: 1831990091175572492, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864838417541954868, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_Name
+      value: Trail_Dash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+--- !u!1 &2890263750738495361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6864838417541954868, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+  m_PrefabInstance: {fileID: 8599774921494510261}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6847424797066792020 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+  m_PrefabInstance: {fileID: 8599774921494510261}
+  m_PrefabAsset: {fileID: 0}

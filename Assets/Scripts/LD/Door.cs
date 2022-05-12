@@ -41,6 +41,14 @@ public class Door : MonoBehaviour
         Invoke("DestroyGM", 1f);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControllerV2>().IsDashing())
+        {
+            DestroyDoor();
+        }
+    }
+
 
     void DestroyGM()
     {
