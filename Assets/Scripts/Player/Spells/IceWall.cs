@@ -20,7 +20,7 @@ public class IceWall : MonoBehaviour
         //Debug.Log(player);
         //Debug.Log(player.GetComponent<PlayerControllerV2>().IsDashing());
 
-        if (canCoroutine)
+        if (canCoroutine && player.GetComponent<PlayerControllerV2>().IsDashing())
         {
             //Debug.Log("dash and ignore collision");
             Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer);
@@ -32,7 +32,7 @@ public class IceWall : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject.GetComponent<PlayerControllerV2>());
-        if (collision.gameObject.CompareTag("Player") && player.GetComponent<PlayerControllerV2>().IsDashing())
+        if (collision.gameObject.CompareTag("Player"))
         {
             canCoroutine = true;
         }

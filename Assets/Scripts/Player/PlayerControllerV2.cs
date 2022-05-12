@@ -148,7 +148,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!canDash && !canDodge)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
-            Debug.Log(xAxis);
+            //Debug.Log(xAxis);
 
             animator.SetFloat("Movement", xAxis);
 
@@ -237,7 +237,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (!canDash)
         {
-            dashVFX.SetActive(false);
             dashValue = controls.currentActionMap.FindAction("Dash").ReadValue<float>();
             if(dashValue != 0)
             {
@@ -278,6 +277,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (!canDodge)
         {
+
             dodgeValue = controls.currentActionMap.FindAction("Dodge").ReadValue<float>();
             if (dodgeValue != 0)
             {
@@ -538,6 +538,19 @@ public class PlayerControllerV2 : MonoBehaviour
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
         #endregion
+
+        #region vfx pour dash et dodge
+
+        if (!canDash && !canDodge)
+        {
+            dashVFX.SetActive(false);
+        }
+
+        if(canDash || canDodge)
+        {
+            dashVFX.SetActive(true);
+        }
+        #endregion
     }
 
     void FixedUpdate()
@@ -572,7 +585,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (canDash)
         {
-            dashVFX.SetActive(true);
             canJump = false;
             curDashSpeed = Vector2.Lerp(curDashSpeed, new Vector2(dashSpeed, curDashSpeed.y) * playerForward, curseurDash);
             Vector3 nextDashPos = new Vector3(transform.position.x + curDashSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);

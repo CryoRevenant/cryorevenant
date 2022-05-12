@@ -13,19 +13,28 @@ public class Door : MonoBehaviour
 
     [SerializeField] Vector2 maxPush;
     Vector2 dir;
-    // Start is called before the first frame update
+
+    bool canDestroy;
+    GameObject player;
+
     void Start()
     {
         for (int i = 0; i < doorDebris.transform.childCount; i++)
         {
             childsDebris.Add(doorDebris.transform.GetChild(i).gameObject);
         }
+
+        canDestroy = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(canDestroy && player.GetComponent<PlayerControllerV2>().IsDashing())
+        {
+            DestroyDoor();
+            canDestroy = false;
+        }
     }
 
     public void DestroyDoor()
@@ -43,9 +52,10 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerControllerV2>().IsDashing())
+        if (collision.gameObject.CompareTag("Player"))
         {
-            DestroyDoor();
+            player = collision.gameObject;
+            canDestroy = true;
         }
     }
 
