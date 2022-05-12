@@ -10,7 +10,7 @@
                     "type": "Value",
                     "id": "4acf6c25-ca0a-46c4-8045-fc9b2c17ea55",
                     "expectedControlType": "Axis",
-                    "processors": "AxisDeadzone(min=0.9,max=1)",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -89,7 +89,7 @@
             ],
             "bindings": [
                 {
-                    "name": "1D Axis",
+                    "name": "1D Axis Keyboard",
                     "id": "7a39ecbc-487c-4efe-aa7a-43eb6c0309bf",
                     "path": "1DAxis",
                     "interactions": "",
@@ -122,15 +122,70 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "9e9921f7-18f3-404d-8a6b-91ddf657c348",
-                    "path": "<Gamepad>/leftStick/x",
+                    "name": "1D Axis Left Stick",
+                    "id": "fb7bfdf1-c788-46f8-9fa3-141220dd7a36",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c30290f6-efcd-4fa9-a7ba-9eaa895418da",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
                     "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4cc1574f-cf7a-455a-b289-22988092074d",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis D-Pad",
+                    "id": "9a0646a9-98f9-4223-b111-7881e6e58ea5",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "de712a7c-9966-48ff-b1b1-979fcfd7f58f",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "0388340f-bb64-4dfc-b456-e42c6e2d917d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",

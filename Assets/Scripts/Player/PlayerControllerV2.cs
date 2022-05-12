@@ -77,6 +77,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     [HideInInspector] public bool isGroundedL;
     [HideInInspector] public bool isGroundedR;
+    [HideInInspector] public bool isDashUIStarted;
     private bool isDashing;
     private bool isDodging;
     private bool isBuffing;
@@ -147,11 +148,13 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!canDash && !canDodge)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
+            Debug.Log(xAxis);
 
             animator.SetFloat("Movement", xAxis);
 
             if (xAxis > 0)
             {
+                xAxis = 1;
                 if (canResetCurMoveSpeed)
                 {
                     curVelocitySpeed = 0;
@@ -172,6 +175,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             if (xAxis < 0)
             {
+                xAxis = -1;
                 if (canResetCurMoveSpeed)
                 {
                     curVelocitySpeed = 0;
@@ -229,6 +233,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #region le dash
         timerDash -= Time.deltaTime;
         //Debug.Log(timerDash);
+        //Debug.Log("isDashing" + isDashUIStarted);
 
         if (!canDash)
         {
@@ -240,8 +245,9 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             //Debug.Log(dashValue);
 
-            if (dashValue > 0 && timerDash <= 0 && !canDodge)
+            if (dashValue > 0 && timerDash <= 0 && !canDodge && !gameObject.GetComponent<PlayerAttack>().IsSpiking() && !gameObject.GetComponent<PlayerAttack>().IsWalling())
             {
+                isDashUIStarted = true;
                 if (isDashing)
                 {
                     canDash = true;
@@ -258,6 +264,11 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 isDashing = true;
             }
+        }
+
+        if (isDashUIStarted)
+        {
+            Invoke("IsDashUIStopped", 0.25f);
         }
         #endregion
 
@@ -680,5 +691,13 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             return false;
         }
+    }
+
+    /// <summary>
+    /// stop la boolean isDashUIStarted
+    /// </summary>
+    void IsDashUIStopped()
+    {
+        isDashUIStarted = false;
     }
 }

@@ -44,6 +44,8 @@ public class PlayerAttack : MonoBehaviour
     private GameObject instance;
     private GameObject instance2;
     private bool lastFlip;
+    private bool isSpiking;
+    private bool isWalling;
 
     private void Awake()
     {
@@ -137,9 +139,13 @@ public class PlayerAttack : MonoBehaviour
         #region attack for sprites and ice bar and instance : with wallCooldown
         timerWall -= Time.deltaTime;
         //Debug.Log(timerWall);
+        //Debug.Log(!gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted);
+        //Debug.Log("isSpiking" + IsSpiking());
+        //Debug.Log("isWalling" + IsWalling());
 
-        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y==0)
+        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y==0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
         {
+            isWalling = true;
             //Debug.Log("ice wall");
 
             switch (playerSprite.flipX)
@@ -163,14 +169,20 @@ public class PlayerAttack : MonoBehaviour
             wallUI.padding = new Vector4(0, 0, 0, 99);
             timerWall = wallCooldown;
         }
+
+        if (isWalling)
+        {
+            Invoke("StopWalling",0.25f);
+        }
         #endregion
 
         #region attack for sprites and ice bar and instance : with spikeCooldown
         timerSpike -= Time.deltaTime;
         //Debug.Log(spikeUI.padding.w);
 
-        if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0)
+        if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsWalling())
         {
+            isSpiking = true;
             //Debug.Log("ice spike");
 
             switch (playerSprite.flipX)
@@ -197,6 +209,11 @@ public class PlayerAttack : MonoBehaviour
 
         curSpikeSpeed += spikeSpeedCurve.Evaluate(Time.deltaTime * spikeSpeed);
         //Debug.Log(curSpikeSpeed);
+
+        if (isSpiking)
+        {
+            Invoke("StopSpiking", 0.25f);
+        }
 
         #endregion
 
@@ -357,5 +374,53 @@ public class PlayerAttack : MonoBehaviour
         }
 
         yield break;
+    }
+
+    /// <summary>
+    /// Return true if player is walling and false if not
+    /// </summary>
+    /// <returns></returns>
+    public bool IsWalling()
+    {
+        if (isWalling)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    /// <summary>
+    /// Return true if player is spiking and false if not
+    /// </summary>
+    /// <returns></returns>
+    public bool IsSpiking()
+    {
+        if (isSpiking)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// stop la boolean walling
+    /// </summary>
+    void StopWalling()
+    {
+        isWalling = false;
+    }
+
+    /// <summary>
+    /// stop la boolean Spiking
+    /// </summary>
+    void StopSpiking()
+    {
+        isSpiking = false;
     }
 }
