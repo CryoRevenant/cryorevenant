@@ -17,7 +17,7 @@ public class SoldatAttack : EnemyAttack
 
     IEnumerator PreAttack()
     {
-        float i = Random.Range(0, 1);
+        float i = Random.Range(0, 2);
         Debug.Log(i);
         yield return new WaitForSeconds(i);
         anim.SetBool("isPreAttack", true);
