@@ -661,4 +661,20 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         isGroundedR = false;
     }
+
+    /// <summary>
+    /// Return true if player is dashing and false if not
+    /// </summary>
+    /// <returns></returns>
+    public bool IsDashing()
+    {
+        if(canDash)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

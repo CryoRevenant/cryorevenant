@@ -5,35 +5,35 @@ using UnityEngine;
 public class IceWall : MonoBehaviour
 {
     private bool canCoroutine;
-    private Collision2D col;
+    private GameObject player;
     void Awake()
     {
-        Destroy(gameObject, 3);
-        canCoroutine = true;
+        player = GameObject.FindGameObjectWithTag("Player");
+        Destroy(gameObject, 2);
+        canCoroutine = false;
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer, false);
     }
 
     private void Update()
     {
         //Debug.Log(canCoroutine);
+        //Debug.Log(player);
+        //Debug.Log(player.GetComponent<PlayerControllerV2>().IsDashing());
 
-        if(col != null)
+        if (canCoroutine)
         {
-            if (canCoroutine && col.gameObject.GetComponent<PlayerControllerV2>().dashTime > 0)
-            {
-                Physics2D.IgnoreLayerCollision(this.gameObject.layer, col.gameObject.layer);
-                StopCoroutine(StopIgnoreCol());
-                StartCoroutine(StopIgnoreCol());
-                canCoroutine = false;
-            }
+            //Debug.Log("dash and ignore collision");
+            Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer);
+            StartCoroutine(StopIgnoreCol());
+            canCoroutine = false;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log(collision.gameObject.GetComponent<PlayerControllerV2>());
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && player.GetComponent<PlayerControllerV2>().IsDashing())
         {
-            col = collision;
             canCoroutine = true;
         }
     }
@@ -42,7 +42,8 @@ public class IceWall : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        Physics2D.IgnoreLayerCollision(this.gameObject.layer, col.gameObject.layer, false);
-        canCoroutine = true;
+        //Debug.Log("reactivate collision");
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer, false);
+        yield break;
     }
 }
