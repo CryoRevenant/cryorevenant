@@ -10,7 +10,7 @@ public class IceSpike : MonoBehaviour
         {
             if (collision.gameObject.layer == 3)
             {
-                if (collision.gameObject.GetComponent<SoldatAttack>() != null)
+                if (collision.gameObject.GetComponent<SoldatHealth>() != null)
                 {
                     collision.gameObject.GetComponent<SoldatHealth>().Slowed();
                 }
