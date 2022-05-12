@@ -23,7 +23,6 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
-    [SerializeField] private float xCameraDeadZone;
     [SerializeField] private Transform camOffset;
     [SerializeField] private CinemachineVirtualCamera vcam;
     [Header("Jump")]
@@ -53,7 +52,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private float curJumpForce;
     private float curVelocitySpeed;
-    private float curVcamMoveYSpeed;
     private float curGravity;
     private float curPosY;
     private float camOffsetPosY;
@@ -107,7 +105,6 @@ public class PlayerControllerV2 : MonoBehaviour
         timerDodge = dodgeCooldown;
 
         curSpeed = Vector2.zero;
-        curVcamMoveYSpeed = vcamMoveYSpeed;
 
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -470,7 +467,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // si le player saute pas
         if (isGroundedL && isGroundedR && dist < 0.1f)
         {
-            Debug.Log("speed");
+            //Debug.Log("speed");
             canResetCamY = true;
             if(movement != 0 && canJump)
             {
@@ -483,7 +480,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
             }
             float timer2 = Time.deltaTime * 3;
-            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY + 7, timer2);
+            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY, timer2);
             camOffset.localPosition = new Vector2(camOffset.localPosition.x, newPos);
             //Debug.Log(timer);
         }
@@ -493,10 +490,10 @@ public class PlayerControllerV2 : MonoBehaviour
         // si le player saute
         if (rb.position.y > curPosY && rb.velocity.y > -15 || canJump && isGroundedL & isGroundedR)
         {
-            Debug.Log("slow");
+            //Debug.Log("slow");
             if (canResetCamY)
             {
-                camOffset.localPosition = new Vector2(camOffset.localPosition.x, camOffsetPosY + 7);
+                camOffset.localPosition = new Vector2(camOffset.localPosition.x, camOffsetPosY);
                 canResetCamY = false;
             }
             float timer = Time.deltaTime;
@@ -510,8 +507,8 @@ public class PlayerControllerV2 : MonoBehaviour
         // si le player tombe
         if (rb.velocity.y < -10)
         {
-            Debug.Log("fall");
-            float timer = Time.deltaTime * (2f * curCamOffsetPosY);
+            //Debug.Log("fall");
+            float timer = Time.deltaTime * (1.25f * curCamOffsetPosY);
             float timer2 = Time.deltaTime * (7 / curCamOffsetPosY);
             float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY - (-rb.velocity.y/1.5f), timer2);
             camOffset.localPosition = new Vector2(camOffset.localPosition.x, newPos);
@@ -617,7 +614,7 @@ public class PlayerControllerV2 : MonoBehaviour
         // mouvement de la caméra sur l'axe x lors que le personnage se tourne
         if (canReverse)
         {
-            Vector3 nextReverse = new Vector3(Mathf.Clamp(result, xCameraDeadZone, result), camOffset.position.y, camOffset.position.z);
+            Vector3 nextReverse = new Vector3(result, camOffset.position.y, camOffset.position.z);
             camOffset.position = Vector3.Lerp(camOffset.position, nextReverse, Time.deltaTime * reverseSpeed);
         }
         #endregion
