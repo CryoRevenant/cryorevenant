@@ -83,6 +83,20 @@ public class EnemyMove : MonoBehaviour
             pos.y -= Time.deltaTime * speedFall;
             transform.position = pos;
         }
+
+        #region DashRays
+        int layerMask2 = ~LayerMask.GetMask("Default") + LayerMask.GetMask("Box");
+
+        if (isDashing)
+        {
+            if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask2) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask2))
+            {
+                Debug.Log("StopDash");
+                GetComponent<BoxCollider2D>().isTrigger = false;
+                StopCoroutine("Dash");
+            }
+        }
+        #endregion
     }
 
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
@@ -164,6 +178,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (isDashing == false)
         {
+            GetComponent<BoxCollider2D>().isTrigger = true;
             isDashing = true;
             StopMove();
 
@@ -186,6 +201,7 @@ public class EnemyMove : MonoBehaviour
 
             while (isDashing == true)
             {
+                Debug.Log("ignore");
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
 
                 if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
@@ -207,6 +223,7 @@ public class EnemyMove : MonoBehaviour
                 lookLeft = false;
                 LookDirection();
             }
+            GetComponent<BoxCollider2D>().isTrigger = false;
             canMove = true;
         }
     }
