@@ -5970,6 +5970,10 @@ PrefabInstance:
       propertyPath: attackUI
       value: 
       objectReference: {fileID: 2017882253}
+    - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: iceToAdd
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_RootOrder
       value: 3
