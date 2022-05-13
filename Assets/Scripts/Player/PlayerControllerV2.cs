@@ -115,12 +115,12 @@ public class PlayerControllerV2 : MonoBehaviour
 
         curGravity = rb.gravityScale;
 
-        // défini maxCamCenterTimer à la valeur camCenterTimer dans l'inspecteur
+        // dï¿½fini maxCamCenterTimer ï¿½ la valeur camCenterTimer dans l'inspecteur
         maxCamCenterTimer = camCenterTimer;
-        // la vitesse actuelle du player est à zéro au début, car le player n'a pas encore bougé
+        // la vitesse actuelle du player est ï¿½ zï¿½ro au dï¿½but, car le player n'a pas encore bougï¿½
         curVelocitySpeed = 0;
 
-        // rotation de la caméra et des sprites en fonction de l'orientation du player
+        // rotation de la camï¿½ra et des sprites en fonction de l'orientation du player
         #region Sprites & Cam : setup
         if (!playerSprite.flipX)
         {
@@ -146,7 +146,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void Update()
     {
-        #region le déplacement
+        #region le dï¿½placement
         if (!canDash && !canDodge)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
@@ -240,7 +240,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!canDash)
         {
             dashValue = controls.currentActionMap.FindAction("Dash").ReadValue<float>();
-            if(dashValue != 0)
+            if (dashValue != 0)
             {
                 dashValue = Mathf.Sign(dashValue);
             }
@@ -252,6 +252,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (isDashing)
                 {
                     canDash = true;
+                    Physics2D.IgnoreLayerCollision(0, 3, true);
                     gameObject.GetComponent<PlayerHP>().canDie = false;
                     dashTime = dashDistance / dashSpeed;
                     dashUI.padding = new Vector4(0, 0, 0, 78);
@@ -328,8 +329,8 @@ public class PlayerControllerV2 : MonoBehaviour
             jumpBufferTimer = 0;
             //Debug.Log("can jump");
         }
-        
-        if(!isGroundedL && !isGroundedR)
+
+        if (!isGroundedL && !isGroundedR)
         {
             //Debug.Log("can buff");
 
@@ -489,12 +490,12 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             //Debug.Log("speed");
             canResetCamY = true;
-            if(movement != 0 && canJump)
+            if (movement != 0 && canJump)
             {
                 float timer = Time.deltaTime * 30;
                 vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
             }
-            else if(movement == 0)
+            else if (movement == 0)
             {
                 float timer = Time.deltaTime * 5;
                 vcamMoveYSpeed = Mathf.Lerp(vcamMoveYSpeed, 0, timer);
@@ -530,7 +531,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("fall");
             float timer = Time.deltaTime * (1.25f * curCamOffsetPosY);
             float timer2 = Time.deltaTime * (7 / curCamOffsetPosY);
-            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY - (-rb.velocity.y/1.5f), timer2);
+            float newPos = Mathf.Lerp(camOffset.localPosition.y, camOffsetPosY - (-rb.velocity.y / 1.5f), timer2);
             camOffset.localPosition = new Vector2(camOffset.localPosition.x, newPos);
             //Debug.Log("newPos " + newPos);
             //Debug.Log(timer);
@@ -552,7 +553,7 @@ public class PlayerControllerV2 : MonoBehaviour
             dashVFX.SetActive(false);
         }
 
-        if(canDash || canDodge)
+        if (canDash || canDodge)
         {
             dashVFX.SetActive(true);
         }
@@ -580,7 +581,7 @@ public class PlayerControllerV2 : MonoBehaviour
             curseurDash = Time.deltaTime * inertia;
         }
 
-        if (canDash && dashTime>0)
+        if (canDash && dashTime > 0)
         {
             //Debug.Log("is dashing");
             curGravity = 6;
@@ -602,6 +603,7 @@ public class PlayerControllerV2 : MonoBehaviour
             canDash = false;
             curGravity = 5;
             gameObject.GetComponent<PlayerHP>().canDie = true;
+            Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
         dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 27, 78));
@@ -628,6 +630,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (canDodge)
         {
             canJump = false;
+            Physics2D.IgnoreLayerCollision(0, 3, true);
             curDodgeSpeed = Vector2.Lerp(curDodgeSpeed, new Vector2(dodgeSpeed, curDodgeSpeed.y) * playerBackward, curseurDodge);
             Vector3 nextDodgePos = new Vector3(transform.position.x + curDodgeSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
             rb.position = nextDodgePos;
@@ -638,13 +641,14 @@ public class PlayerControllerV2 : MonoBehaviour
             canDodge = false;
             curGravity = 5;
             gameObject.GetComponent<PlayerHP>().canDie = true;
+            Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
         //Debug.Log(curseurDodge);
         #endregion
 
         #region vcam X Axis
-        // mouvement de la caméra sur l'axe x lors que le personnage se tourne
+        // mouvement de la camï¿½ra sur l'axe x lors que le personnage se tourne
         if (canReverse)
         {
             Vector3 nextReverse = new Vector3(result, camOffset.position.y, camOffset.position.z);
@@ -676,7 +680,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #endregion
 
-        #region gravité
+        #region gravitï¿½
         //Debug.Log(rb.velocity);
         rb.gravityScale = curGravity;
         #endregion
@@ -710,7 +714,7 @@ public class PlayerControllerV2 : MonoBehaviour
     /// <returns></returns>
     public bool IsDashing()
     {
-        if(canDash)
+        if (canDash)
         {
             return true;
         }
