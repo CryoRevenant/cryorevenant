@@ -83,6 +83,18 @@ public class EnemyMove : MonoBehaviour
             pos.y -= Time.deltaTime * speedFall;
             transform.position = pos;
         }
+
+        #region DashRays
+        int layerMask2 = ~LayerMask.GetMask("Default") + LayerMask.GetMask("Box");
+
+        if (isDashing)
+        {
+            if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask2) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask2))
+            {
+                StopCoroutine("Dash");
+            }
+        }
+        #endregion
     }
 
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
