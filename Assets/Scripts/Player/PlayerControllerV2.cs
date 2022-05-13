@@ -31,6 +31,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float jumpAnalogImpact;
     [SerializeField] private float jumpBufferCooldown;
     [SerializeField] private AnimationCurve jumpCurve;
+    [SerializeField] private RectMask2D jumpUI;
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float accelSpeed;
@@ -103,6 +104,7 @@ public class PlayerControllerV2 : MonoBehaviour
         canResetCamY = false;
 
         dashUI.padding = new Vector4(0, 0, 0, 78);
+        jumpUI.padding = new Vector4(0, 0, 0, 90);
         timerDash = dashCooldown;
         timerDodge = dodgeCooldown;
 
@@ -313,6 +315,8 @@ public class PlayerControllerV2 : MonoBehaviour
             if (isBuffing)
             {
                 canJump = true;
+                jumpUI.padding = new Vector4(0, 0, 0, 90);
+
                 isBuffing = false;
             }
         }
@@ -334,6 +338,8 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 //Debug.Log("buff");
                 canJump = true;
+                jumpUI.padding = new Vector4(0, 0, 0, 90);
+
                 jumpBufferTimer = 0;
             }
         }
@@ -665,6 +671,9 @@ public class PlayerControllerV2 : MonoBehaviour
                 canJump = false;
             }
         }
+
+        jumpUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(jumpUI.padding.w - 10f, 10, 90));
+
         #endregion
 
         #region gravité

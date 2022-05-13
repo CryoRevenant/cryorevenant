@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("IceBar")]
     [SerializeField] private int iceToAdd;
     [Header("Slash")]
+    [SerializeField] private RectMask2D attackUI;
     [SerializeField] private GameObject slashEffect;
     [SerializeField] private GameObject slashEffect2;
     [SerializeField] private float damageCooldown;
@@ -55,7 +56,8 @@ public class PlayerAttack : MonoBehaviour
         timerWall = wallCooldown;
         timerSpike = spikeCooldown;
         wallUI.padding = new Vector4(0, 0, 0, 99);
-        spikeUI.padding = new Vector4(0, 0, 0, 77);
+        spikeUI.padding = new Vector4(0, 0, 0, 102);
+        attackUI.padding = new Vector4(0, 0, 0, 89);
         #endregion
 
         #region get
@@ -132,6 +134,8 @@ public class PlayerAttack : MonoBehaviour
 
             GetComponent<IceBar>().AddBar(iceToAdd);
             //Debug.Log("stop dashing");
+            attackUI.padding = new Vector4(0, 0, 0, 89);
+
             timerAttack = attackCooldown;
         }
         #endregion
@@ -203,7 +207,7 @@ public class PlayerAttack : MonoBehaviour
 
             //StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
-            spikeUI.padding = new Vector4(0, 0, 0, 77);
+            spikeUI.padding = new Vector4(0, 0, 0, 102);
             timerSpike = spikeCooldown;
         }
 
@@ -309,14 +313,21 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // UI sliding
-        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown, 23, 77));
+        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown*2, 8, 102));
         #endregion
 
         #region mur de glace
         // UI sliding
         float w = wallUI.padding.w;
-        w -= wallCooldown/2.2f;
+        w -= wallCooldown/2.05f;
         wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
+        #endregion
+
+        #region attack
+        // UI sliding
+        float a_w = attackUI.padding.w;
+        a_w -= 3.75f;
+        attackUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(a_w, 11, 89));
         #endregion
     }
 
