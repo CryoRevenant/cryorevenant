@@ -190,8 +190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  elevatorToUnlock: ElevatorBuild1
-  needUnlock: 1
+  elevatorToUnlock: 
+  needUnlock: 0
   indexIceBar: 3
   scoreToAdd: 200
   isBlocking: 0
