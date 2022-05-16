@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2238911958752638062}
   - component: {fileID: 6070141095582327250}
-  - component: {fileID: 2207794083631370114}
   - component: {fileID: 3817621572848472142}
+  - component: {fileID: 2060132390}
+  - component: {fileID: 2060132388}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
@@ -84,22 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2207794083631370114
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1109738586952384610}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!95 &3817621572848472142
 Animator:
   serializedVersion: 3
@@ -119,6 +104,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2060132390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109738586952384610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bc7ad03078a11c428bcf098cfc8b320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeMoveAgain: 2
+--- !u!61 &2060132388
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109738586952384610}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.8747022, y: -0.12912369}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.971556, y: 4.6154747}
+  m_EdgeRadius: 0
 --- !u!1 &7530075567980534531
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49a36376d1d34c4194679e9c379a443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusPlayer: 15
+  radiusPlayer: 17
   radiusEnemy: 15
   otherDetect: 0
   waitTime: 0.7
@@ -283,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f405b30d5360a64cbfbf2438085c49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5
+  radius: 0
   attackDuration: 0
   cooldown: 0
   attack: 1
@@ -315,6 +339,8 @@ MonoBehaviour:
   rayLengthSide: 1.3
   bounds: 0.8
   showRays: 0
-  maxAttackDist: 8
+  maxAttackDist: 13
   overrideSpeed: 5
-  baseSpeed: 15
+  baseSpeed: 12
+  speedMove: 0
+  canCall: 1
