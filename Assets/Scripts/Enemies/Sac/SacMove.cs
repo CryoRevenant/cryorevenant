@@ -69,6 +69,11 @@ public class SacMove : EnemyMove
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speedMove);
             yield return new WaitForSeconds(0.01f);
         }
+        EndAttack();
+    }
+
+    public void EndAttack()
+    {
         canCall = true;
         speedMove = baseSpeed;
         attak.StopAttack();

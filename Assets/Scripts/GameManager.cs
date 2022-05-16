@@ -62,13 +62,13 @@ public class GameManager : MonoBehaviour
 
     public void RemoveFromList(int index, GameObject newGameObject)
     {
-        listEnemies[index].Remove(newGameObject);
-        if (listEnemies[index].Count() == 0)
-        {
-            //Debug.Log(player.GetComponent<IceBar>().iceAmount);
-            AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
-            player.GetComponent<IceBar>().StartCoroutine("ResetBar");
-        }
+        listEnemies[index].SetActive(index, false);
+        // if (listEnemies[index].Count() == 0)
+        // {
+        //     //Debug.Log(player.GetComponent<IceBar>().iceAmount);
+        //     AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
+        //     player.GetComponent<IceBar>().StartCoroutine("ResetBar");
+        // }
     }
 
     public void AddScore(float scoreToAdd)
