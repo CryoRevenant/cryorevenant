@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float hp;
+    float currHP;
     [SerializeField] string elevatorToUnlock;
     [SerializeField] bool needUnlock;
     [SerializeField] int indexIceBar;
@@ -14,14 +15,18 @@ public class EnemyHealth : MonoBehaviour
     public bool isAttacking;
     GameObject elevator;
 
+    Vector3 originPos;
+
     EnemyMove move;
 
     public Animator anim;
 
     private void Awake()
     {
+        currHP = hp;
         anim = GetComponentInChildren<Animator>();
         move = GetComponent<EnemyMove>();
+        originPos = transform.position;
 
         if (needUnlock)
         {
@@ -39,7 +44,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (!isBlocking)
         {
-            hp -= damage;
+            currHP -= damage;
         }
         else if (isAttacking)
         {
@@ -50,14 +55,14 @@ public class EnemyHealth : MonoBehaviour
             Block();
         }
 
-        if (hp <= 0)
+        if (currHP <= 0)
         {
             if (needUnlock)
                 elevator.GetComponent<Ascenceur>().RemoveEnemy(gameObject);
 
+            gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);
             GameManager.instance.AddScore(scoreToAdd);
-            Destroy(gameObject);
         }
     }
 
@@ -93,5 +98,14 @@ public class EnemyHealth : MonoBehaviour
             move.StartCoroutine("Dash", 0);
             move.distDash = 4;
         }
+    }
+
+    public void ResetPos()
+    {
+        transform.position = originPos;
+        currHP = hp;
+        GetComponent<EnemyDetect>().otherDetect = false;
+        GetComponent<EnemyDetect>().StopCoroutine("DetectAround");
+        GetComponent<EnemyDetect>().StartCoroutine("DetectAround");
     }
 }
