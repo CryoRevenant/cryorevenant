@@ -62,13 +62,11 @@ public class GameManager : MonoBehaviour
 
     public void RemoveFromList(int index, GameObject newGameObject)
     {
-        listEnemies[index].SetActive(index, false);
-        // if (listEnemies[index].Count() == 0)
-        // {
-        //     //Debug.Log(player.GetComponent<IceBar>().iceAmount);
-        //     AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
-        //     player.GetComponent<IceBar>().StartCoroutine("ResetBar");
-        // }
+        if (listEnemies[index].CheckActive())
+        {
+            AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
+            player.GetComponent<IceBar>().StartCoroutine("ResetBar");
+        }
     }
 
     public void AddScore(float scoreToAdd)
@@ -102,6 +100,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(fadeWaitTime);
         player.transform.position = respawnPoint.position;
         player.GetComponent<IceBar>().StartCoroutine("ResetBar");
+        RespawnEnemy();
         score = savedScore;
 
         while (isFading == false)
@@ -116,6 +115,20 @@ public class GameManager : MonoBehaviour
                 player.GetComponent<PlayerAttack>().enabled = true;
                 player.GetComponent<PlayerControllerV2>().enabled = true;
                 StopCoroutine("Fade");
+            }
+        }
+    }
+
+    public void RespawnEnemy()
+    {
+        for (int i = 0; i < listEnemies.Count; i++)
+        {
+            foreach (ListOfLists list in listEnemies)
+            {
+                if (listEnemies[i].CheckActive() == false)
+                {
+                    listEnemies[i].Respawn();
+                }
             }
         }
     }

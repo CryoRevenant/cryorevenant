@@ -201,7 +201,6 @@ public class EnemyMove : MonoBehaviour
 
             while (isDashing == true)
             {
-                Debug.Log("ignore");
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
 
                 if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
@@ -211,7 +210,6 @@ public class EnemyMove : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
 
-            Debug.Log("turn");
             //Le joueur est à gauche ?
             if (newPos.x < transform.position.x)
             {

@@ -27,12 +27,13 @@ public class ListOfLists
         int i = 0;
         foreach (GameObject enemy in newIceList)
         {
-            if (enemy.activeSelf)
+            if (enemy.activeSelf == false)
             {
                 i++;
             }
         }
-        if (i == newIceList.Count)
+
+        if (i >= newIceList.Count)
         {
             return true;
         }
@@ -42,8 +43,15 @@ public class ListOfLists
         }
     }
 
-    public void SetActive(int index, bool state)
+    public void Respawn()
     {
-        newIceList[index].SetActive(state);
+        foreach (GameObject enemy in newIceList)
+        {
+            if (!enemy.activeSelf)
+            {
+                enemy.SetActive(true);
+            }
+            enemy.GetComponent<EnemyHealth>().ResetPos();
+        }
     }
 }

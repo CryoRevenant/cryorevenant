@@ -241,7 +241,6 @@ public class PlayerAttack : MonoBehaviour
                 // }
                 if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
                 {
-                    Debug.Log("hit Enemy");
                     col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
                     timerDamage = damageCooldown;
                 }
