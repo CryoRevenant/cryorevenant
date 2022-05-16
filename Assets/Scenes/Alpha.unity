@@ -7500,6 +7500,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 141.5
       objectReference: {fileID: 0}
@@ -7508,8 +7512,24 @@ PrefabInstance:
       value: 8.9
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.collisionMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267387, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: m_Name
@@ -9943,12 +9963,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: ShapeModule.m_Scale.x
       value: 160.8
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: ShapeModule.m_Scale.z
       value: 8.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.collisionMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -9961,6 +9993,10 @@ PrefabInstance:
     - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: InitialModule.startLifetime.minScalar
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5418185500445267385, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5418185500445267387, guid: 83bf2f9caf6946444b0b94aa640d7f96, type: 3}
       propertyPath: m_Name
