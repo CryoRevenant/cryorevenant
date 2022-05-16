@@ -103,7 +103,7 @@ public class PlayerControllerV2 : MonoBehaviour
         isBuffing = true;
         canResetCamY = false;
 
-        dashUI.padding = new Vector4(0, 0, 0, 78);
+        dashUI.padding = new Vector4(0, 0, 0, 3.9f);
         jumpUI.padding = new Vector4(0, 0, 0, 90);
         timerDash = dashCooldown;
         timerDodge = dodgeCooldown;
@@ -606,7 +606,16 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - dashCooldown, 27, 78));
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime*2.75f)), 1.1f, 3.9f));
+        if(dashUI.padding.w <= 1.1f)
+        {
+            //Debug.Log("full");
+            dashUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            dashUI.gameObject.SetActive(true);
+        }
 
         //Debug.Log(curseurDash);
         #endregion
