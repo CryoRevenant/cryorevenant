@@ -295,6 +295,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 {
                     canDodge = true;
                     gameObject.GetComponent<PlayerHP>().canDie = false;
+                    animator.SetTrigger("Dodge");
                     dodgeTime = dodgeDistance / dodgeSpeed;
                     timerDodge = dodgeCooldown;
                     isDodging = false;
@@ -317,6 +318,7 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 canJump = true;
                 jumpUI.padding = new Vector4(0, 0, 0, 90);
+                animator.SetTrigger("Jump");
 
                 isBuffing = false;
             }
@@ -327,11 +329,13 @@ public class PlayerControllerV2 : MonoBehaviour
             curPosY = rb.position.y;
             isBuffing = true;
             jumpBufferTimer = 0;
+            animator.SetBool("isGrounded", true);
             //Debug.Log("can jump");
         }
 
         if (!isGroundedL && !isGroundedR)
         {
+            animator.SetBool("isGrounded", false);
             //Debug.Log("can buff");
 
             jumpBufferTimer += Time.deltaTime;
