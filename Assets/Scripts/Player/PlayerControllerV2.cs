@@ -700,9 +700,10 @@ public class PlayerControllerV2 : MonoBehaviour
     /// </summary>
     void GroundedL()
     {
-        if (!isGroundedL)
+        if (isGroundedL)
         {
             isGroundedL = false;
+            //Debug.Log(isGroundedL);
         }
     }
 
@@ -711,8 +712,9 @@ public class PlayerControllerV2 : MonoBehaviour
     /// </summary>
     void GroundedR()
     {
-        if (!isGroundedR)
+        if (isGroundedR)
         {
+            //Debug.Log(isGroundedR);
             isGroundedR = false;
         }
     }
