@@ -89,6 +89,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool canReverse;
     private bool canGoDown;
     private bool canResetCamY;
+    private bool isPlayingJumpAnim;
 
     void Awake()
     {
@@ -102,6 +103,7 @@ public class PlayerControllerV2 : MonoBehaviour
         canGoDown = false;
         isBuffing = true;
         canResetCamY = false;
+        isPlayingJumpAnim = false;
 
         dashUI.padding = new Vector4(0, 0, 0, 3.9f);
         jumpUI.padding = new Vector4(0, 0, 0, 90);
@@ -319,6 +321,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 canJump = true;
                 jumpUI.padding = new Vector4(0, 0, 0, 90);
                 animator.SetTrigger("Jump");
+                isPlayingJumpAnim = true;
 
                 isBuffing = false;
             }
@@ -329,8 +332,12 @@ public class PlayerControllerV2 : MonoBehaviour
             curPosY = rb.position.y;
             isBuffing = true;
             jumpBufferTimer = 0;
-            animator.SetBool("isGrounded", true);
             //Debug.Log("can jump");
+        }
+
+        if (isGroundedL || isGroundedR)
+        {
+            animator.SetBool("isGrounded", true);
         }
 
         if (!isGroundedL && !isGroundedR)
@@ -344,6 +351,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 //Debug.Log("buff");
                 canJump = true;
                 jumpUI.padding = new Vector4(0, 0, 0, 90);
+                animator.SetTrigger("Jump");
 
                 jumpBufferTimer = 0;
             }
@@ -358,6 +366,28 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         //Debug.Log(jumpForce);
+        #endregion
+
+        #region fall
+
+        if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY)
+        {
+            isPlayingJumpAnim = false;
+            //Debug.Log("isGrounded");
+        }
+
+        if (!isGroundedL && !isGroundedR)
+        {
+            isPlayingJumpAnim = true;
+        }
+
+        if (!isPlayingJumpAnim)
+        {
+            animator.Play("Yuki_Fall");
+            //Debug.Log("fall");
+        }
+
+        //Debug.Log(isPlayingJumpAnim);
         #endregion
 
         #region isGrounded Left
