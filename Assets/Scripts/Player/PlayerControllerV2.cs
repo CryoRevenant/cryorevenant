@@ -381,12 +381,13 @@ public class PlayerControllerV2 : MonoBehaviour
             isPlayingJumpAnim = true;
         }
 
-        if (!isPlayingJumpAnim)
+        if (!isPlayingJumpAnim && !canDodge)
         {
             animator.Play("Yuki_Fall");
-            //Debug.Log("fall");
+            Debug.Log("fall");
         }
 
+        //Debug.Log(canDodge);
         //Debug.Log(isPlayingJumpAnim);
         #endregion
 
