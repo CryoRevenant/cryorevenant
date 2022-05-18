@@ -175,7 +175,6 @@ MonoBehaviour:
   isPlayerNear: 0
   player: {fileID: 0}
   anim: {fileID: 0}
-  hp: {fileID: 0}
   index: 0
 --- !u!114 &7154254564743513250
 MonoBehaviour:
@@ -199,6 +198,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
   slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
+  iceSlowVFX: {fileID: 8669489483881396668, guid: 88f707aecf4e9f84890f971d44c0772e, type: 3}
 --- !u!1 &1329534814613357652
 GameObject:
   m_ObjectHideFlags: 0

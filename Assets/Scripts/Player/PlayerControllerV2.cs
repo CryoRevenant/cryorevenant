@@ -384,7 +384,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (!isPlayingJumpAnim && !canDodge)
         {
             animator.Play("Yuki_Fall");
-            Debug.Log("fall");
+            //Debug.Log("fall");
         }
 
         //Debug.Log(canDodge);
@@ -599,7 +599,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         #region accel
         float curseurAccel = 1;
-        if (movement == 0)
+        if (movement == 0 && !canDash && !canDodge)
         {
             curseurAccel = Time.deltaTime * inertia;
         }

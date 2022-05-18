@@ -6,14 +6,43 @@ public class SoldatHealth : EnemyHealth
 {
     [SerializeField] RuntimeAnimatorController normalSpeed;
     [SerializeField] RuntimeAnimatorController slowSpeed;
+    [SerializeField] GameObject iceSlowVFX;
+    GameObject instance;
 
     public void Slowed()
     {
+        if(instance != null)
+        {
+            Destroy(instance);
+            instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
+            Destroy(instance, 10f);
+        }
+        if(instance == null)
+        {
+            instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
+            Destroy(instance, 10f);
+        }
         anim.runtimeAnimatorController = slowSpeed;
     }
 
     public void NormalSpeed()
     {
         anim.runtimeAnimatorController = normalSpeed;
+    }
+
+    private void FixedUpdate()
+    {
+        if(instance != null)
+        {
+            instance.transform.position = transform.position;
+        }
+    }
+
+    private void Update()
+    {
+        if (!gameObject.activeSelf)
+        {
+            Destroy(instance);
+        }
     }
 }
