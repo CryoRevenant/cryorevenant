@@ -66,6 +66,7 @@ public class SacMove : EnemyMove
         //Tant que l'ennemi doit bouger
         while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
         {
+            Debug.DrawRay(transform.position, new Vector2(posToGo.x-transform.position.x, posToGo.y-transform.position.y), Color.yellow, 0.5f);
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speedMove);
             yield return new WaitForSeconds(0.01f);
         }
@@ -74,6 +75,7 @@ public class SacMove : EnemyMove
 
     public void EndAttack()
     {
+        StopCoroutine("AttackMove");
         canCall = true;
         speedMove = baseSpeed;
         GetComponentInChildren<HitSac>().attackIndex = 0;

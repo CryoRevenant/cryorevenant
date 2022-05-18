@@ -23,7 +23,7 @@ public class HitSac : MonoBehaviour
     {
         attackIndex = 0;
         animator.SetBool("isAttacking", false);
-        GetComponentInParent<SacMove>().StopCoroutine("AttackMove");
+        GetComponentInParent<SacMove>().EndAttack();
     }
 
     void CanMove()
@@ -60,5 +60,6 @@ public class HitSac : MonoBehaviour
     {
         parentColor.color = Color.cyan;
         GetComponentInParent<EnemyHealth>().isBlocking = false;
+        GetComponentInParent<SacMove>().StopAllCoroutines();
     }
 }
