@@ -256,6 +256,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     canDash = true;
                     Physics2D.IgnoreLayerCollision(0, 3, true);
                     gameObject.GetComponent<PlayerHP>().canDie = false;
+                    animator.SetTrigger("Dash");
                     dashTime = dashDistance / dashSpeed;
                     dashUI.padding = new Vector4(0, 0, 0, 78);
                     timerDash = dashCooldown;
