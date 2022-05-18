@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc7ad03078a11c428bcf098cfc8b320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackIndex: 0
   timeMoveAgain: 2
 --- !u!61 &2060132388
 BoxCollider2D:
@@ -314,7 +315,6 @@ MonoBehaviour:
   isPlayerNear: 0
   player: {fileID: 0}
   anim: {fileID: 0}
-  hp: {fileID: 0}
 --- !u!114 &3817621574512399980
 MonoBehaviour:
   m_ObjectHideFlags: 0

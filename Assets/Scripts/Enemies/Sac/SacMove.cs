@@ -76,6 +76,7 @@ public class SacMove : EnemyMove
     {
         canCall = true;
         speedMove = baseSpeed;
+        GetComponentInChildren<HitSac>().attackIndex = 0;
         attak.StopAttack();
     }
 }

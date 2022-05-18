@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,7 @@ public class EnemyHealth : MonoBehaviour
         if (!isBlocking)
         {
             currHP -= damage;
+            CheckSac();
         }
         else if (isAttacking)
         {
@@ -63,6 +65,14 @@ public class EnemyHealth : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);
             GameManager.instance.AddScore(scoreToAdd);
+        }
+    }
+
+    private void CheckSac()
+    {
+        if (GetComponent<SacAttak>() != null)
+        {
+            anim.SetTrigger("isHit");
         }
     }
 
