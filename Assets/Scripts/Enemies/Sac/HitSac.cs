@@ -5,8 +5,9 @@ using UnityEngine;
 public class HitSac : MonoBehaviour
 {
     Animator animator;
-    int attackIndex;
+    public int attackIndex;
     [SerializeField] float timeMoveAgain;
+    [SerializeField] SpriteRenderer parentColor;
 
     private void Start()
     {
@@ -18,12 +19,11 @@ public class HitSac : MonoBehaviour
         animator.SetInteger("index", attackIndex);
     }
 
-    void Reset()
+    public void Reset()
     {
         attackIndex = 0;
         animator.SetBool("isAttacking", false);
         GetComponentInParent<SacMove>().StopCoroutine("AttackMove");
-        Invoke("CanMove", timeMoveAgain);
     }
 
     void CanMove()
@@ -47,5 +47,18 @@ public class HitSac : MonoBehaviour
         {
             other.GetComponent<PlayerHP>().Death();
         }
+    }
+
+    void Block()
+    {
+        Reset();
+        parentColor.color = Color.magenta;
+        GetComponentInParent<EnemyHealth>().isBlocking = true;
+    }
+
+    void StopBlock()
+    {
+        parentColor.color = Color.cyan;
+        GetComponentInParent<EnemyHealth>().isBlocking = false;
     }
 }

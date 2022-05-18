@@ -103,15 +103,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.3
-    functionName: TriggerOff
+  - time: 0.18333334
+    functionName: Incr
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.38333333
-    functionName: Incr
+  - time: 0.3
+    functionName: TriggerOff
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
