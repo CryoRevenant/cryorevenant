@@ -373,6 +373,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY)
         {
+            StartCoroutine(StopAnim());
             isPlayingJumpAnim = false;
             //Debug.Log("isGrounded");
         }
@@ -777,5 +778,16 @@ public class PlayerControllerV2 : MonoBehaviour
     void IsDashUIStopped()
     {
         isDashUIStarted = false;
+    }
+
+    /// <summary>
+    /// start fall animation
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator StopAnim()
+    {
+        yield return new WaitForSeconds(0.25f);
+        animator.SetTrigger("isFalling");
+        yield break;
     }
 }
