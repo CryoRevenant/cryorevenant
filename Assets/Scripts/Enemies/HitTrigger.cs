@@ -60,7 +60,7 @@ public class HitTrigger : MonoBehaviour
     void isAttacking()
     {
         GetComponent<SpriteRenderer>().enabled = true;
-        hp.isBlocking = true;
+        hp.isBlocking = false;
         colorBox.color = Color.red;
         move.canMove = false;
         move.StopCoroutine("MoveOver");
