@@ -6,17 +6,19 @@ public class Ascenceur : MonoBehaviour
 {
     List<GameObject> enemyList = new List<GameObject>();
     [SerializeField] GameObject otherElevator;
+    Animator animator;
 
     public bool isOpen;
     public bool isIn;
 
     private PlayerInput controls = null;
     GameObject player;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = GameObject.Find("Player");
         controls = player.GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -37,8 +39,8 @@ public class Ascenceur : MonoBehaviour
         Debug.Log(enemyList.Count);
         if (enemyList.Count == 0)
         {
-            Debug.Log(gameObject.name + " is open");
             isOpen = true;
+            animator.SetBool("openDoor", isOpen);
         }
     }
 

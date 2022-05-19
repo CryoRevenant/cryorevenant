@@ -5,22 +5,25 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private float hp;
     float currHP;
+    [Header("Index")]
     [SerializeField] string elevatorToUnlock;
     [SerializeField] bool needUnlock;
     [SerializeField] int indexIceBar;
     [SerializeField] float scoreToAdd;
 
-    public bool isBlocking;
-    public bool isAttacking;
     GameObject elevator;
 
     Vector3 originPos;
 
     EnemyMove move;
 
+    [Header("Animation")]
     public Animator anim;
+    public bool isBlocking;
+    public bool isAttacking;
 
     private void Awake()
     {
