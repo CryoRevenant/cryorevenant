@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109738586952384610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.61, y: -0.009, z: 0}
-  m_LocalScale: {x: 0.71523166, y: 0.50186104, z: 0.5958296}
+  m_LocalPosition: {x: 1.6, y: 0.23, z: 0}
+  m_LocalScale: {x: 0.5165403, y: 0.362444, z: 0.43030813}
   m_Children: []
   m_Father: {fileID: 7530075567980534542}
   m_RootOrder: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackIndex: 0
   timeMoveAgain: 2
+  parentColor: {fileID: 7530075567980534543}
 --- !u!61 &2060132388
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,7 +132,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.8747022, y: -0.12912369}
+  m_Offset: {x: 1.5751696, y: -0.5793102}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -142,7 +143,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.971556, y: 4.6154747}
+  m_Size: {x: 7.887747, y: 5.5158477}
   m_EdgeRadius: 0
 --- !u!1 &7530075567980534531
 GameObject:
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49a36376d1d34c4194679e9c379a443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radiusPlayer: 17
+  radiusPlayer: 14
   radiusEnemy: 15
   otherDetect: 0
   waitTime: 0.7
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7530075567980534531}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd47bb8dd68ac2b46b07c143fb7af9a8, type: 3}
   m_Name: 
@@ -291,7 +292,7 @@ MonoBehaviour:
   hp: 2
   elevatorToUnlock: 
   needUnlock: 0
-  indexIceBar: 0
+  indexIceBar: 13
   scoreToAdd: 0
   isBlocking: 0
   isAttacking: 0
@@ -339,8 +340,8 @@ MonoBehaviour:
   rayLengthSide: 1.3
   bounds: 0.8
   showRays: 0
-  maxAttackDist: 13
-  overrideSpeed: 5
-  baseSpeed: 12
+  maxAttackDist: 10
+  overrideSpeed: 2.5
+  baseSpeed: 10
   speedMove: 0
   canCall: 1

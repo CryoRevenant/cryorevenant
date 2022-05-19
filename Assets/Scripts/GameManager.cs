@@ -34,17 +34,6 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.Find("Player");
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void AddToList(int listIndex, GameObject newGameObject)
     {
@@ -100,6 +89,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(fadeWaitTime);
         player.transform.position = respawnPoint.position;
         player.GetComponent<IceBar>().StartCoroutine("ResetBar");
+        player.gameObject.tag = "Player";
         RespawnEnemy();
         score = savedScore;
 

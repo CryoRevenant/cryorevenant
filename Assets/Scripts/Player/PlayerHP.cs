@@ -23,6 +23,7 @@ public class PlayerHP : MonoBehaviour
             //Debug.Log("die");
 
             gameObject.layer = 6;
+            gameObject.tag = "Untagged";
 
             GetComponent<PlayerControllerV2>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;

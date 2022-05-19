@@ -11,18 +11,20 @@ public class SoldatHealth : EnemyHealth
 
     public void Slowed()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(instance);
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
-            Destroy(instance, 10f);
+            Destroy(instance, 4f);
         }
-        if(instance == null)
+        if (instance == null)
         {
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
-            Destroy(instance, 10f);
+            Destroy(instance, 4f);
         }
+        GetComponentInChildren<CircleCollider2D>().enabled = false;
         anim.runtimeAnimatorController = slowSpeed;
+        Invoke("NormalSpeed", 4f);
     }
 
     public void NormalSpeed()
@@ -32,7 +34,7 @@ public class SoldatHealth : EnemyHealth
 
     private void FixedUpdate()
     {
-        if(instance != null)
+        if (instance != null)
         {
             instance.transform.position = transform.position;
         }
