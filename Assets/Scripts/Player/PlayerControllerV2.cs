@@ -91,6 +91,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool canGoDown;
     private bool canResetCamY;
     private bool isPlayingJumpAnim;
+    private bool isOnBox;
+    private bool isPlayingStopAnim;
 
     void Awake()
     {
@@ -105,6 +107,8 @@ public class PlayerControllerV2 : MonoBehaviour
         isBuffing = true;
         canResetCamY = false;
         isPlayingJumpAnim = false;
+        isOnBox = false;
+        isPlayingStopAnim = false;
 
         dashUI.padding = new Vector4(0, 0, 0, 4.6f);
         dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
@@ -374,9 +378,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region fall
 
-        if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY)
+        if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY && !isPlayingStopAnim)
         {
             StartCoroutine(StopAnim());
+            Debug.Log("b");
             isPlayingJumpAnim = false;
             //Debug.Log("isGrounded");
         }
@@ -492,13 +497,36 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         #region goDown
-        if (controls.currentActionMap.FindAction("Down").triggered)
+        if (controls.currentActionMap.FindAction("Down").triggered && isOnBox)
         {
             canGoDown = true;
             animator.Play("Yuki_Fall");
-            StartCoroutine(StopAnim());
+            if (!isPlayingStopAnim)
+            {
+                StartCoroutine(StopAnim());
+            }
+            Debug.Log("a");
 
             //Debug.Log("input down");
+        }
+
+        //Debug.Log(isOnBox);
+
+        if (hit && hit2)
+        {
+            if(hit.collider.gameObject.layer == 9 && hit2.collider.gameObject.layer == 9)
+            {
+                //Debug.Log(hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask);
+
+                if (hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask == 767)
+                {
+                    isOnBox = true;
+                }
+            }
+        }
+        else
+        {
+            isOnBox = false;
         }
 
         //Debug.Log(canGoDown);
@@ -803,8 +831,11 @@ public class PlayerControllerV2 : MonoBehaviour
     /// <returns></returns>
     IEnumerator StopAnim()
     {
+        Debug.Log("heloakgoaerjgoraj");
+        isPlayingStopAnim = true;
         yield return new WaitForSeconds(0.25f);
         animator.SetTrigger("isFalling");
+        isPlayingStopAnim = false;
         yield break;
     }
 }
