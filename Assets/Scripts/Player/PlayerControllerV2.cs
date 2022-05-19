@@ -381,7 +381,6 @@ public class PlayerControllerV2 : MonoBehaviour
         if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY && !isPlayingStopAnim)
         {
             StartCoroutine(StopAnim());
-            Debug.Log("b");
             isPlayingJumpAnim = false;
             //Debug.Log("isGrounded");
         }
@@ -505,7 +504,6 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 StartCoroutine(StopAnim());
             }
-            Debug.Log("a");
 
             //Debug.Log("input down");
         }
@@ -831,7 +829,6 @@ public class PlayerControllerV2 : MonoBehaviour
     /// <returns></returns>
     IEnumerator StopAnim()
     {
-        Debug.Log("heloakgoaerjgoraj");
         isPlayingStopAnim = true;
         yield return new WaitForSeconds(0.25f);
         animator.SetTrigger("isFalling");
