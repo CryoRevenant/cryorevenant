@@ -47,6 +47,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float dodgeDistance;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
+    [SerializeField] private RectMask2D dodgeUI;
 
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
@@ -105,8 +106,9 @@ public class PlayerControllerV2 : MonoBehaviour
         canResetCamY = false;
         isPlayingJumpAnim = false;
 
-        dashUI.padding = new Vector4(0, 0, 0, 3.9f);
-        jumpUI.padding = new Vector4(0, 0, 0, 90);
+        dashUI.padding = new Vector4(0, 0, 0, 4.6f);
+        dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+        jumpUI.padding = new Vector4(0, 0, 0, 109);
         timerDash = dashCooldown;
         timerDodge = dodgeCooldown;
 
@@ -258,7 +260,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     gameObject.GetComponent<PlayerHP>().canDie = false;
                     animator.SetTrigger("Dash");
                     dashTime = dashDistance / dashSpeed;
-                    dashUI.padding = new Vector4(0, 0, 0, 78);
+                    dashUI.padding = new Vector4(0, 0, 0, 4.6f);
                     timerDash = dashCooldown;
                     isDashing = false;
                 }
@@ -300,6 +302,7 @@ public class PlayerControllerV2 : MonoBehaviour
                     gameObject.GetComponent<PlayerHP>().canDie = false;
                     animator.SetTrigger("Dodge");
                     dodgeTime = dodgeDistance / dodgeSpeed;
+                    dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
                     timerDodge = dodgeCooldown;
                     isDodging = false;
                 }
@@ -320,7 +323,7 @@ public class PlayerControllerV2 : MonoBehaviour
             if (isBuffing)
             {
                 canJump = true;
-                jumpUI.padding = new Vector4(0, 0, 0, 90);
+                jumpUI.padding = new Vector4(0, 0, 0, 109);
                 animator.SetTrigger("Jump");
                 isPlayingJumpAnim = true;
 
@@ -351,7 +354,7 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 //Debug.Log("buff");
                 canJump = true;
-                jumpUI.padding = new Vector4(0, 0, 0, 90);
+                jumpUI.padding = new Vector4(0, 0, 0, 109);
                 animator.SetTrigger("Jump");
 
                 jumpBufferTimer = 0;
@@ -646,8 +649,8 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime*2.75f)), 1.1f, 3.9f));
-        if(dashUI.padding.w <= 1.1f)
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime*4.5f)), 0.3f, 4.6f));
+        if(dashUI.padding.w <= 0.3f)
         {
             //Debug.Log("full");
             dashUI.gameObject.SetActive(false);
@@ -693,6 +696,17 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
+        dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * 10f)), 0.3f, 4.6f));
+        if (dodgeUI.padding.w <= 0.3f)
+        {
+            //Debug.Log("full");
+            dodgeUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            dodgeUI.gameObject.SetActive(true);
+        }
+
         //Debug.Log(curseurDodge);
         #endregion
 
@@ -725,7 +739,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
 
-        jumpUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(jumpUI.padding.w - 10f, 10, 90));
+        jumpUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(jumpUI.padding.w - 10f, 0, 109));
 
         #endregion
 
