@@ -19,20 +19,31 @@ public class IceSpike : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(0.5f);
             }
 
-            switch (gameObject.GetComponent<SpriteRenderer>().flipX)
-            {
-                case true:
-                    GameObject instanceR = Instantiate(spikeImpactVFX, transform.position, Quaternion.identity);
-                    instanceR.GetComponent<SpriteRenderer>().flipX = true;
-                    Destroy(instanceR, 0.5f);
-                    break;
-                case false:
-                    GameObject instanceL = Instantiate(spikeImpactVFX, transform.position, Quaternion.identity);
-                    instanceL.GetComponent<SpriteRenderer>().flipX = false;
-                    Destroy(instanceL, 0.5f);
-                    break;
-            }
+            CheckFlip();
+
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("HitTrigger"))
+        {
+            CheckFlip();
+            Destroy(gameObject);
+        }
+    }
+
+    void CheckFlip()
+    {
+        switch (gameObject.GetComponent<SpriteRenderer>().flipX)
+        {
+            case true:
+                GameObject instanceR = Instantiate(spikeImpactVFX, transform.position, Quaternion.identity);
+                instanceR.GetComponent<SpriteRenderer>().flipX = true;
+                Destroy(instanceR, 0.5f);
+                break;
+            case false:
+                GameObject instanceL = Instantiate(spikeImpactVFX, transform.position, Quaternion.identity);
+                instanceL.GetComponent<SpriteRenderer>().flipX = false;
+                Destroy(instanceL, 0.5f);
+                break;
         }
     }
 }

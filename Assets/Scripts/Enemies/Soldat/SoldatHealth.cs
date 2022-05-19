@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SoldatHealth : EnemyHealth
 {
+    [Header("ChangeSpeed")]
     [SerializeField] RuntimeAnimatorController normalSpeed;
     [SerializeField] RuntimeAnimatorController slowSpeed;
     [SerializeField] GameObject iceSlowVFX;
+    [SerializeField] Vector3 freezeColor;
     GameObject instance;
 
     public void Slowed()
@@ -22,14 +24,20 @@ public class SoldatHealth : EnemyHealth
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
             Destroy(instance, 4f);
         }
+
         GetComponentInChildren<CircleCollider2D>().enabled = false;
+
         anim.runtimeAnimatorController = slowSpeed;
+
+        ChangeColor(freezeColor);
+
         Invoke("NormalSpeed", 4f);
     }
 
     public void NormalSpeed()
     {
         anim.runtimeAnimatorController = normalSpeed;
+        //ChangeColor(new Vector3(255, 255, 255));
     }
 
     private void FixedUpdate()
@@ -46,5 +54,12 @@ public class SoldatHealth : EnemyHealth
         {
             Destroy(instance);
         }
+    }
+
+    void ChangeColor(Vector3 colorVector)
+    {
+        Debug.Log("new color = " + colorVector);
+        Color newColor = new Color(colorVector.x, colorVector.y, colorVector.z);
+        GetComponent<SpriteRenderer>().color = newColor;
     }
 }

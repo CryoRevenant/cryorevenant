@@ -9,6 +9,7 @@ TagManager:
   - Door
   - FuzeBox
   - Checkpoint
+  - HitTrigger
   layers:
   - Default
   - TransparentFX
