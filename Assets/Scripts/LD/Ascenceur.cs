@@ -40,7 +40,6 @@ public class Ascenceur : MonoBehaviour
                 {
                     CheckOpen();
                     otherElevator.GetComponent<Animator>().SetBool("ForceClose", true);
-
                 }
                 else
                 {
@@ -59,7 +58,6 @@ public class Ascenceur : MonoBehaviour
 
             if (player.transform.position.y.ToString("0.0") == otherElevator.transform.position.y.ToString("0.0"))
             {
-                Debug.Log("bleu");
                 player.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 t = 0;
                 GetOut();
@@ -74,7 +72,7 @@ public class Ascenceur : MonoBehaviour
         {
             isUnlocked = true;
             isClosed = false;
-            animator.SetBool("openDoor", isUnlocked);
+            animator.SetBool("openDoor", true);
         }
     }
 
@@ -88,6 +86,7 @@ public class Ascenceur : MonoBehaviour
     void IsClosed()
     {
         isClosed = true;
+        otherElevator.GetComponent<Animator>().SetBool("openDoor", false);
         otherElevator.GetComponent<Animator>().SetBool("ForceClose", false);
     }
 
@@ -104,7 +103,7 @@ public class Ascenceur : MonoBehaviour
         player.GetComponent<PlayerControllerV2>().enabled = true;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         player.GetComponent<CapsuleCollider2D>().isTrigger = false;
-        otherElevator.GetComponent<Animator>().SetBool("openDoor", isUnlocked);
+        otherElevator.GetComponent<Animator>().SetBool("openDoor", true);
     }
 
     void OrderLayer()

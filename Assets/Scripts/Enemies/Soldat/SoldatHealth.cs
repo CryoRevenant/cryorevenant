@@ -58,7 +58,6 @@ public class SoldatHealth : EnemyHealth
 
     void ChangeColor(Vector3 colorVector)
     {
-        Debug.Log("new color = " + colorVector);
         Color newColor = new Color(colorVector.x, colorVector.y, colorVector.z);
         GetComponent<SpriteRenderer>().color = newColor;
     }
