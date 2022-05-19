@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
+
 public class Ascenceur : MonoBehaviour
 {
     List<GameObject> enemyList = new List<GameObject>();
-    [SerializeField] GameObject otherElevator;
-    Animator animator;
 
-    public bool isOpen;
+    [SerializeField] GameObject otherElevator;
+    [SerializeField] float speed;
+
+    GameObject player;
+    Animator animator;
+    float t = 0;
+
+    public bool isUnlocked;
     public bool isIn;
+    bool isClosed;
+    bool playerIn;
 
     private PlayerInput controls = null;
-    GameObject player;
 
     void Start()
     {
@@ -26,27 +34,82 @@ public class Ascenceur : MonoBehaviour
     {
         if (controls != null)
         {
-            if (controls.currentActionMap.FindAction("Interact").triggered && isIn == true)
+            if (controls.currentActionMap.FindAction("Interact").triggered && isIn && isUnlocked)
             {
-                TPPlayer();
-                isIn = false;
+                if (isClosed)
+                {
+                    CheckOpen();
+                    otherElevator.GetComponent<Animator>().SetBool("ForceClose", true);
+
+                }
+                else
+                {
+                    player.GetComponent<PlayerControllerV2>().enabled = false;
+                    CloseDoor();
+                }
+            }
+        }
+
+        if (playerIn == true)
+        {
+            t += Time.deltaTime * speed;
+            isIn = false;
+            player.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            player.transform.position = new Vector3(player.transform.position.x, Mathf.Lerp(player.transform.position.y, otherElevator.transform.position.y, t), player.transform.position.z);
+
+            if (player.transform.position.y.ToString("0.0") == otherElevator.transform.position.y.ToString("0.0"))
+            {
+                Debug.Log("bleu");
+                player.GetComponentInChildren<SpriteRenderer>().enabled = true;
+                t = 0;
+                GetOut();
+                playerIn = false;
             }
         }
     }
 
     void CheckOpen()
     {
-        Debug.Log(enemyList.Count);
         if (enemyList.Count == 0)
         {
-            isOpen = true;
-            animator.SetBool("openDoor", isOpen);
+            isUnlocked = true;
+            isClosed = false;
+            animator.SetBool("openDoor", isUnlocked);
         }
     }
 
-    void TPPlayer()
+    void GetIn()
     {
-        player.transform.position = otherElevator.transform.position;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        player.GetComponent<CapsuleCollider2D>().isTrigger = true;
+        playerIn = true;
+    }
+
+    void IsClosed()
+    {
+        isClosed = true;
+        otherElevator.GetComponent<Animator>().SetBool("ForceClose", false);
+    }
+
+    void CloseDoor()
+    {
+        isUnlocked = false;
+        player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
+        animator.SetBool("openDoor", isUnlocked);
+    }
+
+    void GetOut()
+    {
+        isUnlocked = true;
+        player.GetComponent<PlayerControllerV2>().enabled = true;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        player.GetComponent<CapsuleCollider2D>().isTrigger = false;
+        otherElevator.GetComponent<Animator>().SetBool("openDoor", isUnlocked);
+    }
+
+    void OrderLayer()
+    {
+        player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
     }
 
     #region Add/Remove enemyList
@@ -64,9 +127,9 @@ public class Ascenceur : MonoBehaviour
 
     #region Triggers
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && isOpen == true)
+        if (other.gameObject.CompareTag("Player") && isUnlocked == true)
         {
             isIn = true;
             player.GetComponent<PlayerAttack>().enabled = false;
