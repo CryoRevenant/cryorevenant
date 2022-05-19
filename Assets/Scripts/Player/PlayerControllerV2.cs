@@ -492,6 +492,9 @@ public class PlayerControllerV2 : MonoBehaviour
         if (controls.currentActionMap.FindAction("Down").triggered)
         {
             canGoDown = true;
+            animator.Play("Yuki_Fall");
+            StartCoroutine(StopAnim());
+
             //Debug.Log("input down");
         }
 
@@ -781,7 +784,7 @@ public class PlayerControllerV2 : MonoBehaviour
     }
 
     /// <summary>
-    /// start fall animation
+    /// stop fall animation
     /// </summary>
     /// <returns></returns>
     IEnumerator StopAnim()
