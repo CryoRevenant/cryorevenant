@@ -254,21 +254,46 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             //Debug.Log(dashValue);
 
-            if (dashValue > 0 && timerDash <= 0 && !canDodge && !gameObject.GetComponent<PlayerAttack>().IsSpiking() && !gameObject.GetComponent<PlayerAttack>().IsWalling())
+            if (dashValue > 0 && !canDodge && !gameObject.GetComponent<PlayerAttack>().IsSpiking() && !gameObject.GetComponent<PlayerAttack>().IsWalling())
             {
-                isDashUIStarted = true;
-                if (isDashing)
+                switch (playerSprite.flipX)
                 {
-                    canDash = true;
-                    Physics2D.IgnoreLayerCollision(0, 3, true);
-                    gameObject.GetComponent<PlayerHP>().canDie = false;
-                    animator.SetTrigger("Dash");
-                    dashTime = dashDistance / dashSpeed;
-                    dashUI.padding = new Vector4(0, 0, 0, 4.6f);
-                    timerDash = dashCooldown;
-                    isDashing = false;
+                    case true:
+                        if (timerDodge <= 0)
+                        {
+                            //Debug.Log("dodge");
+                            if (isDodging)
+                            {
+                                canDodge = true;
+                                gameObject.GetComponent<PlayerHP>().canDie = false;
+                                animator.SetTrigger("Dodge");
+                                dodgeTime = dodgeDistance / dodgeSpeed;
+                                dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                timerDodge = dodgeCooldown;
+                                isDodging = false;
+                            }
+                            canReverse = true;
+                        }
+                        break;
+                    case false:
+                        if (timerDash <= 0)
+                        {
+                            isDashUIStarted = true;
+                            if (isDashing)
+                            {
+                                canDash = true;
+                                Physics2D.IgnoreLayerCollision(0, 3, true);
+                                gameObject.GetComponent<PlayerHP>().canDie = false;
+                                animator.SetTrigger("Dash");
+                                dashTime = dashDistance / dashSpeed;
+                                dashUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                timerDash = dashCooldown;
+                                isDashing = false;
+                            }
+                            canReverse = true;
+                        }
+                        break;
                 }
-                canReverse = true;
             }
 
             if (dashValue == 0)
@@ -297,20 +322,47 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             //Debug.Log(dodgeValue);
 
-            if (dodgeValue > 0 && timerDodge <= 0 && !canDash)
+            if (dodgeValue > 0 && !canDash)
             {
-                //Debug.Log("dodge");
-                if (isDodging)
+                switch (playerSprite.flipX)
                 {
-                    canDodge = true;
-                    gameObject.GetComponent<PlayerHP>().canDie = false;
-                    animator.SetTrigger("Dodge");
-                    dodgeTime = dodgeDistance / dodgeSpeed;
-                    dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
-                    timerDodge = dodgeCooldown;
-                    isDodging = false;
+                    case true:
+                        if (timerDash <= 0)
+                        {
+                            isDashUIStarted = true;
+                            if (isDashing)
+                            {
+                                canDash = true;
+                                Physics2D.IgnoreLayerCollision(0, 3, true);
+                                gameObject.GetComponent<PlayerHP>().canDie = false;
+                                animator.SetTrigger("Dash");
+                                dashTime = dashDistance / dashSpeed;
+                                dashUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                timerDash = dashCooldown;
+                                isDashing = false;
+                            }
+                            canReverse = true;
+                        }
+                        break;
+                    case false:
+                        if (timerDodge <= 0)
+                        {
+                            //Debug.Log("dodge");
+                            if (isDodging)
+                            {
+                                canDodge = true;
+                                gameObject.GetComponent<PlayerHP>().canDie = false;
+                                animator.SetTrigger("Dodge");
+                                dodgeTime = dodgeDistance / dodgeSpeed;
+                                dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                timerDodge = dodgeCooldown;
+                                isDodging = false;
+                            }
+                            canReverse = true;
+                        }
+                        break;
                 }
-                canReverse = true;
+
             }
 
             if (dodgeValue == 0)
