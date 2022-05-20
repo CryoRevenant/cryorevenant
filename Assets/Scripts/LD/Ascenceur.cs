@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.Experimental.Rendering.Universal;
+
 
 public class Ascenceur : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class Ascenceur : MonoBehaviour
 
     [SerializeField] GameObject otherElevator;
     [SerializeField] float speed;
+    [SerializeField] Light2D light2D;
 
     GameObject player;
     Animator animator;
@@ -24,6 +27,10 @@ public class Ascenceur : MonoBehaviour
 
     void Start()
     {
+        if (isUnlocked)
+        {
+            light2D.color = Color.green;
+        }
         player = GameObject.Find("Player");
         controls = player.GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
@@ -83,6 +90,7 @@ public class Ascenceur : MonoBehaviour
         {
             isUnlocked = true;
             isClosed = false;
+            light2D.color = Color.green;
             animator.SetBool("openDoor", true);
         }
     }
