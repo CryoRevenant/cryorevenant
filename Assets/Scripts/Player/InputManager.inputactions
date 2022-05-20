@@ -299,6 +299,17 @@
                 },
                 {
                     "name": "",
+                    "id": "3e736b35-dc51-43f1-9ee4-8e1d6066a7cb",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b6b82b6d-b343-4526-bc01-3802c3f5bae9",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
