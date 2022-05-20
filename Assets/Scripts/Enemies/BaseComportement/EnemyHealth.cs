@@ -63,7 +63,7 @@ public class EnemyHealth : MonoBehaviour
         if (currHP <= 0)
         {
             if (needUnlock)
-                elevator.GetComponent<Ascenceur>().RemoveEnemy(gameObject);
+                elevator.GetComponent<Ascenceur>().CheckOpen();
 
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);

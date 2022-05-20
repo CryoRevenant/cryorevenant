@@ -43,6 +43,8 @@ public class Ascenceur : MonoBehaviour
                 }
                 else
                 {
+                    player.layer = 6;
+                    player.tag = "Untagged";
                     player.GetComponent<PlayerControllerV2>().enabled = false;
                     CloseDoor();
                 }
@@ -66,9 +68,18 @@ public class Ascenceur : MonoBehaviour
         }
     }
 
-    void CheckOpen()
+    public void CheckOpen()
     {
-        if (enemyList.Count == 0)
+        int i = 0;
+        foreach (GameObject enemy in enemyList)
+        {
+            if (!enemy.activeSelf)
+            {
+                i++;
+            }
+        }
+
+        if (i >= enemyList.Count - 1)
         {
             isUnlocked = true;
             isClosed = false;
@@ -108,15 +119,13 @@ public class Ascenceur : MonoBehaviour
 
     void OrderLayer()
     {
+        player.tag = "Player";
+        player.layer = 0;
         player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
+        player.GetComponent<PlayerAttack>().enabled = true;
     }
 
     #region Add/Remove enemyList
-    public void RemoveEnemy(GameObject enemy)
-    {
-        enemyList.Remove(enemy);
-        CheckOpen();
-    }
 
     public void AddEnemy(GameObject enemy)
     {
