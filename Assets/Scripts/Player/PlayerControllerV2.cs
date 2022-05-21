@@ -73,6 +73,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float goDownCooldown;
     private float jumpBufferTimer = 0;
     private float raycastDir;
+    private float paddingSpeedUI;
     private float raycastDir2;
     private int playerForward;
     private int playerBackward;
@@ -125,8 +126,11 @@ public class PlayerControllerV2 : MonoBehaviour
 
         // d�fini maxCamCenterTimer � la valeur camCenterTimer dans l'inspecteur
         maxCamCenterTimer = camCenterTimer;
-        // la vitesse actuelle du player est � z�ro au d�but, car le player n'a pas encore boug�
+        // la vitesse actuelle du player est de zero au debut, car le player n'a pas encore bouge
         curVelocitySpeed = 0;
+
+        // la vitesse de recharge (pour les UI de dash et de dodge)
+        paddingSpeedUI = 25;
 
         // rotation de la cam�ra et des sprites en fonction de l'orientation du player
         #region Sprites & Cam : setup
@@ -154,7 +158,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void Update()
     {
-        #region le d�placement
+        #region le deplacement
         if (!canDash && !canDodge)
         {
             float xAxis = controls.currentActionMap.FindAction("Move").ReadValue<float>();
@@ -240,7 +244,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(result);
 
-        #region le dash
+        #region gachette de droite
         timerDash -= Time.deltaTime;
         //Debug.Log(timerDash);
         //Debug.Log("isDashing" + isDashUIStarted);
@@ -262,15 +266,16 @@ public class PlayerControllerV2 : MonoBehaviour
                         if (timerDodge <= 0)
                         {
                             //Debug.Log("dodge");
-                            if (isDodging)
+                            if (isDashing)
                             {
                                 canDodge = true;
                                 gameObject.GetComponent<PlayerHP>().canDie = false;
                                 animator.SetTrigger("Dodge");
                                 dodgeTime = dodgeDistance / dodgeSpeed;
-                                dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                dashUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                paddingSpeedUI = 10;
                                 timerDodge = dodgeCooldown;
-                                isDodging = false;
+                                isDashing = false;
                             }
                             canReverse = true;
                         }
@@ -287,6 +292,7 @@ public class PlayerControllerV2 : MonoBehaviour
                                 animator.SetTrigger("Dash");
                                 dashTime = dashDistance / dashSpeed;
                                 dashUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                paddingSpeedUI = 4.5f;
                                 timerDash = dashCooldown;
                                 isDashing = false;
                             }
@@ -308,7 +314,7 @@ public class PlayerControllerV2 : MonoBehaviour
         }
         #endregion
 
-        #region l'esquive
+        #region gachette de gauche
         timerDodge -= Time.deltaTime;
         //Debug.Log(timerDodge);
 
@@ -330,16 +336,17 @@ public class PlayerControllerV2 : MonoBehaviour
                         if (timerDash <= 0)
                         {
                             isDashUIStarted = true;
-                            if (isDashing)
+                            if (isDodging)
                             {
                                 canDash = true;
                                 Physics2D.IgnoreLayerCollision(0, 3, true);
                                 gameObject.GetComponent<PlayerHP>().canDie = false;
                                 animator.SetTrigger("Dash");
                                 dashTime = dashDistance / dashSpeed;
-                                dashUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                paddingSpeedUI = 4.5f;
                                 timerDash = dashCooldown;
-                                isDashing = false;
+                                isDodging = false;
                             }
                             canReverse = true;
                         }
@@ -355,6 +362,7 @@ public class PlayerControllerV2 : MonoBehaviour
                                 animator.SetTrigger("Dodge");
                                 dodgeTime = dodgeDistance / dodgeSpeed;
                                 dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+                                paddingSpeedUI = 10;
                                 timerDodge = dodgeCooldown;
                                 isDodging = false;
                             }
@@ -430,7 +438,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region fall
 
-        if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY && !isPlayingStopAnim)
+        if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY && !isPlayingStopAnim && !canJump)
         {
             StartCoroutine(StopAnim());
             isPlayingJumpAnim = false;
@@ -685,10 +693,10 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         #region accel
         float curseurAccel = 1;
-        if (movement == 0 && !canDash && !canDodge)
-        {
-            curseurAccel = Time.deltaTime * inertia;
-        }
+        //if (movement == 0 && !canDash && !canDodge)
+        //{
+        //    curseurAccel = Time.deltaTime / inertia;
+        //}
         curSpeed = Vector2.Lerp(curSpeed, new Vector2(curVelocitySpeed, curSpeed.y) * movement, curseurAccel);
         Vector3 nextPosition = new Vector3(transform.position.x + curSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
         rb.position = nextPosition;
@@ -697,10 +705,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region dash
         float curseurDash = 1;
-        if (dashValue == 0)
-        {
-            curseurDash = Time.deltaTime * inertia;
-        }
 
         if (canDash && dashTime > 0)
         {
@@ -727,7 +731,7 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime*4.5f)), 0.3f, 4.6f));
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime* paddingSpeedUI)), 0.3f, 4.6f));
         if(dashUI.padding.w <= 0.3f)
         {
             //Debug.Log("full");
@@ -743,10 +747,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region dodge
         float curseurDodge = 1;
-        if (dodgeValue == 0)
-        {
-            curseurDodge = Time.deltaTime * inertia;
-        }
 
         if (canDodge && dodgeTime > 0)
         {
@@ -774,7 +774,7 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * 10f)), 0.3f, 4.6f));
+        dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 0.3f, 4.6f));
         if (dodgeUI.padding.w <= 0.3f)
         {
             //Debug.Log("full");

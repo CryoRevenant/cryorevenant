@@ -5905,6 +5905,10 @@ PrefabInstance:
       propertyPath: dodgeUI
       value: 
       objectReference: {fileID: 584658973}
+    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: inertia
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 850882037, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_Camera
       value: 
@@ -13095,7 +13099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherElevator: {fileID: 1634524756}
-  isOpen: 0
+  speed: 0
+  light2D: {fileID: 0}
+  isUnlocked: 0
   isIn: 0
 --- !u!61 &1332316994
 BoxCollider2D:
@@ -14951,7 +14957,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherElevator: {fileID: 1590800641}
-  isOpen: 0
+  speed: 0
+  light2D: {fileID: 0}
+  isUnlocked: 0
   isIn: 0
 --- !u!61 &1480107713
 BoxCollider2D:
@@ -18207,7 +18215,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherElevator: {fileID: 675525086}
-  isOpen: 0
+  speed: 0
+  light2D: {fileID: 0}
+  isUnlocked: 0
   isIn: 0
 --- !u!61 &1943759244
 BoxCollider2D:
@@ -19927,7 +19937,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherElevator: {fileID: 203036308}
-  isOpen: 0
+  speed: 0
+  light2D: {fileID: 0}
+  isUnlocked: 0
   isIn: 0
 --- !u!61 &2105869842
 BoxCollider2D:
