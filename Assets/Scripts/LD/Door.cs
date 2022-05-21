@@ -59,6 +59,13 @@ public class Door : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            canDestroy = false;
+        }
+    }
 
     void DestroyGM()
     {
