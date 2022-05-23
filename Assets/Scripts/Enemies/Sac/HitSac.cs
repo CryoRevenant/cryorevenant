@@ -8,6 +8,8 @@ public class HitSac : MonoBehaviour
     public int attackIndex;
     [SerializeField] float timeMoveAgain;
     [SerializeField] SpriteRenderer parentColor;
+    [SerializeField] BoxCollider2D hitTrigger;
+    [SerializeField] BoxCollider2D blockSpike;
 
     private void Start()
     {
@@ -33,12 +35,22 @@ public class HitSac : MonoBehaviour
 
     void TriggerOn()
     {
-        GetComponent<BoxCollider2D>().enabled = true;
+        hitTrigger.enabled = true;
     }
 
     void TriggerOff()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        hitTrigger.enabled = false;
+    }
+
+    public void BlockSpike()
+    {
+        blockSpike.enabled = true;
+    }
+
+    void StopBlockSpike()
+    {
+        blockSpike.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

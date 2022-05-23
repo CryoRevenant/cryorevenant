@@ -299,6 +299,17 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""eedac8eb-5795-4dad-af0f-da7f9117b951"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4bb66951-9efe-4222-9871-b6944c93597f"",
                     ""path"": ""<Gamepad>/leftStick/down"",
                     ""interactions"": """",
