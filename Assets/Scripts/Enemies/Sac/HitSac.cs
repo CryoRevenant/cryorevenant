@@ -5,14 +5,22 @@ using UnityEngine;
 public class HitSac : MonoBehaviour
 {
     Animator animator;
+
     public int attackIndex;
+
     [SerializeField] float timeMoveAgain;
     [SerializeField] SpriteRenderer parentColor;
     [SerializeField] BoxCollider2D hitTrigger;
     [SerializeField] BoxCollider2D blockSpike;
 
+    GameObject player;
+
+    EnemyMove move;
+
     private void Start()
     {
+        player = GameObject.Find("Player");
+        move = GetComponentInParent<EnemyMove>();
         animator = GetComponent<Animator>();
     }
     void Incr()
@@ -24,12 +32,8 @@ public class HitSac : MonoBehaviour
     public void Reset()
     {
         attackIndex = 0;
+        animator.SetInteger("index", attackIndex);
         animator.SetBool("isAttacking", false);
-        GetComponentInParent<SacMove>().EndAttack();
-    }
-
-    void CanMove()
-    {
         GetComponentInParent<SacMove>().EndAttack();
     }
 
@@ -73,5 +77,24 @@ public class HitSac : MonoBehaviour
         parentColor.color = Color.cyan;
         GetComponentInParent<EnemyHealth>().isBlocking = false;
         GetComponentInParent<SacMove>().StopAllCoroutines();
+    }
+
+    void Nothing()
+    {
+
+    }
+
+    void LookDirection()
+    {
+        //Le joueur est à gauche ?
+        if (player.transform.position.x < transform.position.x)
+        {
+            move.lookLeft = true;
+        }
+        else
+        {
+            move.lookLeft = false;
+        }
+        move.LookDirection();
     }
 }

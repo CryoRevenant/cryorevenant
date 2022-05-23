@@ -7,7 +7,7 @@ public class HitTrigger : MonoBehaviour
     SoldatAttack parent;
     EnemyHealth hp;
     EnemyMove move;
-    CircleCollider2D trigger;
+    BoxCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
 
     private void Start()
@@ -15,7 +15,7 @@ public class HitTrigger : MonoBehaviour
         move = GetComponentInParent<EnemyMove>();
         hp = GetComponentInParent<EnemyHealth>();
         parent = GetComponentInParent<SoldatAttack>();
-        trigger = GetComponent<CircleCollider2D>();
+        trigger = GetComponent<BoxCollider2D>();
     }
 
     void Check()
