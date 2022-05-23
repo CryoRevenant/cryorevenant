@@ -30,7 +30,7 @@ public class IceSpike : MonoBehaviour
         }
     }
 
-    void CheckFlip()
+    public void CheckFlip()
     {
         switch (gameObject.GetComponent<SpriteRenderer>().flipX)
         {
