@@ -24,6 +24,8 @@ public class EnemyHealth : MonoBehaviour
     public Animator anim;
     public bool isBlocking;
     public bool isAttacking;
+    [SerializeField] SpriteRenderer child;
+    [SerializeField] Sprite resetSprite;
 
     private void Awake()
     {
@@ -65,6 +67,8 @@ public class EnemyHealth : MonoBehaviour
             if (needUnlock)
                 elevator.GetComponent<Ascenceur>().CheckOpen();
 
+            child.GetComponent<BoxCollider2D>().enabled = false;
+            child.sprite = resetSprite;
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);
             GameManager.instance.AddScore(scoreToAdd);
