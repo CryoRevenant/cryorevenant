@@ -5,7 +5,7 @@ using UnityEngine;
 public class SacDeflect : MonoBehaviour
 {
     EnemyMove move;
-    [SerializeField] HitSac hit;
+    [SerializeField] GameObject circle;
 
     private void Start()
     {
@@ -26,7 +26,7 @@ public class SacDeflect : MonoBehaviour
                 move.lookLeft = false;
                 move.LookDirection();
             }
-            hit.GetComponent<Animator>().SetTrigger("Deflect");
+            circle.GetComponent<Animator>().SetTrigger("Deflect");
             other.GetComponent<IceSpike>().CheckFlip();
             Destroy(other.gameObject);
         }
