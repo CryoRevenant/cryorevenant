@@ -29,7 +29,7 @@ public class EnemyAttack : MonoBehaviour
     {
     }
 
-    public void CheckAttack()
+    public virtual void CheckAttack()
     {
         RaycastHit2D hit;
 
