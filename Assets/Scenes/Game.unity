@@ -5657,17 +5657,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &584658973 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5228878197166140322, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-  m_PrefabInstance: {fileID: 603750656}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &588024504
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,22 +5890,6 @@ PrefabInstance:
       propertyPath: jumpUI
       value: 
       objectReference: {fileID: 2054055583}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: dodgeUI
-      value: 
-      objectReference: {fileID: 584658973}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: inertia
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: fullBarVFX
-      value: 
-      objectReference: {fileID: 2173963660028577936, guid: 41e6abbdd94c9b04697d8df219c1307e, type: 3}
-    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: fullBarVFX_instance
-      value: 
-      objectReference: {fileID: 2173963660028577936, guid: 41e6abbdd94c9b04697d8df219c1307e, type: 3}
     - target: {fileID: 850882037, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_Camera
       value: 
@@ -5925,14 +5898,6 @@ PrefabInstance:
       propertyPath: slide
       value: 
       objectReference: {fileID: 542567209}
-    - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: canDie
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1270368439374052353, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: wallUI
       value: 
