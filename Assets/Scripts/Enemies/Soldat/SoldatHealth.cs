@@ -10,9 +10,10 @@ public class SoldatHealth : EnemyHealth
     [SerializeField] GameObject iceSlowVFX;
     [SerializeField] Vector3 freezeColor;
     GameObject instance;
+
     bool canGoDown;
     [SerializeField] float timeBlocking;
-    public float timer;
+    float timer;
 
     private void Update()
     {
@@ -46,6 +47,7 @@ public class SoldatHealth : EnemyHealth
         GetComponentInChildren<BoxCollider2D>().enabled = false;
 
         anim.runtimeAnimatorController = slowSpeed;
+        anim.SetTrigger("forceReco");
 
         ChangeColor(freezeColor);
 
@@ -66,22 +68,6 @@ public class SoldatHealth : EnemyHealth
         anim.runtimeAnimatorController = normalSpeed;
         //ChangeColor(new Vector3(255, 255, 255));
     }
-
-    // private void FixedUpdate()
-    // {
-    //     if (instance != null)
-    //     {
-    //         instance.transform.position = transform.position;
-    //     }
-    // }
-
-    // private void Update()
-    // {
-    //     if (!gameObject.activeSelf)
-    //     {
-    //         Destroy(instance);
-    //     }
-    // }
 
     void ChangeColor(Vector3 colorVector)
     {

@@ -12086,12 +12086,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 95799592}
     m_Modifications:
     - target: {fileID: 1648459890, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: dashChance
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648459890, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: minMaxTimer.y
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: speedDash
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 404204908336340054, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: maxStoppingDist
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_RootOrder

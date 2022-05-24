@@ -11,6 +11,7 @@ public class SoldatAttack : EnemyAttack
     bool willAttack;
     public bool mustBlock;
     [SerializeField] Vector2 minMaxTimer;
+    [SerializeField] int dashChance;
 
     public override void Start()
     {
@@ -33,7 +34,7 @@ public class SoldatAttack : EnemyAttack
 
     public override void Attack()
     {
-        int i = Random.Range(0, 20);
+        int i = Random.Range(0, dashChance);
 
         if (i == 1)
         {
