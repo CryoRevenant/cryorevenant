@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SacAttak : EnemyAttack
 {
-
     public override void Attack()
     {
         anim.SetBool("isAttacking", true);
@@ -14,5 +13,4 @@ public class SacAttak : EnemyAttack
     {
         anim.SetBool("isAttacking", false);
     }
-
 }

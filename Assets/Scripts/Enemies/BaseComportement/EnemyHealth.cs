@@ -83,9 +83,8 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Block()
+    public virtual void Block()
     {
-        GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
         if (move.lookLeft)
         {
             move.distDash = 1;

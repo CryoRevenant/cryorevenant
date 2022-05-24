@@ -130,7 +130,7 @@ MonoBehaviour:
   rayLengthDown: 1.3
   rayLengthSide: 1.3
   bounds: 0.8
-  showRays: 1
+  showRays: 0
 --- !u!114 &1648459890
 MonoBehaviour:
   m_ObjectHideFlags: 0

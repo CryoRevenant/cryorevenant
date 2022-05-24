@@ -74,7 +74,6 @@ public class HitTrigger : MonoBehaviour
     {
         move.canMove = true;
         hp.isAttacking = false;
-        Debug.Log("bleu");
         trigger.enabled = false;
     }
 
