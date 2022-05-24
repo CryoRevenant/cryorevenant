@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossHitTrigger : MonoBehaviour
 {
     BossAttack parent;
-    EnemyHealth hp;
+    BossHealth hp;
     BossMove move;
     CircleCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
@@ -13,7 +13,7 @@ public class BossHitTrigger : MonoBehaviour
     private void Start()
     {
         move = GetComponentInParent<BossMove>();
-        hp = GetComponentInParent<EnemyHealth>();
+        hp = GetComponentInParent<BossHealth>();
         parent = GetComponentInParent<BossAttack>();
         trigger = GetComponent<CircleCollider2D>();
     }
@@ -53,7 +53,6 @@ public class BossHitTrigger : MonoBehaviour
     void isBlocking()
     {
         colorBox.color = Color.white;
-        move.canMove = true;
         hp.isBlocking = true;
     }
 
@@ -66,6 +65,7 @@ public class BossHitTrigger : MonoBehaviour
         move.StopCoroutine("MoveOver");
         hp.isAttacking = true;
         trigger.enabled = true;
+        Invoke("StopAttack",0.25f);
     }
 
     void StopAttack()
@@ -93,7 +93,7 @@ public class BossHitTrigger : MonoBehaviour
 
     void Nothing()
     {
-        // Debug.Log("ü");
+        // Debug.Log("fuck ü");
     }
 
     void HideSprite()

@@ -20,7 +20,7 @@ public class BossMove : MonoBehaviour
 
     [Header("Raycasts")]
     public float rayLengthDown;
-    public float rayLengthSide;
+    public float rayLengthSides;
     public float bounds;
 
     [Header("Debug")]
@@ -40,8 +40,8 @@ public class BossMove : MonoBehaviour
         {
             Debug.DrawRay(new Vector2(transform.position.x + bounds, transform.position.y), Vector2.down * rayLengthDown, Color.cyan, 0.2f);
             Debug.DrawRay(new Vector2(transform.position.x - bounds, transform.position.y), Vector2.down * rayLengthDown, Color.cyan, 0.2f);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSide, Color.blue, 0.2f);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSide, Color.blue, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSides, Color.blue, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSides, Color.blue, 0.2f);
         }
         #endregion
 
@@ -60,29 +60,54 @@ public class BossMove : MonoBehaviour
         }
         #endregion
 
-        //Rays sur les côtés pour éviter que l'ennemi passe au travers des murs
-        #region RaysSide
+        //Ray au dessus de sa tête pour voir si le joueur saute par dessus lui
+        #region RayUp
 
-        int layerMask = ~LayerMask.GetMask("Box");
+        RaycastHit2D hitUp = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y+1), Vector2.up, rayLengthSides);
 
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
+        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y+1), Vector2.up*rayLengthSides,Color.red);
+
+        if (hitUp)
         {
-            StopMove();
-            Offset();
-        }
-        else
-        {
-            canMove = true;
+            if (hitUp.transform.CompareTag("Player"))
+            {
+                //Debug.Log("player jumping over");
+            }
         }
 
         #endregion
 
+        // gravity
         if (isGrounded == false)
         {
             Vector2 pos = transform.position;
             pos.y -= Time.deltaTime * speedFall;
             transform.position = pos;
         }
+
+        #region ice wall block boss
+
+        RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSides, 1<<8);
+        RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSides, 1<<8);
+
+        if (hitRight)
+        {
+            if (hitRight.transform.GetComponent<IceWall>())
+            {
+                //Debug.Log("wall Detected");
+                StopMove();
+            }
+        }
+        else if (hitLeft)
+        {
+            if (hitLeft.transform.GetComponent<IceWall>())
+            {
+                //Debug.Log("wall Detected");
+                StopMove();
+            }
+        }
+
+        #endregion
     }
 
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
@@ -95,6 +120,7 @@ public class BossMove : MonoBehaviour
             //Tant que l'ennemi doit bouger
             while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
             {
+                //Debug.Log("playing?");
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
 
                 //Le joueur est à gauche ?
@@ -123,22 +149,6 @@ public class BossMove : MonoBehaviour
     public void Reset(GameObject player)
     {
         player = null;
-    }
-
-    //Décalage de l'ennemi quand il touche un mur pour ne pas qu'il se bloque dedans
-    public void Offset()
-    {
-        int layerMask = ~LayerMask.GetMask("Default");
-
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x - 0.1f, transform.position.y, 0), Time.deltaTime * speed);
-        }
-
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
-        {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x + 0.1f, transform.position.y, 0), Time.deltaTime * speed);
-        }
     }
 
     //Flip de l'ennemi pour qu'il regarde dans la direction du joueur

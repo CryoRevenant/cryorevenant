@@ -261,6 +261,22 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
 
+            if (col[i].gameObject.CompareTag("Boss"))
+            {
+                int j = Random.Range(0, 300);
+
+                // if (j == 1)
+                // {
+                //     Debug.Log("dash");
+                //     col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
+                // }
+                if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+                {
+                    col[i].gameObject.GetComponent<BossHealth>().TakeDamage(damage);
+                    timerDamage = damageCooldown;
+                }
+            }
+
             if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
             {
                 col[i].gameObject.GetComponent<Door>().DestroyDoor();
