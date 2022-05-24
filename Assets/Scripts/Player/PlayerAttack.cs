@@ -34,6 +34,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float spikeSpeed;
     [SerializeField] private AnimationCurve spikeSpeedCurve;
     private float curSpikeSpeed;
+    [Header("VFX")]
+    [SerializeField] private GameObject fullBarVFX;
+    private GameObject jumpFullBarVFX_instance;
+    private GameObject wallFullBarVFX_instance;
+    private GameObject spikeFullBarVFX_instance;
 
     private PlayerInput controls;
     private float timerDamage;
@@ -47,6 +52,9 @@ public class PlayerAttack : MonoBehaviour
     private bool lastFlip;
     private bool isSpiking;
     private bool isWalling;
+    private bool canSpawnAttackfullBarVFX;
+    private bool canSpawnWallfullBarVFX;
+    private bool canSpawnSpikefullBarVFX;
 
     private void Awake()
     {
@@ -56,8 +64,11 @@ public class PlayerAttack : MonoBehaviour
         timerWall = wallCooldown;
         timerSpike = spikeCooldown;
         wallUI.padding = new Vector4(0, 0, 0, 99);
+        canSpawnWallfullBarVFX = true;
         spikeUI.padding = new Vector4(0, 0, 0, 106);
+        canSpawnSpikefullBarVFX = true;
         attackUI.padding = new Vector4(0, 0, 0, 113);
+        canSpawnAttackfullBarVFX = true;
         #endregion
 
         #region get
@@ -135,6 +146,7 @@ public class PlayerAttack : MonoBehaviour
             GetComponent<IceBar>().AddBar(iceToAdd);
             //Debug.Log("stop dashing");
             attackUI.padding = new Vector4(0, 0, 0, 113);
+            canSpawnAttackfullBarVFX = true;
 
             timerAttack = attackCooldown;
         }
@@ -171,6 +183,8 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
             wallUI.padding = new Vector4(0, 0, 0, 99);
+            canSpawnWallfullBarVFX = true;
+
             timerWall = wallCooldown;
         }
 
@@ -208,6 +222,7 @@ public class PlayerAttack : MonoBehaviour
             //StartCoroutine(StopWallAnim());
             GetComponent<IceBar>().AddBar(iceToAdd);
             spikeUI.padding = new Vector4(0, 0, 0, 106);
+            canSpawnSpikefullBarVFX = true;
             timerSpike = spikeCooldown;
         }
 
@@ -313,6 +328,19 @@ public class PlayerAttack : MonoBehaviour
 
         // UI sliding
         spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown*2, 4, 106));
+
+        if (spikeUI.padding.w <= 4 && canSpawnSpikefullBarVFX)
+        {
+            spikeFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y, -5), Quaternion.Euler(-90, 0, 0));
+            spikeFullBarVFX_instance.transform.SetParent(spikeUI.transform, false);
+            Destroy(spikeFullBarVFX_instance, 0.5f);
+            canSpawnSpikefullBarVFX = false;
+        }
+
+        if (spikeFullBarVFX_instance != null)
+        {
+            spikeFullBarVFX_instance.transform.position = new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y + 0.5f, -5);
+        }
         #endregion
 
         #region mur de glace
@@ -320,6 +348,20 @@ public class PlayerAttack : MonoBehaviour
         float w = wallUI.padding.w;
         w -= wallCooldown/2.05f;
         wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
+
+        if (wallUI.padding.w <= 0 && canSpawnWallfullBarVFX)
+        {
+            wallFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(wallUI.transform.position.x, wallUI.transform.position.y, -5), Quaternion.Euler(-90, 0, 0));
+            wallFullBarVFX_instance.transform.SetParent(wallUI.transform, false);
+            Destroy(wallFullBarVFX_instance, 0.5f);
+            canSpawnWallfullBarVFX = false;
+        }
+
+
+        if (wallFullBarVFX_instance != null)
+        {
+            wallFullBarVFX_instance.transform.position = new Vector3(wallUI.transform.position.x, wallUI.transform.position.y + 0.5f, -5);
+        }
         #endregion
 
         #region attack
@@ -327,6 +369,19 @@ public class PlayerAttack : MonoBehaviour
         float a_w = attackUI.padding.w;
         a_w -= 4f;
         attackUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(a_w, 3, 113));
+        
+        if(attackUI.padding.w <= 3 && canSpawnAttackfullBarVFX)
+        {
+            jumpFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(attackUI.transform.position.x, attackUI.transform.position.y, -5), Quaternion.Euler(-90, 0, 0));
+            jumpFullBarVFX_instance.transform.SetParent(attackUI.transform, false);
+            Destroy(jumpFullBarVFX_instance, 0.5f);
+            canSpawnAttackfullBarVFX = false;
+        }
+
+        if (jumpFullBarVFX_instance != null)
+        {
+            jumpFullBarVFX_instance.transform.position = new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 0.5f, -5);
+        }
         #endregion
     }
 

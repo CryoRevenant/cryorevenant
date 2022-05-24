@@ -1149,6 +1149,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  fullBarVFX: {fileID: 2173963660028577936, guid: 41e6abbdd94c9b04697d8df219c1307e, type: 3}
 --- !u!114 &187057646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,7 +1240,7 @@ MonoBehaviour:
   dodgeDistance: 3.75
   dodgeSpeed: 15
   dodgeCooldown: 0.5
-  dodgeUI: {fileID: 0}
+  dodgeUI: {fileID: 5228878197166140322}
   dashTime: 0
   isGroundedL: 0
   isGroundedR: 0
@@ -1257,7 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  canDie: 1
+  canDie: 0
 --- !u!114 &1861171816
 MonoBehaviour:
   m_ObjectHideFlags: 0
