@@ -6,27 +6,51 @@ using UnityEngine.UI;
 public class IceBar : MonoBehaviour
 {
     public float iceAmount;
-    [SerializeField] Slider slide;
+    float amountToLose;
+
+    float timer;
+    [SerializeField] float hurtTimer;
+
+    bool hurt;
+
+    [SerializeField] Slider backSlide;
+    [SerializeField] Slider frontSlide;
     [SerializeField] float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        timer = hurtTimer;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hurt)
+        {
+            timer -= Time.deltaTime;
+        }
 
+        if (timer <= 0)
+        {
+            LoseBar();
+        }
     }
 
     public void AddBar(int amount)
     {
-        iceAmount += amount;
-        slide.value = iceAmount;
+        amountToLose += amount;
 
-        if (iceAmount >= 100)
+        frontSlide.value = 100 - amountToLose;
+
+        hurt = true;
+        timer = hurtTimer;
+    }
+
+    void LoseBar()
+    {
+        backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+        if (iceAmount <= 0)
         {
             GetComponent<PlayerHP>().Death();
         }
@@ -34,14 +58,14 @@ public class IceBar : MonoBehaviour
 
     public IEnumerator ResetBar()
     {
-        while (iceAmount >= 0)
+        while (iceAmount <= 100)
         {
-            iceAmount -= 1 * speed;
-            slide.value = iceAmount;
+            iceAmount += 1 * speed;
+            backSlide.value = iceAmount;
 
             yield return new WaitForSeconds(0.01f);
         }
-        iceAmount = 0;
+        iceAmount = 100;
         StopCoroutine("ResetBar");
     }
 }
