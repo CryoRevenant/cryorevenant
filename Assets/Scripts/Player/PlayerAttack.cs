@@ -339,7 +339,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (spikeFullBarVFX_instance != null)
         {
-            spikeFullBarVFX_instance.transform.position = new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y + 0.5f, -5);
+            spikeFullBarVFX_instance.transform.position = new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y + 1f, -5);
         }
         #endregion
 
@@ -360,7 +360,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (wallFullBarVFX_instance != null)
         {
-            wallFullBarVFX_instance.transform.position = new Vector3(wallUI.transform.position.x, wallUI.transform.position.y + 0.5f, -5);
+            wallFullBarVFX_instance.transform.position = new Vector3(wallUI.transform.position.x, wallUI.transform.position.y + 1f -5);
         }
         #endregion
 
@@ -380,7 +380,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (jumpFullBarVFX_instance != null)
         {
-            jumpFullBarVFX_instance.transform.position = new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 0.5f, -5);
+            jumpFullBarVFX_instance.transform.position = new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 1f, -5);
         }
         #endregion
     }

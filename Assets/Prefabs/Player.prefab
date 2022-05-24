@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead: 0
-  canDie: 0
+  canDie: 1
 --- !u!114 &1861171816
 MonoBehaviour:
   m_ObjectHideFlags: 0
