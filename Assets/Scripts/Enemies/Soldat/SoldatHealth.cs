@@ -10,6 +10,23 @@ public class SoldatHealth : EnemyHealth
     [SerializeField] GameObject iceSlowVFX;
     [SerializeField] Vector3 freezeColor;
     GameObject instance;
+    bool canGoDown;
+    [SerializeField] float timeBlocking;
+
+    private void Update()
+    {
+        if (canGoDown)
+        {
+            timeBlocking = -Time.deltaTime;
+        }
+
+        if (timeBlocking <= 0)
+        {
+            canGoDown = false;
+            timeBlocking = 1;
+            GetComponent<SoldatAttack>().mustBlock = false;
+        }
+    }
 
     public void Slowed()
     {
@@ -34,27 +51,35 @@ public class SoldatHealth : EnemyHealth
         Invoke("NormalSpeed", 4f);
     }
 
+    public override void Block()
+    {
+        base.Block();
+        canGoDown = true;
+        GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
+        GetComponent<SoldatAttack>().mustBlock = false;
+    }
+
     public void NormalSpeed()
     {
         anim.runtimeAnimatorController = normalSpeed;
         //ChangeColor(new Vector3(255, 255, 255));
     }
 
-    private void FixedUpdate()
-    {
-        if (instance != null)
-        {
-            instance.transform.position = transform.position;
-        }
-    }
+    // private void FixedUpdate()
+    // {
+    //     if (instance != null)
+    //     {
+    //         instance.transform.position = transform.position;
+    //     }
+    // }
 
-    private void Update()
-    {
-        if (!gameObject.activeSelf)
-        {
-            Destroy(instance);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (!gameObject.activeSelf)
+    //     {
+    //         Destroy(instance);
+    //     }
+    // }
 
     void ChangeColor(Vector3 colorVector)
     {

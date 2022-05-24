@@ -9,6 +9,7 @@ public class SoldatAttack : EnemyAttack
 
     float timer;
     bool willAttack;
+    public bool mustBlock = false;
     [SerializeField] Vector2 minMaxTimer;
 
     public override void Start()
@@ -19,11 +20,12 @@ public class SoldatAttack : EnemyAttack
 
     private void Update()
     {
-        if (willAttack)
+        if (willAttack && !mustBlock)
         {
             timer -= Time.deltaTime;
         }
-        if (timer <= 0)
+
+        if (timer <= 0 && willAttack)
         {
             PreAttack();
         }
@@ -31,7 +33,7 @@ public class SoldatAttack : EnemyAttack
 
     public override void Attack()
     {
-        int i = Random.Range(0, 10);
+        int i = Random.Range(0, 20);
 
         if (i == 1)
         {
@@ -47,6 +49,7 @@ public class SoldatAttack : EnemyAttack
 
     public void PreAttack()
     {
+        willAttack = false;
         anim.SetBool("isPreAttack", true);
         timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
     }
