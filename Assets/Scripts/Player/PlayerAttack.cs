@@ -331,7 +331,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (spikeUI.padding.w <= 4 && canSpawnSpikefullBarVFX)
         {
-            spikeFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y, -5), Quaternion.Euler(-90, 0, 0));
+            spikeFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y + 0.5f, attackUI.transform.position.z), Quaternion.Euler(-90, 0, 0));
             spikeFullBarVFX_instance.transform.SetParent(spikeUI.transform, false);
             Destroy(spikeFullBarVFX_instance, 0.5f);
             canSpawnSpikefullBarVFX = false;
@@ -339,7 +339,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (spikeFullBarVFX_instance != null)
         {
-            spikeFullBarVFX_instance.transform.position = new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y + 1f, -5);
+            spikeFullBarVFX_instance.transform.position = new Vector3(spikeUI.transform.position.x, spikeUI.transform.position.y + 0.5f, attackUI.transform.position.z);
         }
         #endregion
 
@@ -351,7 +351,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (wallUI.padding.w <= 0 && canSpawnWallfullBarVFX)
         {
-            wallFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(wallUI.transform.position.x, wallUI.transform.position.y, -5), Quaternion.Euler(-90, 0, 0));
+            wallFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(wallUI.transform.position.x, wallUI.transform.position.y + 0.5f, attackUI.transform.position.z), Quaternion.Euler(-90, 0, 0));
             wallFullBarVFX_instance.transform.SetParent(wallUI.transform, false);
             Destroy(wallFullBarVFX_instance, 0.5f);
             canSpawnWallfullBarVFX = false;
@@ -360,7 +360,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (wallFullBarVFX_instance != null)
         {
-            wallFullBarVFX_instance.transform.position = new Vector3(wallUI.transform.position.x, wallUI.transform.position.y + 1f -5);
+            wallFullBarVFX_instance.transform.position = new Vector3(wallUI.transform.position.x, wallUI.transform.position.y + 0.5f, attackUI.transform.position.z);
         }
         #endregion
 
@@ -372,7 +372,7 @@ public class PlayerAttack : MonoBehaviour
         
         if(attackUI.padding.w <= 3 && canSpawnAttackfullBarVFX)
         {
-            jumpFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(attackUI.transform.position.x, attackUI.transform.position.y, -5), Quaternion.Euler(-90, 0, 0));
+            jumpFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 0.5f, attackUI.transform.position.z), Quaternion.Euler(-90, 0, 0));
             jumpFullBarVFX_instance.transform.SetParent(attackUI.transform, false);
             Destroy(jumpFullBarVFX_instance, 0.5f);
             canSpawnAttackfullBarVFX = false;
@@ -380,7 +380,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (jumpFullBarVFX_instance != null)
         {
-            jumpFullBarVFX_instance.transform.position = new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 1f, -5);
+            jumpFullBarVFX_instance.transform.position = new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 0.5f, attackUI.transform.position.z);
         }
         #endregion
     }
