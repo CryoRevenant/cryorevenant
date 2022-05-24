@@ -151,7 +151,7 @@ MonoBehaviour:
   player: {fileID: 0}
   anim: {fileID: 0}
   index: 0
-  minMaxTimer: {x: 0, y: 0}
+  minMaxTimer: {x: 0, y: 3}
 --- !u!114 &7154254564743513250
 MonoBehaviour:
   m_ObjectHideFlags: 0
