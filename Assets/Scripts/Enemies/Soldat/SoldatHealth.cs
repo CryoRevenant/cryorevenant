@@ -12,18 +12,19 @@ public class SoldatHealth : EnemyHealth
     GameObject instance;
     bool canGoDown;
     [SerializeField] float timeBlocking;
+    public float timer;
 
     private void Update()
     {
         if (canGoDown)
         {
-            timeBlocking = -Time.deltaTime;
+            timer -= Time.deltaTime;
         }
 
-        if (timeBlocking <= 0)
+        if (timer < 0)
         {
             canGoDown = false;
-            timeBlocking = 1;
+            timer = timeBlocking;
             GetComponent<SoldatAttack>().mustBlock = false;
         }
     }
@@ -54,9 +55,10 @@ public class SoldatHealth : EnemyHealth
     public override void Block()
     {
         base.Block();
+        timer = timeBlocking;
         canGoDown = true;
         GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
-        GetComponent<SoldatAttack>().mustBlock = false;
+        GetComponent<SoldatAttack>().mustBlock = true;
     }
 
     public void NormalSpeed()

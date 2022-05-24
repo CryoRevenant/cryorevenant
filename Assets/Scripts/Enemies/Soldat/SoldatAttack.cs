@@ -9,7 +9,7 @@ public class SoldatAttack : EnemyAttack
 
     float timer;
     bool willAttack;
-    public bool mustBlock = false;
+    public bool mustBlock;
     [SerializeField] Vector2 minMaxTimer;
 
     public override void Start()
