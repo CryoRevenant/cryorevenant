@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!isBlocking)
+        if (!isBlocking && !isAttacking)
         {
             currHP -= damage;
             CheckSac();
@@ -57,7 +57,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Recoil();
         }
-        else
+        else if (isBlocking)
         {
             Block();
         }
@@ -85,6 +85,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Block()
     {
+        GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
         if (move.lookLeft)
         {
             move.distDash = 1;
@@ -104,6 +105,7 @@ public class EnemyHealth : MonoBehaviour
         if (move.lookLeft)
         {
             move.distDash = 3;
+            isAttacking = false;
             move.StartCoroutine("Dash", 1);
             anim.SetTrigger("forceReco");
             move.distDash = 4;
@@ -111,6 +113,7 @@ public class EnemyHealth : MonoBehaviour
         else
         {
             move.distDash = 3;
+            isAttacking = false;
             anim.SetTrigger("forceReco");
             move.StartCoroutine("Dash", 0);
             move.distDash = 4;

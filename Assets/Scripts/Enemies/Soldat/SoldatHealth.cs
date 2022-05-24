@@ -25,7 +25,7 @@ public class SoldatHealth : EnemyHealth
             Destroy(instance, 4f);
         }
 
-        GetComponentInChildren<CircleCollider2D>().enabled = false;
+        GetComponentInChildren<BoxCollider2D>().enabled = false;
 
         anim.runtimeAnimatorController = slowSpeed;
 

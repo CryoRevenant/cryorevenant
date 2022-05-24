@@ -59,11 +59,13 @@ public class HitTrigger : MonoBehaviour
 
     void isAttacking()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
-        hp.isBlocking = false;
         colorBox.color = Color.red;
+
+        hp.isBlocking = false;
         move.canMove = false;
+
         move.StopCoroutine("MoveOver");
+
         hp.isAttacking = true;
         trigger.enabled = true;
     }
@@ -72,8 +74,8 @@ public class HitTrigger : MonoBehaviour
     {
         move.canMove = true;
         hp.isAttacking = false;
+        Debug.Log("bleu");
         trigger.enabled = false;
-        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void StopDash()
