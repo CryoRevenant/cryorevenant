@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("IceBar")]
     [SerializeField] private int iceToAdd;
+    [SerializeField] GameObject bulletIce;
     [Header("Slash")]
     [SerializeField] private RectMask2D attackUI;
     [SerializeField] private GameObject slashEffect;
@@ -159,7 +160,7 @@ public class PlayerAttack : MonoBehaviour
         //Debug.Log("isSpiking" + IsSpiking());
         //Debug.Log("isWalling" + IsWalling());
 
-        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y==0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
+        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
         {
             isWalling = true;
             //Debug.Log("ice wall");
@@ -168,13 +169,13 @@ public class PlayerAttack : MonoBehaviour
             {
                 case true:
                     wallEffect2.SetActive(true);
-                    wallEffect2.GetComponent<Animator>().SetBool("Build",true);
+                    wallEffect2.GetComponent<Animator>().SetBool("Build", true);
                     GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
                     instance.GetComponent<SpriteRenderer>().flipX = true;
                     break;
                 case false:
                     wallEffect.SetActive(true);
-                    wallEffect.GetComponent<Animator>().SetBool("Build",true);
+                    wallEffect.GetComponent<Animator>().SetBool("Build", true);
                     GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
                     instance2.GetComponent<SpriteRenderer>().flipX = false;
                     break;
@@ -190,7 +191,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (isWalling)
         {
-            Invoke("StopWalling",0.25f);
+            Invoke("StopWalling", 0.25f);
         }
         #endregion
 
@@ -240,6 +241,12 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
 
         //Debug.Log(col.Length);
+
+        if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+        {
+            Instantiate(bulletIce, transform.position, transform.rotation);
+            timerDamage = damageCooldown;
+        }
 
         for (int i = 0; i < col.Length; i++)
         {
@@ -314,7 +321,7 @@ public class PlayerAttack : MonoBehaviour
 
             slashEffect.SetActive(false);
             slashEffect.GetComponent<Animator>().SetBool("Recover", false);
-            
+
             wallEffect.SetActive(false);
             wallEffect.GetComponent<Animator>().SetBool("Build", false);
         }
@@ -330,20 +337,20 @@ public class PlayerAttack : MonoBehaviour
         if (instance != null)
         {
             //Debug.Log(gameObject.GetComponent<PlayerControllerV2>().curVelocitySpeed);
-            spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed - (controls.currentActionMap.FindAction("Move").ReadValue<float>()*20 - gameObject.GetComponent<PlayerControllerV2>().dashTime * 150), spikeLerp.y) * -instance.transform.right, curseur);
+            spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed - (controls.currentActionMap.FindAction("Move").ReadValue<float>() * 20 - gameObject.GetComponent<PlayerControllerV2>().dashTime * 150), spikeLerp.y) * -instance.transform.right, curseur);
             Vector2 nextPos = new Vector2(instance.transform.position.x + spikeLerp.x * Time.deltaTime, instance.transform.position.y);
             instance.transform.position = nextPos;
         }
 
         if (instance2 != null)
         {
-            spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed + (controls.currentActionMap.FindAction("Move").ReadValue<float>()* 20 + gameObject.GetComponent<PlayerControllerV2>().dashTime * 150), spikeLerp.y) * instance2.transform.right, curseur);
+            spikeLerp = Vector2.Lerp(spikeLerp, new Vector2(curSpikeSpeed + (controls.currentActionMap.FindAction("Move").ReadValue<float>() * 20 + gameObject.GetComponent<PlayerControllerV2>().dashTime * 150), spikeLerp.y) * instance2.transform.right, curseur);
             Vector2 nextPos = new Vector2(instance2.transform.position.x + spikeLerp.x * Time.deltaTime, instance2.transform.position.y);
             instance2.transform.position = nextPos;
         }
 
         // UI sliding
-        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown*2, 4, 106));
+        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown * 2, 4, 106));
 
         if (spikeUI.padding.w <= 4 && canSpawnSpikefullBarVFX)
         {
@@ -362,7 +369,7 @@ public class PlayerAttack : MonoBehaviour
         #region mur de glace
         // UI sliding
         float w = wallUI.padding.w;
-        w -= wallCooldown/2.05f;
+        w -= wallCooldown / 2.05f;
         wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
 
         if (wallUI.padding.w <= 0 && canSpawnWallfullBarVFX)
@@ -385,8 +392,8 @@ public class PlayerAttack : MonoBehaviour
         float a_w = attackUI.padding.w;
         a_w -= 4f;
         attackUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(a_w, 3, 113));
-        
-        if(attackUI.padding.w <= 3 && canSpawnAttackfullBarVFX)
+
+        if (attackUI.padding.w <= 3 && canSpawnAttackfullBarVFX)
         {
             jumpFullBarVFX_instance = Instantiate(fullBarVFX, new Vector3(attackUI.transform.position.x, attackUI.transform.position.y + 0.5f, attackUI.transform.position.z), Quaternion.Euler(-90, 0, 0));
             jumpFullBarVFX_instance.transform.SetParent(attackUI.transform, false);
@@ -472,7 +479,7 @@ public class PlayerAttack : MonoBehaviour
             return false;
         }
     }
-    
+
     /// <summary>
     /// Return true if player is spiking and false if not
     /// </summary>
