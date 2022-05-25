@@ -1110,7 +1110,8 @@ MonoBehaviour:
   attackPosDistance: {x: 9, y: 0}
   damage: 1
   attackRange: 1.25
-  iceToAdd: 3
+  iceToAdd: 10
+  bulletIce: {fileID: 3735857859253915606, guid: 4215b5dd38a01f84ca37224316812ce2, type: 3}
   attackUI: {fileID: 0}
   slashEffect: {fileID: 4090795653219881510}
   slashEffect2: {fileID: 3684784278935499521}
@@ -1207,7 +1208,7 @@ MonoBehaviour:
   jumpUI: {fileID: 0}
   moveSpeed: 16
   accelSpeed: 35
-  inertia: 10
+  inertia: 7
   accelCurve:
     serializedVersion: 2
     m_Curve:
@@ -1271,8 +1272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1ee52ba54ecb54f8591174c109824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceAmount: 0
-  slide: {fileID: 0}
+  iceAmount: 100
+  hurtTimer: 2
+  backSlide: {fileID: 0}
+  frontSlide: {fileID: 0}
   speed: 6
 --- !u!1 &7778891271889976451
 GameObject:
@@ -1511,8 +1514,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 7778891271729684176}
     m_Modifications:
     - target: {fileID: 1831990091175572492, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831990091175572492, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831990091175572492, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 39899
+      objectReference: {fileID: 0}
+    - target: {fileID: 1831990091175572492, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime2
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 2908895625802168033, guid: d7ca96b24af46ba41b67917e9a2f4151, type: 3}
       propertyPath: m_RootOrder
