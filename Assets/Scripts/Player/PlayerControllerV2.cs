@@ -576,9 +576,12 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 //Debug.Log(hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask);
 
-                if (hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask == 767)
+                if (hit.collider.gameObject.GetComponent<PlatformEffector2D>())
                 {
-                    isOnBox = true;
+                    if(hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask == 767)
+                    {
+                        isOnBox = true;
+                    }
                 }
             }
         }

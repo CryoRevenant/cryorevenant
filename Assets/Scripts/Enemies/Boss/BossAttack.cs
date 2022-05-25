@@ -28,7 +28,7 @@ public class BossAttack : MonoBehaviour
 
     private void Update()
     {
-        if (player.GetComponent<PlayerControllerV2>().IsDashing())
+        if (player.GetComponent<PlayerControllerV2>().IsDashing() && gameObject.GetComponent<BossMove>().canMove)
         {
             Attack();
         }

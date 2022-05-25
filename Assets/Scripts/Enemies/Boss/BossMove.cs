@@ -29,6 +29,7 @@ public class BossMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isDashing = false;
     }
 
     // Update is called once per frame
@@ -72,6 +73,8 @@ public class BossMove : MonoBehaviour
             if (hitUp.transform.CompareTag("Player"))
             {
                 //Debug.Log("player jumping over");
+                StartCoroutine(Dash(hitUp.transform.GetChild(0).gameObject));
+                gameObject.GetComponent<BossAttack>().Attack();
             }
         }
 
@@ -89,9 +92,12 @@ public class BossMove : MonoBehaviour
 
         RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSides, 1<<8);
         RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSides, 1<<8);
+        //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSides, Color.red);
+        //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSides, Color.red);
 
         if (hitRight)
         {
+            //Debug.Log(hitRight.transform.name);
             if (hitRight.transform.GetComponent<IceWall>())
             {
                 //Debug.Log("wall Detected");
@@ -100,6 +106,7 @@ public class BossMove : MonoBehaviour
         }
         else if (hitLeft)
         {
+            //Debug.Log(hitRight.transform.name);
             if (hitLeft.transform.GetComponent<IceWall>())
             {
                 //Debug.Log("wall Detected");
@@ -168,5 +175,38 @@ public class BossMove : MonoBehaviour
     {
         canMove = false;
         StopCoroutine("MoveOver");
+    }
+
+    public IEnumerator Dash(GameObject player)
+    {
+        if (isDashing == false)
+        {
+            isDashing = true;
+            StopMove();
+
+            Vector3 newPos;
+
+            if (player.GetComponent<SpriteRenderer>().flipX)
+            {
+                newPos = new Vector3(transform.position.x - distDash, transform.position.y, 0);
+            }
+            else
+            {
+                newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
+            }
+
+            while (isDashing == true)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
+
+                if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
+                {
+                    isDashing = false;
+                }
+                yield return new WaitForSeconds(0.01f);
+            }
+
+            canMove = true;
+        }
     }
 }
