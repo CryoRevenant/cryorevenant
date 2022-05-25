@@ -268,15 +268,36 @@ public class PlayerAttack : MonoBehaviour
             {
                 int j = Random.Range(0, 300);
 
-                // if (j == 1)
-                // {
-                //     Debug.Log("dash");
-                //     col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
-                // }
-                if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+                switch (playerSprite.flipX)
                 {
-                    col[i].gameObject.GetComponent<BossHealth>().TakeDamage(damage);
-                    timerDamage = damageCooldown;
+                    case false:
+                        RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.right, 2.5f);
+
+                        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), Vector2.right * 2.5f, Color.red);
+
+                        if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0 && hitRight)
+                        {
+                            if (hitRight.transform.gameObject.GetComponent<BossHealth>())
+                            {
+                                col[i].gameObject.GetComponent<BossHealth>().TakeDamage(damage);
+                                timerDamage = damageCooldown;
+                            }
+                        }
+                        break;
+                    case true:
+                        RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), -Vector2.right, 2.5f);
+
+                        Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), -Vector2.right * 2.5f, Color.red);
+
+                        if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0 && hitLeft)
+                        {
+                            if (hitLeft.transform.gameObject.GetComponent<BossHealth>())
+                            {
+                                col[i].gameObject.GetComponent<BossHealth>().TakeDamage(damage);
+                                timerDamage = damageCooldown;
+                            }
+                        }
+                        break;
                 }
             }
 

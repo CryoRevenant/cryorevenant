@@ -15,8 +15,13 @@ public class IceSpike : MonoBehaviour
                 if (collision.gameObject.GetComponent<SoldatHealth>() != null)
                 {
                     collision.gameObject.GetComponent<SoldatHealth>().Slowed();
+                    collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(0.5f);
                 }
-                collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(0.5f);
+
+                if (collision.gameObject.GetComponent<BossHealth>())
+                {
+                    collision.gameObject.GetComponent<BossHealth>().TakeDamage(0.5f);
+                }
             }
 
             CheckFlip();
