@@ -107,6 +107,8 @@ public class PlayerAttack : MonoBehaviour
         timerAttack -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack <= 0)
         {
+            Instantiate(bulletIce, transform.position, transform.rotation);
+
             switch (playerSprite.flipX)
             {
                 case true:
@@ -241,12 +243,6 @@ public class PlayerAttack : MonoBehaviour
         Collider2D[] col = Physics2D.OverlapCircleAll(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
 
         //Debug.Log(col.Length);
-
-        if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
-        {
-            Instantiate(bulletIce, transform.position, transform.rotation);
-            timerDamage = damageCooldown;
-        }
 
         for (int i = 0; i < col.Length; i++)
         {
