@@ -107,8 +107,10 @@ public class PlayerAttack : MonoBehaviour
         timerAttack -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack <= 0)
         {
-            Instantiate(bulletIce, transform.position, transform.rotation);
-
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(bulletIce, transform.position, transform.rotation);
+            }
             switch (playerSprite.flipX)
             {
                 case true:
