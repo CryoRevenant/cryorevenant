@@ -49,7 +49,10 @@ public class IceBar : MonoBehaviour
 
     void LoseBar()
     {
-        backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+        //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+        backSlide.value = 100 - amountToLose;
+        hurt = false;
+
         if (iceAmount <= 0)
         {
             GetComponent<PlayerHP>().Death();
