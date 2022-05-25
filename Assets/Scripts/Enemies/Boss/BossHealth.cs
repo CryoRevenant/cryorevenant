@@ -11,7 +11,7 @@ public class BossHealth : MonoBehaviour
     [Header("Index")]
     [SerializeField] float scoreToAdd;
 
-    EnemyMove move;
+    BossMove move;
 
     [Header("Animation")]
     public Animator anim;
@@ -24,7 +24,7 @@ public class BossHealth : MonoBehaviour
     {
         currHP = hp;
         anim = GetComponentInChildren<Animator>();
-        move = GetComponent<EnemyMove>();
+        move = GetComponent<BossMove>();
     }
 
     public void TakeDamage(float damage)
