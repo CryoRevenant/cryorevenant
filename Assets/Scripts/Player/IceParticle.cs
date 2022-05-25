@@ -5,31 +5,57 @@ using UnityEngine;
 public class IceParticle : MonoBehaviour
 {
     Transform destination;
-    Vector3 origin;
+    Vector2 vDest;
+    Vector2 origin;
+
+    GameObject[] medianPoints;
+    Vector2 p1;
+
     [SerializeField] float speed;
-    float travel = 0;
+    float t = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.SetParent(destination);
         destination = GameObject.Find("ParticlePoint").transform;
+        gameObject.transform.SetParent(destination);
+        vDest = new Vector2(destination.position.x, destination.position.y);
+
+        int i = Random.Range(0, 8);
+        medianPoints = GameObject.FindGameObjectsWithTag("Median");
+        p1 = medianPoints[i].transform.position;
+
         origin = gameObject.transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 vectorDest = new Vector3(destination.position.x, destination.position.y, 0);
-        travel += Time.deltaTime * speed;
-        transform.position = Vector3.Slerp(origin, vectorDest, travel);
+        if (t <= 1)
+        {
+            t += Time.deltaTime * speed;
+            transform.position = BezierCurve();
+            vDest = new Vector2(destination.position.x, destination.position.y);
+        }
+        else
+        {
+            Hit();
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void Hit()
     {
-        if (other.CompareTag("Particle"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
+    }
+
+    Vector2 BezierCurve()
+    {
+        float u = 1 - t;
+        float tt = t * t;
+        float uu = u * u;
+
+        Vector2 point = uu * origin;
+        point += 2 * u * t * p1;
+        point += tt * vDest;
+        return point;
     }
 }
