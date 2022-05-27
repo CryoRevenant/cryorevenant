@@ -7,11 +7,14 @@ public class IceParticle : MonoBehaviour
     Transform destination;
     Vector2 vDest;
     Vector2 origin;
-
-    GameObject[] medianPoints;
     Vector2 p1;
 
+    [SerializeField] GameObject particle;
+
+    GameObject[] medianPoints;
+
     [SerializeField] float speed;
+    float offset;
     float t = 0;
 
     // Start is called before the first frame update
@@ -21,11 +24,13 @@ public class IceParticle : MonoBehaviour
         gameObject.transform.SetParent(destination);
         vDest = new Vector2(destination.position.x, destination.position.y);
 
-        int i = Random.Range(0, 8);
+        int i = Random.Range(0, 4);
         medianPoints = GameObject.FindGameObjectsWithTag("Median");
         p1 = medianPoints[i].transform.position;
 
         origin = gameObject.transform.position;
+
+        offset = Random.Range(-2.5f, 2.5f);
     }
 
     void Update()
@@ -34,7 +39,7 @@ public class IceParticle : MonoBehaviour
         {
             t += Time.deltaTime * speed;
             transform.position = BezierCurve();
-            vDest = new Vector2(destination.position.x, destination.position.y);
+            vDest = new Vector2(destination.position.x + offset, destination.position.y);
         }
         else
         {
@@ -44,6 +49,7 @@ public class IceParticle : MonoBehaviour
 
     void Hit()
     {
+        Instantiate(particle, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
