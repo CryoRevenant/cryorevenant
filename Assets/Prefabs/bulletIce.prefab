@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6303490245396379792}
   - component: {fileID: -1645579202179659986}
   m_Layer: 0
-  m_Name: ParticleBar
+  m_Name: bulletIce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ TrailRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0.001
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!114 &6303490245396379792
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b0d7e2fbe1fdd468628689e94f12e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 758235307801036958, guid: b46c9d7e1e90e2446af2951047eb0643, type: 3}
   speed: 2
 --- !u!58 &-1645579202179659986
 CircleCollider2D:
