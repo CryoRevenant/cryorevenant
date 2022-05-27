@@ -10,7 +10,6 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] GameObject menuCanvas;
     [SerializeField] GameObject optionCanvas;
     [SerializeField] GameObject creditCanvas;
-    GameObject[] buttons;
 
     [Header("Fade")]
     [SerializeField] SpriteRenderer background;
@@ -21,7 +20,6 @@ public class SceneManagerMenu : MonoBehaviour
 
     void Start()
     {
-        buttons = GameObject.FindGameObjectsWithTag("Buttons");
     }
 
     public void StartGame()
@@ -33,24 +31,28 @@ public class SceneManagerMenu : MonoBehaviour
     {
         menuCanvas.SetActive(false);
         optionCanvas.SetActive(true);
+        creditCanvas.SetActive(false);
     }
 
     public void HideOptions()
     {
         menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
+        creditCanvas.SetActive(false);
     }
 
     public void ShowCredits()
     {
-        creditCanvas.SetActive(true);
         menuCanvas.SetActive(false);
+        optionCanvas.SetActive(false);
+        creditCanvas.SetActive(true);
     }
 
     public void HideCredits()
     {
-        creditCanvas.SetActive(false);
         menuCanvas.SetActive(true);
+        optionCanvas.SetActive(false);
+        creditCanvas.SetActive(false);
     }
 
     public void Quit()
@@ -99,10 +101,6 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (alphaMod.a <= 0)
             {
-                foreach (GameObject item in buttons)
-                {
-                    item.GetComponent<Button>().interactable = true;
-                }
                 StopCoroutine("Fade");
             }
         }
@@ -110,11 +108,9 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void StartFade(int i)
     {
-        //Debug.Log("helo");
-        foreach (GameObject item in buttons)
+        if (!isFading)
         {
-            item.GetComponent<Button>().interactable = false;
+            StartCoroutine(Fade(i));
         }
-        StartCoroutine(Fade(i));
     }
 }

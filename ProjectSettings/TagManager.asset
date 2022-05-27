@@ -13,6 +13,7 @@ TagManager:
   - Boss
   - Particle
   - Median
+  - Button
   layers:
   - Default
   - TransparentFX
