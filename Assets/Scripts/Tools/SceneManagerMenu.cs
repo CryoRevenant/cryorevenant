@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class SceneManagerMenu : MonoBehaviour
 {
@@ -16,15 +16,42 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float fadeWaitTime;
     bool isFading;
-    int test;
+    [SerializeField] int sceneIndex;
 
-    void Start()
+    [Header("Pause")]
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pauseButtons;
+    [SerializeField] GameObject optionMenu;
+    GameObject player;
+    PlayerInput controls;
+
+    private void Start()
     {
+        if (sceneIndex == 1)
+        {
+            player = GameObject.Find("Player");
+            controls = player.GetComponent<PlayerInput>();
+        }
+    }
+    private void Update()
+    {
+        if (sceneIndex == 1)
+        {
+            if (controls.currentActionMap.FindAction("Pause").triggered)
+            {
+                PauseMenu();
+            }
+            else
+            {
+            }
+        }
     }
 
+    #region MenuPrincipal
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+        sceneIndex++;
     }
 
     public void ShowOption()
@@ -113,4 +140,43 @@ public class SceneManagerMenu : MonoBehaviour
             StartCoroutine(Fade(i));
         }
     }
+    #endregion
+
+    #region PauseMenu
+
+    public void PauseMenu()
+    {
+        player.GetComponent<PlayerAttack>().enabled = false;
+        player.GetComponent<PlayerControllerV2>().enabled = false;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void HidePauseMenu()
+    {
+        player.GetComponent<PlayerAttack>().enabled = true;
+        player.GetComponent<PlayerControllerV2>().enabled = true;
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void ShowPauseOption()
+    {
+        pauseButtons.SetActive(false);
+        optionMenu.SetActive(true);
+    }
+
+    public void HidePauseOption()
+    {
+        pauseButtons.SetActive(true);
+        optionMenu.SetActive(false);
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        sceneIndex--;
+        SceneManager.LoadScene(0);
+    }
+    #endregion
 }
