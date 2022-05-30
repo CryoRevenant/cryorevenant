@@ -4924,6 +4924,70 @@ Transform:
   m_Father: {fileID: 17550415}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &448279416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448279418}
+  - component: {fileID: 448279417}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &448279417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448279416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b74ae658f0a514f9ecfa933f2c35ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: iceSword
+    clip: {fileID: 8300000, guid: 04f78856f0f65334a8489e2c57cd0f48, type: 3}
+    volume: 1
+    pitch: 2
+    source: {fileID: 0}
+  - name: iceSword2
+    clip: {fileID: 8300000, guid: 4e0dbede7a89843418760c82f7db6e53, type: 3}
+    volume: 1
+    pitch: 2
+    source: {fileID: 0}
+  - name: iceWoosh
+    clip: {fileID: 8300000, guid: 00af5154ed9ad514590b367b8361e6b8, type: 3}
+    volume: 1
+    pitch: 1.75
+    source: {fileID: 0}
+  - name: bootsRun
+    clip: {fileID: 8300000, guid: 071ca2deeaec1544db08e26ecb04e8e9, type: 3}
+    volume: 0.5
+    pitch: 1.75
+    source: {fileID: 0}
+--- !u!4 &448279418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448279416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 27.376446, y: -1.1671658, z: -35.964905}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456366386
 GameObject:
   m_ObjectHideFlags: 0
@@ -6185,7 +6249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7318764
+      value: 3.724533
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y

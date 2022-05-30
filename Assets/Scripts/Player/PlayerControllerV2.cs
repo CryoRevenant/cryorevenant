@@ -172,6 +172,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (canResetCurMoveSpeed)
                 {
                     curVelocitySpeed = 0;
+
+                    FindObjectOfType<AudioManager>().Play("bootsRun");
                     canResetCurMoveSpeed = false;
                 }
                 playerSprite.flipX = false;
@@ -193,6 +195,8 @@ public class PlayerControllerV2 : MonoBehaviour
                 if (canResetCurMoveSpeed)
                 {
                     curVelocitySpeed = 0;
+
+                    FindObjectOfType<AudioManager>().Play("bootsRun");
                     canResetCurMoveSpeed = false;
                 }
                 playerSprite.flipX = true;
@@ -215,6 +219,16 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (xAxis == 0 && dashValue == 0)
             {
+                AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+                for (int i = 0; i < audioS.Length; i++)
+                {
+                    if(audioS[i].clip.name == "Boots_Run")
+                    {
+                        audioS[i].Stop();
+                    }
+                }
+
                 leftDustSprite.enabled = false;
                 rightDustSprite.enabled = false;
                 canResetCurMoveSpeed = true;
@@ -265,6 +279,8 @@ public class PlayerControllerV2 : MonoBehaviour
                     case true:
                         if (timerDodge <= 0)
                         {
+                            FindObjectOfType<AudioManager>().Play("iceWoosh");
+
                             //Debug.Log("dodge");
                             if (isDashing)
                             {
@@ -283,6 +299,8 @@ public class PlayerControllerV2 : MonoBehaviour
                     case false:
                         if (timerDash <= 0)
                         {
+                            FindObjectOfType<AudioManager>().Play("iceWoosh");
+
                             isDashUIStarted = true;
                             if (isDashing)
                             {
@@ -335,6 +353,8 @@ public class PlayerControllerV2 : MonoBehaviour
                     case true:
                         if (timerDash <= 0)
                         {
+                            FindObjectOfType<AudioManager>().Play("iceWoosh");
+
                             isDashUIStarted = true;
                             if (isDodging)
                             {
@@ -354,6 +374,8 @@ public class PlayerControllerV2 : MonoBehaviour
                     case false:
                         if (timerDodge <= 0)
                         {
+                            FindObjectOfType<AudioManager>().Play("iceWoosh");
+
                             //Debug.Log("dodge");
                             if (isDodging)
                             {
@@ -386,6 +408,16 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("saut normal");
             if (isBuffing)
             {
+                AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+                for (int i = 0; i < audioS.Length; i++)
+                {
+                    if (audioS[i].clip.name == "Boots_Run")
+                    {
+                        audioS[i].Stop();
+                    }
+                }
+
                 canJump = true;
                 jumpUI.padding = new Vector4(0, 0, 0, 109);
                 animator.SetTrigger("Jump");

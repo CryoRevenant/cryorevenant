@@ -119,10 +119,14 @@ public class PlayerAttack : MonoBehaviour
                     switch (slashOrder)
                     {
                         case 1:
+                            FindObjectOfType<AudioManager>().Play("iceSword");
+
                             slashOrder = 2;
                             slashEffect2.GetComponent<Animator>().Play("SlashAttack_02");
                             break;
                         case 2:
+                            FindObjectOfType<AudioManager>().Play("iceSword2");
+
                             slashOrder = 1;
                             slashEffect2.GetComponent<Animator>().Play("SlashAttack_01");
                             break;
@@ -135,10 +139,14 @@ public class PlayerAttack : MonoBehaviour
                     switch (slashOrder)
                     {
                         case 1:
+                            FindObjectOfType<AudioManager>().Play("iceSword");
+
                             slashOrder = 2;
                             slashEffect.GetComponent<Animator>().Play("SlashAttack_02");
                             break;
                         case 2:
+                            FindObjectOfType<AudioManager>().Play("iceSword2");
+
                             slashOrder = 1;
                             slashEffect.GetComponent<Animator>().Play("SlashAttack_01");
                             break;
