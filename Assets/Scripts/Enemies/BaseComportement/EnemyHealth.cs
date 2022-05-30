@@ -30,7 +30,6 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         currHP = hp;
-        anim = GetComponentInChildren<Animator>();
         move = GetComponent<EnemyMove>();
         originPos = transform.position;
 

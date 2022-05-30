@@ -175,7 +175,7 @@ MonoBehaviour:
   needUnlock: 1
   indexIceBar: 5
   scoreToAdd: 200
-  anim: {fileID: 0}
+  anim: {fileID: 843316230787162827}
   isBlocking: 0
   isAttacking: 0
   child: {fileID: 386408488305011935}
