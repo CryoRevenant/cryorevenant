@@ -12,6 +12,8 @@ TagManager:
   - HitTrigger
   - Boss
   - Particle
+  - Median
+  - Button
   layers:
   - Default
   - TransparentFX
