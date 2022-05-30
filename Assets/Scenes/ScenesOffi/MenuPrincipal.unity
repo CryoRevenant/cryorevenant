@@ -1180,6 +1180,10 @@ MonoBehaviour:
   background: {fileID: 1331977745}
   speed: 80
   fadeWaitTime: 0.2
+  sceneIndex: 0
+  pauseMenu: {fileID: 0}
+  pauseButtons: {fileID: 0}
+  optionMenu: {fileID: 0}
 --- !u!1 &728494105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,11 +1502,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3180369370541923144, guid: 62d1f9b95a4efed4885e794c594911d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 3180369370541923144, guid: 62d1f9b95a4efed4885e794c594911d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.1
+      value: 18.1
       objectReference: {fileID: 0}
     - target: {fileID: 3180369370541923144, guid: 62d1f9b95a4efed4885e794c594911d3, type: 3}
       propertyPath: m_LocalPosition.z
