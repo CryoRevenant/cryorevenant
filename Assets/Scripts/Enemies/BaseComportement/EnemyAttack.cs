@@ -15,11 +15,11 @@ public class EnemyAttack : MonoBehaviour
     GameObject triggerHit;
 
     public Animator anim;
+    public Animator parentAnim;
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        anim = GetComponentInChildren<Animator>();
         player = GameObject.Find("Player");
         triggerHit = transform.GetChild(0).gameObject;
     }

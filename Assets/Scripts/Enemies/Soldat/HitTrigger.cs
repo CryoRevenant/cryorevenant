@@ -26,6 +26,7 @@ public class HitTrigger : MonoBehaviour
     void Increase()
     {
         parent.index++;
+        parent.indexParent++;
     }
 
     void ResetAnim()
@@ -45,7 +46,9 @@ public class HitTrigger : MonoBehaviour
     {
         colorBox.color = Color.green;
         move.canMove = false;
-        move.StopCoroutine("MoveOver");
+
+        move.StopMoving();
+
         hp.isBlocking = false;
         trigger.enabled = false;
     }
@@ -64,7 +67,7 @@ public class HitTrigger : MonoBehaviour
         hp.isBlocking = false;
         move.canMove = false;
 
-        move.StopCoroutine("MoveOver");
+        move.StopMoving();
 
         hp.isAttacking = true;
         trigger.enabled = true;

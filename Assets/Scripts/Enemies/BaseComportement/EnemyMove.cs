@@ -12,6 +12,7 @@ public class EnemyMove : MonoBehaviour
     public bool canMove = true;
     public bool lookLeft;
     public float maxStoppingDist;
+    public Animator anim;
 
     [Header("Dash")]
     public float speedDash;
@@ -110,6 +111,7 @@ public class EnemyMove : MonoBehaviour
             while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
+                anim.SetBool("isRunning", true);
 
                 //Le joueur est à gauche ?
                 if (posToGo.x < transform.position.x)
@@ -131,6 +133,12 @@ public class EnemyMove : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
         }
+    }
+
+    public void StopMoving()
+    {
+        anim.SetBool("isRunning", false);
+        StopCoroutine("MoveOver");
     }
 
     //Reset de la position donnée dans la coroutine pour que l'ennemi s'arrête
@@ -174,6 +182,20 @@ public class EnemyMove : MonoBehaviour
         StopCoroutine("MoveOver");
     }
 
+    void DashDir(bool isLeft, int dir)
+    {
+        if ((isLeft && dir == 1) || (!isLeft && dir == 0))
+        {
+            anim.SetBool("backDash", true);
+        }
+        else
+        {
+            anim.SetBool("backDash", false);
+        }
+        anim.SetBool("isDashing", true);
+    }
+
+
     public IEnumerator Dash(int direction)
     {
         if (isDashing == false)
@@ -199,29 +221,31 @@ public class EnemyMove : MonoBehaviour
                 newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
             }
 
+            if (newPos.x < transform.position.x)
+            {
+                DashDir(true, dir);
+            }
+            else
+            {
+                DashDir(false, dir);
+            }
+
+
             while (isDashing == true)
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
+                anim.SetBool("isDashing", true);
 
                 if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
                 {
                     isDashing = false;
+                    anim.SetBool("isDashing", false);
                 }
                 yield return new WaitForSeconds(0.01f);
             }
 
-            //Le joueur est à gauche ?
-            if (newPos.x < transform.position.x)
-            {
-                lookLeft = true;
-                LookDirection();
-            }
-            else
-            {
-                lookLeft = false;
-                LookDirection();
-            }
             GetComponent<CapsuleCollider2D>().isTrigger = false;
+            anim.SetBool("isDashing", false);
             canMove = true;
         }
     }

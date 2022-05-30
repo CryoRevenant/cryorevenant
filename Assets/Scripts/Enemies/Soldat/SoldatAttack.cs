@@ -6,6 +6,7 @@ public class SoldatAttack : EnemyAttack
 {
     [Header("IndexAnim")]
     public int index;
+    public int indexParent;
 
     float timer;
     bool willAttack;
@@ -43,15 +44,22 @@ public class SoldatAttack : EnemyAttack
         else
         {
             willAttack = true;
+
             anim.SetInteger("attackIndex", index);
+
             anim.SetBool("isPlayerNear", isPlayerNear);
+            parentAnim.SetInteger("indexAttack", indexParent);
         }
     }
 
     public void PreAttack()
     {
         willAttack = false;
+
         anim.SetBool("isPreAttack", true);
+
+        parentAnim.SetBool("isAttacking", true);
+
         timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
     }
 
@@ -63,9 +71,14 @@ public class SoldatAttack : EnemyAttack
     public void Reset()
     {
         index = 0;
+        indexParent = 0;
+
         anim.SetBool("isPreAttack", false);
         anim.SetInteger("attackIndex", 0);
         anim.SetBool("isPlayerNear", false);
+
+        parentAnim.SetInteger("indexAttack", 0);
+        parentAnim.SetBool("isAttacking", false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -75,13 +88,4 @@ public class SoldatAttack : EnemyAttack
             GetComponent<EnemyAttack>().anim.SetBool("forceBlock", true);
         }
     }
-
-    // public void TriggerAttack1()
-    // {
-    //     animAttack.SetTrigger("Attack1");
-    // }
-    // public void TriggerAttack2()
-    // {
-    //     animAttack.SetTrigger("Attack2");
-    // }
 }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1648459890}
   - component: {fileID: 7154254564743513250}
   - component: {fileID: 6806867172069710268}
+  - component: {fileID: 262721152}
   m_Layer: 3
   m_Name: SoldatBig
   m_TagString: Enemy
@@ -123,8 +124,9 @@ MonoBehaviour:
   speedFall: 4
   canMove: 1
   lookLeft: 0
-  maxStoppingDist: 0.5
-  speedDash: 70
+  maxStoppingDist: 0.65
+  anim: {fileID: 262721152}
+  speedDash: 50
   distDash: 4
   isDashing: 0
   rayLengthDown: 1.3
@@ -149,9 +151,13 @@ MonoBehaviour:
   attack: 1
   isPlayerNear: 0
   player: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 843316230787162827}
+  parentAnim: {fileID: 262721152}
   index: 0
-  minMaxTimer: {x: 0, y: 3}
+  indexParent: 0
+  mustBlock: 0
+  minMaxTimer: {x: 0, y: 1.5}
+  dashChance: 40
 --- !u!114 &7154254564743513250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +184,7 @@ MonoBehaviour:
   slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
   iceSlowVFX: {fileID: 8669489483881396668, guid: 88f707aecf4e9f84890f971d44c0772e, type: 3}
   freezeColor: {x: 157, y: 208, z: 255}
+  timeBlocking: 1.5
 --- !u!70 &6806867172069710268
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,6 +201,25 @@ CapsuleCollider2D:
   m_Offset: {x: -0.12, y: -0.16}
   m_Size: {x: 0.9, y: 2.52}
   m_Direction: 0
+--- !u!95 &262721152
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404204908336340059}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea77c1ae83a48d942a4e820062cc26a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1329534814613357652
 GameObject:
   m_ObjectHideFlags: 0
