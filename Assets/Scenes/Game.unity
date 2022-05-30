@@ -21076,6 +21076,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 685604460, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: hp
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820559637, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8455152
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820559637, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.418445
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820559637, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.22724278
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820559637, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.35901666
+      objectReference: {fileID: 0}
+    - target: {fileID: 645068465174493666, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: bossPhase
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290158598540884764, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1475938575338406468, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
       propertyPath: m_Name
       value: General
@@ -21122,6 +21150,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1475938575338406472, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1493888931887936192, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496536376885092802, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496536376885092802, guid: db01b6d450eebfb40b1cafb697737c3d, type: 3}
+      propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

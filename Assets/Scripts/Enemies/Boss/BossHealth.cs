@@ -35,13 +35,29 @@ public class BossHealth : MonoBehaviour
         if (currHP > 0)
         {
             StartCoroutine(move.Dash(player.transform.GetChild(0).gameObject));
+            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
 
-        if (currHP <= 0)
+        if (currHP == 1)
         {
-            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-            gameObject.SetActive(false);
-            GameManager.instance.AddScore(scoreToAdd);
+            //Debug.Log("change phase");
+            gameObject.GetComponent<BossMove>().bossPhase = 2;
+        }
+
+        if (transform.GetChild(0).GetComponent<BossHitTrigger>())
+        {
+            if (transform.GetChild(0).GetComponent<BossHitTrigger>().isAttackBeginning)
+            {
+                Debug.Log("DamageTaken");
+                gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+                //gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+                //gameObject.SetActive(false);
+                //GameManager.instance.AddScore(scoreToAdd);
+            }
+            else if (currHP < 1)
+            {
+                gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
+            }
         }
     }
 }

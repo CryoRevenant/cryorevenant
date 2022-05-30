@@ -26,10 +26,21 @@ public class BossMove : MonoBehaviour
     [Header("Debug")]
     public bool showRays;
 
+    public int bossPhase;
+    [HideInInspector] public float timer=0;
+    [HideInInspector] public float attackTimer=0;
+    private bool isPlayerClose;
+    [HideInInspector] public bool isStopped;
+    [HideInInspector]public bool isSlowAttacking;
+
     // Start is called before the first frame update
     void Start()
     {
+        //bossPhase = 1;
         isDashing = false;
+        isPlayerClose = false;
+        isStopped = false;
+        isSlowAttacking = false;
     }
 
     // Update is called once per frame
@@ -68,7 +79,7 @@ public class BossMove : MonoBehaviour
 
         Debug.DrawRay(new Vector2(transform.position.x, transform.position.y+1), Vector2.up*rayLengthSides,Color.red);
 
-        if (hitUp)
+        if (hitUp && !isSlowAttacking)
         {
             if (hitUp.transform.CompareTag("Player"))
             {
@@ -88,32 +99,185 @@ public class BossMove : MonoBehaviour
             transform.position = pos;
         }
 
-        #region ice wall block boss
+        #region ice wall boss react
 
-        RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSides, 1<<8);
-        RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSides, 1<<8);
-        //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSides, Color.red);
-        //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSides, Color.red);
-
-        if (hitRight)
+        if(bossPhase == 1)
         {
-            //Debug.Log(hitRight.transform.name);
-            if (hitRight.transform.GetComponent<IceWall>())
+            RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSides, 1 << 8);
+            RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSides, 1 << 8);
+            //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSides, Color.red);
+            //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSides, Color.red);
+
+            if (hitRight)
             {
-                //Debug.Log("wall Detected");
-                StopMove();
+                //Debug.Log(hitRight.transform.name);
+                if (hitRight.transform.GetComponent<IceWall>())
+                {
+                    //Debug.Log("wall Detected");
+                    StopMove();
+                    Destroy(hitRight.transform.gameObject);
+                }
+            }
+            else if (hitLeft)
+            {
+                //Debug.Log(hitRight.transform.name);
+                if (hitLeft.transform.GetComponent<IceWall>())
+                {
+                    //Debug.Log("wall Detected");
+                    StopMove();
+                    Destroy(hitLeft.transform.gameObject);
+                }
             }
         }
-        else if (hitLeft)
+
+        if(bossPhase == 2)
         {
-            //Debug.Log(hitRight.transform.name);
-            if (hitLeft.transform.GetComponent<IceWall>())
+            //Debug.Log("Break Wall");
+            RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSides, 1 << 8);
+            RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSides, 1 << 8);
+            //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSides, Color.red);
+            //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSides, Color.red);
+
+            if (hitRight)
             {
-                //Debug.Log("wall Detected");
-                StopMove();
+                //Debug.Log(hitRight.transform.name);
+                if (hitRight.transform.GetComponent<IceWall>())
+                {
+                    //Debug.Log("wall Detected");
+                    Destroy(hitRight.transform.gameObject);
+                }
+            }
+            else if (hitLeft)
+            {
+                //Debug.Log(hitRight.transform.name);
+                if (hitLeft.transform.GetComponent<IceWall>())
+                {
+                    //Debug.Log("wall Detected");
+                    Destroy(hitLeft.transform.gameObject);
+                }
             }
         }
 
+        #endregion
+
+        #region phase 2
+        if (bossPhase == 2)
+        {
+            speed = 10;
+            //Debug.Log("running");
+            //Debug.Log("timer " + timer);
+            timer += Time.deltaTime;
+            if(timer >= 3)
+            {
+                StopMove();
+                gameObject.GetComponent<BossAttack>().canCheckAttack = false;
+                gameObject.GetComponent<BossAttack>().Reset();
+
+                RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x-0.5f, transform.position.y - bounds+1), Vector2.left, 2.5f);
+                RaycastHit2D hitRight = Physics2D.Raycast(new Vector2(transform.position.x+0.5f, transform.position.y - bounds+1), Vector2.right, 2.5f);
+                //Debug.DrawRay(new Vector2(transform.position.x - 0.5f, transform.position.y - bounds+1), Vector2.left * 2.5f, Color.red);
+                //Debug.DrawRay(new Vector2(transform.position.x + 0.5f, transform.position.y - bounds+1), Vector2.right * 2.5f, Color.red);
+
+                if (hitRight)
+                {
+                    //Debug.Log(hitRight.transform.name);
+                    if (hitRight.transform.CompareTag("Player"))
+                    {
+                        //Debug.Log("player Detected");
+
+                        //transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                        isPlayerClose = true;
+                    }
+                }
+                else if (hitLeft)
+                {
+                    //Debug.Log(hitRight.transform.name);
+                    if (hitLeft.transform.CompareTag("Player"))
+                    {
+                        //Debug.Log("player Detected");
+
+                        //transform.rotation = Quaternion.Euler(0, 180, 0);
+
+                        isPlayerClose = true;
+                    }
+                }
+
+                if(hitRight || hitLeft)
+                {
+                    if (hitRight && !hitLeft)
+                    {
+                        if (!hitRight.transform.CompareTag("Player"))
+                        {
+                            //Debug.Log("no player close");
+                            isPlayerClose = false;
+                        }
+                    }
+                    else if (hitLeft && !hitRight)
+                    {
+                        if (!hitLeft.transform.CompareTag("Player"))
+                        {
+                            //Debug.Log("no player close");
+                            isPlayerClose = false;
+                        }
+                    }
+                }
+
+                if(!hitRight && !hitLeft)
+                {
+                    //Debug.Log("no player close");
+                    isPlayerClose = false;
+                }
+
+                //Debug.Log("isPlayerClose = " + isPlayerClose);
+
+                if (!isSlowAttacking)
+                {
+                    //Debug.Log("breathing");
+                    if (!isPlayerClose)
+                    {
+                        //Debug.Log("move");
+                        isStopped = false;
+                        StartCoroutine(StartMove(3));
+                    }
+                    else if (isPlayerClose)
+                    {
+                        attackTimer += Time.deltaTime;
+
+                        if(attackTimer >= 1f)
+                        {
+                            if (transform.rotation == Quaternion.Euler(0, 0, 0) && hitRight)
+                            {
+                                if (hitRight.transform.CompareTag("Player"))
+                                {
+                                    //Debug.Log("not move right");
+                                    isStopped = true;
+                                    StopCoroutine(StartMove(0));
+                                    StartCoroutine(gameObject.GetComponent<BossAttack>().StartSlowAttack());
+                                }
+                            }
+                            else if (transform.rotation == Quaternion.Euler(0, 180, 0) && hitLeft)
+                            {
+                                if (hitLeft.transform.CompareTag("Player"))
+                                {
+                                    //Debug.Log("not move left");
+                                    isStopped = true;
+                                    StopCoroutine(StartMove(0));
+                                    StartCoroutine(gameObject.GetComponent<BossAttack>().StartSlowAttack());
+                                }
+                            }
+                            attackTimer = 0;
+                        }
+                    }
+                }
+
+                //Debug.Log("isSlowAttacking " + isSlowAttacking);
+                //Debug.Log("canMove " + canMove);
+                //Debug.Log("isSecondAttack " + transform.GetChild(0).GetComponent<Animator>().GetBool("isSecondAttack"));
+            }
+        }
+
+        //Debug.Log(bossPhase);
         #endregion
     }
 
@@ -175,6 +339,22 @@ public class BossMove : MonoBehaviour
     {
         canMove = false;
         StopCoroutine("MoveOver");
+    }
+
+    public IEnumerator StartMove(float waitTime)
+    {
+        //Debug.Log("Start move waitTime =" + waitTime);
+        yield return new WaitForSeconds(waitTime);
+        //Debug.Log("isStopped " + isStopped);
+        //Debug.Log("isSlowAttacking " + isSlowAttacking);
+        if (!isStopped && !isSlowAttacking)
+        {
+            //Debug.Log("Start move");
+            canMove = true;
+            transform.GetChild(0).GetComponent<BossHitTrigger>().StopSlowAttacking();
+            timer = 0;
+        }
+        yield break;
     }
 
     public IEnumerator Dash(GameObject player)

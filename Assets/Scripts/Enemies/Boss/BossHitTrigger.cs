@@ -1,21 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossHitTrigger : MonoBehaviour
 {
     BossAttack parent;
     BossHealth hp;
     BossMove move;
-    CircleCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
+    public bool isAttackBeginning;
 
     private void Start()
     {
+        isAttackBeginning = false;
         move = GetComponentInParent<BossMove>();
         hp = GetComponentInParent<BossHealth>();
         parent = GetComponentInParent<BossAttack>();
-        trigger = GetComponent<CircleCollider2D>();
+    }
+
+    private void Update()
+    {
+        //Debug.Log("isAttackBeginning " + isAttackBeginning);
     }
 
     void Check()
@@ -47,7 +53,6 @@ public class BossHitTrigger : MonoBehaviour
         move.canMove = false;
         move.StopCoroutine("MoveOver");
         hp.isBlocking = false;
-        trigger.enabled = false;
     }
 
     void isBlocking()
@@ -64,7 +69,6 @@ public class BossHitTrigger : MonoBehaviour
         move.canMove = false;
         move.StopCoroutine("MoveOver");
         hp.isAttacking = true;
-        trigger.enabled = true;
         Invoke("StopAttack",0.25f);
     }
 
@@ -72,7 +76,6 @@ public class BossHitTrigger : MonoBehaviour
     {
         move.canMove = true;
         hp.isAttacking = false;
-        trigger.enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
     }
 
@@ -99,5 +102,32 @@ public class BossHitTrigger : MonoBehaviour
     void HideSprite()
     {
         GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    void isSlowAttacking()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
+        colorBox.color = Color.red;
+    }
+
+    void AttackBegin()
+    {
+        isAttackBeginning = true;
+    }
+
+    void AttackFinish()
+    {
+        isAttackBeginning = false;
+    }
+
+    public void StopSlowAttacking()
+    {
+        //Debug.Log("StopSlowAttack");
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.transform.parent.GetComponent<BossMove>().isSlowAttacking = false;
+        gameObject.transform.parent.GetComponent<BossMove>().isStopped = false;
+        gameObject.transform.parent.GetComponent<BossMove>().timer = 0;
+        gameObject.transform.parent.GetComponent<BossMove>().canMove = true;
+        gameObject.GetComponent<Animator>().SetBool("isSecondAttack", false);
     }
 }
