@@ -4957,12 +4957,22 @@ MonoBehaviour:
   - name: iceSword
     clip: {fileID: 8300000, guid: 04f78856f0f65334a8489e2c57cd0f48, type: 3}
     volume: 1
-    pitch: 2
+    pitch: 1
     source: {fileID: 0}
   - name: iceSword2
     clip: {fileID: 8300000, guid: 4e0dbede7a89843418760c82f7db6e53, type: 3}
     volume: 1
-    pitch: 2
+    pitch: 1
+    source: {fileID: 0}
+  - name: iceSwordHit
+    clip: {fileID: 8300000, guid: aa4ccaf535c25814eb928909546f2fce, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: iceSwordHit2
+    clip: {fileID: 8300000, guid: 717f62c2494689848a33c0f99b6106ba, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - name: iceWoosh
     clip: {fileID: 8300000, guid: 00af5154ed9ad514590b367b8361e6b8, type: 3}
@@ -6249,7 +6259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.724533
+      value: 3.715623
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y

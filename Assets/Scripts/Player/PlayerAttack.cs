@@ -269,6 +269,25 @@ public class PlayerAttack : MonoBehaviour
                 // }
                 if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
                 {
+                    AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+                    for (int a = 0; a < audioS.Length; a++)
+                    {
+                        if (audioS[a].clip.name == "ice-sword")
+                        {
+                            audioS[a].Stop();
+                            FindObjectOfType<AudioManager>().Play("iceSwordHit");
+
+                        }
+
+                        if (audioS[a].clip.name == "ice-sword2")
+                        {
+                            audioS[a].Stop();
+                            FindObjectOfType<AudioManager>().Play("iceSwordHit2");
+
+                        }
+                    }
+
                     col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
                     timerDamage = damageCooldown;
                 }
