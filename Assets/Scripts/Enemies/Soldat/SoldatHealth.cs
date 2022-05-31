@@ -37,11 +37,13 @@ public class SoldatHealth : EnemyHealth
         {
             Destroy(instance);
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
+            instance.transform.parent = gameObject.transform;
             Destroy(instance, timeFreezing);
         }
         if (instance == null)
         {
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
+            instance.transform.parent = gameObject.transform;
             Destroy(instance, timeFreezing);
         }
 
