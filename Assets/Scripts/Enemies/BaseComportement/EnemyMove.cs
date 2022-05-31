@@ -95,7 +95,6 @@ public class EnemyMove : MonoBehaviour
         {
             if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask2) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask2))
             {
-                Debug.Log("StopDash");
                 GetComponent<CapsuleCollider2D>().isTrigger = false;
                 StopCoroutine("Dash");
             }
@@ -196,13 +195,11 @@ public class EnemyMove : MonoBehaviour
         {
             anim.SetBool("backDash", true);
             GetComponent<SpriteRenderer>().sprite = backDash;
-            Debug.Log("backDash");
         }
         else
         {
             anim.SetBool("backDash", false);
             GetComponent<SpriteRenderer>().sprite = frontDash;
-            Debug.Log("frontDash");
         }
         anim.SetBool("isDashing", true);
     }
@@ -233,7 +230,6 @@ public class EnemyMove : MonoBehaviour
                 newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
             }
 
-            Debug.Log(dir);
 
             if (newPos.x < transform.position.x)
             {
