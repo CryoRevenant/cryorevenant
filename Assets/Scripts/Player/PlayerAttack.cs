@@ -242,12 +242,34 @@ public class PlayerAttack : MonoBehaviour
                     instance = Instantiate(spike, new Vector2(transform.position.x - 2, transform.position.y - 0f), Quaternion.identity);
                     instance.GetComponent<SpriteRenderer>().flipX = true;
                     Destroy(instance, 1);
+
+                    float random = Random.value;
+                    if (random <= 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceSpike");
+                    }
+                    else if (random > 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceSpike2");
+                    }
+
                     break;
                 case false:
                     curSpikeSpeed = 0;
                     instance2 = Instantiate(spike, new Vector2(transform.position.x + 2, transform.position.y - 0f), Quaternion.identity);
                     instance2.GetComponent<SpriteRenderer>().flipX = false;
                     Destroy(instance2, 1);
+
+                    float random2 = Random.value;
+                    if (random2 <= 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceSpike");
+                    }
+                    else if (random2 > 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceSpike2");
+                    }
+
                     break;
             }
 

@@ -39,6 +39,8 @@ public class IceBar : MonoBehaviour
 
     public void AddBar(int amount)
     {
+        FindObjectOfType<AudioManager>().Play("Cold");
+
         amountToLose += amount;
 
         frontSlide.value = 100 - amountToLose;
@@ -63,6 +65,8 @@ public class IceBar : MonoBehaviour
 
     public IEnumerator ResetBar()
     {
+        FindObjectOfType<AudioManager>().Play("Hot");
+
         while (iceAmount <= 100)
         {
             iceAmount += 1 * speed;
