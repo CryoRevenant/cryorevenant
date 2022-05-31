@@ -114,6 +114,8 @@ public class BossMove : MonoBehaviour
                 if (hitRight.transform.GetComponent<IceWall>())
                 {
                     //Debug.Log("wall Detected");
+                    gameObject.GetComponent<BossAttack>().canCheckAttack = false;
+                    gameObject.GetComponent<BossAttack>().Reset();
                     StopMove();
                     Destroy(hitRight.transform.gameObject);
                 }
@@ -124,6 +126,8 @@ public class BossMove : MonoBehaviour
                 if (hitLeft.transform.GetComponent<IceWall>())
                 {
                     //Debug.Log("wall Detected");
+                    gameObject.GetComponent<BossAttack>().canCheckAttack = false;
+                    gameObject.GetComponent<BossAttack>().Reset();
                     StopMove();
                     Destroy(hitLeft.transform.gameObject);
                 }
@@ -278,6 +282,44 @@ public class BossMove : MonoBehaviour
         }
 
         //Debug.Log(bossPhase);
+        #endregion
+
+        #region Collision Management
+
+        RaycastHit2D damageLeft = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y - bounds + 1), Vector2.left, 2.5f);
+        RaycastHit2D damageRight = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y - bounds + 1), Vector2.right, 2.5f);
+        Debug.DrawRay(new Vector2(transform.position.x - 0.5f, transform.position.y - bounds+1), Vector2.left * 2.5f, Color.yellow);
+        Debug.DrawRay(new Vector2(transform.position.x + 0.5f, transform.position.y - bounds+1), Vector2.right * 2.5f, Color.yellow);
+
+        if (damageRight || damageLeft)
+        {
+            if (transform.rotation == Quaternion.Euler(0, 180, 0) && damageRight)
+            {
+                if (damageRight.transform.CompareTag("Player"))
+                {
+                    //Debug.Log("can damage right");
+
+                    gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+                }
+            }
+            else if (transform.rotation == Quaternion.Euler(0, 0, 0) && damageLeft)
+            {
+                if (damageLeft.transform.CompareTag("Player"))
+                {
+                    //Debug.Log("can damage left");
+
+                    gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+                }
+            }
+        }
+
+        if (!damageRight && !damageLeft)
+        {
+            //Debug.Log("no player close");
+
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        }
+
         #endregion
     }
 
