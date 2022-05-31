@@ -129,6 +129,8 @@ MonoBehaviour:
   speedDash: 50
   distDash: 4
   isDashing: 0
+  frontDash: {fileID: 21300000, guid: e9055207218ac244da5f78dcc487682e, type: 3}
+  backDash: {fileID: 21300000, guid: 473cf037eac43474dae9b3b3e0563e30, type: 3}
   rayLengthDown: 1.3
   rayLengthSide: 1.3
   bounds: 0.8
@@ -182,6 +184,7 @@ MonoBehaviour:
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
   normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
   slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
+  timeFreezing: 5
   iceSlowVFX: {fileID: 8669489483881396668, guid: 88f707aecf4e9f84890f971d44c0772e, type: 3}
   freezeColor: {x: 157, y: 208, z: 255}
   timeBlocking: 1.5

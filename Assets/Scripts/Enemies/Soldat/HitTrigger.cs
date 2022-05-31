@@ -47,7 +47,7 @@ public class HitTrigger : MonoBehaviour
         colorBox.color = Color.green;
         move.canMove = false;
 
-        move.StopMoving();
+        move.LockMove(true);
 
         hp.isBlocking = false;
         trigger.enabled = false;
@@ -56,7 +56,7 @@ public class HitTrigger : MonoBehaviour
     void isBlocking()
     {
         colorBox.color = Color.white;
-        move.canMove = true;
+        move.LockMove(false);
         hp.isBlocking = true;
     }
 
@@ -65,9 +65,7 @@ public class HitTrigger : MonoBehaviour
         colorBox.color = Color.red;
 
         hp.isBlocking = false;
-        move.canMove = false;
-
-        move.StopMoving();
+        move.LockMove(true);
 
         hp.isAttacking = true;
         trigger.enabled = true;
@@ -75,7 +73,7 @@ public class HitTrigger : MonoBehaviour
 
     void StopAttack()
     {
-        move.canMove = true;
+        move.LockMove(false);
         hp.isAttacking = false;
         trigger.enabled = false;
     }

@@ -13,11 +13,14 @@ public class EnemyMove : MonoBehaviour
     public bool lookLeft;
     public float maxStoppingDist;
     public Animator anim;
+    bool stopMove;
 
     [Header("Dash")]
     public float speedDash;
     public float distDash;
     public bool isDashing;
+    [SerializeField] Sprite frontDash;
+    [SerializeField] Sprite backDash;
 
     [Header("Raycasts")]
     public float rayLengthDown;
@@ -103,7 +106,7 @@ public class EnemyMove : MonoBehaviour
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
     public virtual IEnumerator MoveOver(GameObject lastPos)
     {
-        if (canMove == true)
+        if (canMove && !stopMove)
         {
             Vector3 posToGo = lastPos.transform.position;
 
@@ -135,10 +138,15 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    public void StopMoving()
+    public void LockMove(bool state)
     {
-        anim.SetBool("isRunning", false);
-        StopCoroutine("MoveOver");
+        stopMove = state;
+
+        if (state)
+        {
+            anim.SetBool("isRunning", false);
+            StopCoroutine("MoveOver");
+        }
     }
 
     //Reset de la position donnée dans la coroutine pour que l'ennemi s'arrête
@@ -178,7 +186,7 @@ public class EnemyMove : MonoBehaviour
 
     public void StopMove()
     {
-        canMove = false;
+        stopMove = true;
         StopCoroutine("MoveOver");
     }
 
@@ -187,10 +195,14 @@ public class EnemyMove : MonoBehaviour
         if ((isLeft && dir == 1) || (!isLeft && dir == 0))
         {
             anim.SetBool("backDash", true);
+            GetComponent<SpriteRenderer>().sprite = backDash;
+            Debug.Log("backDash");
         }
         else
         {
             anim.SetBool("backDash", false);
+            GetComponent<SpriteRenderer>().sprite = frontDash;
+            Debug.Log("frontDash");
         }
         anim.SetBool("isDashing", true);
     }
@@ -220,6 +232,8 @@ public class EnemyMove : MonoBehaviour
             {
                 newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
             }
+
+            Debug.Log(dir);
 
             if (newPos.x < transform.position.x)
             {

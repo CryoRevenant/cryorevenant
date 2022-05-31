@@ -88,6 +88,7 @@ public class EnemyHealth : MonoBehaviour
         {
             move.distDash = 1;
             move.StartCoroutine("Dash", 1);
+            Debug.Log("lookLeft");
             move.distDash = 4;
         }
         else
@@ -105,6 +106,7 @@ public class EnemyHealth : MonoBehaviour
             move.distDash = 3;
             isAttacking = false;
             move.StartCoroutine("Dash", 1);
+            Debug.Log("lookLeft");
             anim.SetTrigger("forceReco");
             move.distDash = 4;
         }

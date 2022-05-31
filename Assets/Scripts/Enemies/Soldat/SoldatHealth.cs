@@ -7,6 +7,7 @@ public class SoldatHealth : EnemyHealth
     [Header("ChangeSpeed")]
     [SerializeField] RuntimeAnimatorController normalSpeed;
     [SerializeField] RuntimeAnimatorController slowSpeed;
+    [SerializeField] float timeFreezing;
     [SerializeField] GameObject iceSlowVFX;
     [SerializeField] Vector3 freezeColor;
     GameObject instance;
@@ -36,12 +37,12 @@ public class SoldatHealth : EnemyHealth
         {
             Destroy(instance);
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
-            Destroy(instance, 4f);
+            Destroy(instance, timeFreezing);
         }
         if (instance == null)
         {
             instance = Instantiate(iceSlowVFX, transform.position, Quaternion.Euler(-90, 0, 0));
-            Destroy(instance, 4f);
+            Destroy(instance, timeFreezing);
         }
 
         GetComponentInChildren<BoxCollider2D>().enabled = false;
@@ -51,7 +52,7 @@ public class SoldatHealth : EnemyHealth
 
         ChangeColor(freezeColor);
 
-        Invoke("NormalSpeed", 4f);
+        Invoke("NormalSpeed", timeFreezing);
     }
 
     public override void Block()
