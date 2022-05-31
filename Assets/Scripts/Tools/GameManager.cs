@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     GameObject player;
 
     [SerializeField] List<ListOfLists> listEnemies = new List<ListOfLists>();
+    [SerializeField] List<Brasero> resetPoints= new List<Brasero>();
 
     public static GameManager instance;
 
@@ -54,13 +55,12 @@ public class GameManager : MonoBehaviour
         if (listEnemies[index].CheckActive())
         {
             AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
-            player.GetComponent<IceBar>().StartCoroutine("ResetBar");
+            resetPoints[index].Activate();
         }
     }
 
     public void AddScore(float scoreToAdd)
     {
-        //Debug.Log(scoreToAdd);
         score += scoreToAdd;
     }
 

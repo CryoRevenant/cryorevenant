@@ -45,13 +45,8 @@ public class IceBar : MonoBehaviour
 
         hurt = true;
         timer = hurtTimer;
-    }
 
-    void LoseBar()
-    {
-        //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
-        backSlide.value = 100 - amountToLose;
-        hurt = false;
+        iceAmount = 100 - amountToLose;
 
         if (iceAmount <= 0)
         {
@@ -59,16 +54,27 @@ public class IceBar : MonoBehaviour
         }
     }
 
+    void LoseBar()
+    {
+        //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+        backSlide.value = 100 - amountToLose;
+        hurt = false;
+    }
+
     public IEnumerator ResetBar()
     {
         while (iceAmount <= 100)
         {
             iceAmount += 1 * speed;
+            amountToLose -= 1 * speed;
             backSlide.value = iceAmount;
 
             yield return new WaitForSeconds(0.01f);
         }
+
+        frontSlide.value = 100;
         iceAmount = 100;
+        amountToLose = 0;
         StopCoroutine("ResetBar");
     }
 }
