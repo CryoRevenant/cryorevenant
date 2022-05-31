@@ -20,7 +20,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private RectMask2D attackUI;
     [SerializeField] private GameObject slashEffect;
     [SerializeField] private GameObject slashEffect2;
-    [SerializeField] private float damageCooldown;
     [SerializeField] private float attackCooldown;
     [Header("Wall")]
     [SerializeField] private RectMask2D wallUI;
@@ -42,7 +41,6 @@ public class PlayerAttack : MonoBehaviour
     private GameObject spikeFullBarVFX_instance;
 
     private PlayerInput controls;
-    private float timerDamage;
     private float timerAttack;
     private float timerSpike;
     private float timerWall;
@@ -60,7 +58,6 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         #region cooldowns
-        timerDamage = damageCooldown;
         timerAttack = attackCooldown;
         timerWall = wallCooldown;
         timerSpike = spikeCooldown;
@@ -96,6 +93,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(timerDamage);
+
         #region attack for sprites and ice bar : with attackCooldown
 
         if (playerSprite.flipX != lastFlip)
@@ -184,12 +183,32 @@ public class PlayerAttack : MonoBehaviour
                     wallEffect2.GetComponent<Animator>().SetBool("Build", true);
                     GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
                     instance.GetComponent<SpriteRenderer>().flipX = true;
+
+                    float random = Random.value;
+                    if (random <= 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceWall");
+                    }
+                    else if (random > 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceWall2");
+                    }
                     break;
                 case false:
                     wallEffect.SetActive(true);
                     wallEffect.GetComponent<Animator>().SetBool("Build", true);
                     GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
                     instance2.GetComponent<SpriteRenderer>().flipX = false;
+
+                    float random2 = Random.value;
+                    if (random2 <= 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceWall");
+                    }
+                    else if (random2 > 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("iceWall2");
+                    }
                     break;
             }
 
@@ -257,7 +276,8 @@ public class PlayerAttack : MonoBehaviour
         for (int i = 0; i < col.Length; i++)
         {
             // Debug.Log(col[i].gameObject.name);
-            timerDamage -= Time.deltaTime;
+            //Debug.Log(timerDamage);
+
             if (col[i].gameObject.CompareTag("Enemy"))
             {
                 int j = Random.Range(0, 300);
@@ -267,7 +287,7 @@ public class PlayerAttack : MonoBehaviour
                 //     Debug.Log("dash");
                 //     col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
                 // }
-                if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+                if (controls.currentActionMap.FindAction("Attack").triggered)
                 {
                     AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
@@ -289,7 +309,6 @@ public class PlayerAttack : MonoBehaviour
                     }
 
                     col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
-                    timerDamage = damageCooldown;
                 }
             }
 
@@ -304,46 +323,93 @@ public class PlayerAttack : MonoBehaviour
 
                         Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), Vector2.right * 2.5f, Color.red);
 
-                        if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0 && hitRight)
+                        if (controls.currentActionMap.FindAction("Attack").triggered && hitRight)
                         {
                             if (hitRight.transform.gameObject.GetComponent<BossHealth>())
                             {
                                 col[i].gameObject.GetComponent<BossHealth>().TakeDamage(damage);
-                                timerDamage = damageCooldown;
                             }
                         }
+
                         break;
                     case true:
                         RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), -Vector2.right, 2.5f);
 
                         Debug.DrawRay(new Vector2(transform.position.x, transform.position.y), -Vector2.right * 2.5f, Color.red);
 
-                        if (controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0 && hitLeft)
+                        if (controls.currentActionMap.FindAction("Attack").triggered && hitLeft)
                         {
                             if (hitLeft.transform.gameObject.GetComponent<BossHealth>())
                             {
                                 col[i].gameObject.GetComponent<BossHealth>().TakeDamage(damage);
-                                timerDamage = damageCooldown;
                             }
                         }
                         break;
                 }
             }
 
-            if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+            if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered)
             {
                 col[i].gameObject.GetComponent<Door>().DestroyDoor();
-                timerDamage = damageCooldown;
             }
-            if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+
+            if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered)
             {
                 col[i].gameObject.GetComponent<FuzeBox>().DestoyFuze();
-                timerDamage = damageCooldown;
             }
-            if (col[i].gameObject.GetComponent<IceWall>() && controls.currentActionMap.FindAction("Attack").triggered && timerDamage <= 0)
+
+            if (col[i].gameObject.GetComponent<IceWall>() && controls.currentActionMap.FindAction("Attack").triggered)
             {
                 Destroy(col[i].gameObject);
-                timerDamage = damageCooldown;
+            }
+
+            if (col[i].gameObject.CompareTag("Shield") && controls.currentActionMap.FindAction("Attack").triggered)
+            {
+                Debug.Log("play block sound && ");
+                AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+                for (int a = 0; a < audioS.Length; a++)
+                {
+                    if (audioS[a].clip.name == "ice-sword")
+                    {
+                        audioS[a].Stop();
+                    }
+
+                    if (audioS[a].clip.name == "ice-sword2")
+                    {
+                        audioS[a].Stop();
+                    }
+
+                    if (audioS[a].clip.name == "ice-sword-damage")
+                    {
+                        audioS[a].Stop();
+                    }
+
+                    if (audioS[a].clip.name == "ice-sword-damage2")
+                    {
+                        audioS[a].Stop();
+                    }
+
+                    if (audioS[a].clip.name == "ice-sword-block")
+                    {
+                        audioS[a].Stop();
+                    }
+
+                    if (audioS[a].clip.name == "ice-sword-block2")
+                    {
+                        audioS[a].Stop();
+                    }
+                }
+
+                float random = Random.value;
+                if (random <= 0.5f)
+                {
+                    FindObjectOfType<AudioManager>().Play("iceSwordBlock");
+                }
+                else if (random > 0.5f)
+                {
+                    FindObjectOfType<AudioManager>().Play("iceSwordBlock2");
+                }
             }
         }
         #endregion

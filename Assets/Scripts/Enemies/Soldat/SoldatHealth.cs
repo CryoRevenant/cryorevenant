@@ -79,10 +79,20 @@ public class SoldatHealth : EnemyHealth
             {
                 audioS[i].Stop();
             }
+
+            if (audioS[i].clip.name == "ice-sword-block")
+            {
+                audioS[i].Stop();
+            }
+
+            if (audioS[i].clip.name == "ice-sword-block2")
+            {
+                audioS[i].Stop();
+            }
         }
 
         float random = Random.value;
-        if (random <= 0.4f)
+        if (random <= 0.5f)
         {
             FindObjectOfType<AudioManager>().Play("iceSwordBlock");
         }

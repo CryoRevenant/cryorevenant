@@ -279,7 +279,15 @@ public class PlayerControllerV2 : MonoBehaviour
                     case true:
                         if (timerDodge <= 0)
                         {
-                            FindObjectOfType<AudioManager>().Play("iceWoosh");
+                            float random = Random.value;
+                            if (random <= 0.5f)
+                            {
+                                FindObjectOfType<AudioManager>().Play("iceWoosh");
+                            }
+                            else if (random > 0.5f)
+                            {
+                                FindObjectOfType<AudioManager>().Play("iceWoosh2");
+                            }
 
                             //Debug.Log("dodge");
                             if (isDashing)
@@ -299,7 +307,15 @@ public class PlayerControllerV2 : MonoBehaviour
                     case false:
                         if (timerDash <= 0)
                         {
-                            FindObjectOfType<AudioManager>().Play("iceWoosh");
+                            float random = Random.value;
+                            if (random <= 0.5f)
+                            {
+                                FindObjectOfType<AudioManager>().Play("iceWoosh");
+                            }
+                            else if (random > 0.5f)
+                            {
+                                FindObjectOfType<AudioManager>().Play("iceWoosh2");
+                            }
 
                             isDashUIStarted = true;
                             if (isDashing)

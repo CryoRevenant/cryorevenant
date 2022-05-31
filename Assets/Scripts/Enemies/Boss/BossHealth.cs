@@ -34,7 +34,26 @@ public class BossHealth : MonoBehaviour
 
         if (currHP > 0)
         {
-            StartCoroutine(move.Dash(player.transform.GetChild(0).gameObject));
+            AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+            for (int a = 0; a < audioS.Length; a++)
+            {
+                if (audioS[a].clip.name == "ice-sword-block")
+                {
+                    audioS[a].Stop();
+                    FindObjectOfType<AudioManager>().Play("iceSwordHit");
+
+                }
+
+                if (audioS[a].clip.name == "ice-sword-block2")
+                {
+                    audioS[a].Stop();
+                    FindObjectOfType<AudioManager>().Play("iceSwordHit2");
+
+                }
+            }
+
+            Invoke("BossDamageFinish",0.5f);
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
 
@@ -49,6 +68,26 @@ public class BossHealth : MonoBehaviour
             if (transform.GetChild(0).GetComponent<BossHitTrigger>().isAttackBeginning)
             {
                 Debug.Log("DamageTaken");
+
+                AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+                for (int a = 0; a < audioS.Length; a++)
+                {
+                    if (audioS[a].clip.name == "ice-sword-block")
+                    {
+                        audioS[a].Stop();
+                        FindObjectOfType<AudioManager>().Play("iceSwordHit");
+
+                    }
+
+                    if (audioS[a].clip.name == "ice-sword-block2")
+                    {
+                        audioS[a].Stop();
+                        FindObjectOfType<AudioManager>().Play("iceSwordHit2");
+
+                    }
+                }
+
                 gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
                 //gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 //gameObject.SetActive(false);
@@ -59,5 +98,10 @@ public class BossHealth : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
             }
         }
+    }
+
+    void BossDamageFinish()
+    {
+        StartCoroutine(move.Dash(player.transform.GetChild(0).gameObject));
     }
 }

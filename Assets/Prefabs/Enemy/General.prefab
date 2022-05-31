@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorBox: {fileID: 1475938575338406475}
+  isAttackBeginning: 0
 --- !u!95 &1897035568016997588
 Animator:
   serializedVersion: 3
@@ -146,7 +147,7 @@ GameObject:
   - component: {fileID: 4496536376885092802}
   m_Layer: 3
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,6 +377,11 @@ MonoBehaviour:
   rayLengthSides: 1
   bounds: 0.8
   showRays: 0
+  bossPhase: 1
+  timer: 0
+  attackTimer: 0
+  isStopped: 0
+  isSlowAttacking: 0
 --- !u!114 &5340172568649857865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +402,7 @@ MonoBehaviour:
   isPlayerNear: 0
   player: {fileID: 0}
   anim: {fileID: 0}
+  canCheckAttack: 0
 --- !u!70 &1820559637
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -409,8 +416,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15, y: -0.05}
-  m_Size: {x: 1, y: 2.5}
+  m_Offset: {x: -0.22724278, y: -0.35901666}
+  m_Size: {x: 0.8455152, y: 1.418445}
   m_Direction: 0
 --- !u!114 &685604460
 MonoBehaviour:
