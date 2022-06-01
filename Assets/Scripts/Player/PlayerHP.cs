@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerHP : MonoBehaviour
 {
-
     public bool isDead;
     public bool canDie;
+    [SerializeField] Animator animator;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,6 +21,7 @@ public class PlayerHP : MonoBehaviour
         if (canDie)
         {
             //Debug.Log("die");
+            animator.SetTrigger("Death");
 
             gameObject.layer = 6;
             gameObject.tag = "Untagged";

@@ -7569,6 +7569,10 @@ PrefabInstance:
       propertyPath: frontSlide
       value: 
       objectReference: {fileID: 542567209}
+    - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 904968178}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: wallUI
       value: 
@@ -7585,6 +7589,10 @@ PrefabInstance:
       propertyPath: bulletIce
       value: 
       objectReference: {fileID: 3735857859253915606, guid: 4215b5dd38a01f84ca37224316812ce2, type: 3}
+    - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: attackAnim
+      value: 
+      objectReference: {fileID: 904968178}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: bulletIcePool
       value: 
@@ -7649,6 +7657,18 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7778891271954775128, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: m_Size.x
+      value: 25.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778891271954775128, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: m_Size.y
+      value: 17.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778891271954775128, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1958192624185225593, guid: 3c967dc070949024c8713781ce49a5dd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
 --- !u!4 &603750657 stripped
@@ -11099,6 +11119,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2236043835598217114, guid: 4aaf2e12a5c1124469384bb79ee367f4, type: 3}
   m_PrefabInstance: {fileID: 888890969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &904968178 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7778891271954775131, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+  m_PrefabInstance: {fileID: 603750656}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &917105512
 GameObject:
@@ -14634,6 +14659,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 95799592}
     m_Modifications:
+    - target: {fileID: 1648459890, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: radius
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_RootOrder
       value: 0

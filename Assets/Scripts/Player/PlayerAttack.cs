@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject slashEffect;
     [SerializeField] private GameObject slashEffect2;
     [SerializeField] private float attackCooldown;
+    [SerializeField] private Animator attackAnim;
     [Header("Wall")]
     [SerializeField] private RectMask2D wallUI;
     [SerializeField] private GameObject wallEffect;
@@ -44,6 +45,7 @@ public class PlayerAttack : MonoBehaviour
     private float timerAttack;
     private float timerSpike;
     private float timerWall;
+    private float timerSheathe = 1f;
     private int slashOrder;
     private Vector2 spikeLerp;
     private GameObject instance;
@@ -54,6 +56,7 @@ public class PlayerAttack : MonoBehaviour
     private bool canSpawnAttackfullBarVFX;
     private bool canSpawnWallfullBarVFX;
     private bool canSpawnSpikefullBarVFX;
+    private bool hasAttacked;
 
     private void Awake()
     {
@@ -95,12 +98,24 @@ public class PlayerAttack : MonoBehaviour
     {
         //Debug.Log(timerDamage);
 
+
+
         #region attack for sprites and ice bar : with attackCooldown
 
         if (playerSprite.flipX != lastFlip)
         {
             //Debug.Log("reset slash anim");
             slashOrder = 2;
+        }
+
+        if (hasAttacked)
+        {
+            timerSheathe -= Time.deltaTime;
+
+            if (timerSheathe <= 0)
+            {
+                SheatheSword();
+            }
         }
 
         timerAttack -= Time.deltaTime;
@@ -110,6 +125,8 @@ public class PlayerAttack : MonoBehaviour
             {
                 Instantiate(bulletIce, transform.position, transform.rotation);
             }
+            hasAttacked = true;
+            timerSheathe = 1f;
             switch (playerSprite.flipX)
             {
                 case true:
@@ -122,12 +139,20 @@ public class PlayerAttack : MonoBehaviour
 
                             slashOrder = 2;
                             slashEffect2.GetComponent<Animator>().Play("SlashAttack_02");
+
+                            attackAnim.SetTrigger("isAttacking");
+                            attackAnim.SetInteger("attackIndex", slashOrder);
+
                             break;
                         case 2:
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
                             slashEffect2.GetComponent<Animator>().Play("SlashAttack_01");
+
+                            attackAnim.SetTrigger("isAttacking");
+                            attackAnim.SetInteger("attackIndex", slashOrder);
+
                             break;
                     }
                     slashEffect2.GetComponent<Animator>().SetBool("Recover", true);
@@ -142,12 +167,20 @@ public class PlayerAttack : MonoBehaviour
 
                             slashOrder = 2;
                             slashEffect.GetComponent<Animator>().Play("SlashAttack_02");
+
+                            attackAnim.SetTrigger("isAttacking");
+                            attackAnim.SetInteger("attackIndex", slashOrder);
+
                             break;
                         case 2:
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
                             slashEffect.GetComponent<Animator>().Play("SlashAttack_01");
+
+                            attackAnim.SetTrigger("isAttacking");
+                            attackAnim.SetInteger("attackIndex", slashOrder);
+
                             break;
                     }
                     slashEffect.GetComponent<Animator>().SetBool("Recover", true);
@@ -302,13 +335,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (col[i].gameObject.CompareTag("Enemy"))
             {
-                int j = Random.Range(0, 300);
 
-                // if (j == 1)
-                // {
-                //     Debug.Log("dash");
-                //     col[i].gameObject.GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
-                // }
                 if (controls.currentActionMap.FindAction("Attack").triggered)
                 {
                     AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
@@ -644,5 +671,12 @@ public class PlayerAttack : MonoBehaviour
     void StopSpiking()
     {
         isSpiking = false;
+    }
+
+    void SheatheSword()
+    {
+        attackAnim.SetTrigger("stopAttack");
+        hasAttacked = false;
+        timerSheathe = 1f;
     }
 }
