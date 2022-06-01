@@ -207,6 +207,11 @@ public class PlayerAttack : MonoBehaviour
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
         {
             isWalling = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(bulletIce, transform.position, transform.rotation);
+            }
             //Debug.Log("ice wall");
 
             switch (playerSprite.flipX)
@@ -266,6 +271,11 @@ public class PlayerAttack : MonoBehaviour
         if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsWalling())
         {
             isSpiking = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(bulletIce, transform.position, transform.rotation);
+            }
             //Debug.Log("ice spike");
 
             switch (playerSprite.flipX)
