@@ -9,7 +9,7 @@ public class IceWall : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Destroy(gameObject, 2);
+        Invoke("Fall", 2f);
         canCoroutine = false;
         Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer, false);
     }
@@ -28,6 +28,14 @@ public class IceWall : MonoBehaviour
             canCoroutine = false;
         }
     }
+
+    void Fall()
+    {
+        Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer, true);
+        GetComponent<Animator>().SetTrigger("fall");
+        Destroy(gameObject, 1);
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
