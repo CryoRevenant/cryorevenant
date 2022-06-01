@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] float radius;
+    public float radius;
     [SerializeField] float attackDuration;
     public float cooldown;
 
@@ -47,7 +47,8 @@ public class EnemyAttack : MonoBehaviour
         }
         else
         {
-            GetComponent<SoldatAttack>().Reset();
+            if (GetComponent<SoldatAttack>() != null)
+                GetComponent<SoldatAttack>().Reset();
         }
     }
 

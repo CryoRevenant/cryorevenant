@@ -12,8 +12,33 @@ public class AttackSniper : EnemyAttack
     [SerializeField] float force;
     // Start is called before the first frame update
 
-    private void Update()
+
+    public override void Start()
     {
+        base.Start();
+    }
+
+    public override void CheckAttack()
+    {
+        RaycastHit2D hit;
+
+        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
+        {
+            if (attack)
+            {
+                GetComponentInChildren<AimRay>().Aim();
+
+                isPlayerNear = true;
+
+                Invoke("Attack", cooldown);
+            }
+        }
+        else
+        {
+            CancelInvoke("Attack");
+            GetComponentInChildren<AimRay>().StopAim();
+            isPlayerNear = false;
+        }
     }
 
     public override void Attack()

@@ -9,7 +9,7 @@ public class IceWall : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Invoke("Fall", 2f);
+        Invoke("Fall", 1f);
         canCoroutine = false;
         Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer, false);
     }
