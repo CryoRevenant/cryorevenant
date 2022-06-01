@@ -89,6 +89,11 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1.75
     source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 0d55a97a987207b4186018f83d16fbc0, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
   - name: iceWall
     clip: {fileID: 8300000, guid: ca7f775534ade754dafd7ca935771851, type: 3}
     volume: 1
@@ -117,5 +122,10 @@ MonoBehaviour:
   - name: Cold
     clip: {fileID: 8300000, guid: aed391642afa08946aaf76de7b61e393, type: 3}
     volume: 0.25
+    pitch: 1
+    source: {fileID: 0}
+  - name: cutDoor
+    clip: {fileID: 8300000, guid: 0221b3f52b4b96b4992a24f8924a6e23, type: 3}
+    volume: 1
     pitch: 1
     source: {fileID: 0}

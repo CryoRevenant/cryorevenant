@@ -39,6 +39,8 @@ public class Door : MonoBehaviour
 
     public void DestroyDoor()
     {
+        FindObjectOfType<AudioManager>().Play("cutDoor");
+
         doorIdle.SetActive(false);
         doorDebris.SetActive(true);
         foreach (GameObject go in childsDebris)

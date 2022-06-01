@@ -94,6 +94,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool isPlayingJumpAnim;
     private bool isOnBox;
     private bool isPlayingStopAnim;
+    private bool canDoSFX_Run;
 
     void Awake()
     {
@@ -110,6 +111,7 @@ public class PlayerControllerV2 : MonoBehaviour
         isPlayingJumpAnim = false;
         isOnBox = false;
         isPlayingStopAnim = false;
+        canDoSFX_Run = false;
 
         dashUI.padding = new Vector4(0, 0, 0, 4.6f);
         dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
@@ -173,7 +175,6 @@ public class PlayerControllerV2 : MonoBehaviour
                 {
                     curVelocitySpeed = 0;
 
-                    FindObjectOfType<AudioManager>().Play("bootsRun");
                     canResetCurMoveSpeed = false;
                 }
                 playerSprite.flipX = false;
@@ -196,7 +197,6 @@ public class PlayerControllerV2 : MonoBehaviour
                 {
                     curVelocitySpeed = 0;
 
-                    FindObjectOfType<AudioManager>().Play("bootsRun");
                     canResetCurMoveSpeed = false;
                 }
                 playerSprite.flipX = true;
@@ -219,6 +219,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
             if (xAxis == 0 && dashValue == 0)
             {
+                canDoSFX_Run = true;
+
+                //Debug.Log("cut walk audio");
                 AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
                 for (int i = 0; i < audioS.Length; i++)
@@ -252,6 +255,41 @@ public class PlayerControllerV2 : MonoBehaviour
             {
                 vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0.5f;
                 camCenterTimer = maxCamCenterTimer;
+            }
+        }
+
+        if (canDoSFX_Run && movement != 0 && (isGroundedL && isGroundedR))
+        {
+            //Debug.Log("walk sfx L" + isGroundedL + "walk sfx R" + isGroundedR);
+
+            AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+            for (int i = 0; i < audioS.Length; i++)
+            {
+                if (audioS[i].clip.name == "Boots_Run")
+                {
+                    audioS[i].loop = true;
+                }
+            }
+            FindObjectOfType<AudioManager>().Play("bootsRun");
+            canDoSFX_Run = false;
+        }
+
+        //Debug.Log(rb.velocity.y);
+
+        if(movement != 0 && (!isGroundedL && !isGroundedR) && rb.velocity.y > 1)
+        {
+            //Debug.Log("can walk sfx");
+            canDoSFX_Run = true;
+
+            AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+            for (int i = 0; i < audioS.Length; i++)
+            {
+                if (audioS[i].clip.name == "Boots_Run")
+                {
+                    audioS[i].Stop();
+                }
             }
         }
         #endregion
@@ -424,15 +462,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("saut normal");
             if (isBuffing)
             {
-                AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
-
-                for (int i = 0; i < audioS.Length; i++)
-                {
-                    if (audioS[i].clip.name == "Boots_Run")
-                    {
-                        audioS[i].Stop();
-                    }
-                }
+                FindObjectOfType<AudioManager>().Play("Jump");
 
                 canJump = true;
                 jumpUI.padding = new Vector4(0, 0, 0, 109);
@@ -465,6 +495,8 @@ public class PlayerControllerV2 : MonoBehaviour
             if (jumpBufferTimer >= jumpBufferCooldown && controls.currentActionMap.FindAction("Jump").triggered)
             {
                 //Debug.Log("buff");
+                FindObjectOfType<AudioManager>().Play("Jump");
+
                 canJump = true;
                 jumpUI.padding = new Vector4(0, 0, 0, 109);
                 animator.SetTrigger("Jump");
