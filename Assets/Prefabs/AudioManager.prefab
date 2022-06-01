@@ -66,22 +66,22 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: iceSwordBlock
     clip: {fileID: 8300000, guid: b31526fbcf9333b438837a8fb7707ed7, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: iceSwordBlock2
     clip: {fileID: 8300000, guid: 5bffa58baeab00d4d8d64b692fcc19d0, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: iceWoosh
     clip: {fileID: 8300000, guid: 00af5154ed9ad514590b367b8361e6b8, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: iceWoosh2
     clip: {fileID: 8300000, guid: 3d3ea1405c1f456419330110ec04cfdf, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: bootsRun
@@ -116,6 +116,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Cold
     clip: {fileID: 8300000, guid: aed391642afa08946aaf76de7b61e393, type: 3}
-    volume: 1
+    volume: 0.25
     pitch: 1
     source: {fileID: 0}
