@@ -15,6 +15,7 @@ TagManager:
   - Median
   - Button
   - Shield
+  - Wall
   layers:
   - Default
   - TransparentFX

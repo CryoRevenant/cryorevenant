@@ -64,10 +64,16 @@ public class EnemyHealth : MonoBehaviour
         if (currHP <= 0)
         {
             if (needUnlock)
+            {
                 elevator.GetComponent<Ascenceur>().CheckOpen();
+            }
 
-            child.GetComponent<BoxCollider2D>().enabled = false;
-            child.sprite = resetSprite;
+            if (GetComponent<EnemyDetect>() != null)
+            {
+                child.GetComponent<BoxCollider2D>().enabled = false;
+                child.sprite = resetSprite;
+            }
+
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);
             GameManager.instance.AddScore(scoreToAdd);
@@ -123,8 +129,11 @@ public class EnemyHealth : MonoBehaviour
     {
         transform.position = originPos;
         currHP = hp;
-        GetComponent<EnemyDetect>().otherDetect = false;
-        GetComponent<EnemyDetect>().StopCoroutine("DetectAround");
-        GetComponent<EnemyDetect>().StartCoroutine("DetectAround");
+        if (GetComponent<EnemyDetect>() != null)
+        {
+            GetComponent<EnemyDetect>().otherDetect = false;
+            GetComponent<EnemyDetect>().StopCoroutine("DetectAround");
+            GetComponent<EnemyDetect>().StartCoroutine("DetectAround");
+        }
     }
 }

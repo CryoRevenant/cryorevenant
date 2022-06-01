@@ -2,11 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectSniper : EnemyDetect
+public class DetectSniper : MonoBehaviour
 {
     [SerializeField] float maxStoppingDetect;
 
-    public override IEnumerator DetectAround()
+    public float radiusPlayer;
+    public bool otherDetect;
+    public float waitTime;
+
+    [Header("Scripts")]
+    public EnemyAttack attack;
+
+    private void Start()
+    {
+        StartCoroutine("DetectAround");
+    }
+
+    public IEnumerator DetectAround()
     {
         Collider2D detectCircle = Physics2D.OverlapCircle(transform.position, radiusPlayer, 1 << 0);
         if (detectCircle != null)
@@ -17,21 +29,13 @@ public class DetectSniper : EnemyDetect
                 Debug.DrawLine(gameObject.transform.position, detectCircle.transform.position, Color.magenta, 0.5f);
 
                 otherDetect = true;
-
-                attack.CheckAttack();
-                GetComponent<EnemyMove>().maxStoppingDist = maxStoppingDetect;
-
-                move.StopCoroutine("MoveOver");
-                move.StartCoroutine("MoveOver", detectCircle.gameObject);
-
-                StartCoroutine("PreventOther");
             }
         }
         else
         {
-            GetComponent<EnemyMove>().maxStoppingDist = 1;
             otherDetect = false;
         }
+        attack.CheckAttack();
         yield return new WaitForSeconds(waitTime);
         StartCoroutine("DetectAround");
     }
