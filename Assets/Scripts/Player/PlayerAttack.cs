@@ -126,7 +126,7 @@ public class PlayerAttack : MonoBehaviour
                 Instantiate(bulletIce, transform.position, transform.rotation);
             }
             hasAttacked = true;
-            timerSheathe = 1f;
+            timerSheathe = 0.2f;
             switch (playerSprite.flipX)
             {
                 case true:
@@ -677,6 +677,6 @@ public class PlayerAttack : MonoBehaviour
     {
         attackAnim.SetTrigger("stopAttack");
         hasAttacked = false;
-        timerSheathe = 1f;
+        timerSheathe = 0.2f;
     }
 }
