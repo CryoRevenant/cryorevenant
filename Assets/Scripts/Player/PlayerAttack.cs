@@ -98,8 +98,6 @@ public class PlayerAttack : MonoBehaviour
     {
         //Debug.Log(timerDamage);
 
-
-
         #region attack for sprites and ice bar : with attackCooldown
 
         if (playerSprite.flipX != lastFlip)
