@@ -268,16 +268,18 @@ public class EnemyMove : MonoBehaviour
                 {
                     isDashing = false;
                     anim.SetBool("isDashing", false);
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
                 yield return new WaitForSeconds(0.01f);
             }
+            float i = transform.rotation.y;
+            transform.rotation = Quaternion.Euler(0, i + 180, 0);
 
             GetComponent<CapsuleCollider2D>().isTrigger = false;
+
             anim.SetBool("isDashing", false);
+
             canMove = true;
             travel = false;
-            LookDirection(newPos);
         }
     }
 }

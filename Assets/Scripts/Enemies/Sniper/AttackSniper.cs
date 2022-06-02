@@ -22,7 +22,7 @@ public class AttackSniper : EnemyAttack
     {
         RaycastHit2D hit;
 
-        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
+        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius))
         {
             if (attack)
             {
