@@ -50,7 +50,7 @@ public class EnemyHealth : MonoBehaviour
         if (!isBlocking && !isAttacking)
         {
             currHP -= damage;
-            CheckSac();
+            CheckEnnemi();
         }
         else if (isAttacking)
         {
@@ -80,13 +80,19 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void CheckSac()
+    private void CheckEnnemi()
     {
         if (GetComponent<SacAttak>() != null)
         {
             anim.SetTrigger("isHit");
         }
+
+        if (GetComponent<AttackSniper>() != null)
+        {
+            GetComponent<AttackSniper>().CancelInvoke("Attack");
+        }
     }
+
 
     public virtual void Block()
     {
