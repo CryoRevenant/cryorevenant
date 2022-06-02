@@ -87,6 +87,8 @@ public class BossAttack : MonoBehaviour
 
             if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
             {
+                Debug.DrawRay(transform.position, (player.transform.position - transform.position).normalized * radius, Color.red, 0.1f);
+
                 if (attack)
                 {
                     if (GetComponentInChildren<AimRay>() != null)
@@ -110,6 +112,10 @@ public class BossAttack : MonoBehaviour
         attack = true;
     }
 
+    /// <summary>
+    /// start the final attack
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator StartSlowAttack()
     {
         yield return new WaitForSeconds(1);

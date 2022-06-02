@@ -124,10 +124,10 @@ public class BossHitTrigger : MonoBehaviour
     {
         //Debug.Log("StopSlowAttack");
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        gameObject.transform.parent.GetComponent<BossMove>().isSlowAttacking = false;
         gameObject.transform.parent.GetComponent<BossMove>().isStopped = false;
-        gameObject.transform.parent.GetComponent<BossMove>().timer = 0;
+        gameObject.transform.parent.GetComponent<BossMove>().slowness = 0;
         gameObject.transform.parent.GetComponent<BossMove>().canMove = true;
         gameObject.GetComponent<Animator>().SetBool("isSecondAttack", false);
+        gameObject.transform.parent.GetComponent<BossMove>().isSlowAttacking = false;
     }
 }

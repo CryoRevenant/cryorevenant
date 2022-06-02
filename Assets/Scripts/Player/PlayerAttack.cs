@@ -422,7 +422,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (col[i].gameObject.CompareTag("Shield") && controls.currentActionMap.FindAction("Attack").triggered)
             {
-                Debug.Log("play block sound && ");
+                //Debug.Log("play block sound");
                 AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
                 for (int a = 0; a < audioS.Length; a++)

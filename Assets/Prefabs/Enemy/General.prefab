@@ -377,8 +377,8 @@ MonoBehaviour:
   rayLengthSides: 1
   bounds: 0.8
   showRays: 0
-  bossPhase: 1
-  timer: 0
+  bossPhase: 2
+  slowness: 0
   attackTimer: 0
   isStopped: 0
   isSlowAttacking: 0
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc7fa6dffb7c834ebb9c976a833f462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
+  hp: 1
   scoreToAdd: 200
   anim: {fileID: 0}
   isBlocking: 0

@@ -27,7 +27,7 @@ public class BossMove : MonoBehaviour
     public bool showRays;
 
     public int bossPhase;
-    [HideInInspector] public float timer=0;
+    [HideInInspector] public int slowness=0;
     [HideInInspector] public float attackTimer=0;
     private bool isPlayerClose;
     [HideInInspector] public bool isStopped;
@@ -170,11 +170,10 @@ public class BossMove : MonoBehaviour
             speed = 10;
             //Debug.Log("running");
             //Debug.Log("timer " + timer);
-            timer += Time.deltaTime;
-            if(timer >= 3)
+            if(slowness >= 3)
             {
                 StopMove();
-                gameObject.GetComponent<BossAttack>().canCheckAttack = false;
+                //gameObject.GetComponent<BossAttack>().canCheckAttack = false;
                 gameObject.GetComponent<BossAttack>().Reset();
 
                 RaycastHit2D hitLeft = Physics2D.Raycast(new Vector2(transform.position.x-0.5f, transform.position.y - bounds+1), Vector2.left, 2.5f);
@@ -394,7 +393,7 @@ public class BossMove : MonoBehaviour
             //Debug.Log("Start move");
             canMove = true;
             transform.GetChild(0).GetComponent<BossHitTrigger>().StopSlowAttacking();
-            timer = 0;
+            slowness = 0;
         }
         yield break;
     }

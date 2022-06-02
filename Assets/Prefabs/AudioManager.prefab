@@ -154,3 +154,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: groundHit
+    clip: {fileID: 8300000, guid: d9e2d34952870944181d521cf7013e61, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}

@@ -19,6 +19,8 @@ public class FallDust : MonoBehaviour
                 if (!isGrounded)
                 {
                     isGrounded = true;
+                    //Debug.Log("Grounded");
+                    FindObjectOfType<AudioManager>().Play("groundHit");
                     fallDust.Emit(1);
                 }
             }
