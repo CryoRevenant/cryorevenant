@@ -34,7 +34,6 @@ public class EnemyDetect : MonoBehaviour
     //Si le joueur est détecté, alerte les ennemis à proximité et les fait venir
     IEnumerator PreventOther()
     {
-        Debug.Log("detect");
         Collider2D[] detectEnemy = Physics2D.OverlapCircleAll(transform.position, radiusEnemy);
         if (detectEnemy != null)
         {
@@ -47,7 +46,6 @@ public class EnemyDetect : MonoBehaviour
                     {
                         if (hit2D.transform.gameObject.layer == 3)
                         {
-                            Debug.Log("detect player");
 
                             GameObject otherGO = hit2D.transform.gameObject;
 

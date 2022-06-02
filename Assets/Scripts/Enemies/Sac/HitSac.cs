@@ -61,7 +61,19 @@ public class HitSac : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHP>().Death();
+
+            RaycastHit2D hit;
+            if (hit = Physics2D.Raycast(transform.position, other.transform.position - transform.position, 10f))
+            {
+                if (hit.transform.CompareTag("Player"))
+                {
+                    other.GetComponent<PlayerHP>().Death();
+                }
+                if (other.transform.CompareTag("Wall"))
+                {
+                    other.GetComponent<IceWall>().Fall();
+                }
+            }
         }
     }
 
