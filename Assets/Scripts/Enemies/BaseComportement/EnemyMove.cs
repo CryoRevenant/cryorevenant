@@ -95,7 +95,9 @@ public class EnemyMove : MonoBehaviour
         }
 
         int layerMask = ~LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
-        if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
+        RaycastHit2D hit2Dt = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask);
+        RaycastHit2D hit2Du = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask);
+        if (hit2Dt || hit2Du)
         {
             if (!travel)
             {
