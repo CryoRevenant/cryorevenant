@@ -29,8 +29,12 @@ public class IceWall : MonoBehaviour
         }
     }
 
-    void Fall()
+    public void Fall()
     {
+        if (this.IsInvoking("Fall"))
+        {
+            CancelInvoke("Fall");
+        }
         Physics2D.IgnoreLayerCollision(this.gameObject.layer, player.layer, true);
         GetComponent<Animator>().SetTrigger("fall");
         Destroy(gameObject, 1);

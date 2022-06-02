@@ -23,9 +23,14 @@ public class Bullet : MonoBehaviour
                 other.GetComponent<AttackSniper>().CancelInvoke("Attack");
                 Destroy(transform.parent.gameObject);
             }
+            if (other.gameObject.layer == 0)
+            {
+                other.gameObject.GetComponent<PlayerHP>().Death();
+                Destroy(transform.parent.gameObject);
+            }
         }
 
-        if (other.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
         {
             hitPlayer = false;
         }

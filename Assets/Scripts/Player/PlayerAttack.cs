@@ -419,7 +419,7 @@ public class PlayerAttack : MonoBehaviour
 
             if (col[i].gameObject.GetComponent<IceWall>() && controls.currentActionMap.FindAction("Attack").triggered)
             {
-                Destroy(col[i].gameObject);
+                col[i].gameObject.GetComponent<IceWall>().Fall();
             }
 
             if (col[i].gameObject.CompareTag("Shield") && controls.currentActionMap.FindAction("Attack").triggered)
