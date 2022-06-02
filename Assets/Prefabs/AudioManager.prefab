@@ -129,3 +129,28 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: elevatorDing
+    clip: {fileID: 8300000, guid: 284928c619c628740bc8ab2aaead7832, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: elevatorOpenDoor
+    clip: {fileID: 8300000, guid: 1ffbc70adbc615e4687a0514f1032294, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: elevatorCloseDoor
+    clip: {fileID: 8300000, guid: 0cd6f258c0d7b6e4d9b90f0b20d6507c, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: elevatorMove
+    clip: {fileID: 8300000, guid: 92898b6aa4e418d4aa8fe9f3196ad0e1, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: elevatorMove2
+    clip: {fileID: 8300000, guid: 2720040972c333949830b41d9b5579ac, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

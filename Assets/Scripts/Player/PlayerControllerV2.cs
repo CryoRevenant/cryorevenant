@@ -400,7 +400,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             //Debug.Log(dodgeValue);
 
-            if (dodgeValue > 0 && !canDash)
+            if (dodgeValue > 0 && !canDash && !gameObject.GetComponent<PlayerAttack>().IsSpiking() && !gameObject.GetComponent<PlayerAttack>().IsWalling())
             {
                 switch (playerSprite.flipX)
                 {
