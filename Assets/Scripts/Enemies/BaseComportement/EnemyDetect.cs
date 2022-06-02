@@ -46,12 +46,12 @@ public class EnemyDetect : MonoBehaviour
                     {
                         if (hit2D.transform.gameObject.layer == 3)
                         {
-
+                            Debug.DrawLine(transform.position, hit2D.transform.position, Color.cyan, 0.25f);
                             GameObject otherGO = hit2D.transform.gameObject;
 
                             Debug.DrawLine(transform.position, hit2D.transform.position, Color.cyan, 2);
 
-                            otherGO.GetComponent<EnemyDetect>().otherDetect = true;
+                            //otherGO.GetComponent<EnemyDetect>().otherDetect = true;
                             otherGO.GetComponent<EnemyDetect>().StartCoroutine("PreventOther");
 
                             otherGO.GetComponent<EnemyMove>().StopCoroutine("MoveOver");

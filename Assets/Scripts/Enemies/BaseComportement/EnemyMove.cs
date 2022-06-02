@@ -14,6 +14,8 @@ public class EnemyMove : MonoBehaviour
     public float maxStoppingDist;
     public Animator anim;
     bool stopMove;
+    float timerLook;
+    [SerializeField] float maxTimerLook;
 
     [Header("Dash")]
     public float speedDash;
@@ -21,10 +23,12 @@ public class EnemyMove : MonoBehaviour
     public bool isDashing;
     [SerializeField] Sprite frontDash;
     [SerializeField] Sprite backDash;
+    public bool travel;
 
     [Header("Raycasts")]
     public float rayLengthDown;
     public float rayLengthSide;
+    public float rayLengthSideEnemy;
     public float bounds;
 
     [Header("Debug")]
@@ -33,11 +37,18 @@ public class EnemyMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timerLook = maxTimerLook;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
+        timerLook -= Time.deltaTime;
+        if (timerLook <= 0)
+        {
+            LookDirection();
+            timerLook = maxTimerLook;
+        }
         //Bool pour debug et ajuster les rays
         #region ShowRays
         if (showRays)
@@ -46,6 +57,8 @@ public class EnemyMove : MonoBehaviour
             Debug.DrawRay(new Vector2(transform.position.x - bounds, transform.position.y), Vector2.down * rayLengthDown, Color.cyan, 0.2f);
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSide, Color.blue, 0.2f);
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSide, Color.blue, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSideEnemy, Color.green, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSideEnemy, Color.green, 0.2f);
         }
         #endregion
 
@@ -67,12 +80,28 @@ public class EnemyMove : MonoBehaviour
         //Rays sur les côtés pour éviter que l'ennemi passe au travers des murs
         #region RaysSide
 
-        int layerMask = ~LayerMask.GetMask("Box");
+        RaycastHit2D hit2DL = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide);
+        RaycastHit2D hit2DR = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide);
 
+        if (hit2DL.collider != null && hit2DL.collider.transform.gameObject.layer == 3 && GetComponent<EnemyAttack>().isPlayerNear == false)
+        {
+            travel = true;
+            StartCoroutine("Dash", 0);
+        }
+        if (hit2DR.collider != null && hit2DR.collider.transform.gameObject.layer == 3 && GetComponent<EnemyAttack>().isPlayerNear == false)
+        {
+            travel = true;
+            StartCoroutine("Dash", 1);
+        }
+
+        int layerMask = ~LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
         if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask))
         {
-            StopMove();
-            Offset();
+            if (!travel)
+            {
+                StopMove();
+                Offset();
+            }
         }
         else
         {
@@ -91,7 +120,7 @@ public class EnemyMove : MonoBehaviour
         #region DashRays
         int layerMask2 = ~LayerMask.GetMask("Default") + LayerMask.GetMask("Box");
 
-        if (isDashing)
+        if (isDashing && !travel)
         {
             if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask2) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask2))
             {
@@ -115,17 +144,7 @@ public class EnemyMove : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speed);
                 anim.SetBool("isRunning", true);
 
-                //Le joueur est à gauche ?
-                if (posToGo.x < transform.position.x)
-                {
-                    lookLeft = true;
-                    LookDirection();
-                }
-                else
-                {
-                    lookLeft = false;
-                    LookDirection();
-                }
+                LookDirection(posToGo);
 
                 //Si l'ennemi est assez proche, il s'arrête
                 if (Vector3.Distance(transform.position, posToGo) < maxStoppingDist)
@@ -171,9 +190,9 @@ public class EnemyMove : MonoBehaviour
     }
 
     //Flip de l'ennemi pour qu'il regarde dans la direction du joueur
-    public void LookDirection()
+    public void LookDirection(Vector3 newPos)
     {
-        if (lookLeft)
+        if (newPos.x < transform.position.x)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
@@ -203,7 +222,6 @@ public class EnemyMove : MonoBehaviour
         }
         anim.SetBool("isDashing", true);
     }
-
 
     public IEnumerator Dash(int direction)
     {
@@ -257,6 +275,8 @@ public class EnemyMove : MonoBehaviour
             GetComponent<CapsuleCollider2D>().isTrigger = false;
             anim.SetBool("isDashing", false);
             canMove = true;
+            travel = false;
+            LookDirection(newPos);
         }
     }
 }
