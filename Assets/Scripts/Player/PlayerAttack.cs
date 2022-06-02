@@ -201,8 +201,8 @@ public class PlayerAttack : MonoBehaviour
         timerWall -= Time.deltaTime;
         //Debug.Log(timerWall);
         //Debug.Log(!gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted);
-        //Debug.Log("isSpiking" + IsSpiking());
-        //Debug.Log("isWalling" + IsWalling());
+        Debug.Log("isSpiking" + IsSpiking());
+        Debug.Log("isWalling" + IsWalling());
 
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
         {
