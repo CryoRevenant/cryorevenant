@@ -27,7 +27,6 @@ public class DetectSniper : MonoBehaviour
             int layerMask = ~LayerMask.GetMask("Box");
             if (hit = Physics2D.Raycast(transform.position, detectCircle.gameObject.transform.position - transform.position, radiusPlayer, layerMask))
             {
-                Debug.Log(hit.collider.name);
                 Debug.DrawRay(gameObject.transform.position, detectCircle.gameObject.transform.position - transform.position, Color.magenta, 0.5f);
                 if (hit.transform.gameObject.layer == 0)
                 {
