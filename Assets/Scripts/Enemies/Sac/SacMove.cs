@@ -16,8 +16,6 @@ public class SacMove : EnemyMove
 
     private void Start()
     {
-        lookLeft = true;
-        LookDirection();
         attak = GetComponent<SacAttak>();
         speedMove = baseSpeed;
     }
@@ -33,16 +31,7 @@ public class SacMove : EnemyMove
             {
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speedMove);
 
-                //Le joueur est à gauche ?
-                if (posToGo.x < transform.position.x)
-                {
-                    lookLeft = true;
-                }
-                else
-                {
-                    lookLeft = false;
-                }
-                LookDirection();
+                LookDirection(posToGo);
 
                 if (Vector3.Distance(transform.position, posToGo) < maxAttackDist)
                 {

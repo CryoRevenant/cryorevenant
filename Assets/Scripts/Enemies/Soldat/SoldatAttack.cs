@@ -45,6 +45,8 @@ public class SoldatAttack : EnemyAttack
         {
             willAttack = true;
 
+            parentAnim.SetBool("isDashing", false);
+
             anim.SetInteger("attackIndex", index);
 
             anim.SetBool("isPlayerNear", isPlayerNear);

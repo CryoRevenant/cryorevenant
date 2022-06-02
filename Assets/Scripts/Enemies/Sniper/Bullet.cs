@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    bool hitPlayer = true;
+    public bool hitPlayer = true;
+
+    private void Start()
+    {
+        Physics2D.IgnoreLayerCollision(3, 7, true);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (hitPlayer)
@@ -17,7 +23,8 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            if (other.gameObject.GetComponent<AttackSniper>() != null)
+            Physics2D.IgnoreLayerCollision(3, 7, false);
+            if (other.gameObject.layer == 3)
             {
                 other.GetComponent<EnemyHealth>().TakeDamage(1);
                 other.GetComponent<AttackSniper>().CancelInvoke("Attack");

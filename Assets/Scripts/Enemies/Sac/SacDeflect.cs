@@ -18,13 +18,11 @@ public class SacDeflect : MonoBehaviour
         {
             if (other.transform.position.x < transform.position.x)
             {
-                move.lookLeft = true;
-                move.LookDirection();
+                move.LookDirection(other.transform.position);
             }
             else
             {
-                move.lookLeft = false;
-                move.LookDirection();
+                move.LookDirection(other.transform.position);
             }
             circle.GetComponent<Animator>().SetTrigger("Deflect");
             other.GetComponent<IceSpike>().CheckFlip();

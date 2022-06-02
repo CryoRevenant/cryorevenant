@@ -98,15 +98,6 @@ public class HitSac : MonoBehaviour
 
     void LookDirection()
     {
-        //Le joueur est à gauche ?
-        if (player.transform.position.x < transform.position.x)
-        {
-            move.lookLeft = true;
-        }
-        else
-        {
-            move.lookLeft = false;
-        }
-        move.LookDirection();
+        move.LookDirection(player.transform.position);
     }
 }
