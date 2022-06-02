@@ -299,7 +299,7 @@ public class PlayerControllerV2 : MonoBehaviour
         #region gachette de droite
         timerDash -= Time.deltaTime;
         //Debug.Log(timerDash);
-        Debug.Log("isDashing" + isDashUIStarted);
+        //Debug.Log("isDashing" + isDashUIStarted);
 
         if (!canDash)
         {
