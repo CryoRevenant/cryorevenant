@@ -46,7 +46,7 @@ public class EnemyMove : MonoBehaviour
         timerLook -= Time.deltaTime;
         if (timerLook <= 0)
         {
-            LookDirection();
+            //LookDirection();
             timerLook = maxTimerLook;
         }
         //Bool pour debug et ajuster les rays
@@ -268,6 +268,7 @@ public class EnemyMove : MonoBehaviour
                 {
                     isDashing = false;
                     anim.SetBool("isDashing", false);
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
                 yield return new WaitForSeconds(0.01f);
             }
