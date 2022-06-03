@@ -12006,7 +12006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1042187626
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12017,7 +12017,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ad98f5962f6ba1242a2776b766b98b15, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 36924f9249eb9414097f33d0bb5a454b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -13950,26 +13950,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1067318871311153062, guid: 98ddb2705eded734ba7b6ecd421b6be1, type: 3}
-      propertyPath: sounds.Array.size
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067318871311153062, guid: 98ddb2705eded734ba7b6ecd421b6be1, type: 3}
-      propertyPath: sounds.Array.data[22].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: d9e2d34952870944181d521cf7013e61, type: 3}
-    - target: {fileID: 1067318871311153062, guid: 98ddb2705eded734ba7b6ecd421b6be1, type: 3}
-      propertyPath: sounds.Array.data[22].name
-      value: groundHit
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067318871311153062, guid: 98ddb2705eded734ba7b6ecd421b6be1, type: 3}
-      propertyPath: sounds.Array.data[22].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067318871311153062, guid: 98ddb2705eded734ba7b6ecd421b6be1, type: 3}
-      propertyPath: sounds.Array.data[22].volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1067318871311153063, guid: 98ddb2705eded734ba7b6ecd421b6be1, type: 3}
       propertyPath: m_RootOrder
       value: 10
