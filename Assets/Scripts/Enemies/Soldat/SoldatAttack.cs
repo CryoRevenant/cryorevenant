@@ -67,6 +67,13 @@ public class SoldatAttack : EnemyAttack
         timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
     }
 
+    public void SneakAttack()
+    {
+        anim.SetBool("forceBlock", true);
+        parentAnim.SetTrigger("Sneak");
+        Reset();
+    }
+
     void GoDash()
     {
         anim.SetBool("dash", true);
@@ -80,9 +87,11 @@ public class SoldatAttack : EnemyAttack
         anim.SetBool("isPreAttack", false);
         anim.SetInteger("attackIndex", 0);
         anim.SetBool("isPlayerNear", false);
+        anim.SetBool("forceBlock", false);
 
         parentAnim.SetInteger("indexAttack", 0);
         parentAnim.SetBool("isAttacking", false);
+        parentAnim.SetBool("isBlocking", false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

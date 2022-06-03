@@ -9,6 +9,7 @@ public class HitTrigger : MonoBehaviour
     EnemyMove move;
     BoxCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
+    [SerializeField] int fakeChance;
 
     private void Start()
     {
@@ -21,6 +22,16 @@ public class HitTrigger : MonoBehaviour
     void Check()
     {
         parent.CheckAttack();
+    }
+
+    void FakeAttack()
+    {
+        int i = Random.Range(0, fakeChance);
+
+        if (i == 1)
+        {
+            GetComponentInParent<SoldatAttack>().SneakAttack();
+        }
     }
 
     void Increase()
