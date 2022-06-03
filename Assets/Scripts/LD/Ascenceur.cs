@@ -76,12 +76,12 @@ public class Ascenceur : MonoBehaviour
                 if (random <= 0.5f)
                 {
                     FindObjectOfType<AudioManager>().Play("elevatorMove");
-                    Debug.Log("elevatorMove");
+                    //Debug.Log("elevatorMove");
                 }
                 else if (random > 0.5f)
                 {
                     FindObjectOfType<AudioManager>().Play("elevatorMove2");
-                    Debug.Log("elevatorMove2");
+                    //Debug.Log("elevatorMove2");
                 }
 
                 isMoving = false;
@@ -138,7 +138,7 @@ public class Ascenceur : MonoBehaviour
         isUnlocked = false;
         player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
         animator.SetBool("openDoor", isUnlocked);
-        Debug.Log("ascenseur se ferme");
+        //Debug.Log("ascenseur se ferme");
         isMoving = true;
         FindObjectOfType<AudioManager>().Play("elevatorCloseDoor");
     }
@@ -150,7 +150,7 @@ public class Ascenceur : MonoBehaviour
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         player.GetComponent<CapsuleCollider2D>().isTrigger = false;
         otherElevator.GetComponent<Animator>().SetBool("openDoor", true);
-        Debug.Log("ascenseur ouvre");
+        //Debug.Log("ascenseur ouvre");
         isMoving = true;
         FindObjectOfType<AudioManager>().Play("elevatorOpenDoor");
     }

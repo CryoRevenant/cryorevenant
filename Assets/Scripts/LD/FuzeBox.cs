@@ -17,7 +17,6 @@ public class FuzeBox : MonoBehaviour
     {
         player = GameObject.Find("Player");
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -38,9 +37,10 @@ public class FuzeBox : MonoBehaviour
     {
         if (isDestroyed == false && canDestroy == true)
         {
+            FindObjectOfType<AudioManager>().Play("buttonPress");
             vcam.m_Priority = 40;
 
-            Invoke("Anim", 0.15f);
+            Invoke("Anim", 0.25f);
             Invoke("ChangeCam", 2f);
 
             player.GetComponent<PlayerAttack>().enabled = false;
