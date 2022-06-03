@@ -25,10 +25,12 @@ public class SoldatAttack : EnemyAttack
         if (willAttack && !mustBlock)
         {
             timer -= Time.deltaTime;
+            parentAnim.SetBool("isBlocking", true);
         }
 
         if (timer <= 0 && willAttack)
         {
+            parentAnim.SetBool("isBlocking", false);
             PreAttack();
         }
     }
