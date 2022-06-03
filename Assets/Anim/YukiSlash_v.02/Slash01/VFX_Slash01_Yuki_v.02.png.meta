@@ -17,6 +17,18 @@ TextureImporter:
   - first:
       213: -6406148129952483382
     second: VFX_Slash01_Yuki_v.02_4
+  - first:
+      213: -4029571055757616358
+    second: VFX_Slash01_Yuki_V.02_0
+  - first:
+      213: -8634696928001475099
+    second: VFX_Slash01_Yuki_V.02_1
+  - first:
+      213: 1724652947053441008
+    second: VFX_Slash01_Yuki_V.02_2
+  - first:
+      213: -8242247403244178099
+    second: VFX_Slash01_Yuki_V.02_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -185,27 +197,6 @@ TextureImporter:
       bones: []
       spriteID: 2d25e76166d2755f0800000000000000
       internalID: -768095294956088622
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VFX_Slash01_Yuki_v.02_4
-      rect:
-        serializedVersion: 2
-        x: 4096
-        y: 0
-        width: 1024
-        height: 1024
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac736af873ac817a0800000000000000
-      internalID: -6406148129952483382
       vertices: []
       indices: 
       edges: []
