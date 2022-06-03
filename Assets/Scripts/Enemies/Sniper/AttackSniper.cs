@@ -21,10 +21,10 @@ public class AttackSniper : EnemyAttack
     public override void CheckAttack()
     {
         RaycastHit2D hit;
-
-        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius))
+        int layerMask = LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
+        if (hit = Physics2D.Raycast(transform.position, player.transform.position - transform.position, radius, ~layerMask))
         {
-            if (attack)
+            if (attack && hit.collider.transform.gameObject.layer == 0)
             {
                 GetComponentInChildren<AimRay>().Aim();
 
