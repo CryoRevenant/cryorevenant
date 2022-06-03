@@ -10,7 +10,7 @@ public class FallDust : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity.y);
+        //Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
         Debug.DrawRay(transform.position, Vector3.down * dist, Color.blue, 0.2f);
         RaycastHit2D hit2D;

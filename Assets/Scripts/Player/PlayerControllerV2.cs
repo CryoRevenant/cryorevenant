@@ -648,7 +648,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("input down");
         }
 
-        //Debug.Log(isOnBox);
+        Debug.Log(isOnBox);
 
         if (hit && hit2)
         {
@@ -663,6 +663,11 @@ public class PlayerControllerV2 : MonoBehaviour
                         isOnBox = true;
                     }
                 }
+            }
+
+            if (hit.collider.gameObject.layer != 9 && hit2.collider.gameObject.layer != 9)
+            {
+                isOnBox = false;
             }
         }
         else
