@@ -18,14 +18,18 @@ public class EnemyHealth : MonoBehaviour
 
     Vector3 originPos;
 
+    bool forceStop;
+
     EnemyMove move;
 
     [Header("Animation")]
     public Animator anim;
+    public Animator parentAnim;
     public bool isBlocking;
     public bool isAttacking;
     [SerializeField] SpriteRenderer child;
     [SerializeField] Sprite resetSprite;
+    [SerializeField] float speedRecoil;
 
     private void Awake()
     {
@@ -98,15 +102,13 @@ public class EnemyHealth : MonoBehaviour
     {
         if (move.lookLeft)
         {
-            move.distDash = 1;
-            move.StartCoroutine("Dash", 1);
-            move.distDash = 4;
+            StopCoroutine(RecoilHit(0, 0));
+            StartCoroutine(RecoilHit(1, 2));
         }
         else
         {
-            move.distDash = 2;
-            move.StartCoroutine("Dash", 0);
-            move.distDash = 4;
+            StopCoroutine(RecoilHit(0, 0));
+            StartCoroutine(RecoilHit(0, 2));
         }
     }
 
@@ -114,20 +116,19 @@ public class EnemyHealth : MonoBehaviour
     {
         if (move.lookLeft)
         {
-            move.distDash = 3;
             isAttacking = false;
-            move.StartCoroutine("Dash", 1);
-            Debug.Log("lookLeft");
             anim.SetTrigger("forceReco");
-            move.distDash = 4;
+
+            StopCoroutine(RecoilHit(0, 0));
+            StartCoroutine(RecoilHit(1, 3));
         }
         else
         {
-            move.distDash = 3;
             isAttacking = false;
             anim.SetTrigger("forceReco");
-            move.StartCoroutine("Dash", 0);
-            move.distDash = 4;
+
+            StopCoroutine(RecoilHit(0, 0));
+            StartCoroutine(RecoilHit(0, 3));
         }
     }
 
@@ -141,5 +142,37 @@ public class EnemyHealth : MonoBehaviour
             GetComponent<EnemyDetect>().StopCoroutine("DetectAround");
             GetComponent<EnemyDetect>().StartCoroutine("DetectAround");
         }
+    }
+
+    IEnumerator RecoilHit(int direction, float distDash)
+    {
+        forceStop = false;
+        Vector3 newPos;
+
+        if (direction == 0)
+        {
+            newPos = new Vector3(transform.position.x - distDash, transform.position.y, 0);
+        }
+        else
+        {
+            newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
+        }
+
+        parentAnim.SetBool("isRecoil", true);
+
+        float i = 0;
+        while (transform.position.x != newPos.x || forceStop)
+        {
+            i += Time.deltaTime;
+            if (i >= 1.5f)
+            {
+                forceStop = true;
+                transform.position = new Vector2(newPos.x, transform.position.y);
+            }
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedRecoil);
+            yield return new WaitForSeconds(0.01f);
+        }
+        parentAnim.SetBool("isRecoil", false);
+
     }
 }
