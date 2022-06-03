@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class FuzeBox : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] CinemachineVirtualCamera vcam;
+    [SerializeField] Sprite changeSprite;
+    [SerializeField] Light2D light2D;
+    [SerializeField] float speed;
 
     bool isDestroyed;
     bool canDestroy;
+    bool intDown;
+
+    float intensity = 0;
 
     GameObject player;
 
@@ -17,6 +24,31 @@ public class FuzeBox : MonoBehaviour
     {
         player = GameObject.Find("Player");
     }
+
+    private void Update()
+    {
+        if (!intDown)
+        {
+            intensity += Time.deltaTime * speed;
+
+            if (intensity >= 1)
+            {
+                intDown = true;
+            }
+        }
+        if (intDown)
+        {
+            intensity -= Time.deltaTime * speed;
+
+            if (intensity <= 0)
+            {
+                intDown = false;
+            }
+        }
+
+        light2D.intensity = intensity;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -40,11 +72,12 @@ public class FuzeBox : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("buttonPress");
             vcam.m_Priority = 40;
 
-            Invoke("Anim", 0.25f);
+            Invoke("Anim", 0.30f);
             Invoke("ChangeCam", 2f);
 
             player.GetComponent<PlayerAttack>().enabled = false;
             player.GetComponent<PlayerControllerV2>().enabled = false;
+            GetComponent<SpriteRenderer>().sprite = changeSprite;
 
             isDestroyed = true;
         }
