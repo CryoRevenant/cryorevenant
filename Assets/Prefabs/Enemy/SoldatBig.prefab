@@ -126,6 +126,7 @@ MonoBehaviour:
   lookLeft: 0
   maxStoppingDist: 0.65
   anim: {fileID: 262721152}
+  maxTimerLook: 0
   speedDash: 50
   distDash: 4
   isDashing: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271baf58cdd767f4c9bd31f5a50fa2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1.4
+  radius: 2
   attackDuration: 0.4
   cooldown: 5
   attack: 1
@@ -177,13 +178,15 @@ MonoBehaviour:
   hp: 1
   elevatorToUnlock: 
   needUnlock: 0
-  indexIceBar: 1
+  indexIceBar: 0
   scoreToAdd: 200
   anim: {fileID: 843316230787162827}
+  parentAnim: {fileID: 262721152}
   isBlocking: 0
   isAttacking: 0
   child: {fileID: 386408488305011935}
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
+  speedRecoil: 0
   normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
   slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
   timeFreezing: 5
