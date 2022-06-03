@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FallDust : MonoBehaviour
 {
-    [SerializeField] ParticleSystem fallDust;
+    [SerializeField] GameObject fallDust;
     [SerializeField] float dist;
     [SerializeField] bool isGrounded = false;
+    private GameObject instance;
 
     private void Update()
     {
@@ -23,13 +24,23 @@ public class FallDust : MonoBehaviour
                     isGrounded = true;
                     //Debug.Log("Grounded");
                     FindObjectOfType<AudioManager>().Play("groundHit");
-                    fallDust.Emit(1);
+                    instance = Instantiate(fallDust,new Vector2(transform.GetComponent<Rigidbody2D>().position.x, transform.GetComponent<Rigidbody2D>().position.y-0.25f),Quaternion.identity);
+                    Destroy(instance,0.5f);
                 }
             }
         }
         else
         {
             isGrounded = false;
+        }
+
+        if(instance!= null)
+        instance.transform.position = new Vector2(instance.transform.position.x, transform.GetComponent<Rigidbody2D>().position.y - 0.25f);
+
+        if(gameObject.GetComponent<Rigidbody2D>().velocity.y > 0)
+        {
+            if (instance != null)
+                Destroy(instance);
         }
     }
 }

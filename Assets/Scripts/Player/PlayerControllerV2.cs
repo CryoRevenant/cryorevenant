@@ -648,7 +648,7 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("input down");
         }
 
-        Debug.Log(isOnBox);
+        //Debug.Log(isOnBox);
 
         if (hit && hit2)
         {
