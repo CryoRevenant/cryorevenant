@@ -79,13 +79,6 @@ public class PlayerAttack : MonoBehaviour
         attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
         slashOrder = 2;
 
-        #region slash set
-        //slashEffect2.SetActive(false);
-        //slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
-        //slashEffect.SetActive(false);
-        //slashEffect.GetComponent<Animator>().SetBool("Recover", false);
-        #endregion
-
         #region wall set
         wallEffect2.SetActive(false);
         wallEffect2.GetComponent<Animator>().SetBool("Recover", false);
@@ -129,14 +122,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 case true:
                     lastFlip = playerSprite.flipX;
-                    //slashEffect2.SetActive(true);
                     switch (slashOrder)
                     {
                         case 1:
                             FindObjectOfType<AudioManager>().Play("iceSword");
 
                             slashOrder = 2;
-                            //slashEffect2.GetComponent<Animator>().Play("SlashAttack_02");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
@@ -146,14 +137,12 @@ public class PlayerAttack : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
-                            //slashEffect2.GetComponent<Animator>().Play("SlashAttack_01");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
 
                             break;
                     }
-                    //slashEffect2.GetComponent<Animator>().SetBool("Recover", true);
                     break;
                 case false:
                     lastFlip = playerSprite.flipX;
@@ -164,7 +153,6 @@ public class PlayerAttack : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("iceSword");
 
                             slashOrder = 2;
-                            //slashEffect.GetComponent<Animator>().Play("SlashAttack_02");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
@@ -174,17 +162,14 @@ public class PlayerAttack : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
-                            //slashEffect.GetComponent<Animator>().Play("SlashAttack_01");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
 
                             break;
                     }
-                    //slashEffect.GetComponent<Animator>().SetBool("Recover", true);
                     break;
             }
-            StartCoroutine(StopSlashAnim());
 
             GetComponent<IceBar>().AddBar(iceToAdd);
             //Debug.Log("stop dashing");
@@ -197,10 +182,6 @@ public class PlayerAttack : MonoBehaviour
 
         #region attack for sprites and ice bar and instance : with wallCooldown
         timerWall -= Time.deltaTime;
-        //Debug.Log(timerWall);
-        //Debug.Log(!gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted);
-        //Debug.Log("isSpiking" + IsSpiking());
-        //Debug.Log("isWalling" + IsWalling());
 
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
         {
@@ -478,8 +459,6 @@ public class PlayerAttack : MonoBehaviour
         {
             attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
 
-            //slashEffect2.SetActive(false);
-            //slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
             wallEffect2.GetComponent<Animator>().SetBool("Build", false);
 
             wallEffect2.SetActive(false);
@@ -487,9 +466,6 @@ public class PlayerAttack : MonoBehaviour
         if (xAxis < 0)
         {
             attackPos.localPosition = new Vector3(-attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
-
-            //slashEffect.SetActive(false);
-            //slashEffect.GetComponent<Animator>().SetBool("Recover", false);
 
             wallEffect.SetActive(false);
             wallEffect.GetComponent<Animator>().SetBool("Build", false);
@@ -585,29 +561,6 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
 
         Gizmos.DrawWireSphere(new Vector3(attackPos.position.x, attackPos.position.y, attackPos.position.z), attackRange);
-    }
-
-    /// <summary>
-    /// permet d'arr�ter l'animation de slash
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator StopSlashAnim()
-    {
-        yield return new WaitForSeconds(0.4f);
-
-        switch (playerSprite.flipX)
-        {
-            case true:
-                //slashEffect2.SetActive(false);
-                //slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
-                break;
-            case false:
-                //slashEffect.SetActive(false);
-                //slashEffect.GetComponent<Animator>().SetBool("Recover", false);
-                break;
-        }
-
-        yield break;
     }
 
     /// <summary>
