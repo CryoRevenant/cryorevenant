@@ -24,12 +24,12 @@ public class DetectSniper : MonoBehaviour
         if (detectCircle != null)
         {
             RaycastHit2D hit;
-            int layerMask = ~LayerMask.GetMask("Box");
-            if (hit = Physics2D.Raycast(transform.position, detectCircle.gameObject.transform.position - transform.position, radiusPlayer, layerMask))
+            int layerMask = LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
+            if (hit = Physics2D.Raycast(transform.position, detectCircle.gameObject.transform.position - transform.position, radiusPlayer, ~layerMask))
             {
-                Debug.DrawRay(gameObject.transform.position, detectCircle.gameObject.transform.position - transform.position, Color.magenta, 0.5f);
                 if (hit.transform.gameObject.layer == 0)
                 {
+                    Debug.DrawRay(gameObject.transform.position, detectCircle.gameObject.transform.position - transform.position, Color.magenta, 0.5f);
                     otherDetect = true;
                     attack.CheckAttack();
                 }
