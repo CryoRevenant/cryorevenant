@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceAmount: 100
-  hurtTimer: 1
+  hurtTimer: 2
   backSlide: {fileID: 0}
   frontSlide: {fileID: 0}
   speed: 1

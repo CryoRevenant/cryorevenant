@@ -10,11 +10,13 @@ public class FallDust : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity.y);
+
         Debug.DrawRay(transform.position, Vector3.down * dist, Color.blue, 0.2f);
         RaycastHit2D hit2D;
         if (hit2D = Physics2D.Raycast(transform.position, Vector2.down, dist))
         {
-            if (hit2D.collider.CompareTag("Ground"))
+            if (hit2D.collider.CompareTag("Ground") && gameObject.GetComponent<Rigidbody2D>().velocity.y < 0)
             {
                 if (!isGrounded)
                 {
