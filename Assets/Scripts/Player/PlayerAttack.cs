@@ -18,8 +18,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject bulletIce;
     [Header("Slash")]
     [SerializeField] private RectMask2D attackUI;
-    [SerializeField] private GameObject slashEffect;
-    [SerializeField] private GameObject slashEffect2;
+    //[SerializeField] private GameObject slashEffect;
+    //[SerializeField] private GameObject slashEffect2;
     [SerializeField] private float attackCooldown;
     [SerializeField] private Animator attackAnim;
     [Header("Wall")]
@@ -80,10 +80,10 @@ public class PlayerAttack : MonoBehaviour
         slashOrder = 2;
 
         #region slash set
-        slashEffect2.SetActive(false);
-        slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
-        slashEffect.SetActive(false);
-        slashEffect.GetComponent<Animator>().SetBool("Recover", false);
+        //slashEffect2.SetActive(false);
+        //slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
+        //slashEffect.SetActive(false);
+        //slashEffect.GetComponent<Animator>().SetBool("Recover", false);
         #endregion
 
         #region wall set
@@ -129,14 +129,14 @@ public class PlayerAttack : MonoBehaviour
             {
                 case true:
                     lastFlip = playerSprite.flipX;
-                    slashEffect2.SetActive(true);
+                    //slashEffect2.SetActive(true);
                     switch (slashOrder)
                     {
                         case 1:
                             FindObjectOfType<AudioManager>().Play("iceSword");
 
                             slashOrder = 2;
-                            slashEffect2.GetComponent<Animator>().Play("SlashAttack_02");
+                            //slashEffect2.GetComponent<Animator>().Play("SlashAttack_02");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
@@ -146,25 +146,25 @@ public class PlayerAttack : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
-                            slashEffect2.GetComponent<Animator>().Play("SlashAttack_01");
+                            //slashEffect2.GetComponent<Animator>().Play("SlashAttack_01");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
 
                             break;
                     }
-                    slashEffect2.GetComponent<Animator>().SetBool("Recover", true);
+                    //slashEffect2.GetComponent<Animator>().SetBool("Recover", true);
                     break;
                 case false:
                     lastFlip = playerSprite.flipX;
-                    slashEffect.SetActive(true);
+                    //slashEffect.SetActive(true);
                     switch (slashOrder)
                     {
                         case 1:
                             FindObjectOfType<AudioManager>().Play("iceSword");
 
                             slashOrder = 2;
-                            slashEffect.GetComponent<Animator>().Play("SlashAttack_02");
+                            //slashEffect.GetComponent<Animator>().Play("SlashAttack_02");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
@@ -174,14 +174,14 @@ public class PlayerAttack : MonoBehaviour
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
-                            slashEffect.GetComponent<Animator>().Play("SlashAttack_01");
+                            //slashEffect.GetComponent<Animator>().Play("SlashAttack_01");
 
                             attackAnim.SetTrigger("isAttacking");
                             attackAnim.SetInteger("attackIndex", slashOrder);
 
                             break;
                     }
-                    slashEffect.GetComponent<Animator>().SetBool("Recover", true);
+                    //slashEffect.GetComponent<Animator>().SetBool("Recover", true);
                     break;
             }
             StartCoroutine(StopSlashAnim());
@@ -478,8 +478,8 @@ public class PlayerAttack : MonoBehaviour
         {
             attackPos.localPosition = new Vector3(attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
 
-            slashEffect2.SetActive(false);
-            slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
+            //slashEffect2.SetActive(false);
+            //slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
             wallEffect2.GetComponent<Animator>().SetBool("Build", false);
 
             wallEffect2.SetActive(false);
@@ -488,8 +488,8 @@ public class PlayerAttack : MonoBehaviour
         {
             attackPos.localPosition = new Vector3(-attackPosDistance.x, attackPosDistance.y, attackPos.position.z);
 
-            slashEffect.SetActive(false);
-            slashEffect.GetComponent<Animator>().SetBool("Recover", false);
+            //slashEffect.SetActive(false);
+            //slashEffect.GetComponent<Animator>().SetBool("Recover", false);
 
             wallEffect.SetActive(false);
             wallEffect.GetComponent<Animator>().SetBool("Build", false);
@@ -598,12 +598,12 @@ public class PlayerAttack : MonoBehaviour
         switch (playerSprite.flipX)
         {
             case true:
-                slashEffect2.SetActive(false);
-                slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
+                //slashEffect2.SetActive(false);
+                //slashEffect2.GetComponent<Animator>().SetBool("Recover", false);
                 break;
             case false:
-                slashEffect.SetActive(false);
-                slashEffect.GetComponent<Animator>().SetBool("Recover", false);
+                //slashEffect.SetActive(false);
+                //slashEffect.GetComponent<Animator>().SetBool("Recover", false);
                 break;
         }
 

@@ -166,6 +166,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: boxFall
     clip: {fileID: 8300000, guid: 1a91177a58fef424abc2a803aea6a690, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     source: {fileID: 0}
