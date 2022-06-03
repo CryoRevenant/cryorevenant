@@ -53,7 +53,6 @@ public class Bullet : MonoBehaviour
         hitPlayer = false;
 
         rigid.velocity = rigid.velocity * -1;
-
     }
 }
 
