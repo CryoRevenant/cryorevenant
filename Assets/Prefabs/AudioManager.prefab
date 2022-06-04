@@ -169,3 +169,18 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: chargeLaser
+    clip: {fileID: 8300000, guid: 876b9012a8ad68646a0783c1b20d2d6d, type: 3}
+    volume: 0.1
+    pitch: 1
+    source: {fileID: 0}
+  - name: shotLaser
+    clip: {fileID: 8300000, guid: 3b15d05976eaf1b4d953878b31eb1d76, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: bulletNear
+    clip: {fileID: 8300000, guid: 7f9c2e8502bf9d34cb398107ef43b28f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

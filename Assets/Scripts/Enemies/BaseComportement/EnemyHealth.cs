@@ -81,6 +81,16 @@ public class EnemyHealth : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar, gameObject);
             GameManager.instance.AddScore(scoreToAdd);
+
+            AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+
+            for (int a = 0; a < audioS.Length; a++)
+            {
+                if (audioS[a].clip.name == "charge-laser")
+                {
+                    audioS[a].enabled = false;
+                }
+            }
         }
     }
 

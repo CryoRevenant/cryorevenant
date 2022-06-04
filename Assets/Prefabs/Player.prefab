@@ -797,9 +797,10 @@ GameObject:
   - component: {fileID: 869028044059294363}
   - component: {fileID: 1861171816}
   - component: {fileID: 1000061700}
+  - component: {fileID: 3905847508913758685}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1069,7 +1070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceAmount: 100
-  hurtTimer: 2
+  hurtTimer: 1
   backSlide: {fileID: 0}
   frontSlide: {fileID: 0}
   speed: 1
@@ -1085,9 +1086,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865c9ddc06913054bb7cd3ceeab680f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallDust: {fileID: 0}
+  fallDust: {fileID: 5829110071753457644, guid: 581a8abdfc6bad343b5ec22c4e103547, type: 3}
   dist: 2
   isGrounded: 0
+--- !u!81 &3905847508913758685
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7778891271729684178}
+  m_Enabled: 1
 --- !u!1 &7778891271889976451
 GameObject:
   m_ObjectHideFlags: 0

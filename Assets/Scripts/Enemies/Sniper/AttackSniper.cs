@@ -45,6 +45,7 @@ public class AttackSniper : EnemyAttack
     {
         if (canAttack == true)
         {
+            FindObjectOfType<AudioManager>().Play("shotLaser");
             canAttack = false;
             GameObject shoot = Instantiate(bullet, transform.position, transform.rotation);
             shoot.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * force, ForceMode2D.Impulse);
