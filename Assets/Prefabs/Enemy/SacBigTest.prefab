@@ -743,7 +743,7 @@ MonoBehaviour:
   child: {fileID: 6070141095582327250}
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
   speedRecoil: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 2994820970407758858}
 --- !u!114 &3817621574512399977
 MonoBehaviour:
   m_ObjectHideFlags: 0
