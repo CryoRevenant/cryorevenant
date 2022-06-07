@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canDestroy && player.GetComponent<PlayerControllerV2>().IsDashing())
+        if (canDestroy && player.GetComponent<PlayerControllerV2>().IsDashing())
         {
             DestroyDoor();
             canDestroy = false;
@@ -39,6 +39,7 @@ public class Door : MonoBehaviour
 
     public void DestroyDoor()
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         FindObjectOfType<AudioManager>().Play("cutDoor");
 
         doorIdle.SetActive(false);

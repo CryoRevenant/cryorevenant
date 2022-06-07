@@ -41,6 +41,7 @@ public class SoldatAttack : EnemyAttack
 
         if (i == 1)
         {
+            GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
             GoDash();
         }
         else

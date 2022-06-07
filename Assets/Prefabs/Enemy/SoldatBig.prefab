@@ -127,7 +127,6 @@ MonoBehaviour:
   lookLeft: 0
   maxStoppingDist: 0.65
   anim: {fileID: 262721152}
-  maxTimerLook: 0
   speedDash: 50
   distDash: 4
   isDashing: 0
@@ -180,7 +179,7 @@ MonoBehaviour:
   hp: 1
   elevatorToUnlock: 
   needUnlock: 0
-  indexIceBar: 12
+  indexIceBar: 0
   scoreToAdd: 200
   anim: {fileID: 843316230787162827}
   parentAnim: {fileID: 262721152}
@@ -188,7 +187,7 @@ MonoBehaviour:
   isAttacking: 0
   child: {fileID: 386408488305011935}
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
-  speedRecoil: 0
+  speedRecoil: 30
   normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
   slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
   timeFreezing: 5
@@ -424,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorBox: {fileID: 404204908336340052}
-  fakeChance: 0
+  fakeChance: 4
 --- !u!95 &843316230787162827
 Animator:
   serializedVersion: 3
