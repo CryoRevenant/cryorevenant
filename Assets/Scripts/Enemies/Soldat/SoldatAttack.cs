@@ -22,7 +22,7 @@ public class SoldatAttack : EnemyAttack
 
     private void Update()
     {
-        if (willAttack && !mustBlock)
+        if (willAttack && !mustBlock && indexParent == 0)
         {
             timer -= Time.deltaTime;
             parentAnim.SetBool("isBlocking", true);

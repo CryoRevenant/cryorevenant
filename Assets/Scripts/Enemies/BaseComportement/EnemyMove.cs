@@ -74,19 +74,7 @@ public class EnemyMove : MonoBehaviour
         //Rays sur les côtés pour éviter que l'ennemi passe au travers des murs
         #region RaysSide
 
-        RaycastHit2D hit2DL = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide);
-        RaycastHit2D hit2DR = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide);
-
-        if (hit2DL.collider != null && hit2DL.collider.transform.gameObject.layer == 3 && GetComponent<EnemyAttack>().isPlayerNear == false)
-        {
-            travel = true;
-            StartCoroutine("Dash", 0);
-        }
-        if (hit2DR.collider != null && hit2DR.collider.transform.gameObject.layer == 3 && GetComponent<EnemyAttack>().isPlayerNear == false)
-        {
-            travel = true;
-            StartCoroutine("Dash", 1);
-        }
+        TravelRays();
 
         int layerMask = LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
         RaycastHit2D hit2Dt = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, ~layerMask);
@@ -125,6 +113,37 @@ public class EnemyMove : MonoBehaviour
             }
         }
         #endregion
+    }
+
+    void TravelRays()
+    {
+        RaycastHit2D hit2DL = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide);
+        RaycastHit2D hit2DR = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide);
+
+        if (hit2DL.collider != null)
+        {
+            if (hit2DL.collider.transform.gameObject.layer == 3 && GetComponent<EnemyAttack>().isPlayerNear == false)
+            {
+                travel = true;
+                StartCoroutine("Dash", 0);
+            }
+            if (hit2DL.collider.transform.gameObject.layer == 0)
+            {
+                LookDirection(hit2DL.transform.position);
+            }
+        }
+        if (hit2DR.collider != null)
+        {
+            if (hit2DR.collider.transform.gameObject.layer == 3 && GetComponent<EnemyAttack>().isPlayerNear == false)
+            {
+                travel = true;
+                StartCoroutine("Dash", 1);
+            }
+            if (hit2DR.collider.transform.gameObject.layer == 0)
+            {
+                LookDirection(hit2DR.transform.position);
+            }
+        }
     }
 
     //Coroutine qui permet à l'ennemi de se déplacer dans la direction du joueur
