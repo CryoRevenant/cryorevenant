@@ -141,7 +141,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (canMove && !stopMove)
         {
-            Debug.Log("walk");
+            //Debug.Log("walk");
             walkSFX.Play();
             Vector3 posToGo = lastPos.transform.position;
 
@@ -163,7 +163,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            Debug.Log("don't walk");
+            //Debug.Log("don't walk");
             walkSFX.Stop();
         }
     }
