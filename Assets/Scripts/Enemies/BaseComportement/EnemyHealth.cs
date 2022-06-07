@@ -166,7 +166,6 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator RecoilHit(int direction, float distDash)
     {
-        forceStop = false;
         Vector3 newPos;
 
         if (direction == 0)
@@ -181,18 +180,16 @@ public class EnemyHealth : MonoBehaviour
         parentAnim.SetBool("isRecoil", true);
 
         float i = 0;
-        while (transform.position.x != newPos.x || forceStop)
+        while (transform.position.x != newPos.x)
         {
-            i += Time.deltaTime;
-            if (i >= 1.5f)
-            {
-                forceStop = true;
-                transform.position = new Vector2(newPos.x, transform.position.y);
-            }
+            i += 0.1f;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedRecoil);
             yield return new WaitForSeconds(0.01f);
+            if (i >= 0.8f)
+            {
+                transform.position = newPos;
+            }
         }
         parentAnim.SetBool("isRecoil", false);
-
     }
 }

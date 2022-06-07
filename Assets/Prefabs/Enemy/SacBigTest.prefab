@@ -340,8 +340,8 @@ MonoBehaviour:
   radiusEnemy: 15
   otherDetect: 0
   waitTime: 0.7
-  move: {fileID: 3817621574512399980}
   attack: {fileID: 0}
+  move: {fileID: 3817621574512399980}
 --- !u!114 &7778757795641692172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,10 +360,12 @@ MonoBehaviour:
   indexIceBar: 2
   scoreToAdd: 0
   anim: {fileID: 3817621572848472142}
+  parentAnim: {fileID: 0}
   isBlocking: 0
   isAttacking: 0
   child: {fileID: 6070141095582327250}
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
+  speedRecoil: 0
 --- !u!114 &3817621574512399977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,16 +404,20 @@ MonoBehaviour:
   canMove: 1
   lookLeft: 0
   maxStoppingDist: 1.5
-  anim: {fileID: 0}
+  anim: {fileID: 3817621572848472142}
+  maxTimerLook: 0
   speedDash: 0
   distDash: 0
   isDashing: 0
   frontDash: {fileID: 0}
   backDash: {fileID: 0}
+  travel: 0
   rayLengthDown: 1.4
   rayLengthSide: 1.3
+  rayLengthSideEnemy: 0
   bounds: 0.8
   showRays: 0
+  walkSFX: {fileID: 0}
   maxAttackDist: 12
   overrideSpeed: 2.5
   baseSpeed: 7

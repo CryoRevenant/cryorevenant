@@ -14,8 +14,6 @@ public class EnemyMove : MonoBehaviour
     public float maxStoppingDist;
     public Animator anim;
     bool stopMove;
-    float timerLook;
-    [SerializeField] float maxTimerLook;
 
     [Header("Dash")]
     public float speedDash;
@@ -40,18 +38,11 @@ public class EnemyMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerLook = maxTimerLook;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        timerLook -= Time.deltaTime;
-        if (timerLook <= 0)
-        {
-            //LookDirection();
-            timerLook = maxTimerLook;
-        }
         //Bool pour debug et ajuster les rays
         #region ShowRays
         if (showRays)
@@ -275,6 +266,8 @@ public class EnemyMove : MonoBehaviour
 
             while (isDashing == true)
             {
+                Debug.Log("isDash");
+                GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
                 anim.SetBool("isDashing", true);
 
