@@ -184,8 +184,23 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
-  - name: soldatFootsteps
-    clip: {fileID: 8300000, guid: 463d809a7fe823e448f2dd5bd770ee52, type: 3}
+  - name: sacAttack
+    clip: {fileID: 8300000, guid: 0198ca06622516443a2b99045fb999bf, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: sacAttack2
+    clip: {fileID: 8300000, guid: b90f3a6aed094fb469d713506f652ce8, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: sacKill
+    clip: {fileID: 8300000, guid: b218a2bc00707e649b8340723db8a50d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: sacCutSpike
+    clip: {fileID: 8300000, guid: 9f76b150c8c84864199dfade9bb2df73, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

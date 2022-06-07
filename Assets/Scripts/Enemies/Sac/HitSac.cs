@@ -39,6 +39,15 @@ public class HitSac : MonoBehaviour
 
     void TriggerOn()
     {
+        float random = Random.value;
+        if(random > 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("sacAttack");
+        }
+        else if(random <= 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("sacAttack2");
+        }
         hitTrigger.enabled = true;
     }
 
@@ -49,6 +58,8 @@ public class HitSac : MonoBehaviour
 
     public void BlockSpike()
     {
+        //Debug.Log("block spike");
+        FindObjectOfType<AudioManager>().Play("sacCutSpike");
         blockSpike.enabled = true;
     }
 
@@ -68,6 +79,7 @@ public class HitSac : MonoBehaviour
                 if (hit.transform.CompareTag("Player"))
                 {
                     other.GetComponent<PlayerHP>().Death();
+                    FindObjectOfType<AudioManager>().Play("sacKill");
                 }
                 if (other.transform.CompareTag("Wall"))
                 {

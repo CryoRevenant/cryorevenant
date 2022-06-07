@@ -14,6 +14,9 @@ public class SacMove : EnemyMove
 
     SacAttak attak;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource sacWalkSFX;
+
     private void Start()
     {
         attak = GetComponent<SacAttak>();
@@ -24,6 +27,7 @@ public class SacMove : EnemyMove
     {
         if (canMove && canCall)
         {
+            sacWalkSFX.Play();
             Vector3 posToGo = lastPos.transform.position;
 
             //Tant que l'ennemi doit bouger
@@ -41,6 +45,10 @@ public class SacMove : EnemyMove
 
                 yield return new WaitForSeconds(0.01f);
             }
+        }
+        else
+        {
+            sacWalkSFX.Stop();
         }
     }
 
