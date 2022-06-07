@@ -7211,11 +7211,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &586219144 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 262721152, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-  m_PrefabInstance: {fileID: 1228987256}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &588024504
 GameObject:
   m_ObjectHideFlags: 0
@@ -14602,18 +14597,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 95799592}
     m_Modifications:
-    - target: {fileID: 1648459890, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1648459890, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: fakeChance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340052, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9f5562110485f064bbaf1206d6003948, type: 3}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -14661,34 +14644,6 @@ PrefabInstance:
     - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_Name
       value: SoldatBig
-      objectReference: {fileID: 0}
-    - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5266480633623781981, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: fakeChance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: needUnlock
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: parentAnim
-      value: 
-      objectReference: {fileID: 586219144}
-    - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: indexIceBar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: speedRecoil
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
-      propertyPath: elevatorToUnlock
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}

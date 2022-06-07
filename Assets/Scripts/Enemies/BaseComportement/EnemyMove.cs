@@ -232,7 +232,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (isDashing == false)
         {
-            GetComponent<CapsuleCollider2D>().isTrigger = true;
+            GetComponent<CapsuleCollider2D>().enabled = false;
             isDashing = true;
             StopMove();
 
@@ -266,8 +266,6 @@ public class EnemyMove : MonoBehaviour
 
             while (isDashing == true)
             {
-                Debug.Log("isDash");
-                GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
                 anim.SetBool("isDashing", true);
 
@@ -278,10 +276,11 @@ public class EnemyMove : MonoBehaviour
                 }
                 yield return new WaitForSeconds(0.01f);
             }
+
+            GetComponent<CapsuleCollider2D>().enabled = true;
+
             float i = transform.rotation.y;
             transform.rotation = Quaternion.Euler(0, i + 180, 0);
-
-            GetComponent<CapsuleCollider2D>().isTrigger = false;
 
             anim.SetBool("isDashing", false);
 

@@ -53,7 +53,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        healthBar.value = currHP;
+        if (healthBar != null)
+        {
+            healthBar.value = currHP;
+        }
     }
 
     public void TakeDamage(float damage)
