@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] SpriteRenderer child;
     [SerializeField] Sprite resetSprite;
     [SerializeField] float speedRecoil;
+    [SerializeField] Slider healthBar;
 
     private void Awake()
     {
@@ -47,6 +49,11 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         GameManager.instance.AddToList(indexIceBar, gameObject);
+    }
+
+    private void Update()
+    {
+        healthBar.value = currHP;
     }
 
     public void TakeDamage(float damage)

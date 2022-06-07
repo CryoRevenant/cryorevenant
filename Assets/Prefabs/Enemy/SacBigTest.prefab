@@ -354,9 +354,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -743,6 +743,7 @@ MonoBehaviour:
   child: {fileID: 6070141095582327250}
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
   speedRecoil: 0
+  healthBar: {fileID: 0}
 --- !u!114 &3817621574512399977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +783,6 @@ MonoBehaviour:
   lookLeft: 0
   maxStoppingDist: 1.5
   anim: {fileID: 0}
-  maxTimerLook: 0
   speedDash: 0
   distDash: 0
   isDashing: 0
