@@ -72,6 +72,11 @@ public class EnemyHealth : MonoBehaviour
                 elevator.GetComponent<Ascenceur>().CheckOpen();
             }
 
+            if (GetComponent<AttackSniper>() != null)
+            {
+                GetComponentInChildren<AimRay>().StopAim();
+            }
+
             if (GetComponent<EnemyDetect>() != null)
             {
                 child.GetComponent<BoxCollider2D>().enabled = false;
@@ -151,6 +156,11 @@ public class EnemyHealth : MonoBehaviour
             GetComponent<EnemyDetect>().otherDetect = false;
             GetComponent<EnemyDetect>().StopCoroutine("DetectAround");
             GetComponent<EnemyDetect>().StartCoroutine("DetectAround");
+        }
+        else
+        {
+            GetComponent<DetectSniper>().StopCoroutine("DetectAround");
+            GetComponent<DetectSniper>().StartCoroutine("DetectAround");
         }
     }
 
