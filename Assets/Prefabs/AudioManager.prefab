@@ -184,3 +184,8 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: soldatFootsteps
+    clip: {fileID: 8300000, guid: 463d809a7fe823e448f2dd5bd770ee52, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}

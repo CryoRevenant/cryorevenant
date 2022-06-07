@@ -34,6 +34,9 @@ public class EnemyMove : MonoBehaviour
     [Header("Debug")]
     public bool showRays;
 
+    [Header("Audio")]
+    [SerializeField] AudioSource walkSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -138,6 +141,8 @@ public class EnemyMove : MonoBehaviour
     {
         if (canMove && !stopMove)
         {
+            //Debug.Log("walk");
+            walkSFX.Play();
             Vector3 posToGo = lastPos.transform.position;
 
             //Tant que l'ennemi doit bouger
@@ -155,6 +160,11 @@ public class EnemyMove : MonoBehaviour
                 }
                 yield return new WaitForSeconds(0.01f);
             }
+        }
+        else
+        {
+            //Debug.Log("don't walk");
+            walkSFX.Stop();
         }
     }
 
