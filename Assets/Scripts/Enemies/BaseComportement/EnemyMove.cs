@@ -97,9 +97,9 @@ public class EnemyMove : MonoBehaviour
             StartCoroutine("Dash", 1);
         }
 
-        int layerMask = ~LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
-        RaycastHit2D hit2Dt = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask);
-        RaycastHit2D hit2Du = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask);
+        int layerMask = LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
+        RaycastHit2D hit2Dt = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, ~layerMask);
+        RaycastHit2D hit2Du = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, ~layerMask);
         if (hit2Dt || hit2Du)
         {
             if (!travel)
