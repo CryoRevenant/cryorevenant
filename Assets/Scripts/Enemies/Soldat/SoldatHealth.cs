@@ -18,9 +18,15 @@ public class SoldatHealth : EnemyHealth
 
     [Header("FX")]
     [SerializeField] GameObject vfxBlock;
+    GameObject vfxBlockInstance;
 
     private void Update()
     {
+        if(vfxBlockInstance != null)
+        {
+            vfxBlockInstance.transform.position = this.transform.position;
+        }
+
         if (canGoDown)
         {
             timer -= Time.deltaTime;
@@ -62,8 +68,9 @@ public class SoldatHealth : EnemyHealth
 
     public override void Block()
     {
-        GameObject instance = Instantiate(vfxBlock, transform.position, Quaternion.identity);
-        Destroy(instance, 0.25f);
+        vfxBlockInstance = Instantiate(vfxBlock, transform.position, Quaternion.identity);
+        Destroy(vfxBlockInstance, 0.25f);
+
         AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
         for (int i = 0; i < audioS.Length; i++)
