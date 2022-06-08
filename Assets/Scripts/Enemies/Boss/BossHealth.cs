@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossHealth : MonoBehaviour
 {
@@ -19,12 +20,23 @@ public class BossHealth : MonoBehaviour
     public bool isBlocking;
     public bool isAttacking;
 
+    [Header("Health")]
+    [SerializeField] Slider healthBar;
+
     private void Awake()
     {
         currHP = hp;
         anim = GetComponentInChildren<Animator>();
         move = GetComponent<BossMove>();
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    private void Update()
+    {
+        if (healthBar != null)
+        {
+            healthBar.value = currHP;
+        }
     }
 
     public void TakeDamage(float damage)
