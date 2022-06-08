@@ -136,6 +136,7 @@ public class Ascenceur : MonoBehaviour
         isClosed = true;
         light2D.color = Color.red;
         animator.SetTrigger("closeDoor");
+        otherElevator.GetComponent<Animator>().SetBool("ForceClose", true); 
     }
 
     void GetIn()
