@@ -2350,6 +2350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GV_Slider: {fileID: 2113679960}
+  MV_Slider: {fileID: 1256912721}
 --- !u!4 &1196629934
 Transform:
   m_ObjectHideFlags: 0
