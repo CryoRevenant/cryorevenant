@@ -17,6 +17,7 @@ public class Ascenceur : MonoBehaviour
     GameObject player;
     Animator animator;
     float t = 0;
+    float i = 0;
 
     public bool isUnlocked;
     public bool isIn;
@@ -63,6 +64,7 @@ public class Ascenceur : MonoBehaviour
 
         if (playerIn == true)
         {
+            i += Time.deltaTime;
             t += Time.deltaTime * speed;
             isIn = false;
             player.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -85,6 +87,12 @@ public class Ascenceur : MonoBehaviour
                 }
 
                 isMoving = false;
+
+                if (i >= 6)
+                {
+                    GetOut();
+                    i = 0;
+                }
             }
 
             if (player.transform.position.y.ToString("0.0") == otherElevator.transform.position.y.ToString("0.0"))
@@ -145,6 +153,7 @@ public class Ascenceur : MonoBehaviour
 
     void GetOut()
     {
+        player.transform.position = otherElevator.transform.position;
         isUnlocked = true;
         player.GetComponent<PlayerControllerV2>().enabled = true;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
