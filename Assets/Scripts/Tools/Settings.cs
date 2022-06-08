@@ -20,9 +20,12 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("G_volume",slider.value);
         if (FindObjectOfType<AudioManager>())
         {
-            foreach (Sound s in FindObjectOfType<AudioManager>().sounds)
+            foreach (AudioSource src in FindObjectsOfType<AudioSource>())
             {
-                s.source.volume = PlayerPrefs.GetFloat("G_volume");
+                if (!src.GetComponent<Music>())
+                {
+                    src.volume = PlayerPrefs.GetFloat("G_volume");
+                }
             }
         }
         //Debug.Log(PlayerPrefs.GetFloat("G_volume"));
