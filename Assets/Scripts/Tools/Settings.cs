@@ -10,6 +10,7 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
+        //Debug.Log("Reset");
         GV_Slider.value = PlayerPrefs.GetFloat("G_volume");
         MV_Slider.value = PlayerPrefs.GetFloat("M_volume");
     }

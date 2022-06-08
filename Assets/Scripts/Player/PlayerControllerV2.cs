@@ -98,7 +98,6 @@ public class PlayerControllerV2 : MonoBehaviour
 
     void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         isGroundedL = false;
         isGroundedR = false;
         canJump = false;

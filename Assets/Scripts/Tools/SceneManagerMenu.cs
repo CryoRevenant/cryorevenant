@@ -28,6 +28,8 @@ public class SceneManagerMenu : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+
         isPaused = false;
 
         if (sceneIndex == 1)
@@ -40,23 +42,23 @@ public class SceneManagerMenu : MonoBehaviour
     {
         if (sceneIndex == 1)
         {
-            switch (isPaused)
+            if(controls != null)
             {
-                case true:
-                    if (controls.currentActionMap.FindAction("Pause").triggered)
+                if (controls.currentActionMap.FindAction("Pause").triggered)
+                {
+                    switch (isPaused)
                     {
-                        Debug.Log("UnPause");
-                        HidePauseMenu();
-                        isPaused = false;
+                        case true:
+                            //Debug.Log("UnPause");
+                            HidePauseMenu();
+                            isPaused = false;
+                            break;
+                        case false:
+                            //Debug.Log("Pause");
+                            PauseMenu();
+                            break;
                     }
-                    break;
-                case false:
-                    if (controls.currentActionMap.FindAction("Pause").triggered)
-                    {
-                        Debug.Log("Pause");
-                        PauseMenu();
-                    }
-                    break;
+                }
             }
         }
     }
@@ -160,7 +162,8 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void PauseMenu()
     {
-        Cursor.lockState = CursorLockMode.None;
+        //Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<PlayerAttack>().enabled = false;
         player.GetComponent<PlayerControllerV2>().enabled = false;
         pauseMenu.SetActive(true);
@@ -172,6 +175,7 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HidePauseMenu()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<PlayerAttack>().enabled = true;
         player.GetComponent<PlayerControllerV2>().enabled = true;
         pauseMenu.SetActive(false);
