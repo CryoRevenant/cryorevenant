@@ -188,12 +188,14 @@ MonoBehaviour:
   child: {fileID: 386408488305011935}
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
   speedRecoil: 30
+  healthBar: {fileID: 0}
   normalSpeed: {fileID: 9100000, guid: 2d2cde72bd7d7b64eadc0887dda93929, type: 2}
   slowSpeed: {fileID: 9100000, guid: be51132ce281a1242afc7f1a9fb2d283, type: 2}
   timeFreezing: 5
   iceSlowVFX: {fileID: 8669489483881396668, guid: 88f707aecf4e9f84890f971d44c0772e, type: 3}
   freezeColor: {x: 157, y: 208, z: 255}
   timeBlocking: 1.5
+  vfxBlock: {fileID: 3166911455110256611, guid: 104eb40bff2a4fd49995cf9f82ca150a, type: 3}
 --- !u!70 &6806867172069710268
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

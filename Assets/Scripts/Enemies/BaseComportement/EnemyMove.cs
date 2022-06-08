@@ -251,6 +251,17 @@ public class EnemyMove : MonoBehaviour
     {
         if (isDashing == false)
         {
+            float random = Random.value;
+
+            if (random > 0.5f)
+            {
+                FindObjectOfType<AudioManager>().Play("soldatDash");
+            }
+            else if (random <= 0.5f)
+            {
+                FindObjectOfType<AudioManager>().Play("soldatDash2");
+            }
+
             GetComponent<CapsuleCollider2D>().enabled = false;
             isDashing = true;
             StopMove();

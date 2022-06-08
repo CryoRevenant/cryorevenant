@@ -46,161 +46,145 @@ MonoBehaviour:
   sounds:
   - name: iceSword
     clip: {fileID: 8300000, guid: 04f78856f0f65334a8489e2c57cd0f48, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceSword2
     clip: {fileID: 8300000, guid: 4e0dbede7a89843418760c82f7db6e53, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceSwordHit
     clip: {fileID: 8300000, guid: aa4ccaf535c25814eb928909546f2fce, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceSwordHit2
     clip: {fileID: 8300000, guid: 717f62c2494689848a33c0f99b6106ba, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceSwordBlock
     clip: {fileID: 8300000, guid: b31526fbcf9333b438837a8fb7707ed7, type: 3}
-    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: iceSwordBlock2
     clip: {fileID: 8300000, guid: 5bffa58baeab00d4d8d64b692fcc19d0, type: 3}
-    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: iceWoosh
     clip: {fileID: 8300000, guid: 00af5154ed9ad514590b367b8361e6b8, type: 3}
-    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: iceWoosh2
     clip: {fileID: 8300000, guid: 3d3ea1405c1f456419330110ec04cfdf, type: 3}
-    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: bootsRun
     clip: {fileID: 8300000, guid: 071ca2deeaec1544db08e26ecb04e8e9, type: 3}
-    volume: 0.5
     pitch: 1.75
     source: {fileID: 0}
   - name: Jump
     clip: {fileID: 8300000, guid: 0d55a97a987207b4186018f83d16fbc0, type: 3}
-    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: groundHit
     clip: {fileID: 8300000, guid: d9e2d34952870944181d521cf7013e61, type: 3}
-    volume: 0.4
     pitch: 1
     source: {fileID: 0}
   - name: iceWall
     clip: {fileID: 8300000, guid: ca7f775534ade754dafd7ca935771851, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceWall2
     clip: {fileID: 8300000, guid: cc40a656d060116488fc62eca7f709f3, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceSpike
     clip: {fileID: 8300000, guid: 4d1a1b66139b38c4a97cbe382ce091ed, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: iceSpike2
     clip: {fileID: 8300000, guid: 8b5d325f2a8029d4e9a6a62c8e73bd63, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Hot
     clip: {fileID: 8300000, guid: 7d0f7936e4aa0e44fba8840a43805ee6, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: Cold
     clip: {fileID: 8300000, guid: aed391642afa08946aaf76de7b61e393, type: 3}
-    volume: 0.25
     pitch: 1
     source: {fileID: 0}
   - name: cutDoor
     clip: {fileID: 8300000, guid: 0221b3f52b4b96b4992a24f8924a6e23, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: elevatorDing
     clip: {fileID: 8300000, guid: 284928c619c628740bc8ab2aaead7832, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: elevatorOpenDoor
     clip: {fileID: 8300000, guid: 1ffbc70adbc615e4687a0514f1032294, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: elevatorCloseDoor
     clip: {fileID: 8300000, guid: 0cd6f258c0d7b6e4d9b90f0b20d6507c, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: elevatorMove
     clip: {fileID: 8300000, guid: 92898b6aa4e418d4aa8fe9f3196ad0e1, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: elevatorMove2
     clip: {fileID: 8300000, guid: 2720040972c333949830b41d9b5579ac, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: buttonPress
     clip: {fileID: 8300000, guid: 62b6bc07ad5ecf743bed2ac40fcb5700, type: 3}
-    volume: 0.5
     pitch: 1
     source: {fileID: 0}
   - name: boxFall
     clip: {fileID: 8300000, guid: 1a91177a58fef424abc2a803aea6a690, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: chargeLaser
     clip: {fileID: 8300000, guid: 876b9012a8ad68646a0783c1b20d2d6d, type: 3}
-    volume: 0.1
     pitch: 1
     source: {fileID: 0}
   - name: shotLaser
     clip: {fileID: 8300000, guid: 3b15d05976eaf1b4d953878b31eb1d76, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: bulletNear
     clip: {fileID: 8300000, guid: 7f9c2e8502bf9d34cb398107ef43b28f, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: sacAttack
     clip: {fileID: 8300000, guid: 0198ca06622516443a2b99045fb999bf, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: sacAttack2
     clip: {fileID: 8300000, guid: b90f3a6aed094fb469d713506f652ce8, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: sacKill
     clip: {fileID: 8300000, guid: b218a2bc00707e649b8340723db8a50d, type: 3}
-    volume: 1
     pitch: 1
     source: {fileID: 0}
   - name: sacCutSpike
     clip: {fileID: 8300000, guid: 9f76b150c8c84864199dfade9bb2df73, type: 3}
-    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: soldatAttack
+    clip: {fileID: 8300000, guid: e82a175eb7fd0b5478fa2c22f192373e, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: soldatAttack2
+    clip: {fileID: 8300000, guid: 8433508195e5495408f4c5164ac8eba0, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: soldatDash
+    clip: {fileID: 8300000, guid: a2dcc7baed02b3f44927aeea053f460a, type: 3}
+    pitch: 1
+    source: {fileID: 0}
+  - name: soldatDash2
+    clip: {fileID: 8300000, guid: ada100757a0b31244a2460994db02d6c, type: 3}
     pitch: 1
     source: {fileID: 0}

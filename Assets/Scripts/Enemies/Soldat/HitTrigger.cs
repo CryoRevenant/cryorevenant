@@ -73,6 +73,17 @@ public class HitTrigger : MonoBehaviour
 
     void isAttacking()
     {
+        float random = Random.value;
+
+        if(random > 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("soldatAttack");
+        }
+        else if(random <= 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("soldatAttack2");
+        }
+
         colorBox.color = Color.red;
 
         hp.isBlocking = false;
