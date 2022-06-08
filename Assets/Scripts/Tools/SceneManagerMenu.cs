@@ -24,9 +24,12 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] GameObject optionMenu;
     GameObject player;
     PlayerInput controls;
+    bool isPaused;
 
     private void Start()
     {
+        isPaused = false;
+
         if (sceneIndex == 1)
         {
             player = GameObject.Find("Player");
@@ -37,12 +40,23 @@ public class SceneManagerMenu : MonoBehaviour
     {
         if (sceneIndex == 1)
         {
-            if (controls.currentActionMap.FindAction("Pause").triggered)
+            switch (isPaused)
             {
-                PauseMenu();
-            }
-            else
-            {
+                case true:
+                    if (controls.currentActionMap.FindAction("Pause").triggered)
+                    {
+                        Debug.Log("UnPause");
+                        HidePauseMenu();
+                        isPaused = false;
+                    }
+                    break;
+                case false:
+                    if (controls.currentActionMap.FindAction("Pause").triggered)
+                    {
+                        Debug.Log("Pause");
+                        PauseMenu();
+                    }
+                    break;
             }
         }
     }
@@ -146,10 +160,14 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void PauseMenu()
     {
+        Cursor.lockState = CursorLockMode.None;
         player.GetComponent<PlayerAttack>().enabled = false;
         player.GetComponent<PlayerControllerV2>().enabled = false;
         pauseMenu.SetActive(true);
+        optionMenu.SetActive(false);
+        pauseButtons.SetActive(true);
         Time.timeScale = 0;
+        isPaused = true;
     }
 
     public void HidePauseMenu()
