@@ -71,12 +71,12 @@ public class IceBar : MonoBehaviour
         {
             iceAmount += 1 * speed;
             amountToLose -= 1 * speed;
-            backSlide.value = iceAmount;
+            frontSlide.value = iceAmount;
 
             yield return new WaitForSeconds(0.01f);
         }
 
-        frontSlide.value = 100;
+        backSlide.value = 100;
         iceAmount = 100;
         amountToLose = 0;
         StopCoroutine("ResetBar");

@@ -281,14 +281,15 @@ public class EnemyMove : MonoBehaviour
             {
                 DashDir(false, dir);
             }
-
+            float i = 0;
 
             while (isDashing == true)
             {
+                i += 0.01f;
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
                 anim.SetBool("isDashing", true);
 
-                if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
+                if (Vector3.Distance(transform.position, newPos) < maxStoppingDist || i >= 3f)
                 {
                     GetComponent<CapsuleCollider2D>().enabled = true;
                     isDashing = false;
@@ -298,8 +299,8 @@ public class EnemyMove : MonoBehaviour
             }
 
 
-            float i = transform.rotation.y;
-            transform.rotation = Quaternion.Euler(0, i + 180, 0);
+            float j = transform.rotation.y;
+            transform.rotation = Quaternion.Euler(0, j + 180, 0);
 
             anim.SetBool("isDashing", false);
 
