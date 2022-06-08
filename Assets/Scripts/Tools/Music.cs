@@ -8,4 +8,9 @@ public class Music : MonoBehaviour
     {
         this.gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("M_volume");
     }
+
+    public void UpdateMusic()
+    {
+        this.gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("M_volume");
+    }
 }

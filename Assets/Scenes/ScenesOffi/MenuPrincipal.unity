@@ -612,7 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1416079532}
+  m_FirstSelected: {fileID: 1256912719}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!1 &194001111
@@ -2458,7 +2458,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1196629933}
         m_TargetAssemblyTypeName: Settings, Assembly-CSharp
-        m_MethodName: GeneralVolume
+        m_MethodName: MusicVolume
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1256912721}
