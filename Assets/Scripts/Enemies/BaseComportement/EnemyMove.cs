@@ -108,7 +108,7 @@ public class EnemyMove : MonoBehaviour
         {
             if (Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, layerMask2) || Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide, layerMask2))
             {
-                GetComponent<CapsuleCollider2D>().isTrigger = false;
+                GetComponent<CapsuleCollider2D>().enabled = true;
                 StopCoroutine("Dash");
             }
         }
@@ -290,13 +290,13 @@ public class EnemyMove : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, newPos) < maxStoppingDist)
                 {
+                    GetComponent<CapsuleCollider2D>().enabled = true;
                     isDashing = false;
                     anim.SetBool("isDashing", false);
                 }
                 yield return new WaitForSeconds(0.01f);
             }
 
-            GetComponent<CapsuleCollider2D>().enabled = true;
 
             float i = transform.rotation.y;
             transform.rotation = Quaternion.Euler(0, i + 180, 0);
