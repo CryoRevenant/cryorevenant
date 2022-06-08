@@ -17,7 +17,6 @@ public class Ascenceur : MonoBehaviour
     GameObject player;
     Animator animator;
     float t = 0;
-    float i = 0;
 
     public bool isUnlocked;
     public bool isIn;
@@ -64,7 +63,6 @@ public class Ascenceur : MonoBehaviour
 
         if (playerIn == true)
         {
-            i += Time.deltaTime;
             t += Time.deltaTime * speed;
             isIn = false;
             player.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -88,11 +86,11 @@ public class Ascenceur : MonoBehaviour
 
                 isMoving = false;
 
-                if (i >= 6)
-                {
-                    GetOut();
-                    i = 0;
-                }
+            }
+
+            if (t >= 0.04f)
+            {
+                GetOut();
             }
 
             if (player.transform.position.y.ToString("0.0") == otherElevator.transform.position.y.ToString("0.0"))
@@ -118,13 +116,26 @@ public class Ascenceur : MonoBehaviour
 
         if (i >= enemyList.Count - 1)
         {
-            isUnlocked = true;
-            isClosed = false;
-            light2D.color = Color.green;
-            FindObjectOfType<AudioManager>().Play("elevatorDing");
-            animator.SetBool("openDoor", true);
-            FindObjectOfType<AudioManager>().Play("elevatorOpenDoor");
+            Unlock();
         }
+    }
+
+    public void Unlock()
+    {
+        isUnlocked = true;
+        isClosed = false;
+        light2D.color = Color.green;
+        FindObjectOfType<AudioManager>().Play("elevatorDing");
+        animator.SetBool("openDoor", true);
+        FindObjectOfType<AudioManager>().Play("elevatorOpenDoor");
+    }
+
+    public void Lock()
+    {
+        isUnlocked = false;
+        isClosed = true;
+        light2D.color = Color.red;
+        animator.SetTrigger("closeDoor");
     }
 
     void GetIn()

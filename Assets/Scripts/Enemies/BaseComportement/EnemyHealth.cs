@@ -161,6 +161,10 @@ public class EnemyHealth : MonoBehaviour
     {
         transform.position = originPos;
         currHP = hp;
+        if (needUnlock)
+        {
+            elevator.GetComponent<Ascenceur>().Lock();
+        }
         if (GetComponent<EnemyDetect>() != null)
         {
             GetComponent<EnemyDetect>().otherDetect = false;
