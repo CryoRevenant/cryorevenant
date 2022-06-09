@@ -200,6 +200,10 @@ public class PlayerAttack : MonoBehaviour
 
                             if (!colWallFacing)
                             {
+                                hasAttacked = true;
+                                timerSheathe = 0.2f;
+                                attackAnim.Play("Yuki_1st_Attack_iceWall");
+
                                 isWalling = true;
 
                                 for (int b = 0; b < 3; b++)
@@ -257,6 +261,10 @@ public class PlayerAttack : MonoBehaviour
 
                             if (!colWallFacing2)
                             {
+                                hasAttacked = true;
+                                timerSheathe = 0.2f;
+                                attackAnim.Play("Yuki_2nd_Attack_iceWall");
+
                                 isWalling = true;
 
                                 for (int b = 0; b < 3; b++)
