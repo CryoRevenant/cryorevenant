@@ -226,7 +226,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
                 for (int i = 0; i < audioS.Length; i++)
                 {
-                    if(audioS[i].clip.name == "Boots_Run")
+                    if (audioS[i].clip.name == "Boots_Run")
                     {
                         audioS[i].Stop();
                     }
@@ -277,7 +277,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(rb.velocity.y);
 
-        if(movement != 0 && (!isGroundedL && !isGroundedR) && rb.velocity.y > 1)
+        if (movement != 0 && (!isGroundedL && !isGroundedR) && rb.velocity.y > 1)
         {
             //Debug.Log("can walk sfx");
             canDoSFX_Run = true;
@@ -652,13 +652,13 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (hit && hit2)
         {
-            if(hit.collider.gameObject.layer == 9 && hit2.collider.gameObject.layer == 9)
+            if (hit.collider.gameObject.layer == 9 && hit2.collider.gameObject.layer == 9)
             {
                 //Debug.Log(hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask);
 
                 if (hit.collider.gameObject.GetComponent<PlatformEffector2D>())
                 {
-                    if(hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask == 767)
+                    if (hit.collider.gameObject.GetComponent<PlatformEffector2D>().colliderMask == 767)
                     {
                         isOnBox = true;
                     }
@@ -819,8 +819,8 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime* paddingSpeedUI)), 0.3f, 4.6f));
-        if(dashUI.padding.w <= 0.3f)
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 0.3f, 4.6f));
+        if (dashUI.padding.w <= 0.3f)
         {
             //Debug.Log("full");
             dashUI.gameObject.SetActive(false);
@@ -906,6 +906,10 @@ public class PlayerControllerV2 : MonoBehaviour
         }
 
         jumpUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(jumpUI.padding.w - 10f, 0, 109));
+        if (jumpUI.padding.w == 49)
+        {
+            jumpUI.GetComponentInChildren<Animator>().SetTrigger("glitch");
+        }
 
         #endregion
 

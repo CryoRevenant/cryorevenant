@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,13 +12,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeSpeed;
     [SerializeField] float fadeWaitTime;
+    [SerializeField] TextMeshProUGUI scoreText;
     bool isFading;
 
     public Transform respawnPoint;
     GameObject player;
 
     [SerializeField] List<ListOfLists> listEnemies = new List<ListOfLists>();
-    [SerializeField] List<Brasero> resetPoints= new List<Brasero>();
+    [SerializeField] List<Brasero> resetPoints = new List<Brasero>();
 
     public static GameManager instance;
 
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        scoreText.text = score.ToString();
         player = GameObject.Find("Player");
     }
 
@@ -54,7 +57,6 @@ public class GameManager : MonoBehaviour
     {
         if (listEnemies[index].CheckActive())
         {
-            AddScore((100 - player.GetComponent<IceBar>().iceAmount) * 2);
             resetPoints[index].Activate();
         }
     }
@@ -62,12 +64,14 @@ public class GameManager : MonoBehaviour
     public void AddScore(float scoreToAdd)
     {
         score += scoreToAdd;
+        scoreText.text = score.ToString();
     }
 
     public void SaveScore(Transform checkpoint)
     {
         savedScore = score;
         respawnPoint = checkpoint;
+        scoreText.text = score.ToString();
     }
 
     public IEnumerator Fade()

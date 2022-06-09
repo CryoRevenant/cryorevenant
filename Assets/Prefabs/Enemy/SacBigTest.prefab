@@ -735,7 +735,7 @@ MonoBehaviour:
   elevatorToUnlock: 
   needUnlock: 0
   indexIceBar: 2
-  scoreToAdd: 0
+  scoreToAdd: 400
   anim: {fileID: 3817621572848472142}
   parentAnim: {fileID: 0}
   isBlocking: 0
