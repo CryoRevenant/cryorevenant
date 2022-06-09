@@ -22,7 +22,7 @@ public class FallDust : MonoBehaviour
                 if (!isGrounded)
                 {
                     isGrounded = true;
-                    Debug.Log("Grounded");
+                    //Debug.Log("Grounded");
                     FindObjectOfType<AudioManager>().Play("groundHit");
                     instance = Instantiate(fallDust,new Vector2(transform.GetComponent<Rigidbody2D>().position.x, transform.GetComponent<Rigidbody2D>().position.y-0.25f),Quaternion.identity);
                     Destroy(instance,0.5f);

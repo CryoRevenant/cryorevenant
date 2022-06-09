@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7547172563965914828}
   - component: {fileID: 7547172563965914829}
   - component: {fileID: -1783609974517911613}
-  - component: {fileID: 505983837962258361}
   - component: {fileID: 5004736421229200735}
-  - component: {fileID: 9013956097729118429}
+  - component: {fileID: 5134223867441687466}
+  - component: {fileID: 7741959414667627949}
   m_Layer: 8
   m_Name: VFX_Icewall
   m_TagString: Wall
@@ -105,22 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!70 &505983837962258361
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7547172563965914818}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 6017e33883e2bf6408434097353c9873, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.51898694, y: -0.10467529}
-  m_Size: {x: 7.0844817, y: 9.306202}
-  m_Direction: 0
 --- !u!114 &5004736421229200735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +117,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a74965fa4a258743bd15a4d9964d89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &9013956097729118429
+--- !u!60 &5134223867441687466
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7547172563965914818}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.240001, y: 10.25}
+    newSize: {x: 13.653334, y: 13.666666}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.2331598, y: -3.558475}
+      - {x: 3.263189, y: -2.9578886}
+      - {x: 3.263189, y: -2.44739}
+      - {x: 3.0229545, y: -2.087038}
+      - {x: 3.1130424, y: -0.94592375}
+      - {x: 3.0529838, y: -0.015014662}
+      - {x: 2.8728077, y: 0.13513196}
+      - {x: 3.1130424, y: 1.3363049}
+      - {x: 3.1130424, y: 1.5164809}
+      - {x: 2.9628959, y: 1.7266861}
+      - {x: 2.6626027, y: 1.8468034}
+      - {x: 2.4824266, y: 1.6966568}
+      - {x: 2.6325734, y: 2.537478}
+      - {x: 2.5424852, y: 2.7777126}
+      - {x: 2.33228, y: 2.7777126}
+      - {x: 2.0019574, y: 2.717654}
+      - {x: 1.7316935, y: 2.2071555}
+      - {x: 1.7617228, y: 2.1470966}
+      - {x: 0.98096037, y: 0.7657478}
+      - {x: 0.3803739, y: -0.22521994}
+      - {x: -0.37035924, y: -0.85583574}
+      - {x: -0.49047652, y: -1.5465102}
+      - {x: -0.9709457, y: -2.2972434}
+      - {x: -1.2111803, y: -2.2071555}
+      - {x: -1.9018548, y: -2.537478}
+      - {x: -2.0820308, y: -2.7777126}
+      - {x: -2.4123533, y: -3.558475}
+      - {x: -2.7727053, y: -4.008915}
+      - {x: -3.1931157, y: -4.21912}
+      - {x: -3.7336435, y: -4.66956}
+      - {x: -3.7036142, y: -4.759648}
+      - {x: -2.5024414, y: -4.759648}
+      - {x: -2.5024414, y: -4.789677}
+      - {x: 3.0229545, y: -4.789677}
+      - {x: 3.143072, y: -4.759648}
+      - {x: 3.1130424, y: -4.0689735}
+--- !u!50 &7741959414667627949
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -153,4 +198,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 5
+  m_Constraints: 7

@@ -185,56 +185,116 @@ public class PlayerAttack : MonoBehaviour
 
         if (controls.currentActionMap.FindAction("Wall").triggered && timerWall <= 0 && (gameObject.GetComponent<PlayerControllerV2>().isGroundedL || gameObject.GetComponent<PlayerControllerV2>().isGroundedR) && gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsSpiking())
         {
-            isWalling = true;
-
-            for (int i = 0; i < 3; i++)
-            {
-                Instantiate(bulletIce, transform.position, transform.rotation);
-            }
-            //Debug.Log("ice wall");
-
             switch (playerSprite.flipX)
             {
                 case true:
-                    wallEffect2.SetActive(true);
-                    wallEffect2.GetComponent<Animator>().SetBool("Build", true);
-                    GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
-                    instance.GetComponent<SpriteRenderer>().flipX = true;
+                    //Debug.DrawRay(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down*0.5f,Color.blue,1);
+                    RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down,0.5f);
 
-                    float random = Random.value;
-                    if (random <= 0.5f)
+                    for (int i = 0; i < colGrounded.Length; i++)
                     {
-                        FindObjectOfType<AudioManager>().Play("iceWall");
+                        if (colGrounded[i].collider.gameObject.layer == 6)
+                        {
+                            //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left*4f,Color.blue,1);
+                            RaycastHit2D colWallFacing = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left, 4f, ~LayerMask.GetMask("Box"));
+
+                            if (!colWallFacing)
+                            {
+                                isWalling = true;
+
+                                for (int b = 0; b < 3; b++)
+                                {
+                                    Instantiate(bulletIce, transform.position, transform.rotation);
+                                }
+                                //Debug.Log("ice wall");
+
+                                //Debug.Log(colGrounded[i].collider.name);
+
+                                wallEffect2.SetActive(true);
+                                wallEffect2.GetComponent<Animator>().SetBool("Build", true);
+                                GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), Quaternion.identity);
+                                instance.GetComponent<SpriteRenderer>().flipX = true;
+
+                                float random = Random.value;
+                                if (random <= 0.5f)
+                                {
+                                    FindObjectOfType<AudioManager>().Play("iceWall");
+                                }
+                                else if (random > 0.5f)
+                                {
+                                    FindObjectOfType<AudioManager>().Play("iceWall2");
+                                }
+
+                                StartCoroutine(StopWallAnim());
+                                GetComponent<IceBar>().AddBar(iceToAdd);
+                                wallUI.padding = new Vector4(0, 0, 0, 99);
+                                canSpawnWallfullBarVFX = true;
+
+                                timerWall = wallCooldown;
+                                break;
+                            }
+                        }
                     }
-                    else if (random > 0.5f)
-                    {
-                        FindObjectOfType<AudioManager>().Play("iceWall2");
-                    }
+
                     break;
                 case false:
-                    wallEffect.SetActive(true);
-                    wallEffect.GetComponent<Animator>().SetBool("Build", true);
-                    GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y - 0.3f, transform.position.z), Quaternion.identity);
-                    instance2.GetComponent<SpriteRenderer>().flipX = false;
+                    //Debug.DrawRay(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down*0.5f,Color.blue,1);
+                    RaycastHit2D[] colGrounded2 = Physics2D.RaycastAll(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down, 0.5f);
 
-                    float random2 = Random.value;
-                    if (random2 <= 0.5f)
+                    //Debug.Log(colGrounded2.Length);
+
+                    for (int i = 0; i < colGrounded2.Length; i++)
                     {
-                        FindObjectOfType<AudioManager>().Play("iceWall");
+                        if (colGrounded2[i].collider.gameObject.layer == 6)
+                        {
+                            //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right * 4f, Color.blue, 1);
+                            RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f,~LayerMask.GetMask("Box"));
+
+                            //if (colWallFacing2)
+                            //{
+                            //    Debug.Log(colWallFacing2.collider.gameObject.name);
+                            //}
+
+                            if (!colWallFacing2)
+                            {
+                                isWalling = true;
+
+                                for (int b = 0; b < 3; b++)
+                                {
+                                    Instantiate(bulletIce, transform.position, transform.rotation);
+                                }
+                                //Debug.Log("ice wall");
+
+                                //Debug.Log(colGrounded2[i].collider.name);
+
+                                wallEffect.SetActive(true);
+                                wallEffect.GetComponent<Animator>().SetBool("Build", true);
+                                GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y, transform.position.z), Quaternion.identity);
+                                instance2.GetComponent<SpriteRenderer>().flipX = false;
+
+                                float random2 = Random.value;
+                                if (random2 <= 0.5f)
+                                {
+                                    FindObjectOfType<AudioManager>().Play("iceWall");
+                                }
+                                else if (random2 > 0.5f)
+                                {
+                                    FindObjectOfType<AudioManager>().Play("iceWall2");
+                                }
+
+                                StartCoroutine(StopWallAnim());
+                                GetComponent<IceBar>().AddBar(iceToAdd);
+                                wallUI.padding = new Vector4(0, 0, 0, 99);
+                                canSpawnWallfullBarVFX = true;
+
+                                timerWall = wallCooldown;
+                                break;
+                            }
+                        }
                     }
-                    else if (random2 > 0.5f)
-                    {
-                        FindObjectOfType<AudioManager>().Play("iceWall2");
-                    }
+
                     break;
             }
-
-            StartCoroutine(StopWallAnim());
-            GetComponent<IceBar>().AddBar(iceToAdd);
-            wallUI.padding = new Vector4(0, 0, 0, 99);
-            canSpawnWallfullBarVFX = true;
-
-            timerWall = wallCooldown;
         }
 
         if (isWalling)
