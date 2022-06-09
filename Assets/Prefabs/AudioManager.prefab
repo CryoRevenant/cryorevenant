@@ -192,3 +192,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3830f8d3870fa424f947baccd6c9b9d0, type: 3}
     pitch: 1
     source: {fileID: 0}
+  - name: pressBtn
+    clip: {fileID: 8300000, guid: 8d6df45bab2a32c42a84bb3d33bc0cb1, type: 3}
+    pitch: 1
+    source: {fileID: 0}
