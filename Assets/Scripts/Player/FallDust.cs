@@ -13,16 +13,16 @@ public class FallDust : MonoBehaviour
     {
         //Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity.y);
 
-        Debug.DrawRay(transform.position, Vector3.down * dist, Color.blue, 0.2f);
+        Debug.DrawRay(new Vector2(transform.position.x,transform.position.y-1.5f), Vector3.down * dist, Color.blue, 0.2f);
         RaycastHit2D hit2D;
-        if (hit2D = Physics2D.Raycast(transform.position, Vector2.down, dist))
+        if (hit2D = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.5f), Vector2.down, dist))
         {
             if (hit2D.collider.CompareTag("Ground") && gameObject.GetComponent<Rigidbody2D>().velocity.y < 0)
             {
                 if (!isGrounded)
                 {
                     isGrounded = true;
-                    //Debug.Log("Grounded");
+                    Debug.Log("Grounded");
                     FindObjectOfType<AudioManager>().Play("groundHit");
                     instance = Instantiate(fallDust,new Vector2(transform.GetComponent<Rigidbody2D>().position.x, transform.GetComponent<Rigidbody2D>().position.y-0.25f),Quaternion.identity);
                     Destroy(instance,0.5f);
