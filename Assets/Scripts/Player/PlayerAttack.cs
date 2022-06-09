@@ -263,7 +263,7 @@ public class PlayerAttack : MonoBehaviour
                             {
                                 hasAttacked = true;
                                 timerSheathe = 0.2f;
-                                attackAnim.Play("Yuki_2nd_Attack_iceWall");
+                                attackAnim.Play("Yuki_1st_Attack_iceWall");
 
                                 isWalling = true;
 
