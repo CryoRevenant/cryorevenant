@@ -26,6 +26,7 @@ public class EnemyMove : MonoBehaviour
     [Header("Raycasts")]
     public float rayLengthDown;
     public float rayLengthSide;
+    public float rayCheckWall;
     public float rayLengthSideEnemy;
     public float bounds;
 
@@ -53,6 +54,8 @@ public class EnemyMove : MonoBehaviour
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSide, Color.blue, 0.2f);
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayLengthSideEnemy, Color.green, 0.2f);
             Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayLengthSideEnemy, Color.green, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left * rayCheckWall, Color.yellow, 0.2f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right * rayCheckWall, Color.yellow, 0.2f);
         }
         #endregion
 
@@ -75,6 +78,7 @@ public class EnemyMove : MonoBehaviour
         #region RaysSide
 
         TravelRays();
+        BlockRays();
 
         int layerMask = LayerMask.GetMask("Box") + LayerMask.GetMask("Enemy");
         RaycastHit2D hit2Dt = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayLengthSide, ~layerMask);
@@ -115,6 +119,20 @@ public class EnemyMove : MonoBehaviour
         #endregion
     }
 
+    void BlockRays()
+    {
+        RaycastHit2D hit2DL = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayCheckWall, 1 << 6);
+        RaycastHit2D hit2DR = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayCheckWall, 1 << 6);
+
+        if (hit2DL || hit2DR)
+        {
+            Debug.Log("hit wall");
+            GetComponent<EnemyHealth>().canRecoil = false;
+            Offset();
+            GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
+        }
+    }
+
     void TravelRays()
     {
         RaycastHit2D hit2DL = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayLengthSide);
@@ -127,9 +145,11 @@ public class EnemyMove : MonoBehaviour
                 travel = true;
                 StartCoroutine("Dash", 0);
             }
+
             if (hit2DL.collider.transform.gameObject.layer == 0)
             {
                 LookDirection(hit2DL.transform.position);
+                GetComponent<EnemyHealth>().canRecoil = true;
             }
         }
         if (hit2DR.collider != null)

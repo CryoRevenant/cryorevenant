@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] bool needUnlock;
     [SerializeField] int indexIceBar;
     [SerializeField] float scoreToAdd;
+    public bool canRecoil;
 
     GameObject elevator;
 
@@ -125,35 +126,41 @@ public class EnemyHealth : MonoBehaviour
 
     public virtual void Block()
     {
-        if (move.lookLeft)
+        if (canRecoil)
         {
-            StopCoroutine(RecoilHit(0, 0));
-            StartCoroutine(RecoilHit(1, 2));
-        }
-        else
-        {
-            StopCoroutine(RecoilHit(0, 0));
-            StartCoroutine(RecoilHit(0, 2));
+            if (move.lookLeft)
+            {
+                StopCoroutine(RecoilHit(0, 0));
+                StartCoroutine(RecoilHit(1, 2));
+            }
+            else
+            {
+                StopCoroutine(RecoilHit(0, 0));
+                StartCoroutine(RecoilHit(0, 2));
+            }
         }
     }
 
     void Recoil()
     {
-        if (move.lookLeft)
+        if (canRecoil)
         {
-            isAttacking = false;
-            anim.SetTrigger("forceReco");
+            if (move.lookLeft)
+            {
+                isAttacking = false;
+                anim.SetTrigger("forceReco");
 
-            StopCoroutine(RecoilHit(0, 0));
-            StartCoroutine(RecoilHit(1, 3));
-        }
-        else
-        {
-            isAttacking = false;
-            anim.SetTrigger("forceReco");
+                StopCoroutine(RecoilHit(0, 0));
+                StartCoroutine(RecoilHit(1, 3));
+            }
+            else
+            {
+                isAttacking = false;
+                anim.SetTrigger("forceReco");
 
-            StopCoroutine(RecoilHit(0, 0));
-            StartCoroutine(RecoilHit(0, 3));
+                StopCoroutine(RecoilHit(0, 0));
+                StartCoroutine(RecoilHit(0, 3));
+            }
         }
     }
 
