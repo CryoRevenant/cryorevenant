@@ -189,7 +189,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 case true:
                     //Debug.DrawRay(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down*0.5f,Color.blue,1);
-                    RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down,0.5f);
+                    RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down, 0.5f);
 
                     for (int i = 0; i < colGrounded.Length; i++)
                     {
@@ -252,7 +252,7 @@ public class PlayerAttack : MonoBehaviour
                         if (colGrounded2[i].collider.gameObject.layer == 6)
                         {
                             //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right * 4f, Color.blue, 1);
-                            RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f,~LayerMask.GetMask("Box"));
+                            RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f, ~LayerMask.GetMask("Box"));
 
                             //if (colWallFacing2)
                             //{
@@ -564,6 +564,10 @@ public class PlayerAttack : MonoBehaviour
 
         // UI sliding
         spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown * 2, 4, 106));
+        if (spikeUI.padding.w <= 15 && spikeUI.padding.w >= 13)
+        {
+            spikeUI.GetComponentInChildren<Animator>().SetTrigger("glitch");
+        }
 
         if (spikeUI.padding.w <= 4 && canSpawnSpikefullBarVFX)
         {
@@ -584,6 +588,11 @@ public class PlayerAttack : MonoBehaviour
         float w = wallUI.padding.w;
         w -= wallCooldown / 2.05f;
         wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
+        Debug.Log(w);
+        if (w <= 10 && w >= 9)
+        {
+            wallUI.GetComponentInChildren<Animator>().SetTrigger("glitch");
+        }
 
         if (wallUI.padding.w <= 0 && canSpawnWallfullBarVFX)
         {
@@ -605,6 +614,10 @@ public class PlayerAttack : MonoBehaviour
         float a_w = attackUI.padding.w;
         a_w -= 4f;
         attackUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(a_w, 3, 113));
+        if (a_w <= 10 && a_w >= 6)
+        {
+            attackUI.GetComponentInChildren<Animator>().SetTrigger("glitch");
+        }
 
         if (attackUI.padding.w <= 3 && canSpawnAttackfullBarVFX)
         {
