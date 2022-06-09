@@ -103,12 +103,15 @@ MonoBehaviour:
   elevatorToUnlock: 
   needUnlock: 0
   indexIceBar: 0
-  scoreToAdd: 100
+  scoreToAdd: 250
   anim: {fileID: 0}
+  parentAnim: {fileID: 0}
   isBlocking: 0
   isAttacking: 0
   child: {fileID: 0}
   resetSprite: {fileID: 0}
+  speedRecoil: 0
+  healthBar: {fileID: 0}
 --- !u!114 &386261862525074429
 MonoBehaviour:
   m_ObjectHideFlags: 0

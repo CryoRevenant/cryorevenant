@@ -6,7 +6,10 @@ public class Brasero : MonoBehaviour
 {
     bool state;
     bool passed;
-    public int index;
+
+    [SerializeField] int index;
+    [SerializeField] ParticleSystem fire;
+
     IceBar playerBar;
 
     private void Start()
@@ -21,6 +24,7 @@ public class Brasero : MonoBehaviour
             if (state && other.gameObject.GetComponent<IceBar>().iceAmount != 100 && !passed)
             {
                 playerBar.StartCoroutine("ResetBar");
+                GameManager.instance.AddScore(playerBar.iceAmount * 2);
                 passed = true;
             }
 
@@ -34,12 +38,13 @@ public class Brasero : MonoBehaviour
     public void Activate()
     {
         state = true;
-        GetComponent<SpriteRenderer>().color = Color.yellow;
+        fire.gameObject.SetActive(true);
     }
 
     public void Desactivate()
     {
         state = false;
         GetComponent<SpriteRenderer>().color = Color.black;
+        fire.gameObject.SetActive(false);
     }
 }
