@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallDust: {fileID: 5829110071753457644, guid: 581a8abdfc6bad343b5ec22c4e103547, type: 3}
-  dist: 2
+  dist: 0.5
   isGrounded: 0
 --- !u!81 &3905847508913758685
 AudioListener:
