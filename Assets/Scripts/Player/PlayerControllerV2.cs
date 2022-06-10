@@ -42,12 +42,20 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCooldown;
     [SerializeField] private RectMask2D dashUI;
+    [SerializeField] private Sprite spriteDash_R;
+    [SerializeField] private Sprite spriteDash_L;
+    [SerializeField] private Sprite spriteDashLoad_R;
+    [SerializeField] private Sprite spriteDashLoad_L;
     [SerializeField] private GameObject dashVFX;
     [Header("Dodge")]
     [SerializeField] private float dodgeDistance;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
     [SerializeField] private RectMask2D dodgeUI;
+    [SerializeField] private Sprite spriteDodge_R;
+    [SerializeField] private Sprite spriteDodge_L;
+    [SerializeField] private Sprite spriteDodgeLoad_R;
+    [SerializeField] private Sprite spriteDodgeLoad_L;
 
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
@@ -113,8 +121,8 @@ public class PlayerControllerV2 : MonoBehaviour
         isPlayingStopAnim = false;
         canDoSFX_Run = false;
 
-        dashUI.padding = new Vector4(0, 0, 0, 4.6f);
-        dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
+        dashUI.padding = new Vector4(0, 0, 0, 73f);
+        dodgeUI.padding = new Vector4(0, 0, 0, 73f);
         jumpUI.padding = new Vector4(0, 0, 0, 109);
         timerDash = dashCooldown;
         timerDodge = dodgeCooldown;
@@ -132,7 +140,7 @@ public class PlayerControllerV2 : MonoBehaviour
         curVelocitySpeed = 0;
 
         // la vitesse de recharge (pour les UI de dash et de dodge)
-        paddingSpeedUI = 25;
+        paddingSpeedUI = 90;
 
         // rotation de la cam�ra et des sprites en fonction de l'orientation du player
         #region Sprites & Cam : setup
@@ -295,6 +303,21 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         //Debug.Log(result);
+        switch (playerSprite.flipX)
+        {
+            case true:
+                dashUI.GetComponent<Image>().sprite = spriteDodge_R;
+                dashUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDodgeLoad_R;
+                dodgeUI.GetComponent<Image>().sprite = spriteDash_L;
+                dodgeUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDashLoad_L;
+                break;
+            case false:
+                dashUI.GetComponent<Image>().sprite = spriteDash_R;
+                dashUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDashLoad_R;
+                dodgeUI.GetComponent<Image>().sprite = spriteDodge_L;
+                dodgeUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDodgeLoad_L;
+                break;
+        }
 
         #region gachette de droite
         timerDash -= Time.deltaTime;
@@ -334,8 +357,8 @@ public class PlayerControllerV2 : MonoBehaviour
                                 gameObject.GetComponent<PlayerHP>().canDie = false;
                                 animator.SetTrigger("Dodge");
                                 dodgeTime = dodgeDistance / dodgeSpeed;
-                                dashUI.padding = new Vector4(0, 0, 0, 4.6f);
-                                paddingSpeedUI = 10;
+                                dashUI.padding = new Vector4(0, 0, 0, 73f);
+                                //paddingSpeedUI = 50;
                                 timerDodge = dodgeCooldown;
                                 isDashing = false;
                             }
@@ -363,8 +386,8 @@ public class PlayerControllerV2 : MonoBehaviour
                                 gameObject.GetComponent<PlayerHP>().canDie = false;
                                 animator.SetTrigger("Dash");
                                 dashTime = dashDistance / dashSpeed;
-                                dashUI.padding = new Vector4(0, 0, 0, 4.6f);
-                                paddingSpeedUI = 4.5f;
+                                dashUI.padding = new Vector4(0, 0, 0, 73f);
+                                //paddingSpeedUI = 50f;
                                 timerDash = dashCooldown;
                                 isDashing = false;
                             }
@@ -417,8 +440,8 @@ public class PlayerControllerV2 : MonoBehaviour
                                 gameObject.GetComponent<PlayerHP>().canDie = false;
                                 animator.SetTrigger("Dash");
                                 dashTime = dashDistance / dashSpeed;
-                                dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
-                                paddingSpeedUI = 4.5f;
+                                dodgeUI.padding = new Vector4(0, 0, 0, 73f);
+                                //paddingSpeedUI = 50f;
                                 timerDash = dashCooldown;
                                 isDodging = false;
                             }
@@ -437,8 +460,8 @@ public class PlayerControllerV2 : MonoBehaviour
                                 gameObject.GetComponent<PlayerHP>().canDie = false;
                                 animator.SetTrigger("Dodge");
                                 dodgeTime = dodgeDistance / dodgeSpeed;
-                                dodgeUI.padding = new Vector4(0, 0, 0, 4.6f);
-                                paddingSpeedUI = 10;
+                                dodgeUI.padding = new Vector4(0, 0, 0, 73f);
+                                //paddingSpeedUI = 50;
                                 timerDodge = dodgeCooldown;
                                 isDodging = false;
                             }
@@ -819,15 +842,19 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 0.3f, 4.6f));
-        if (dashUI.padding.w <= 0.3f)
+        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
+        if (dashUI.padding.w > 15f && dashUI.padding.w < 16.5f)
         {
-            //Debug.Log("full");
-            dashUI.gameObject.SetActive(false);
-        }
-        else
-        {
-            dashUI.gameObject.SetActive(true);
+            Debug.Log("full");
+            //switch (playerSprite.flipX)
+            //{
+            //    case true:
+            //        dashUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch");
+            //        break;
+            //    case false:
+            //        dashUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch2");
+            //        break;
+            //}
         }
 
         //Debug.Log(curseurDash);
@@ -862,15 +889,19 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 0.3f, 4.6f));
-        if (dodgeUI.padding.w <= 0.3f)
+        dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
+        if (dodgeUI.padding.w > 15f && dodgeUI.padding.w < 16.5f)
         {
             //Debug.Log("full");
-            dodgeUI.gameObject.SetActive(false);
-        }
-        else
-        {
-            dodgeUI.gameObject.SetActive(true);
+            switch (playerSprite.flipX)
+            {
+                case true:
+                    dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch2");
+                    break;
+                case false:
+                    dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch");
+                    break;
+            }
         }
 
         //Debug.Log(curseurDodge);
@@ -908,6 +939,7 @@ public class PlayerControllerV2 : MonoBehaviour
         jumpUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(jumpUI.padding.w - 10f, 0, 109));
         if (jumpUI.padding.w == 49)
         {
+            //Debug.Log("full");
             jumpUI.GetComponentInChildren<Animator>().SetTrigger("glitch");
         }
 
