@@ -13934,6 +13934,7 @@ MonoBehaviour:
   needUnlock: 0
   indexIceBar: 0
   scoreToAdd: 0
+  canRecoil: 0
   anim: {fileID: 0}
   parentAnim: {fileID: 0}
   isBlocking: 0
@@ -13985,6 +13986,7 @@ MonoBehaviour:
   travel: 0
   rayLengthDown: 0
   rayLengthSide: 0
+  rayCheckWall: 0
   rayLengthSideEnemy: 0
   bounds: 0.5
   showRays: 0
@@ -15913,7 +15915,7 @@ SpriteRenderer:
   m_Size: {x: 35.31822, y: 21.66}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1404112670
@@ -18829,6 +18831,7 @@ MonoBehaviour:
   needUnlock: 0
   indexIceBar: 0
   scoreToAdd: 0
+  canRecoil: 0
   anim: {fileID: 0}
   parentAnim: {fileID: 0}
   isBlocking: 0
@@ -18880,6 +18883,7 @@ MonoBehaviour:
   travel: 0
   rayLengthDown: 0
   rayLengthSide: 0
+  rayCheckWall: 0
   rayLengthSideEnemy: 0
   bounds: 0.5
   showRays: 0
@@ -22574,6 +22578,7 @@ MonoBehaviour:
   needUnlock: 0
   indexIceBar: 0
   scoreToAdd: 0
+  canRecoil: 0
   anim: {fileID: 0}
   parentAnim: {fileID: 0}
   isBlocking: 0
@@ -22625,6 +22630,7 @@ MonoBehaviour:
   travel: 0
   rayLengthDown: 0
   rayLengthSide: 0
+  rayCheckWall: 0
   rayLengthSideEnemy: 0
   bounds: 0.5
   showRays: 0
