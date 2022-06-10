@@ -95,7 +95,7 @@ public class EnemyHealth : MonoBehaviour
             }
 
             gameObject.SetActive(false);
-            GameManager.instance.RemoveFromList(indexIceBar, gameObject);
+            GameManager.instance.RemoveFromList(indexIceBar);
             GameManager.instance.AddScore(scoreToAdd);
 
             AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
