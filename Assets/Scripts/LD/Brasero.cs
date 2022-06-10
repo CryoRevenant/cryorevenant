@@ -45,6 +45,7 @@ public class Brasero : MonoBehaviour
     public void Desactivate()
     {
         state = false;
+        GetComponentInChildren<AudioSource>().Stop();
         fire.Stop(true);
     }
 }
