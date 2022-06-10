@@ -45,6 +45,6 @@ public class Brasero : MonoBehaviour
     public void Desactivate()
     {
         state = false;
-        fire.gameObject.SetActive(false);
+        fire.Stop(true);
     }
 }
