@@ -45,7 +45,6 @@ public class Brasero : MonoBehaviour
     public void Desactivate()
     {
         state = false;
-        GetComponent<SpriteRenderer>().color = Color.black;
         fire.gameObject.SetActive(false);
     }
 }

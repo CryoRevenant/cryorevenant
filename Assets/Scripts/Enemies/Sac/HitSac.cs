@@ -92,13 +92,13 @@ public class HitSac : MonoBehaviour
     void Block()
     {
         Reset();
-        parentColor.color = Color.magenta;
+        parentColor.color = Color.red;
         GetComponentInParent<EnemyHealth>().isBlocking = true;
     }
 
     void StopBlock()
     {
-        parentColor.color = Color.cyan;
+        parentColor.color = Color.white;
         GetComponentInParent<EnemyHealth>().isBlocking = false;
         GetComponentInParent<SacMove>().StopAllCoroutines();
     }
