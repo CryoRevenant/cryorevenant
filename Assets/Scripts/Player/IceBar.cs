@@ -11,6 +11,8 @@ public class IceBar : MonoBehaviour
     float timer;
     [SerializeField] float hurtTimer;
 
+    [SerializeField] Animator animator;
+
     bool hurt;
 
     [SerializeField] Slider backSlide;
@@ -59,8 +61,12 @@ public class IceBar : MonoBehaviour
     void LoseBar()
     {
         //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+        if (hurt)
+        {
+            animator.SetTrigger("glitch");
+            hurt = false;
+        }
         backSlide.value = 100 - amountToLose;
-        hurt = false;
     }
 
     public IEnumerator ResetBar()
