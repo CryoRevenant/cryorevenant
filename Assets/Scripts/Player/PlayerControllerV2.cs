@@ -893,15 +893,15 @@ public class PlayerControllerV2 : MonoBehaviour
         if (dodgeUI.padding.w > 15f && dodgeUI.padding.w < 16.5f)
         {
             //Debug.Log("full");
-            switch (playerSprite.flipX)
-            {
-                case true:
-                    dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch2");
-                    break;
-                case false:
-                    dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch");
-                    break;
-            }
+            //switch (playerSprite.flipX)
+            //{
+            //    case true:
+            //        dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch2");
+            //        break;
+            //    case false:
+            //        dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch");
+            //        break;
+            //}
         }
 
         //Debug.Log(curseurDodge);
