@@ -104,6 +104,7 @@ MonoBehaviour:
   needUnlock: 0
   indexIceBar: 0
   scoreToAdd: 250
+  canRecoil: 0
   anim: {fileID: 0}
   parentAnim: {fileID: 0}
   isBlocking: 0
@@ -126,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 12
   attackDuration: 0.4
-  cooldown: 1
+  cooldown: 2
   attack: 1
   isPlayerNear: 0
   player: {fileID: 0}

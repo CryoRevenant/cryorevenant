@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RemoveFromList(int index, GameObject newGameObject)
+    public void RemoveFromList(int index)
     {
         if (listEnemies[index].CheckActive())
         {

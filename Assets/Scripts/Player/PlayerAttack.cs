@@ -588,7 +588,6 @@ public class PlayerAttack : MonoBehaviour
         float w = wallUI.padding.w;
         w -= wallCooldown / 2.05f;
         wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
-        Debug.Log(w);
         if (w <= 10 && w >= 9)
         {
             wallUI.GetComponentInChildren<Animator>().SetTrigger("glitch");

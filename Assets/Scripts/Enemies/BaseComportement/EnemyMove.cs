@@ -126,7 +126,6 @@ public class EnemyMove : MonoBehaviour
 
         if (hit2DL || hit2DR)
         {
-            Debug.Log("hit wall");
             GetComponent<EnemyHealth>().canRecoil = false;
             Offset();
             GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
