@@ -11,9 +11,14 @@ public class IceParticle : MonoBehaviour
 
     [SerializeField] GameObject particle;
 
+    public int iceToAdd;
+    public GameObject player;
+
     GameObject[] medianPoints;
 
-    [SerializeField] float speed;
+    [SerializeField] Vector2 MinMaxSpeed;
+    float speed;
+
     float offset;
     float t = 0;
 
@@ -31,6 +36,7 @@ public class IceParticle : MonoBehaviour
         origin = gameObject.transform.position;
 
         offset = Random.Range(-2.5f, 2.5f);
+        speed = Random.Range(MinMaxSpeed.x, MinMaxSpeed.y);
     }
 
     void Update()
@@ -50,6 +56,7 @@ public class IceParticle : MonoBehaviour
     void Hit()
     {
         Instantiate(particle, transform.position, transform.rotation);
+        player.GetComponent<IceBar>().AddBar(iceToAdd / 3);
         Destroy(gameObject);
     }
 

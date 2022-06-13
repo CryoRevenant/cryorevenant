@@ -75,11 +75,11 @@ public class HitTrigger : MonoBehaviour
     {
         float random = Random.value;
 
-        if(random > 0.5f)
+        if (random > 0.5f)
         {
             FindObjectOfType<AudioManager>().Play("soldatAttack");
         }
-        else if(random <= 0.5f)
+        else if (random <= 0.5f)
         {
             FindObjectOfType<AudioManager>().Play("soldatAttack2");
         }
@@ -90,6 +90,8 @@ public class HitTrigger : MonoBehaviour
         move.LockMove(true);
 
         hp.isAttacking = true;
+        parent.parentAnim.SetBool("isAttacking", true);
+        parent.parentAnim.SetBool("isPreAttacking", false);
         trigger.enabled = true;
     }
 

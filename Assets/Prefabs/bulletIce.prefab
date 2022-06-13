@@ -214,7 +214,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 758235307801036958, guid: b46c9d7e1e90e2446af2951047eb0643, type: 3}
-  speed: 2
+  iceToAdd: 0
+  player: {fileID: 0}
+  MinMaxSpeed: {x: 1.5, y: 2.5}
 --- !u!58 &-1645579202179659986
 CircleCollider2D:
   m_ObjectHideFlags: 0

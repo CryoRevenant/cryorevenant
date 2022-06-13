@@ -25,12 +25,6 @@ public class EnemyDetect : MonoBehaviour
         StartCoroutine("DetectAround");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     //Si le joueur est détecté, alerte les ennemis à proximité et les fait venir
     IEnumerator PreventOther()
     {

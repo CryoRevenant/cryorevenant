@@ -26,22 +26,23 @@ public class IceBar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (hurt)
-        {
-            timer -= Time.deltaTime;
-        }
+    // void Update()
+    // {
+    //     if (hurt)
+    //     {
+    //         timer -= Time.deltaTime;
+    //     }
 
-        if (timer <= 0)
-        {
-            LoseBar();
-        }
-    }
+    //     if (timer <= 0)
+    //     {
+    //         LoseBar();
+    //     }
+    // }
 
     public void AddBar(int amount)
     {
         FindObjectOfType<AudioManager>().Play("Cold");
+        animator.SetTrigger("glitch");
 
         amountToLose += amount;
 
@@ -58,16 +59,15 @@ public class IceBar : MonoBehaviour
         }
     }
 
-    void LoseBar()
-    {
-        //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
-        if (hurt)
-        {
-            animator.SetTrigger("glitch");
-            hurt = false;
-        }
-        backSlide.value = 100 - amountToLose;
-    }
+    // void LoseBar()
+    // {
+    //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+    //     if (hurt)
+    //     {
+    //         hurt = false;
+    //     }
+    // backSlide.value = 100 - amountToLose;
+    // }
 
     public IEnumerator ResetBar()
     {
@@ -82,7 +82,7 @@ public class IceBar : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        backSlide.value = 100;
+        // backSlide.value = 100;
         iceAmount = 100;
         amountToLose = 0;
         StopCoroutine("ResetBar");

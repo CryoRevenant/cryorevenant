@@ -114,7 +114,7 @@ public class PlayerAttack : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                Instantiate(bulletIce, transform.position, transform.rotation);
+                CreateBullet();
             }
             hasAttacked = true;
             timerSheathe = 0.2f;
@@ -171,7 +171,6 @@ public class PlayerAttack : MonoBehaviour
                     break;
             }
 
-            GetComponent<IceBar>().AddBar(iceToAdd);
             //Debug.Log("stop dashing");
             attackUI.padding = new Vector4(0, 0, 0, 113);
             canSpawnAttackfullBarVFX = true;
@@ -208,7 +207,7 @@ public class PlayerAttack : MonoBehaviour
 
                                 for (int b = 0; b < 3; b++)
                                 {
-                                    Instantiate(bulletIce, transform.position, transform.rotation);
+                                    CreateBullet();
                                 }
                                 //Debug.Log("ice wall");
 
@@ -230,7 +229,6 @@ public class PlayerAttack : MonoBehaviour
                                 }
 
                                 StartCoroutine(StopWallAnim());
-                                GetComponent<IceBar>().AddBar(iceToAdd);
                                 wallUI.padding = new Vector4(0, 0, 0, 99);
                                 canSpawnWallfullBarVFX = true;
 
@@ -269,7 +267,7 @@ public class PlayerAttack : MonoBehaviour
 
                                 for (int b = 0; b < 3; b++)
                                 {
-                                    Instantiate(bulletIce, transform.position, transform.rotation);
+                                    CreateBullet();
                                 }
                                 //Debug.Log("ice wall");
 
@@ -291,7 +289,6 @@ public class PlayerAttack : MonoBehaviour
                                 }
 
                                 StartCoroutine(StopWallAnim());
-                                GetComponent<IceBar>().AddBar(iceToAdd);
                                 wallUI.padding = new Vector4(0, 0, 0, 99);
                                 canSpawnWallfullBarVFX = true;
 
@@ -364,7 +361,6 @@ public class PlayerAttack : MonoBehaviour
             }
 
             //StartCoroutine(StopWallAnim());
-            GetComponent<IceBar>().AddBar(iceToAdd);
             spikeUI.padding = new Vector4(0, 0, 0, 106);
             canSpawnSpikefullBarVFX = true;
             timerSpike = spikeCooldown;
@@ -719,5 +715,13 @@ public class PlayerAttack : MonoBehaviour
         attackAnim.SetTrigger("stopAttack");
         hasAttacked = false;
         timerSheathe = 0.2f;
+    }
+
+    void CreateBullet()
+    {
+        GameObject bullet;
+        bullet = Instantiate(bulletIce, transform.position, transform.rotation);
+        bullet.GetComponent<IceParticle>().iceToAdd = iceToAdd;
+        bullet.GetComponent<IceParticle>().player = gameObject;
     }
 }

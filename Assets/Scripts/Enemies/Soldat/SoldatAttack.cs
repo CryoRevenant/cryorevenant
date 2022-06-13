@@ -63,7 +63,7 @@ public class SoldatAttack : EnemyAttack
 
         anim.SetBool("isPreAttack", true);
 
-        parentAnim.SetBool("isAttacking", true);
+        parentAnim.SetBool("isPreAttacking", true);
 
         timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
     }
