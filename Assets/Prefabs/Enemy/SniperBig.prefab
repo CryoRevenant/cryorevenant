@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 12
   attackDuration: 0.4
-  cooldown: 2
+  cooldown: 1
   attack: 1
   isPlayerNear: 0
   player: {fileID: 0}
