@@ -318,7 +318,7 @@ public class PlayerAttack : MonoBehaviour
 
             for (int i = 0; i < 3; i++)
             {
-                Instantiate(bulletIce, transform.position, transform.rotation);
+                CreateBullet();
             }
             //Debug.Log("ice spike");
 
