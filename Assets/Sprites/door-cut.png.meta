@@ -1,22 +1,7 @@
 fileFormatVersion: 2
-guid: 1d9c6e0eae5db8e458beea2d196dd5ee
+guid: a1866430745615845b312bd91c8902ca
 TextureImporter:
   internalIDToNameTable:
-  - first:
-      213: 4491258511774967838
-    second: door 1_0
-  - first:
-      213: 7867968416308646262
-    second: door 1_1
-  - first:
-      213: -6011338818927555877
-    second: door 1_2
-  - first:
-      213: -4703853202309405278
-    second: door 1_3
-  - first:
-      213: 2006515726265816465
-    second: door 1_4
   - first:
       213: 5644131122942080284
     second: door-cut_0
@@ -121,10 +106,10 @@ TextureImporter:
       name: door-cut_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 320
-        width: 76
-        height: 106
+        x: 40
+        y: 370
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +127,10 @@ TextureImporter:
       name: door-cut_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 214
-        width: 76
-        height: 106
+        x: 40
+        y: 250
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +148,10 @@ TextureImporter:
       name: door-cut_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 108
-        width: 76
-        height: 106
+        x: 40
+        y: 130
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +169,10 @@ TextureImporter:
       name: door-cut_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 76
-        height: 106
+        x: 40
+        y: 10
+        width: 120
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
