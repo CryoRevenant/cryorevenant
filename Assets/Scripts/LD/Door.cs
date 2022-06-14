@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
     bool canDestroy;
     GameObject player;
 
+
     void Start()
     {
         for (int i = 0; i < doorDebris.transform.childCount; i++)
@@ -30,9 +31,14 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(canDestroy);
         if (canDestroy && player.GetComponent<PlayerControllerV2>().IsDashing())
         {
             DestroyDoor();
+            if (player != null)
+            {
+                StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
+            }
             canDestroy = false;
         }
     }
@@ -55,8 +61,11 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log("collision name = " + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("Player"))
         {
+            //Debug.Log("collision name = " + collision.gameObject.name);
             player = collision.gameObject;
             canDestroy = true;
         }

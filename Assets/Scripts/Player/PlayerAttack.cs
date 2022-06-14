@@ -12,8 +12,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Transform attackPos;
     [SerializeField] private Vector2 attackPosDistance;
     [SerializeField] private int damage;
-    [SerializeField] private float attackRange;
+    private float attackRange;
+    [SerializeField] private float firstAttackRange;
+    [SerializeField] private float secondAttackRange;
     [SerializeField] private CinemachineVirtualCamera vcam;
+    [SerializeField] private LayerMask mask;
 
     [Header("IceBar")]
     [SerializeField] private int iceToAdd;
@@ -128,6 +131,7 @@ public class PlayerAttack : MonoBehaviour
                     switch (slashOrder)
                     {
                         case 1:
+                            attackRange = secondAttackRange;
                             FindObjectOfType<AudioManager>().Play("iceSword");
 
                             slashOrder = 2;
@@ -137,6 +141,7 @@ public class PlayerAttack : MonoBehaviour
 
                             break;
                         case 2:
+                            attackRange = firstAttackRange;
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
@@ -153,6 +158,7 @@ public class PlayerAttack : MonoBehaviour
                     switch (slashOrder)
                     {
                         case 1:
+                            attackRange = secondAttackRange;
                             FindObjectOfType<AudioManager>().Play("iceSword");
 
                             slashOrder = 2;
@@ -162,6 +168,7 @@ public class PlayerAttack : MonoBehaviour
 
                             break;
                         case 2:
+                            attackRange = firstAttackRange;
                             FindObjectOfType<AudioManager>().Play("iceSword2");
 
                             slashOrder = 1;
@@ -198,7 +205,8 @@ public class PlayerAttack : MonoBehaviour
                         if (colGrounded[i].collider.gameObject.layer == 6)
                         {
                             //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left*4f,Color.blue,1);
-                            RaycastHit2D colWallFacing = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left, 4f, ~LayerMask.GetMask("Box"));
+                            RaycastHit2D colWallFacing = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left, 4f, mask);
+                            Debug.Log(colWallFacing.collider.gameObject.name);
 
                             if (!colWallFacing)
                             {
@@ -253,7 +261,7 @@ public class PlayerAttack : MonoBehaviour
                         if (colGrounded2[i].collider.gameObject.layer == 6)
                         {
                             //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right * 4f, Color.blue, 1);
-                            RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f, ~LayerMask.GetMask("Box"));
+                            RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f, mask);
 
                             //if (colWallFacing2)
                             //{
@@ -409,7 +417,7 @@ public class PlayerAttack : MonoBehaviour
                         {
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit2");
-                            StartCoroutine(ShakeCamera(1f,0.25f,0.2f));
+                            StartCoroutine(ShakeCamera(1f,0.5f,0.3f));
                         }
                     }
 
@@ -456,6 +464,7 @@ public class PlayerAttack : MonoBehaviour
             if (col[i].gameObject.CompareTag("Door") && controls.currentActionMap.FindAction("Attack").triggered)
             {
                 col[i].gameObject.GetComponent<Door>().DestroyDoor();
+                StartCoroutine(ShakeCamera(1f, 0.25f, 0.15f));
             }
 
             if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered)
@@ -728,7 +737,7 @@ public class PlayerAttack : MonoBehaviour
         bullet.GetComponent<IceParticle>().player = gameObject;
     }
 
-    private IEnumerator ShakeCamera(float intensity, float frequency, float time)
+    public IEnumerator ShakeCamera(float intensity, float frequency, float time)
     {
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;

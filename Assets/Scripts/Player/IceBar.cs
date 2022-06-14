@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class IceBar : MonoBehaviour
 {
@@ -19,25 +20,35 @@ public class IceBar : MonoBehaviour
     [SerializeField] Slider frontSlide;
     [SerializeField] float speed;
 
+    [SerializeField] Volume lowHP;
+
     // Start is called before the first frame update
     void Start()
     {
         timer = hurtTimer;
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     if (hurt)
-    //     {
-    //         timer -= Time.deltaTime;
-    //     }
+    void Update()
+    {
+        //if (hurt)
+        //{
+        //    timer -= Time.deltaTime;
+        //}
 
-    //     if (timer <= 0)
-    //     {
-    //         LoseBar();
-    //     }
-    // }
+        //if (timer <= 0)
+        //{
+        //    LoseBar();
+        //}
+
+        if (iceAmount <= 15f)
+        {
+            lowHP.enabled = true;
+        }
+        else
+        {
+            lowHP.enabled = false;
+        }
+    }
 
     public void AddBar(int amount)
     {
