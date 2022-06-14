@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoldatHealth : EnemyHealth
+public class SoldatHealth : EnemyHealth2
 {
     [Header("ChangeSpeed")]
     [SerializeField] RuntimeAnimatorController normalSpeed;
@@ -58,7 +58,7 @@ public class SoldatHealth : EnemyHealth
 
         GetComponentInChildren<BoxCollider2D>().enabled = false;
 
-        anim.runtimeAnimatorController = slowSpeed;
+        //anim.runtimeAnimatorController = slowSpeed;
         anim.SetTrigger("forceReco");
 
         ChangeColor(freezeColor);
@@ -71,50 +71,50 @@ public class SoldatHealth : EnemyHealth
         vfxBlockInstance = Instantiate(vfxBlock, transform.position, Quaternion.identity);
         Destroy(vfxBlockInstance, 0.25f);
 
-        AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+        // AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
-        for (int i = 0; i < audioS.Length; i++)
-        {
-            if (audioS[i].clip.name == "ice-sword")
-            {
-                audioS[i].Stop();
-            }
+        // for (int i = 0; i < audioS.Length; i++)
+        // {
+        //     if (audioS[i].clip.name == "ice-sword")
+        //     {
+        //         audioS[i].Stop();
+        //     }
 
-            if (audioS[i].clip.name == "ice-sword2")
-            {
-                audioS[i].Stop();
-            }
+        //     if (audioS[i].clip.name == "ice-sword2")
+        //     {
+        //         audioS[i].Stop();
+        //     }
 
-            if (audioS[i].clip.name == "ice-sword-damage")
-            {
-                audioS[i].Stop();
-            }
+        //     if (audioS[i].clip.name == "ice-sword-damage")
+        //     {
+        //         audioS[i].Stop();
+        //     }
 
-            if (audioS[i].clip.name == "ice-sword-damage2")
-            {
-                audioS[i].Stop();
-            }
+        //     if (audioS[i].clip.name == "ice-sword-damage2")
+        //     {
+        //         audioS[i].Stop();
+        //     }
 
-            if (audioS[i].clip.name == "ice-sword-block")
-            {
-                audioS[i].Stop();
-            }
+        //     if (audioS[i].clip.name == "ice-sword-block")
+        //     {
+        //         audioS[i].Stop();
+        //     }
 
-            if (audioS[i].clip.name == "ice-sword-block2")
-            {
-                audioS[i].Stop();
-            }
-        }
+        //     if (audioS[i].clip.name == "ice-sword-block2")
+        //     {
+        //         audioS[i].Stop();
+        //     }
+        // }
 
         float random = Random.value;
-        if (random <= 0.5f)
-        {
-            FindObjectOfType<AudioManager>().Play("iceSwordBlock");
-        }
-        else if (random > 0.5f)
-        {
-            FindObjectOfType<AudioManager>().Play("iceSwordBlock2");
-        }
+        // if (random <= 0.5f)
+        // {
+        //     FindObjectOfType<AudioManager>().Play("iceSwordBlock");
+        // }
+        // else if (random > 0.5f)
+        // {
+        //     FindObjectOfType<AudioManager>().Play("iceSwordBlock2");
+        // }
 
         base.Block();
         timer = timeBlocking;

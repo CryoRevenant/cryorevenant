@@ -21,7 +21,11 @@ public class EnemyAttack : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.Find("Player");
-        triggerHit = transform.GetChild(0).gameObject;
+        anim = GetComponent<Animator>();
+        if (GetComponent<SacAttak>() != null)
+        {
+            triggerHit = transform.GetChild(0).gameObject;
+        }
     }
 
     // Update is called once per frame
@@ -33,14 +37,10 @@ public class EnemyAttack : MonoBehaviour
     {
         RaycastHit2D hit;
 
-        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, 1 << 0))
+        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, LayerMask.GetMask("Default")))
         {
             if (attack)
             {
-                if (GetComponentInChildren<AimRay>() != null)
-                {
-                    GetComponentInChildren<AimRay>().Aim();
-                }
                 isPlayerNear = true;
                 Attack();
             }
