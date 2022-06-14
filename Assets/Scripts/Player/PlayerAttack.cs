@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Vector2 attackPosDistance;
     [SerializeField] private int damage;
     [SerializeField] private float attackRange;
+    [SerializeField] private CinemachineVirtualCamera vcam;
 
     [Header("IceBar")]
     [SerializeField] private int iceToAdd;
@@ -57,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
     private bool canSpawnWallfullBarVFX;
     private bool canSpawnSpikefullBarVFX;
     private bool hasAttacked;
+
 
     private void Awake()
     {
@@ -399,14 +402,14 @@ public class PlayerAttack : MonoBehaviour
                         {
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit");
-
+                            StartCoroutine(ShakeCamera(1f,0.25f,0.2f));
                         }
 
                         if (audioS[a].clip.name == "ice-sword2")
                         {
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit2");
-
+                            StartCoroutine(ShakeCamera(1f,0.25f,0.2f));
                         }
                     }
 
@@ -723,5 +726,18 @@ public class PlayerAttack : MonoBehaviour
         bullet = Instantiate(bulletIce, transform.position, transform.rotation);
         bullet.GetComponent<IceParticle>().iceToAdd = iceToAdd;
         bullet.GetComponent<IceParticle>().player = gameObject;
+    }
+
+    private IEnumerator ShakeCamera(float intensity, float frequency, float time)
+    {
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
+
+        yield return new WaitForSeconds(time);
+
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
+
+        yield break;
     }
 }
