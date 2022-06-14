@@ -421,7 +421,7 @@ public class PlayerAttack : MonoBehaviour
                         }
                     }
 
-                    col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                    col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage);
                 }
             }
 

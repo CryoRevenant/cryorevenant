@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class HitTrigger : MonoBehaviour
 {
-    SoldatAttack parent;
-    EnemyHealth hp;
+    SoldatAttack attack;
+    EnemyHealth2 hp;
     EnemyMove move;
-    BoxCollider2D trigger;
+    [SerializeField] BoxCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
     [SerializeField] int fakeChance;
 
     private void Start()
     {
-        move = GetComponentInParent<EnemyMove>();
-        hp = GetComponentInParent<EnemyHealth>();
-        parent = GetComponentInParent<SoldatAttack>();
-        trigger = GetComponent<BoxCollider2D>();
+        move = GetComponent<EnemyMove>();
+        hp = GetComponent<EnemyHealth2>();
+        attack = GetComponent<SoldatAttack>();
     }
 
     void Check()
     {
-        parent.CheckAttack();
+        attack.CheckAttack();
     }
 
     void FakeAttack()
@@ -36,13 +35,12 @@ public class HitTrigger : MonoBehaviour
 
     void Increase()
     {
-        parent.index++;
-        parent.indexParent++;
+        attack.indexParent++;
     }
 
     void ResetAnim()
     {
-        parent.Reset();
+        attack.Reset();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -75,14 +73,14 @@ public class HitTrigger : MonoBehaviour
     {
         float random = Random.value;
 
-        if (random > 0.5f)
-        {
-            FindObjectOfType<AudioManager>().Play("soldatAttack");
-        }
-        else if (random <= 0.5f)
-        {
-            FindObjectOfType<AudioManager>().Play("soldatAttack2");
-        }
+        // if (random > 0.5f)
+        // {
+        //     FindObjectOfType<AudioManager>().Play("soldatAttack");
+        // }
+        // else if (random <= 0.5f)
+        // {
+        //     FindObjectOfType<AudioManager>().Play("soldatAttack2");
+        // }
 
         colorBox.color = Color.red;
 
@@ -90,8 +88,9 @@ public class HitTrigger : MonoBehaviour
         move.LockMove(true);
 
         hp.isAttacking = true;
-        parent.parentAnim.SetBool("isAttacking", true);
-        parent.parentAnim.SetBool("isPreAttacking", false);
+        attack.parentAnim.SetBool("isAttacking", true);
+        attack.parentAnim.SetBool("isRunning", true);
+        attack.parentAnim.SetBool("isPreAttacking", false);
         trigger.enabled = true;
     }
 
@@ -100,21 +99,22 @@ public class HitTrigger : MonoBehaviour
         move.LockMove(false);
         hp.isAttacking = false;
         trigger.enabled = false;
+        attack.indexParent++;
     }
 
     void StopDash()
     {
-        parent.anim.SetBool("dash", false);
+        attack.anim.SetBool("dash", false);
     }
 
     void dash()
     {
-        GetComponentInParent<EnemyMove>().StartCoroutine("Dash", 3);
+        GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
     }
 
     void StopBlock()
     {
-        parent.anim.SetBool("forceBlock", false);
+        attack.anim.SetBool("forceBlock", false);
     }
 
     void Nothing()

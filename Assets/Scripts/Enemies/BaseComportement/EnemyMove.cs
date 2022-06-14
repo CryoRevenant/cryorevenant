@@ -148,7 +148,7 @@ public class EnemyMove : MonoBehaviour
             if (hit2DL.collider.transform.gameObject.layer == 0)
             {
                 LookDirection(hit2DL.transform.position);
-                GetComponent<EnemyHealth>().canRecoil = true;
+                GetComponent<EnemyHealth2>().canRecoil = true;
             }
         }
         if (hit2DR.collider != null)

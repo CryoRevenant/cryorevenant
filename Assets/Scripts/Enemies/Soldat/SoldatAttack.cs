@@ -5,11 +5,10 @@ using UnityEngine;
 public class SoldatAttack : EnemyAttack
 {
     [Header("IndexAnim")]
-    public int index;
     public int indexParent;
 
     float timer;
-    bool willAttack;
+    bool willAttack = true;
     public bool mustBlock;
     [SerializeField] Vector2 minMaxTimer;
     [SerializeField] int dashChance;
@@ -24,24 +23,32 @@ public class SoldatAttack : EnemyAttack
     {
         if (willAttack && !mustBlock && indexParent == 0)
         {
-            timer -= Time.deltaTime;
             parentAnim.SetBool("isBlocking", true);
         }
+    }
 
-        if (timer <= 0 && willAttack)
+    public override void CheckAttack()
+    {
+        RaycastHit2D hit;
+
+        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, LayerMask.GetMask("Default")))
         {
-            parentAnim.SetBool("isBlocking", false);
             PreAttack();
+        }
+        else
+        {
+            GetComponent<SoldatAttack>().Reset();
         }
     }
 
     public override void Attack()
     {
+        parentAnim.SetBool("isBlocking", false);
         int i = Random.Range(0, dashChance);
 
         if (i == 1)
         {
-            GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
+            GetComponent<EnemyHealth2>().StopCoroutine("RecoilHit");
             GoDash();
         }
         else
@@ -50,45 +57,42 @@ public class SoldatAttack : EnemyAttack
 
             parentAnim.SetBool("isDashing", false);
 
-            anim.SetInteger("attackIndex", index);
+            parentAnim.SetBool("isPreAttacking", false);
+            parentAnim.SetBool("isAttacking", true);
 
-            anim.SetBool("isPlayerNear", isPlayerNear);
             parentAnim.SetInteger("indexAttack", indexParent);
         }
     }
 
     public void PreAttack()
     {
-        willAttack = false;
+        if (willAttack)
+        {
+            willAttack = false;
 
-        anim.SetBool("isPreAttack", true);
+            parentAnim.SetBool("isBlocking", false);
+            parentAnim.SetBool("isPreAttacking", true);
 
-        parentAnim.SetBool("isPreAttacking", true);
+            timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
 
-        timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
+            Invoke("Attack", timer);
+        }
     }
 
     public void SneakAttack()
     {
-        anim.SetBool("forceBlock", true);
         parentAnim.SetTrigger("Sneak");
         Reset();
     }
 
     void GoDash()
     {
-        anim.SetBool("dash", true);
+        //faire un dash lol
     }
 
     public void Reset()
     {
-        index = 0;
         indexParent = 0;
-
-        anim.SetBool("isPreAttack", false);
-        anim.SetInteger("attackIndex", 0);
-        anim.SetBool("isPlayerNear", false);
-        anim.SetBool("forceBlock", false);
 
         parentAnim.SetInteger("indexAttack", 0);
         parentAnim.SetBool("isAttacking", false);

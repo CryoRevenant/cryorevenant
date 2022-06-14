@@ -14,8 +14,6 @@ public class IceBar : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-    bool hurt;
-
     [SerializeField] Slider backSlide;
     [SerializeField] Slider frontSlide;
     [SerializeField] float speed;
@@ -59,7 +57,6 @@ public class IceBar : MonoBehaviour
 
         frontSlide.value = 100 - amountToLose;
 
-        hurt = true;
         timer = hurtTimer;
 
         iceAmount = 100 - amountToLose;
