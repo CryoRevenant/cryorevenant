@@ -63,7 +63,6 @@ public class PlayerAttack : MonoBehaviour
     private bool canSpawnSpikefullBarVFX;
     private bool hasAttacked;
 
-
     private void Awake()
     {
         #region cooldowns
@@ -206,7 +205,8 @@ public class PlayerAttack : MonoBehaviour
                         {
                             //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left*4f,Color.blue,1);
                             RaycastHit2D colWallFacing = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left, 4f, mask);
-                            Debug.Log(colWallFacing.collider.gameObject.name);
+
+                            Debug.Log("canLeft");
 
                             if (!colWallFacing)
                             {
@@ -263,10 +263,7 @@ public class PlayerAttack : MonoBehaviour
                             //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right * 4f, Color.blue, 1);
                             RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f, mask);
 
-                            //if (colWallFacing2)
-                            //{
-                            //    Debug.Log(colWallFacing2.collider.gameObject.name);
-                            //}
+                            Debug.Log("canRight");
 
                             if (!colWallFacing2)
                             {
