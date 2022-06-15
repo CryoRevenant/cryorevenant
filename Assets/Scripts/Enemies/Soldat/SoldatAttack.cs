@@ -8,7 +8,7 @@ public class SoldatAttack : EnemyAttack
     public int indexParent;
 
     float timer;
-    bool willAttack = true;
+    public bool willAttack;
     public bool mustBlock;
     [SerializeField] Vector2 minMaxTimer;
     [SerializeField] int dashChance;
@@ -21,29 +21,36 @@ public class SoldatAttack : EnemyAttack
 
     private void Update()
     {
-        if (willAttack && !mustBlock && indexParent == 0)
+        if (willAttack)
         {
-            parentAnim.SetBool("isBlocking", true);
+            timer -= Time.deltaTime;
         }
+        if (timer <= 0)
+        {
+            PreAttack();
+        }
+
     }
 
     public override void CheckAttack()
     {
         RaycastHit2D hit;
-
-        if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, LayerMask.GetMask("Default")))
+        if (GetComponent<SoldatHealth>().isAttacking == false)
         {
-            PreAttack();
-        }
-        else
-        {
-            GetComponent<SoldatAttack>().Reset();
+            if (hit = Physics2D.Raycast(transform.position, (player.transform.position - transform.position).normalized, radius, LayerMask.GetMask("Default")))
+            {
+                willAttack = true;
+            }
+            else
+            {
+                parentAnim.SetBool("isNear", false);
+                Reset();
+            }
         }
     }
 
     public override void Attack()
     {
-        parentAnim.SetBool("isBlocking", false);
         int i = Random.Range(0, dashChance);
 
         if (i == 1)
@@ -53,22 +60,22 @@ public class SoldatAttack : EnemyAttack
         }
         else
         {
-            willAttack = true;
+            parentAnim.SetBool("isBlocking", false);
 
             parentAnim.SetBool("isDashing", false);
 
             parentAnim.SetBool("isPreAttacking", false);
             parentAnim.SetBool("isAttacking", true);
-
-            parentAnim.SetInteger("indexAttack", indexParent);
         }
     }
 
     public void PreAttack()
     {
-        if (willAttack)
+        if (willAttack && parentAnim.GetBool("isBlocking") == true)
         {
             willAttack = false;
+
+            GetComponent<SoldatHealth>().isAttacking = true;
 
             parentAnim.SetBool("isBlocking", false);
             parentAnim.SetBool("isPreAttacking", true);
@@ -81,12 +88,14 @@ public class SoldatAttack : EnemyAttack
 
     public void SneakAttack()
     {
-        parentAnim.SetTrigger("Sneak");
+        parentAnim.SetTrigger("forceBlock");
         Reset();
     }
 
     void GoDash()
     {
+        GetComponent<EnemyMove>().StartCoroutine("Dash", 3);
+        parentAnim.SetBool("isPreAttacking", false);
         //faire un dash lol
     }
 
@@ -97,6 +106,17 @@ public class SoldatAttack : EnemyAttack
         parentAnim.SetInteger("indexAttack", 0);
         parentAnim.SetBool("isAttacking", false);
         parentAnim.SetBool("isBlocking", false);
+    }
+
+    public void CheckPlayer()
+    {
+        Debug.Log(GetComponent<SoldatHealth>().isAttacking + " " + gameObject.name);
+        if (GetComponent<SoldatHealth>().isAttacking == false)
+        {
+            parentAnim.SetBool("isRunning", false);
+            parentAnim.SetBool("isBlocking", true);
+        }
+        parentAnim.SetBool("isNear", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

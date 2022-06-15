@@ -71,50 +71,50 @@ public class SoldatHealth : EnemyHealth2
         vfxBlockInstance = Instantiate(vfxBlock, transform.position, Quaternion.identity);
         Destroy(vfxBlockInstance, 0.25f);
 
-        // AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
+        AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
-        // for (int i = 0; i < audioS.Length; i++)
-        // {
-        //     if (audioS[i].clip.name == "ice-sword")
-        //     {
-        //         audioS[i].Stop();
-        //     }
+        for (int i = 0; i < audioS.Length; i++)
+        {
+            if (audioS[i].clip.name == "ice-sword")
+            {
+                audioS[i].Stop();
+            }
 
-        //     if (audioS[i].clip.name == "ice-sword2")
-        //     {
-        //         audioS[i].Stop();
-        //     }
+            if (audioS[i].clip.name == "ice-sword2")
+            {
+                audioS[i].Stop();
+            }
 
-        //     if (audioS[i].clip.name == "ice-sword-damage")
-        //     {
-        //         audioS[i].Stop();
-        //     }
+            if (audioS[i].clip.name == "ice-sword-damage")
+            {
+                audioS[i].Stop();
+            }
 
-        //     if (audioS[i].clip.name == "ice-sword-damage2")
-        //     {
-        //         audioS[i].Stop();
-        //     }
+            if (audioS[i].clip.name == "ice-sword-damage2")
+            {
+                audioS[i].Stop();
+            }
 
-        //     if (audioS[i].clip.name == "ice-sword-block")
-        //     {
-        //         audioS[i].Stop();
-        //     }
+            if (audioS[i].clip.name == "ice-sword-block")
+            {
+                audioS[i].Stop();
+            }
 
-        //     if (audioS[i].clip.name == "ice-sword-block2")
-        //     {
-        //         audioS[i].Stop();
-        //     }
-        // }
+            if (audioS[i].clip.name == "ice-sword-block2")
+            {
+                audioS[i].Stop();
+            }
+        }
 
         float random = Random.value;
-        // if (random <= 0.5f)
-        // {
-        //     FindObjectOfType<AudioManager>().Play("iceSwordBlock");
-        // }
-        // else if (random > 0.5f)
-        // {
-        //     FindObjectOfType<AudioManager>().Play("iceSwordBlock2");
-        // }
+        if (random <= 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("iceSwordBlock");
+        }
+        else if (random > 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("iceSwordBlock2");
+        }
 
         base.Block();
         timer = timeBlocking;
