@@ -37,7 +37,6 @@ public class Brasero : MonoBehaviour
 
     public void Activate()
     {
-        Debug.Log(gameObject.name);
         state = true;
         fire.gameObject.SetActive(true);
     }

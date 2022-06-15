@@ -7,7 +7,7 @@ public class HitTrigger : MonoBehaviour
     SoldatAttack attack;
     EnemyHealth2 hp;
     EnemyMove move;
-    [SerializeField] BoxCollider2D trigger;
+    public BoxCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
     [SerializeField] int fakeChance;
 
@@ -144,12 +144,10 @@ public class HitTrigger : MonoBehaviour
 
     void StopAttack()
     {
-        Debug.Log("stop");
         hp.isAttacking = false;
         move.LockMove(false);
         trigger.enabled = false;
         attack.parentAnim.SetBool("isAttacking", false);
-        Debug.Log(hp.isAttacking);
     }
 
     void ResetAnim()
@@ -213,6 +211,13 @@ public class HitTrigger : MonoBehaviour
         if (i == 1)
         {
             GetComponentInParent<SoldatAttack>().SneakAttack();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GetComponentInParent<EnemyAttack>().anim.SetBool("forceBlock", true);
         }
     }
 }

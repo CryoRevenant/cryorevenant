@@ -51,7 +51,10 @@ public class ListOfLists
             {
                 enemy.SetActive(true);
             }
-            enemy.GetComponent<EnemyHealth>().ResetPos();
+            if (enemy.GetComponent<EnemyHealth2>() != null)
+                enemy.GetComponent<EnemyHealth2>().ResetPos();
+            else
+                enemy.GetComponent<EnemyHealth>().ResetPos();
         }
     }
 }

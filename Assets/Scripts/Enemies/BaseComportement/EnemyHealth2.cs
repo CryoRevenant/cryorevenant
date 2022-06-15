@@ -48,7 +48,7 @@ public class EnemyHealth2 : MonoBehaviour
 
     private void Start()
     {
-        //GameManager.instance.AddToList(indexIceBar, gameObject);
+        GameManager.instance.AddToList(indexIceBar, gameObject);
     }
 
     private void Update()

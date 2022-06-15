@@ -410,18 +410,25 @@ public class PlayerAttack : MonoBehaviour
                         {
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit");
-                            StartCoroutine(ShakeCamera(1f,0.25f,0.2f));
+                            StartCoroutine(ShakeCamera(1f, 0.25f, 0.2f));
                         }
 
                         if (audioS[a].clip.name == "ice-sword2")
                         {
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit2");
-                            StartCoroutine(ShakeCamera(1f,0.5f,0.3f));
+                            StartCoroutine(ShakeCamera(1f, 0.5f, 0.3f));
                         }
                     }
 
-                    col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage);
+                    if (col[i].gameObject.GetComponent<EnemyHealth2>() != null)
+                    {
+                        col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage);
+                    }
+                    else
+                    {
+                        col[i].gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+                    }
                 }
             }
 

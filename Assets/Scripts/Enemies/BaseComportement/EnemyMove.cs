@@ -126,9 +126,9 @@ public class EnemyMove : MonoBehaviour
 
         if (hit2DL || hit2DR)
         {
-            GetComponent<EnemyHealth>().canRecoil = false;
+            GetComponent<EnemyHealth2>().canRecoil = false;
             Offset();
-            GetComponent<EnemyHealth>().StopCoroutine("RecoilHit");
+            GetComponent<EnemyHealth2>().StopCoroutine("RecoilHit");
         }
     }
 
@@ -153,7 +153,9 @@ public class EnemyMove : MonoBehaviour
                 }
 
                 LookDirection(hit2DL.transform.position);
-                GetComponent<EnemyHealth2>().canRecoil = true;
+
+                if (GetComponent<SoldatAttack>() != null)
+                    GetComponent<EnemyHealth2>().canRecoil = true;
             }
         }
         if (hit2DR.collider != null)
@@ -165,7 +167,15 @@ public class EnemyMove : MonoBehaviour
             }
             if (hit2DR.collider.transform.gameObject.layer == 0)
             {
+                if (GetComponent<SoldatAttack>() != null)
+                {
+                    GetComponent<SoldatAttack>().CheckPlayer();
+                }
+
                 LookDirection(hit2DR.transform.position);
+
+                if (GetComponent<SoldatAttack>() != null)
+                    GetComponent<EnemyHealth2>().canRecoil = true;
             }
         }
     }

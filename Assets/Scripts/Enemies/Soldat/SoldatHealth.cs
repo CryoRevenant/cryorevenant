@@ -22,7 +22,7 @@ public class SoldatHealth : EnemyHealth2
 
     private void Update()
     {
-        if(vfxBlockInstance != null)
+        if (vfxBlockInstance != null)
         {
             vfxBlockInstance.transform.position = this.transform.position;
         }
@@ -56,9 +56,9 @@ public class SoldatHealth : EnemyHealth2
             Destroy(instance, timeFreezing);
         }
 
-        GetComponentInChildren<BoxCollider2D>().enabled = false;
+        GetComponent<HitTrigger>().trigger.enabled = false;
 
-        //anim.runtimeAnimatorController = slowSpeed;
+        anim.runtimeAnimatorController = slowSpeed;
         anim.SetTrigger("forceReco");
 
         ChangeColor(freezeColor);

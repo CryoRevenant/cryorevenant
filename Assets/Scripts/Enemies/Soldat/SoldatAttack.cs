@@ -110,7 +110,6 @@ public class SoldatAttack : EnemyAttack
 
     public void CheckPlayer()
     {
-        Debug.Log(GetComponent<SoldatHealth>().isAttacking + " " + gameObject.name);
         if (GetComponent<SoldatHealth>().isAttacking == false)
         {
             parentAnim.SetBool("isRunning", false);
