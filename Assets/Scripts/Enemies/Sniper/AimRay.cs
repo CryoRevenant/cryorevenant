@@ -7,6 +7,8 @@ public class AimRay : MonoBehaviour
     GameObject player;
     LineRenderer line;
 
+    [SerializeField] GameObject head;
+
     bool isAiming;
 
     // Start is called before the first frame update
@@ -22,6 +24,10 @@ public class AimRay : MonoBehaviour
     {
         if (isAiming)
         {
+            Vector2 dir = player.transform.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 180;
+            head.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
             line.SetPosition(0, transform.position);
             line.SetPosition(1, player.transform.position);
         }

@@ -26,7 +26,11 @@ public class Bullet : MonoBehaviour
         {
             if (other.gameObject.layer == 3)
             {
-                other.GetComponent<EnemyHealth2>().TakeDamage(1);
+                if (other.gameObject.GetComponent<EnemyHealth>() != null)
+                    other.GetComponent<EnemyHealth>().TakeDamage(1);
+                else
+                    other.GetComponent<EnemyHealth2>().TakeDamage(1);
+
                 if (other.GetComponent<AttackSniper>() != null)
                 {
                     other.GetComponent<AttackSniper>().CancelInvoke("Attack");
