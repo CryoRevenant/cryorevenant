@@ -25,6 +25,11 @@ public class EnemyAttack : MonoBehaviour
         if (GetComponent<SacAttak>() != null)
         {
             triggerHit = transform.GetChild(0).gameObject;
+            anim = GetComponentInChildren<Animator>();
+        }
+        else
+        {
+            anim = GetComponent<Animator>();
         }
     }
 

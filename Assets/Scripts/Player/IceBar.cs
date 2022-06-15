@@ -38,14 +38,14 @@ public class IceBar : MonoBehaviour
         //    LoseBar();
         //}
 
-        if (iceAmount <= 15f)
-        {
-            lowHP.enabled = true;
-        }
-        else
-        {
-            lowHP.enabled = false;
-        }
+        // if (iceAmount <= 15f)
+        // {
+        //     lowHP.enabled = true;
+        // }
+        // else
+        // {
+        //     lowHP.enabled = false;
+        // }
     }
 
     public void AddBar(int amount)

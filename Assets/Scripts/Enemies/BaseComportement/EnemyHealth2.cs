@@ -61,6 +61,7 @@ public class EnemyHealth2 : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("damage");
         if (!isBlocking && !isAttacking)
         {
             currHP -= damage;
@@ -120,7 +121,6 @@ public class EnemyHealth2 : MonoBehaviour
             GetComponent<AttackSniper>().CancelInvoke("Attack");
         }
     }
-
 
     public virtual void Block()
     {

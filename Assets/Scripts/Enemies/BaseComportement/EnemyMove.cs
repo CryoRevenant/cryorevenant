@@ -147,6 +147,11 @@ public class EnemyMove : MonoBehaviour
 
             if (hit2DL.collider.transform.gameObject.layer == 0)
             {
+                if (GetComponent<SoldatAttack>() != null)
+                {
+                    GetComponent<SoldatAttack>().CheckPlayer();
+                }
+
                 LookDirection(hit2DL.transform.position);
                 GetComponent<EnemyHealth2>().canRecoil = true;
             }
@@ -317,7 +322,6 @@ public class EnemyMove : MonoBehaviour
             {
                 i += 0.01f;
                 transform.position = Vector3.MoveTowards(transform.position, new Vector3(newPos.x, transform.position.y, 0), Time.deltaTime * speedDash);
-                anim.SetBool("isDashing", true);
 
                 if (Vector3.Distance(transform.position, newPos) < maxStoppingDist || i >= 3f)
                 {
@@ -328,11 +332,8 @@ public class EnemyMove : MonoBehaviour
                 yield return new WaitForSeconds(0.01f);
             }
 
-
             float j = transform.rotation.y;
             transform.rotation = Quaternion.Euler(0, j + 180, 0);
-
-            anim.SetBool("isDashing", false);
 
             canMove = true;
             travel = false;
