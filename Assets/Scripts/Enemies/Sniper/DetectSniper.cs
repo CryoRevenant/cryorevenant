@@ -34,6 +34,11 @@ public class DetectSniper : MonoBehaviour
                     attack.CheckAttack();
                 }
             }
+            else
+            {
+                attack.StopAllCoroutines();
+                GetComponent<AimRay>().StopAim();
+            }
         }
         else
         {
