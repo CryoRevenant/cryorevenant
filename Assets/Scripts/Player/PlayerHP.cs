@@ -22,6 +22,7 @@ public class PlayerHP : MonoBehaviour
         {
             //Debug.Log("die");
             animator.SetTrigger("Death");
+            animator.SetTrigger("isFalling");
 
             gameObject.layer = 6;
             gameObject.tag = "Untagged";
