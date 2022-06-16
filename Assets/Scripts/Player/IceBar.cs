@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class IceBar : MonoBehaviour
 {
@@ -19,10 +20,13 @@ public class IceBar : MonoBehaviour
     [SerializeField] float speed;
 
     [SerializeField] Volume lowHP;
+    [SerializeField] RectMask2D rectMask;
+    private Vector2Int softnessVect;
 
     // Start is called before the first frame update
     void Start()
     {
+        iceAmount = 30;
         timer = hurtTimer;
     }
 
@@ -38,18 +42,44 @@ public class IceBar : MonoBehaviour
         //    LoseBar();
         //}
 
-        if (iceAmount <= 8)
+        //Debug.Log(iceAmount);
+
+        if (iceAmount == 30)
         {
-            lowHP.enabled = true;
-        }
-        else
-        {
-            lowHP.enabled = false;
+            Vignette vignette;
+            if (lowHP.profile.TryGet(out Vignette v))
+            {
+                vignette = v;
+                vignette.intensity.value -= 0.02f;
+                vignette.intensity.value = Mathf.Clamp(vignette.intensity.value, 0, 0.35f);
+                //Debug.Log("add intensity");
+            }
+
+            softnessVect.x += 35;
+            softnessVect.x = Mathf.Clamp(softnessVect.x, 0, 1000);
+            softnessVect.y += 35;
+            softnessVect.y = Mathf.Clamp(softnessVect.y, 0, 1000);
+            rectMask.softness = softnessVect;
         }
     }
 
     public void AddBar(int amount)
     {
+        Vignette vignette;
+        if (lowHP.profile.TryGet(out Vignette v))
+        {
+            vignette = v;
+            vignette.intensity.value += 0.02f;
+            vignette.intensity.value = Mathf.Clamp(vignette.intensity.value,0, 0.35f);
+            //Debug.Log("add intensity");
+        }
+
+        softnessVect.x -= 35;
+        softnessVect.x = Mathf.Clamp(softnessVect.x, 0, 1000);
+        softnessVect.y -= 35;
+        softnessVect.y = Mathf.Clamp(softnessVect.y, 0, 1000);
+        rectMask.softness = softnessVect;
+
         FindObjectOfType<AudioManager>().Play("Cold");
         animator.SetTrigger("glitch");
 
