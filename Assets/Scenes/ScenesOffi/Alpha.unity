@@ -6230,7 +6230,7 @@ GameObject:
   - component: {fileID: 479877131}
   - component: {fileID: 479877130}
   - component: {fileID: 479877129}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Transparent
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -6954,7 +6954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 523615002}
   - component: {fileID: 523615005}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: TransparentFloor (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -7044,7 +7044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834293205944534607, guid: 43843247a63684f4dae5a007d334a82d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.1
+      value: 50.5
       objectReference: {fileID: 0}
     - target: {fileID: 834293205944534607, guid: 43843247a63684f4dae5a007d334a82d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7175,9 +7175,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -7795,7 +7795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581900062}
   - component: {fileID: 581900065}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: TransparentFloor (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -8231,11 +8231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2833304
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2100003
+      value: 1.9100001
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8461,6 +8461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1377312232}
     - target: {fileID: 1861171816, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: iceAmount
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861171816, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: frontSlide
       value: 
       objectReference: {fileID: 542567209}
@@ -8482,7 +8486,7 @@ PrefabInstance:
       objectReference: {fileID: 690265325}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: iceToAdd
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: attackRange
@@ -8506,11 +8510,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9084,7 +9088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 386261862525074428, guid: 7389f53e488d1d44eb6c4dad4ac3b8f8, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 386261862525074429, guid: 7389f53e488d1d44eb6c4dad4ac3b8f8, type: 3}
       propertyPath: player
@@ -10903,7 +10907,7 @@ GameObject:
   - component: {fileID: 739982650}
   - component: {fileID: 739982649}
   - component: {fileID: 739982648}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Box (6)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -15170,11 +15174,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.21
+      value: 1.9100001
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21811,6 +21815,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldatBig (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: needUnlock
       value: 1
@@ -23107,7 +23115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1638890249
 Transform:
   m_ObjectHideFlags: 0
@@ -26965,6 +26973,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 386261862525074427, guid: 7389f53e488d1d44eb6c4dad4ac3b8f8, type: 3}
+      propertyPath: m_Size.y
+      value: 8.052979
+      objectReference: {fileID: 0}
+    - target: {fileID: 386261862525074427, guid: 7389f53e488d1d44eb6c4dad4ac3b8f8, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.6915356
+      objectReference: {fileID: 0}
     - target: {fileID: 386261862525074428, guid: 7389f53e488d1d44eb6c4dad4ac3b8f8, type: 3}
       propertyPath: m_Name
       value: SniperBig (1)
@@ -28502,8 +28518,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995867351}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0135, y: 0.3579, z: 0}
-  m_LocalScale: {x: 0.24535787, y: 0.2667239, z: 1}
+  m_LocalPosition: {x: 0.032, y: 0.406, z: 0}
+  m_LocalScale: {x: 0.24535787, y: 0.25498804, z: 1}
   m_Children: []
   m_Father: {fileID: 849809069}
   m_RootOrder: 0
@@ -28687,6 +28703,10 @@ PrefabInstance:
     - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_Name
       value: SoldatBig
+      objectReference: {fileID: 0}
+    - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: needUnlock

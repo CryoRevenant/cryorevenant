@@ -7,9 +7,21 @@ public class Bullet : MonoBehaviour
     public bool hitPlayer = true;
     Rigidbody2D rigid;
 
+    float timer = 1f;
+
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            Debug.Log("Destroyed");
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,7 +36,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            if (other.gameObject.layer == 3)
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 if (other.gameObject.GetComponent<EnemyHealth>() != null)
                     other.GetComponent<EnemyHealth>().TakeDamage(1);
@@ -58,6 +70,8 @@ public class Bullet : MonoBehaviour
     void Reflect()
     {
         hitPlayer = false;
+
+        timer = 1f;
 
         rigid.velocity = rigid.velocity * -1;
     }

@@ -38,7 +38,7 @@ public class IceBar : MonoBehaviour
         //    LoseBar();
         //}
 
-        if (iceAmount <= 40f)
+        if (iceAmount <= 8)
         {
             lowHP.enabled = true;
         }
@@ -55,11 +55,11 @@ public class IceBar : MonoBehaviour
 
         amountToLose += amount;
 
-        frontSlide.value = 100 - amountToLose;
+        frontSlide.value = 30 - amountToLose;
 
         timer = hurtTimer;
 
-        iceAmount = 100 - amountToLose;
+        iceAmount = 30 - amountToLose;
 
         if (iceAmount <= 0)
         {
@@ -81,7 +81,7 @@ public class IceBar : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Hot");
 
-        while (iceAmount <= 100)
+        while (iceAmount <= 30)
         {
             iceAmount += 1 * speed;
             amountToLose -= 1 * speed;
@@ -91,7 +91,7 @@ public class IceBar : MonoBehaviour
         }
 
         // backSlide.value = 100;
-        iceAmount = 100;
+        iceAmount = 30;
         amountToLose = 0;
         StopCoroutine("ResetBar");
     }
