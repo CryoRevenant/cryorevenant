@@ -7044,7 +7044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834293205944534607, guid: 43843247a63684f4dae5a007d334a82d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.1
+      value: 50.5
       objectReference: {fileID: 0}
     - target: {fileID: 834293205944534607, guid: 43843247a63684f4dae5a007d334a82d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7175,9 +7175,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -8231,7 +8231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2833304
+      value: 3.7277746
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8461,6 +8461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1377312232}
     - target: {fileID: 1861171816, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: iceAmount
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1861171816, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: frontSlide
       value: 
       objectReference: {fileID: 542567209}
@@ -8482,7 +8486,7 @@ PrefabInstance:
       objectReference: {fileID: 690265325}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: iceToAdd
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: attackRange
@@ -23107,7 +23111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1638890249
 Transform:
   m_ObjectHideFlags: 0

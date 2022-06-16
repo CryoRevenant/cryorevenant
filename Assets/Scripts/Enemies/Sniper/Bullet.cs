@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            if (other.gameObject.layer == 3)
+            if (other.gameObject.CompareTag("Enemy"))
             {
                 if (other.gameObject.GetComponent<EnemyHealth>() != null)
                     other.GetComponent<EnemyHealth>().TakeDamage(1);
