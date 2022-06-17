@@ -56,7 +56,10 @@ public class Ascenceur : MonoBehaviour
                     player.layer = 6;
                     player.tag = "Untagged";
                     player.GetComponent<PlayerControllerV2>().enabled = false;
+                    player.transform.GetChild(0).GetComponent<Animator>().SetFloat("Movement", 0);
+                    player.GetComponent<PlayerAttack>().enabled = false;
                     CloseDoor();
+                    //Debug.Log("ascenceur in use");
                 }
             }
         }
@@ -199,7 +202,6 @@ public class Ascenceur : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && isUnlocked == true)
         {
             isIn = true;
-            player.GetComponent<PlayerAttack>().enabled = false;
         }
     }
 
@@ -207,7 +209,6 @@ public class Ascenceur : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            player.GetComponent<PlayerAttack>().enabled = true;
             isIn = false;
         }
     }

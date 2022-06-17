@@ -303,6 +303,8 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
 
         //Debug.Log(result);
+
+        // dash UI
         switch (playerSprite.flipX)
         {
             case true:
