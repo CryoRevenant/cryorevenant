@@ -10,7 +10,7 @@ public class HitSac : MonoBehaviour
 
     [SerializeField] float timeMoveAgain;
     [SerializeField] SpriteRenderer parentColor;
-    [SerializeField] BoxCollider2D hitTrigger;
+    [SerializeField] GameObject hitTrigger;
     [SerializeField] BoxCollider2D blockSpike;
 
     GameObject player;
@@ -40,21 +40,31 @@ public class HitSac : MonoBehaviour
     void TriggerOn()
     {
         float random = Random.value;
-        if(random > 0.5f)
+        if (random > 0.5f)
         {
             FindObjectOfType<AudioManager>().Play("sacAttack");
         }
-        else if(random <= 0.5f)
+        else if (random <= 0.5f)
         {
             FindObjectOfType<AudioManager>().Play("sacAttack2");
         }
-        hitTrigger.enabled = true;
+        hitTrigger.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     void TriggerOff()
     {
-        hitTrigger.enabled = false;
+        hitTrigger.GetComponent<BoxCollider2D>().enabled = false;
     }
+
+    // public void CubeOn()
+    // {
+    //     hitTrigger.SetActive(true);
+    // }
+
+    // public void CubeOff()
+    // {
+    //     hitTrigger.SetActive(false);
+    // }
 
     public void BlockSpike()
     {
