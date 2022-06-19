@@ -33,9 +33,10 @@ public class CamMultiTargets : MonoBehaviour
         {
             for (int i = 0; i < bigSoldats.Count; i++)
             {
-                float dist = bigSoldats[i].transform.position.x - player.transform.position.x;
+                float distX = bigSoldats[i].transform.position.x - player.GetComponent<Rigidbody2D>().position.x;
+                float distY = player.GetComponent<Rigidbody2D>().position.y - bigSoldats[i].transform.position.y;
                 //Debug.Log(dist);
-                if (dist <= 18 && dist >= -18 && bigSoldats[i].gameObject.activeSelf)
+                if (distX <= 18 && distX >= -18 && bigSoldats[i].gameObject.activeSelf && distY <= 5 && distY >= -1)
                 {
                     //Debug.Log("magnetic");
                     closestSac = bigSoldats[i];
@@ -59,10 +60,11 @@ public class CamMultiTargets : MonoBehaviour
 
             transform.position = newPosition;
 
-            float distX = closestSac.transform.position.x - player.transform.position.x;
-            float distY = player.transform.position.y - closestSac.transform.position.y;
-            Debug.Log("distY "+ distY);
-            if (distX <= 18 && distX >= -18 && closestSac.gameObject.activeSelf && distY <= 5 && distY >= -5)
+            float distX = closestSac.transform.position.x - player.GetComponent<Rigidbody2D>().position.x;
+            float distY = player.GetComponent<Rigidbody2D>().position.y - closestSac.transform.position.y;
+            //Debug.Log("distY "+ distY);
+            //Debug.Log("distX "+ distX);
+            if (distX <= 18 && distX >= -18 && closestSac.gameObject.activeSelf && distY <= 5 && distY >= -1)
             {
                 //Debug.Log("attach");
                 vcam.Follow = transform;
@@ -78,8 +80,12 @@ public class CamMultiTargets : MonoBehaviour
                 closestSac = null;
             }
         }
+        else
+        {
+            canAdd = true;
+        }
 
-        Debug.Log(targets.Count);
+        //Debug.Log(targets.Count);
     }
 
     Vector3 GetCenterPoint()
