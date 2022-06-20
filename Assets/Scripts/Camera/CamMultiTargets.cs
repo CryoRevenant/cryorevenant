@@ -67,14 +67,19 @@ public class CamMultiTargets : MonoBehaviour
             if (distX <= 18 && distX >= -18 && closestSac.gameObject.activeSelf && distY <= 5 && distY >= -1)
             {
                 //Debug.Log("attach");
+                vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 1;
+                vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 1;
+                vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = 15;
+
                 vcam.Follow = transform;
-                vcam.m_Lens.OrthographicSize = Mathf.Lerp(vcam.m_Lens.OrthographicSize, 7, 1);
+                vcam.m_Lens.OrthographicSize = Mathf.Lerp(vcam.m_Lens.OrthographicSize, 7, 0.05f);
             }
             else
             {
                 //Debug.Log("dettach");
+
                 vcam.Follow = camOffset;
-                vcam.m_Lens.OrthographicSize = Mathf.Lerp(vcam.m_Lens.OrthographicSize, 5.5f, 1);
+                vcam.m_Lens.OrthographicSize = Mathf.Lerp(vcam.m_Lens.OrthographicSize, 5.5f, 0.05f);
                 //Debug.Log("remove");
                 targets.Remove(closestSac.transform);
                 closestSac = null;
@@ -83,6 +88,8 @@ public class CamMultiTargets : MonoBehaviour
         else
         {
             canAdd = true;
+            vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping -= Time.deltaTime/2;
+            vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = Mathf.Clamp(vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping, 0, 15);
         }
 
         //Debug.Log(targets.Count);

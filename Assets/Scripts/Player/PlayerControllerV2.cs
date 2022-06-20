@@ -20,7 +20,6 @@ public class PlayerControllerV2 : MonoBehaviour
     [Header("MainCamera")]
     public Vector3 offset;
     [SerializeField] private float vcamMoveYSpeed;
-    [SerializeField] private float vcamMoveYawSpeed;
     [SerializeField] private float reverseSpeed;
     [SerializeField] private float camCenterTimer;
     [SerializeField] private Transform camOffset;
@@ -261,7 +260,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             else
             {
-                vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0.5f;
+                vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = Mathf.Lerp(vcam.GetCinemachineComponent<CinemachineTransposer>().m_XDamping, 0.5f, 0.01f);
                 camCenterTimer = maxCamCenterTimer;
             }
         }
@@ -784,8 +783,7 @@ public class PlayerControllerV2 : MonoBehaviour
         //Debug.Log(rb.position.y);
         //Debug.Log(curPosY);
 
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = vcamMoveYawSpeed;
+        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = Mathf.Lerp(vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping, vcamMoveYSpeed,0.01f);
         #endregion
 
         #region vfx pour dash et dodge
