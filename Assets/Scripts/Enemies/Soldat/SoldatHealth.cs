@@ -123,9 +123,21 @@ public class SoldatHealth : EnemyHealth2
         GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
         GetComponent<SoldatAttack>().mustBlock = true;
 
-        GameObject instance = Instantiate(vfxShield, transform.position, Quaternion.identity);
-        instance.transform.SetParent(transform);
-        Destroy(instance, 0.25f);
+        switch (gameObject.GetComponent<SpriteRenderer>().flipX)
+        {
+            case true:
+                GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
+                instanceR.GetComponent<SpriteRenderer>().flipX = false;
+                instanceR.transform.SetParent(transform);
+                Destroy(instanceR, 0.25f);
+                break;
+            case false:
+                GameObject instanceL = Instantiate(vfxShield, transform.position, Quaternion.identity);
+                instanceL.GetComponent<SpriteRenderer>().flipX = true;
+                instanceL.transform.SetParent(transform);
+                Destroy(instanceL, 0.25f);
+                break;
+        }
     }
 
     public void NormalSpeed()

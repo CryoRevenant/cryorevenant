@@ -69,7 +69,7 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (gameObject.GetComponent<PlayerInput>() != null)
             {
-                Debug.Log("canReturn = " + canReturn);
+                //Debug.Log("canReturn = " + canReturn);
 
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
