@@ -18,6 +18,7 @@ public class SoldatHealth : EnemyHealth2
 
     [Header("FX")]
     [SerializeField] GameObject vfxBlock;
+    [SerializeField] GameObject vfxShield;
     GameObject vfxBlockInstance;
 
     private void Update()
@@ -121,6 +122,10 @@ public class SoldatHealth : EnemyHealth2
         canGoDown = true;
         GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
         GetComponent<SoldatAttack>().mustBlock = true;
+
+        GameObject instance = Instantiate(vfxShield, transform.position, Quaternion.identity);
+        instance.transform.SetParent(transform);
+        Destroy(instance, 0.25f);
     }
 
     public void NormalSpeed()
