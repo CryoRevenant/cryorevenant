@@ -197,8 +197,8 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void Click(int i)
     {
-        childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
-        //Invoke("StartGame", 0.5f);
+        //childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
+        Invoke("StartGame", 0.5f);
     }
     public void ChangeSprite()
     {
