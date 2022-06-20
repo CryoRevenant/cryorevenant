@@ -62,6 +62,15 @@ public class SceneManagerMenu : MonoBehaviour
                     }
                 }
             }
+
+            if (gameObject.GetComponent<PlayerInput>() != null)
+            {
+                if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
+                {
+                    //Debug.Log("return");
+                    HidePauseOption();
+                }
+            }
         }
 
         if(sceneIndex == 0)
@@ -202,12 +211,16 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void ShowPauseOption()
     {
+        Debug.Log("pause option");
+        //canReturn = true;
         pauseButtons.SetActive(false);
         optionMenu.SetActive(true);
     }
 
     public void HidePauseOption()
     {
+        Debug.Log("pause menu");
+        //canReturn = false;
         pauseButtons.SetActive(true);
         optionMenu.SetActive(false);
     }
