@@ -25,12 +25,14 @@ public class SceneManagerMenu : MonoBehaviour
     GameObject player;
     PlayerInput controls;
     bool isPaused;
+    bool canReturn;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
         isPaused = false;
+        canReturn = false;
 
         if (sceneIndex == 1)
         {
@@ -64,7 +66,14 @@ public class SceneManagerMenu : MonoBehaviour
 
         if(sceneIndex == 0)
         {
-
+            if (gameObject.GetComponent<PlayerInput>() != null)
+            {
+                if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
+                {
+                    //Debug.Log("return");
+                    StartFade(1);
+                }
+            }
         }
     }
 
@@ -77,6 +86,8 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void ShowOption()
     {
+        //Debug.Log("option");
+        canReturn = true;
         menuCanvas.SetActive(false);
         optionCanvas.SetActive(true);
         creditCanvas.SetActive(false);
@@ -84,6 +95,8 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HideOptions()
     {
+        //Debug.Log("main menu");
+        canReturn = false;
         menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(false);
