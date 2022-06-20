@@ -48,23 +48,13 @@ public class HitSac : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("sacAttack2");
         }
-        hitTrigger.GetComponent<BoxCollider2D>().enabled = true;
+        hitTrigger.SetActive(true);
     }
 
     void TriggerOff()
     {
-        hitTrigger.GetComponent<BoxCollider2D>().enabled = false;
+        hitTrigger.SetActive(false);
     }
-
-    // public void CubeOn()
-    // {
-    //     hitTrigger.SetActive(true);
-    // }
-
-    // public void CubeOff()
-    // {
-    //     hitTrigger.SetActive(false);
-    // }
 
     public void BlockSpike()
     {

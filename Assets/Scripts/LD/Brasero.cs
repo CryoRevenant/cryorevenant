@@ -9,6 +9,7 @@ public class Brasero : MonoBehaviour
 
     [SerializeField] int index;
     [SerializeField] ParticleSystem fire;
+    [SerializeField] ParticleSystem smoke;
 
     IceBar playerBar;
 
@@ -46,5 +47,6 @@ public class Brasero : MonoBehaviour
         state = false;
         GetComponentInChildren<AudioSource>().Stop();
         fire.Stop(true);
+        smoke.gameObject.SetActive(true);
     }
 }

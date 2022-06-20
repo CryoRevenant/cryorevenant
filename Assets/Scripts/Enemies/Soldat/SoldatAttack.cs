@@ -118,11 +118,4 @@ public class SoldatAttack : EnemyAttack
         parentAnim.SetBool("isNear", true);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            GetComponent<EnemyAttack>().anim.SetBool("forceBlock", true);
-        }
-    }
 }
