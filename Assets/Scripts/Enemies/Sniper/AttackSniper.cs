@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackSniper : EnemyAttack
 {
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject pivot;
 
     public bool canAttack = true;
     bool touchSmth;
@@ -47,8 +48,11 @@ public class AttackSniper : EnemyAttack
         {
             FindObjectOfType<AudioManager>().Play("shotLaser");
             canAttack = false;
+
             GameObject shoot = Instantiate(bullet, transform.position, transform.rotation);
             shoot.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * force, ForceMode2D.Impulse);
+            shoot.transform.rotation = pivot.transform.rotation;
+
             GetComponentInChildren<AimRay>().StopAim();
             Invoke("ReAttack", cooldown);
         }

@@ -19,7 +19,6 @@ public class Bullet : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            Debug.Log("Destroyed");
             Destroy(gameObject);
         }
     }
