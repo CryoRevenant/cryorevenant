@@ -20,6 +20,7 @@ public class IceBar : MonoBehaviour
     [SerializeField] float speed;
 
     [SerializeField] Volume lowHP;
+    [SerializeField] private Image freezeUI;
     [SerializeField] RectMask2D rectMask;
     private Vector2Int softnessVect;
 
@@ -60,11 +61,19 @@ public class IceBar : MonoBehaviour
             softnessVect.y += 35;
             softnessVect.y = Mathf.Clamp(softnessVect.y, 0, 1000);
             rectMask.softness = softnessVect;
+
+            Color tranparency = freezeUI.color;
+            tranparency.a = 0;
+            freezeUI.color = tranparency;
         }
     }
 
     public void AddBar(int amount)
     {
+        Color tranparency = freezeUI.color;
+        tranparency.a = 1;
+        freezeUI.color = tranparency;
+
         Vignette vignette;
         if (lowHP.profile.TryGet(out Vignette v))
         {
