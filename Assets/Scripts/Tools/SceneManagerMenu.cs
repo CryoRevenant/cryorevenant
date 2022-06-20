@@ -61,6 +61,11 @@ public class SceneManagerMenu : MonoBehaviour
                 }
             }
         }
+
+        if(sceneIndex == 0)
+        {
+
+        }
     }
 
     #region MenuPrincipal

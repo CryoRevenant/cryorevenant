@@ -116,6 +116,15 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Return"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3a1a0a7-cc55-49cd-a2e6-0bd7aa02957e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -459,6 +468,28 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3143e0f-6df6-482c-9b63-498587bfeedb"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9784ef8e-c060-4068-85d4-708698a5f0c5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -477,6 +508,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Down = m_Player.FindAction("Down", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Return = m_Player.FindAction("Return", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -546,6 +578,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Down;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Return;
     public struct PlayerActions
     {
         private @InputManager m_Wrapper;
@@ -560,6 +593,7 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Down => m_Wrapper.m_Player_Down;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Return => m_Wrapper.m_Player_Return;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -599,6 +633,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Return.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturn;
+                @Return.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturn;
+                @Return.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReturn;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -633,6 +670,9 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Return.started += instance.OnReturn;
+                @Return.performed += instance.OnReturn;
+                @Return.canceled += instance.OnReturn;
             }
         }
     }
@@ -649,5 +689,6 @@ public partial class @InputManager : IInputActionCollection2, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnReturn(InputAction.CallbackContext context);
     }
 }
