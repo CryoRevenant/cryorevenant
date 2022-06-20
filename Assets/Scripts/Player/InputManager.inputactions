@@ -94,15 +94,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Return",
-                    "type": "Button",
-                    "id": "c3a1a0a7-cc55-49cd-a2e6-0bd7aa02957e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -446,10 +437,27 @@
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "b96e9c25-c88e-4d85-a7ce-ee149ac735d9",
+            "actions": [
+                {
+                    "name": "Return",
+                    "type": "Button",
+                    "id": "9d6b1275-4350-4899-a92d-71db10af1b5a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "e3143e0f-6df6-482c-9b63-498587bfeedb",
+                    "id": "ef76a323-cb16-40d6-9cd3-ae8c74c2bd71",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
@@ -460,7 +468,7 @@
                 },
                 {
                     "name": "",
-                    "id": "9784ef8e-c060-4068-85d4-708698a5f0c5",
+                    "id": "901cf61a-3ce5-4ed6-b9c2-666a783004e2",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
