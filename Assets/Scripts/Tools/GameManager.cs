@@ -13,7 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fadeSpeed;
     [SerializeField] float fadeWaitTime;
     [SerializeField] TextMeshProUGUI scoreText;
+
+    [SerializeField] GameObject respawnMenu;
+    [SerializeField] TextMeshProUGUI hintText;
+
     bool isFading;
+    bool canRespawn;
 
     public Transform respawnPoint;
     GameObject player;
@@ -76,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator Fade()
     {
+        HintPhrase();
         isFading = true;
         Color alphaMod = new Color();
         while (isFading == true)
@@ -89,12 +95,15 @@ public class GameManager : MonoBehaviour
             }
             yield return new WaitForSeconds(0.05f);
         }
+        respawnMenu.SetActive(true);
+        yield return new WaitUntil(CanRespawn);
 
-        yield return new WaitForSeconds(fadeWaitTime);
         player.transform.position = respawnPoint.position;
         player.GetComponent<IceBar>().StartCoroutine("ResetBar");
         player.gameObject.tag = "Player";
+
         RespawnEnemy();
+
         score = savedScore;
 
         while (isFading == false)
@@ -108,8 +117,21 @@ public class GameManager : MonoBehaviour
                 player.layer = 0;
                 player.GetComponent<PlayerAttack>().enabled = true;
                 player.GetComponent<PlayerControllerV2>().enabled = true;
+                canRespawn = false;
                 StopCoroutine("Fade");
             }
+        }
+    }
+
+    bool CanRespawn()
+    {
+        if (canRespawn)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -125,5 +147,38 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void HintPhrase()
+    {
+        int i = Random.Range(0, 6);
+
+        switch (i)
+        {
+            case 0:
+                hintText.text = "Dash to avoid hits or flee to a safe place !";
+                break;
+            case 1:
+                hintText.text = "Make every hit count !";
+                break;
+            case 2:
+                hintText.text = "Try every spell on every enemy, you may find something useful.";
+                break;
+            case 3:
+                hintText.text = "Look closely at the enemies, hit and run isn't always the solution.";
+                break;
+            case 4:
+                hintText.text = "Take your time ! Or not, it's up to you.";
+                break;
+            case 5:
+                hintText.text = "You can break doors with a normal attack or a dash.";
+                break;
+        }
+    }
+
+    public void BoolRespawn()
+    {
+        canRespawn = true;
+        respawnMenu.SetActive(false);
     }
 }
