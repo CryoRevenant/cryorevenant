@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class SceneManagerMenu : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class SceneManagerMenu : MonoBehaviour
     PlayerInput controls;
     bool isPaused;
     bool canReturn;
+    float timer;
 
     private void Start()
     {
@@ -65,6 +67,8 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (gameObject.GetComponent<PlayerInput>() != null)
             {
+                Debug.Log("canReturn = " + canReturn);
+                
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
                     //Debug.Log("return");
@@ -212,17 +216,17 @@ public class SceneManagerMenu : MonoBehaviour
     public void ShowPauseOption()
     {
         Debug.Log("pause option");
-        //canReturn = true;
         pauseButtons.SetActive(false);
         optionMenu.SetActive(true);
+        canReturn = true;
     }
 
     public void HidePauseOption()
     {
         Debug.Log("pause menu");
-        //canReturn = false;
         pauseButtons.SetActive(true);
         optionMenu.SetActive(false);
+        canReturn = false;
     }
 
     public void MainMenu()
