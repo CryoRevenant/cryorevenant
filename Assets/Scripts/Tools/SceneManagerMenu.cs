@@ -69,13 +69,8 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (gameObject.GetComponent<PlayerInput>() != null)
             {
-<<<<<<< Updated upstream
-                //Debug.Log("canReturn = " + canReturn);
-                
-=======
                 Debug.Log("canReturn = " + canReturn);
 
->>>>>>> Stashed changes
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
                     //Debug.Log("return");
@@ -204,6 +199,10 @@ public class SceneManagerMenu : MonoBehaviour
     {
         childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
         //Invoke("StartGame", 0.5f);
+    }
+    public void ChangeSprite()
+    {
+        
     }
 
     #endregion
