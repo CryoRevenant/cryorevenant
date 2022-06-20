@@ -11,6 +11,8 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] GameObject menuCanvas;
     [SerializeField] GameObject optionCanvas;
     [SerializeField] GameObject creditCanvas;
+    [SerializeField] List<GameObject> glitchObjects = new List<GameObject>();
+    [SerializeField] List<GameObject> childGlitch = new List<GameObject>();
 
     [Header("Fade")]
     [SerializeField] SpriteRenderer background;
@@ -46,7 +48,7 @@ public class SceneManagerMenu : MonoBehaviour
     {
         if (sceneIndex == 1)
         {
-            if(controls != null)
+            if (controls != null)
             {
                 if (controls.currentActionMap.FindAction("Pause").triggered)
                 {
@@ -67,8 +69,13 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (gameObject.GetComponent<PlayerInput>() != null)
             {
+<<<<<<< Updated upstream
                 //Debug.Log("canReturn = " + canReturn);
                 
+=======
+                Debug.Log("canReturn = " + canReturn);
+
+>>>>>>> Stashed changes
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
                     //Debug.Log("return");
@@ -77,7 +84,7 @@ public class SceneManagerMenu : MonoBehaviour
             }
         }
 
-        if(sceneIndex == 0)
+        if (sceneIndex == 0)
         {
             if (gameObject.GetComponent<PlayerInput>() != null)
             {
@@ -187,6 +194,18 @@ public class SceneManagerMenu : MonoBehaviour
             StartCoroutine(Fade(i));
         }
     }
+
+    public void Anim(int i)
+    {
+        glitchObjects[i].GetComponent<Animator>().SetTrigger("Glitch");
+    }
+
+    public void Click(int i)
+    {
+        childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
+        //Invoke("StartGame", 0.5f);
+    }
+
     #endregion
 
     #region PauseMenu

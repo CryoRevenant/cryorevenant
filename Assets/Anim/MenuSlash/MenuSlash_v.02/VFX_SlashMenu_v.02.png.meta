@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 15850dc2e20c9944d84d89fda9629e6e
+guid: 01c41214608ea814eb6e807358c61f20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7207350611056539427
-    second: VFX_Slash_Menu_0
+      213: 5236495521549559322
+    second: VFX_SlashMenu_v.02_0
   - first:
-      213: 7716573634122036336
-    second: VFX_Slash_Menu_1
+      213: 4685798099729170010
+    second: VFX_SlashMenu_v.02_1
   - first:
-      213: -1533217280091671537
-    second: VFX_Slash_Menu_2
+      213: 4425423759325272854
+    second: VFX_SlashMenu_v.02_2
   - first:
-      213: 4655931432601091588
-    second: VFX_Slash_Menu_3
+      213: -8318190646712624498
+    second: VFX_SlashMenu_v.02_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VFX_Slash_Menu_0
+      name: VFX_SlashMenu_v.02_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,14 +117,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32738bfc137a50460800000000000000
-      internalID: 7207350611056539427
+      spriteID: a16a2e5cee4cba840800000000000000
+      internalID: 5236495521549559322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_Slash_Menu_1
+      name: VFX_SlashMenu_v.02_1
       rect:
         serializedVersion: 2
         x: 1024
@@ -138,14 +138,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0743df806d6c61b60800000000000000
-      internalID: 7716573634122036336
+      spriteID: a5ebe879b8c470140800000000000000
+      internalID: 4685798099729170010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_Slash_Menu_2
+      name: VFX_SlashMenu_v.02_2
       rect:
         serializedVersion: 2
         x: 2048
@@ -159,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0435a0d10be8bae0800000000000000
-      internalID: -1533217280091671537
+      spriteID: 61b182356734a6d30800000000000000
+      internalID: 4425423759325272854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_Slash_Menu_3
+      name: VFX_SlashMenu_v.02_3
       rect:
         serializedVersion: 2
         x: 3072
@@ -180,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40e73c248f03d9040800000000000000
-      internalID: 4655931432601091588
+      spriteID: e8a97b0bda9df8c80800000000000000
+      internalID: -8318190646712624498
       vertices: []
       indices: 
       edges: []
