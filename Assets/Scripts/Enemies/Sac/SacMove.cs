@@ -8,7 +8,6 @@ public class SacMove : EnemyMove
 
     [SerializeField] float overrideSpeed;
     [SerializeField] float baseSpeed;
-    [SerializeField] float timerBeforeAttack;
 
     public float speedMove;
 
@@ -56,8 +55,7 @@ public class SacMove : EnemyMove
 
     IEnumerator AttackMove(GameObject lastPos)
     {
-        //GetComponentInChildren<HitSac>().CubeOn();
-        float timer = timerBeforeAttack;
+
         Vector3 posToGo = lastPos.transform.position;
 
         speedMove = overrideSpeed;
@@ -66,12 +64,7 @@ public class SacMove : EnemyMove
         //Tant que l'ennemi doit bouger
         while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
         {
-            timer -= 0.1f;
-
-            if (timer <= 0)
-            {
-                attak.Attack();
-            }
+            attak.Attack();
 
             Debug.DrawRay(transform.position, new Vector2(posToGo.x - transform.position.x, posToGo.y - transform.position.y), Color.yellow, 0.5f);
 
