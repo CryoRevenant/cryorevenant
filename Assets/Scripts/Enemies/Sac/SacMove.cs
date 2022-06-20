@@ -67,7 +67,6 @@ public class SacMove : EnemyMove
         while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
         {
             timer -= 0.1f;
-            Debug.Log(timer);
 
             if (timer <= 0)
             {
