@@ -28,21 +28,6 @@ public class Door : MonoBehaviour
         canDestroy = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(canDestroy);
-        if (canDestroy && player.GetComponent<PlayerControllerV2>().IsDashing())
-        {
-            DestroyDoor();
-            if (player != null)
-            {
-                StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
-            }
-            canDestroy = false;
-        }
-    }
-
     public void DestroyDoor()
     {
         GetComponent<BoxCollider2D>().enabled = false;
@@ -59,7 +44,7 @@ public class Door : MonoBehaviour
         Invoke("DestroyGM", 1f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //Debug.Log("collision name = " + collision.gameObject.name);
 
@@ -67,15 +52,33 @@ public class Door : MonoBehaviour
         {
             //Debug.Log("collision name = " + collision.gameObject.name);
             player = collision.gameObject;
-            canDestroy = true;
+            if (player.GetComponent<PlayerControllerV2>().IsDashing())
+            {
+                DestroyDoor();
+                if (player != null)
+                {
+                    StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
+                }
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
+        //Debug.Log("collision name = " + collision.gameObject.name);
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            canDestroy = false;
+            //Debug.Log("collision name = " + collision.gameObject.name);
+            player = collision.gameObject;
+            if (player.GetComponent<PlayerControllerV2>().IsDashing())
+            {
+                DestroyDoor();
+                if (player != null)
+                {
+                    StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
+                }
+            }
         }
     }
 

@@ -57,6 +57,7 @@ public class Ascenceur : MonoBehaviour
                     player.tag = "Untagged";
                     player.GetComponent<PlayerControllerV2>().enabled = false;
                     player.transform.GetChild(0).GetComponent<Animator>().SetFloat("Movement", 0);
+                    player.GetComponent<PlayerControllerV2>().StopMovement();
                     player.GetComponent<PlayerAttack>().enabled = false;
                     CloseDoor();
                     //Debug.Log("ascenceur in use");

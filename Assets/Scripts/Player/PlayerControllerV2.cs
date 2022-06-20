@@ -1011,4 +1011,14 @@ public class PlayerControllerV2 : MonoBehaviour
         isPlayingStopAnim = false;
         yield break;
     }
+
+    /// <summary>
+    /// player stop moving
+    /// </summary>
+    public void StopMovement()
+    {
+        movement = 0;
+        leftDustSprite.enabled = false;
+        rightDustSprite.enabled = false;
+    }
 }
