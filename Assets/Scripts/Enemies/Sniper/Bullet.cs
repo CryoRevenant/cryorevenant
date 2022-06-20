@@ -69,6 +69,7 @@ public class Bullet : MonoBehaviour
     void Reflect()
     {
         hitPlayer = false;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z +180);
 
         timer = 1f;
 
