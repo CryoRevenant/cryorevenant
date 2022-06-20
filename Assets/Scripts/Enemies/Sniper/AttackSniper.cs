@@ -6,6 +6,7 @@ public class AttackSniper : EnemyAttack
 {
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject pivot;
+    [SerializeField] ParticleSystem ShootVFX;
 
     public bool canAttack = true;
     bool touchSmth;
@@ -52,6 +53,8 @@ public class AttackSniper : EnemyAttack
             GameObject shoot = Instantiate(bullet, transform.position, transform.rotation);
             shoot.GetComponent<Rigidbody2D>().AddForce((player.transform.position - transform.position).normalized * force, ForceMode2D.Impulse);
             shoot.transform.rotation = pivot.transform.rotation;
+
+            ShootVFX.Emit(1);
 
             GetComponentInChildren<AimRay>().StopAim();
             Invoke("ReAttack", cooldown);
