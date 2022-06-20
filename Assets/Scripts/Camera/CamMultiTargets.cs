@@ -79,7 +79,6 @@ public class CamMultiTargets : MonoBehaviour
                 //Debug.Log("dettach");
 
                 vcam.Follow = camOffset;
-                vcam.m_Lens.OrthographicSize = Mathf.Lerp(vcam.m_Lens.OrthographicSize, 5.5f, 0.05f);
                 //Debug.Log("remove");
                 targets.Remove(closestSac.transform);
                 closestSac = null;
@@ -90,6 +89,7 @@ public class CamMultiTargets : MonoBehaviour
             canAdd = true;
             vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping -= Time.deltaTime/2;
             vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping = Mathf.Clamp(vcam.GetCinemachineComponent<CinemachineTransposer>().m_YawDamping, 0, 15);
+            vcam.m_Lens.OrthographicSize = Mathf.Lerp(vcam.m_Lens.OrthographicSize, 5.5f, 0.05f);
         }
 
         //Debug.Log(targets.Count);

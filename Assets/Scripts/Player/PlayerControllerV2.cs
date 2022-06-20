@@ -783,7 +783,7 @@ public class PlayerControllerV2 : MonoBehaviour
         //Debug.Log(rb.position.y);
         //Debug.Log(curPosY);
 
-        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = Mathf.Lerp(vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping, vcamMoveYSpeed,0.01f);
+        vcam.GetCinemachineComponent<CinemachineTransposer>().m_YDamping = vcamMoveYSpeed;
         #endregion
 
         #region vfx pour dash et dodge
