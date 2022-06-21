@@ -19,14 +19,13 @@ public class SoldatHealth : EnemyHealth2
     [Header("FX")]
     [SerializeField] GameObject vfxBlock;
     [SerializeField] GameObject vfxShield;
-    GameObject vfxBlockInstance;
 
     private void Update()
     {
-        if (vfxBlockInstance != null)
-        {
-            vfxBlockInstance.transform.position = this.transform.position;
-        }
+        //if (vfxBlockInstance != null)
+        //{
+        //    vfxBlockInstance.transform.position = this.transform.position;
+        //}
 
         if (canGoDown)
         {
@@ -69,9 +68,6 @@ public class SoldatHealth : EnemyHealth2
 
     public override void Block()
     {
-        vfxBlockInstance = Instantiate(vfxBlock, transform.position, Quaternion.identity);
-        Destroy(vfxBlockInstance, 0.25f);
-
         AudioSource[] audioS = FindObjectOfType<AudioManager>().gameObject.GetComponents<AudioSource>();
 
         for (int i = 0; i < audioS.Length; i++)
@@ -123,17 +119,28 @@ public class SoldatHealth : EnemyHealth2
         GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
         GetComponent<SoldatAttack>().mustBlock = true;
 
-        switch (gameObject.GetComponent<SpriteRenderer>().flipX)
+        //Debug.Log(transform.rotation.y);
+        switch (transform.rotation.y)
         {
-            case true:
+            case 0:
+                Debug.Log("Spawn Right");
+                GameObject vfxBlockInstanceR = Instantiate(vfxBlock, transform.position, Quaternion.identity);
+                vfxBlockInstanceR.GetComponent<SpriteRenderer>().flipX = false;
+                Destroy(vfxBlockInstanceR, 0.25f);
+
                 GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
-                instanceR.GetComponent<SpriteRenderer>().flipX = false;
+                instanceR.GetComponent<SpriteRenderer>().flipX = true;
                 instanceR.transform.SetParent(transform);
                 Destroy(instanceR, 0.25f);
                 break;
-            case false:
+            case 1:
+                Debug.Log("Spawn Left");
+                GameObject vfxBlockInstanceL = Instantiate(vfxBlock, transform.position, Quaternion.identity);
+                vfxBlockInstanceL.GetComponent<SpriteRenderer>().flipX = true;
+                Destroy(vfxBlockInstanceL, 0.25f);
+
                 GameObject instanceL = Instantiate(vfxShield, transform.position, Quaternion.identity);
-                instanceL.GetComponent<SpriteRenderer>().flipX = true;
+                instanceL.GetComponent<SpriteRenderer>().flipX = false;
                 instanceL.transform.SetParent(transform);
                 Destroy(instanceL, 0.25f);
                 break;
