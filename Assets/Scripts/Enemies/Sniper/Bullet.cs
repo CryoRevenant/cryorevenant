@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
                 if (other.gameObject.GetComponent<EnemyHealth>() != null)
                     other.GetComponent<EnemyHealth>().TakeDamage(1);
                 else
-                    other.GetComponent<EnemyHealth2>().TakeDamage(1);
+                    other.GetComponent<EnemyHealth2>().TakeDamage(1,"bullet");
 
                 if (other.GetComponent<AttackSniper>() != null)
                 {
