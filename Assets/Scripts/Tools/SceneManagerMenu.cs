@@ -162,6 +162,7 @@ public class SceneManagerMenu : MonoBehaviour
 
     IEnumerator Fade(int i)
     {
+        yield return new WaitForSeconds(0.1f);
         Color alphaMod = new Color();
         alphaMod.a = 0;
         isFading = true;
