@@ -230,7 +230,8 @@ public class PlayerAttack : MonoBehaviour
                                 wallEffect2.SetActive(true);
                                 wallEffect2.GetComponent<Animator>().SetBool("Build", true);
                                 GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y+0.1f, transform.position.z), Quaternion.identity);
-                                instance.GetComponent<SpriteRenderer>().flipX = true;
+                                instance.transform.rotation = Quaternion.Euler(0, 180, 0);
+
 
                                 float random = Random.value;
                                 if (random <= 0.5f)
@@ -288,7 +289,7 @@ public class PlayerAttack : MonoBehaviour
                                 wallEffect.SetActive(true);
                                 wallEffect.GetComponent<Animator>().SetBool("Build", true);
                                 GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y+0.1f, transform.position.z), Quaternion.identity);
-                                instance2.GetComponent<SpriteRenderer>().flipX = false;
+                                instance2.transform.rotation = Quaternion.Euler(0,0,0);
 
                                 float random2 = Random.value;
                                 if (random2 <= 0.5f)
