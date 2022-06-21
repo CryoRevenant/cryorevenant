@@ -11,8 +11,11 @@ public class Settings : MonoBehaviour
 
     private void Awake()
     {
-        GeneralVolume(GV_Slider);
-        MusicVolume(MV_Slider);
+        if (!PlayerPrefs.HasKey("G_volume") && !PlayerPrefs.HasKey("M_volume"))
+        {
+            GeneralVolume(GV_Slider);
+            MusicVolume(MV_Slider);
+        }
 
         //Debug.Log("Reset");
         //Debug.Log(SceneManager.sceneCount);
@@ -22,6 +25,12 @@ public class Settings : MonoBehaviour
             GV_Slider.value = PlayerPrefs.GetFloat("G_volume");
             MV_Slider.value = PlayerPrefs.GetFloat("M_volume");
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log("MV_Slider.value = " + MV_Slider.value);
+        Debug.Log("PlayerPrefsMV.value = " + PlayerPrefs.GetFloat("M_volume"));
     }
 
     public void GeneralVolume(Slider slider)
