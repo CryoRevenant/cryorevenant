@@ -196,3 +196,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8d6df45bab2a32c42a84bb3d33bc0cb1, type: 3}
     pitch: 1
     source: {fileID: 0}
+  - name: slideBtn
+    clip: {fileID: 8300000, guid: c0c328d3cdb34ce44992d4c6cd3aee9d, type: 3}
+    pitch: 1
+    source: {fileID: 0}
