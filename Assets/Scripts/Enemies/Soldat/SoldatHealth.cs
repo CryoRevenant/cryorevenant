@@ -125,7 +125,6 @@ public class SoldatHealth : EnemyHealth2
             case 0:
                 Debug.Log("Spawn Right");
                 GameObject vfxBlockInstanceR = Instantiate(vfxBlock, transform.position, Quaternion.identity);
-                vfxBlockInstanceR.GetComponent<SpriteRenderer>().flipX = false;
                 Destroy(vfxBlockInstanceR, 0.25f);
 
                 GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
@@ -136,7 +135,6 @@ public class SoldatHealth : EnemyHealth2
             case 1:
                 Debug.Log("Spawn Left");
                 GameObject vfxBlockInstanceL = Instantiate(vfxBlock, transform.position, Quaternion.identity);
-                vfxBlockInstanceL.GetComponent<SpriteRenderer>().flipX = true;
                 Destroy(vfxBlockInstanceL, 0.25f);
 
                 GameObject instanceL = Instantiate(vfxShield, transform.position, Quaternion.identity);
