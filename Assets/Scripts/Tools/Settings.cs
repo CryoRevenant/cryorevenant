@@ -29,8 +29,8 @@ public class Settings : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("MV_Slider.value = " + MV_Slider.value);
-        Debug.Log("PlayerPrefsMV.value = " + PlayerPrefs.GetFloat("M_volume"));
+        //Debug.Log("MV_Slider.value = " + MV_Slider.value);
+        //Debug.Log("PlayerPrefsMV.value = " + PlayerPrefs.GetFloat("M_volume"));
     }
 
     public void GeneralVolume(Slider slider)

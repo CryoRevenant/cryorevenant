@@ -440,6 +440,18 @@ MonoBehaviour:
           m_StringArgument: pressBtn
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 681589539}
+        m_TargetAssemblyTypeName: SceneManagerMenu, Assembly-CSharp
+        m_MethodName: SetCurrBtn
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 54641335}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &54641336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4677,6 +4689,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: pressBtn
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 681589539}
+        m_TargetAssemblyTypeName: SceneManagerMenu, Assembly-CSharp
+        m_MethodName: SetCurrBtn
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1536699250}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1536699251

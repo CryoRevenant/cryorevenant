@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class SceneManagerMenu : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class SceneManagerMenu : MonoBehaviour
     bool isPaused;
     bool canReturn;
     float timer;
+
+    private Button curButton;
 
     private void Start()
     {
@@ -124,6 +127,7 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void ShowCredits()
     {
+        canReturn = true;
         menuCanvas.SetActive(false);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(true);
@@ -131,6 +135,7 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HideCredits()
     {
+        canReturn = false;
         menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(false);
@@ -139,6 +144,11 @@ public class SceneManagerMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void SetCurrBtn(Button btn)
+    {
+        curButton = btn;
     }
 
     public void SwitchMenu(int index)
@@ -150,6 +160,11 @@ public class SceneManagerMenu : MonoBehaviour
                 childGlitch[1].GetComponent<Animator>().SetTrigger("isCut");
                 break;
             case 1:
+                if (curButton != null)
+                {
+                    EventSystem eventSystem = EventSystem.current;
+                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+                }
                 Invoke("HideOptions", 0.3f);
                 break;
             case 2:
@@ -157,6 +172,11 @@ public class SceneManagerMenu : MonoBehaviour
                 childGlitch[2].GetComponent<Animator>().SetTrigger("isCut");
                 break;
             case 3:
+                if (curButton != null)
+                {
+                    EventSystem eventSystem = EventSystem.current;
+                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+                }
                 Invoke("HideCredits", 0.3f);
                 break;
         }
@@ -257,7 +277,7 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void ShowPauseOption()
     {
-        Debug.Log("pause option");
+        //Debug.Log("pause option");
         pauseButtons.SetActive(false);
         optionMenu.SetActive(true);
         canReturn = true;
@@ -265,7 +285,12 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HidePauseOption()
     {
-        Debug.Log("pause menu");
+        //Debug.Log("pause menu");
+        if (curButton != null)
+        {
+            EventSystem eventSystem = EventSystem.current;
+            eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+        }
         pauseButtons.SetActive(true);
         optionMenu.SetActive(false);
         canReturn = false;
