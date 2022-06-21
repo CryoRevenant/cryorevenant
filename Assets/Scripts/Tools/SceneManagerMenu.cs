@@ -17,7 +17,6 @@ public class SceneManagerMenu : MonoBehaviour
     [Header("Fade")]
     [SerializeField] SpriteRenderer background;
     [SerializeField] float speed;
-    [SerializeField] float fadeWaitTime;
     bool isFading;
     [SerializeField] int sceneIndex;
 
@@ -86,7 +85,7 @@ public class SceneManagerMenu : MonoBehaviour
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
                     //Debug.Log("return");
-                    StartFade(1);
+                    SwitchMenu(1);
                 }
             }
         }
@@ -136,38 +135,67 @@ public class SceneManagerMenu : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator Fade(int index)
+    public void SwitchMenu(int index)
     {
-        isFading = true;
+        switch (index)
+        {
+            case 0:
+                Invoke("ShowOption", 0.26f);
+                childGlitch[1].GetComponent<Animator>().SetTrigger("isCut");
+                break;
+            case 1:
+                Invoke("HideOptions", 0.3f);
+                break;
+            case 2:
+                Invoke("ShowCredits", 0.26f);
+                childGlitch[2].GetComponent<Animator>().SetTrigger("isCut");
+                break;
+            case 3:
+                Invoke("HideCredits", 0.3f);
+                break;
+        }
+        if (!isFading)
+        {
+            StartCoroutine(Fade(index));
+        }
+    }
+
+    IEnumerator Fade(int i)
+    {
         Color alphaMod = new Color();
+        alphaMod.a = 0;
+        isFading = true;
+
         while (isFading == true)
         {
             alphaMod.a += Time.deltaTime * speed;
             background.color = alphaMod;
+            yield return new WaitForSeconds(0.05f);
 
-            if (alphaMod.a >= 0.98f)
+            if (alphaMod.a >= 1.5f)
             {
+                yield return new WaitForSeconds(0.1f);
+                Debug.Log(alphaMod.a);
+                switch (i)
+                {
+                    case 0:
+                        ShowOption();
+                        break;
+                    case 1:
+                        HideOptions();
+                        break;
+                    case 2:
+                        ShowCredits();
+                        break;
+                    case 3:
+                        HideCredits();
+                        break;
+                }
                 isFading = false;
             }
-            yield return new WaitForSeconds(0.05f);
         }
 
-        yield return new WaitForSeconds(fadeWaitTime);
-        switch (index)
-        {
-            case 0:
-                ShowOption();
-                break;
-            case 1:
-                HideOptions();
-                break;
-            case 2:
-                ShowCredits();
-                break;
-            case 3:
-                HideCredits();
-                break;
-        }
+        yield return new WaitForSeconds(0.2f);
 
         while (isFading == false)
         {
@@ -177,16 +205,9 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (alphaMod.a <= 0)
             {
-                StopCoroutine("Fade");
+                StopAllCoroutines();
+                Debug.Log(alphaMod.a);
             }
-        }
-    }
-
-    public void StartFade(int i)
-    {
-        if (!isFading)
-        {
-            StartCoroutine(Fade(i));
         }
     }
 
@@ -197,12 +218,8 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void Click(int i)
     {
-        //childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
+        childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
         Invoke("StartGame", 0.5f);
-    }
-    public void ChangeSprite()
-    {
-        
     }
 
     #endregion
