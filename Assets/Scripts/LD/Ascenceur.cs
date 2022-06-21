@@ -159,6 +159,7 @@ public class Ascenceur : MonoBehaviour
 
     void CloseDoor()
     {
+        Debug.Log("closeDoor");
         isUnlocked = false;
         player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 0;
         animator.SetBool("openDoor", isUnlocked);

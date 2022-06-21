@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5004736421229200735}
   - component: {fileID: 5134223867441687466}
   - component: {fileID: 7741959414667627949}
-  - component: {fileID: 2674028052467989746}
   m_Layer: 8
   m_Name: VFX_Icewall
   m_TagString: Wall
@@ -200,29 +199,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!61 &2674028052467989746
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7547172563965914818}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.0275965, y: 0.3085618}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.240001, y: 10.25}
-    newSize: {x: 13.653334, y: 13.666666}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.5170784, y: 4.9827642}
-  m_EdgeRadius: 0

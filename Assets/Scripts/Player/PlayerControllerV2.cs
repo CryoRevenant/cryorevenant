@@ -549,6 +549,13 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("isGrounded");
         }
 
+        if(isGroundedL || isGroundedR)
+        {
+            Debug.Log("fall");
+            StopAnim();
+
+        }
+
         if (!isGroundedL && !isGroundedR)
         {
             isPlayingJumpAnim = true;
@@ -876,6 +883,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             canJump = false;
             Physics2D.IgnoreLayerCollision(0, 3, true);
+            Physics2D.IgnoreLayerCollision(0, 8, true);
             curDodgeSpeed = Vector2.Lerp(curDodgeSpeed, new Vector2(dodgeSpeed, curDodgeSpeed.y) * playerBackward, curseurDodge);
             Vector3 nextDodgePos = new Vector3(transform.position.x + curDodgeSpeed.x * Time.deltaTime, transform.position.y, transform.position.z);
             rb.position = nextDodgePos;
@@ -887,6 +895,7 @@ public class PlayerControllerV2 : MonoBehaviour
             curGravity = 5;
             gameObject.GetComponent<PlayerHP>().canDie = true;
             Physics2D.IgnoreLayerCollision(0, 3, false);
+            Physics2D.IgnoreLayerCollision(0, 8, false);
         }
 
         dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
