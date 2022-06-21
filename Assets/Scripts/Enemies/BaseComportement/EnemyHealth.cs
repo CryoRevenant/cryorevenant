@@ -83,26 +83,9 @@ public class EnemyHealth : MonoBehaviour
                 GameObject vfxBlockInstanceR = Instantiate(vfxBlock, transform.position, Quaternion.identity);
                 Destroy(vfxBlockInstanceR, 0.25f);
 
-                //Debug.Log(transform.rotation.y);
-                switch (transform.rotation.y)
-                {
-                    case 0:
-                        //Debug.Log("Spawn Right");
-
-                        GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
-                        instanceR.GetComponent<SpriteRenderer>().flipX = true;
-                        instanceR.transform.SetParent(transform);
-                        Destroy(instanceR, 0.25f);
-                        break;
-                    case 1:
-                        //Debug.Log("Spawn Left");
-
-                        GameObject instanceL = Instantiate(vfxShield, transform.position, Quaternion.identity);
-                        instanceL.GetComponent<SpriteRenderer>().flipX = false;
-                        instanceL.transform.SetParent(transform);
-                        Destroy(instanceL, 0.25f);
-                        break;
-                }
+                GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
+                instanceR.transform.SetParent(transform);
+                Destroy(instanceR, 0.5f);
 
                 Block();
             }
