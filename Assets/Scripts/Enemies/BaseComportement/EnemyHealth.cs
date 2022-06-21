@@ -34,6 +34,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float speedRecoil;
     [SerializeField] Slider healthBar;
 
+    [SerializeField] GameObject vfxBlock;
+    [SerializeField] GameObject vfxShield;
+
     private void Awake()
     {
         currHP = hp;
@@ -60,7 +63,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string hitObject)
     {
         if (!isBlocking && !isAttacking)
         {
@@ -73,7 +76,42 @@ public class EnemyHealth : MonoBehaviour
         }
         else if (isBlocking)
         {
-            Block();
+            if (hitObject == "sword")
+            {
+                //Debug.Log("sword");
+
+                GameObject vfxBlockInstanceR = Instantiate(vfxBlock, transform.position, Quaternion.identity);
+                Destroy(vfxBlockInstanceR, 0.25f);
+
+                //Debug.Log(transform.rotation.y);
+                switch (transform.rotation.y)
+                {
+                    case 0:
+                        //Debug.Log("Spawn Right");
+
+                        GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
+                        instanceR.GetComponent<SpriteRenderer>().flipX = true;
+                        instanceR.transform.SetParent(transform);
+                        Destroy(instanceR, 0.25f);
+                        break;
+                    case 1:
+                        //Debug.Log("Spawn Left");
+
+                        GameObject instanceL = Instantiate(vfxShield, transform.position, Quaternion.identity);
+                        instanceL.GetComponent<SpriteRenderer>().flipX = false;
+                        instanceL.transform.SetParent(transform);
+                        Destroy(instanceL, 0.25f);
+                        break;
+                }
+
+                Block();
+            }
+
+            if (hitObject == "bullet")
+            {
+                //Debug.Log("bullet");
+                Block();
+            }
         }
 
         if (currHP <= 0)

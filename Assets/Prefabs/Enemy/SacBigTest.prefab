@@ -841,6 +841,8 @@ MonoBehaviour:
   resetSprite: {fileID: 7124489643811458362, guid: a740e5ab545383544b630b8592e5e0da, type: 3}
   speedRecoil: 0
   healthBar: {fileID: 2994820970407758858}
+  vfxBlock: {fileID: 3166911455110256611, guid: 104eb40bff2a4fd49995cf9f82ca150a, type: 3}
+  vfxShield: {fileID: 5460911089025255290, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
 --- !u!114 &3817621574512399977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,7 +898,6 @@ MonoBehaviour:
   maxAttackDist: 10
   overrideSpeed: 2.5
   baseSpeed: 10
-  timerBeforeAttack: 8
   speedMove: 0
   canCall: 1
   sacWalkSFX: {fileID: 1736293938}
