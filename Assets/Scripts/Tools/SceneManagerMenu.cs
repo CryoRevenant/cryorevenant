@@ -42,6 +42,12 @@ public class SceneManagerMenu : MonoBehaviour
             player = GameObject.Find("Player");
             controls = player.GetComponent<PlayerInput>();
         }
+
+        foreach (GameObject item in glitchObjects)
+        {
+            item.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
+        }
+
     }
     private void Update()
     {
