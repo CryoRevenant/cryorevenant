@@ -15,7 +15,7 @@ public class IceSpike : MonoBehaviour
                 if (collision.gameObject.GetComponent<SoldatHealth>() != null)
                 {
                     collision.gameObject.GetComponent<SoldatHealth>().Slowed();
-                    collision.gameObject.GetComponent<EnemyHealth2>().TakeDamage(0.5f);
+                    collision.gameObject.GetComponent<EnemyHealth2>().TakeDamage(0.5f,"bullet");
                 }
 
                 if (collision.gameObject.GetComponent<BossHealth>())

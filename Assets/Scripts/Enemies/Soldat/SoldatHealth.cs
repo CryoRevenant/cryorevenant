@@ -16,10 +16,6 @@ public class SoldatHealth : EnemyHealth2
     [SerializeField] float timeBlocking;
     float timer;
 
-    [Header("FX")]
-    [SerializeField] GameObject vfxBlock;
-    [SerializeField] GameObject vfxShield;
-
     private void Update()
     {
         //if (vfxBlockInstance != null)
@@ -118,31 +114,6 @@ public class SoldatHealth : EnemyHealth2
         canGoDown = true;
         GetComponent<SoldatAttack>().StopCoroutine("PreAttack");
         GetComponent<SoldatAttack>().mustBlock = true;
-
-        //Debug.Log(transform.rotation.y);
-        switch (transform.rotation.y)
-        {
-            case 0:
-                Debug.Log("Spawn Right");
-                GameObject vfxBlockInstanceR = Instantiate(vfxBlock, transform.position, Quaternion.identity);
-                Destroy(vfxBlockInstanceR, 0.25f);
-
-                GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
-                instanceR.GetComponent<SpriteRenderer>().flipX = true;
-                instanceR.transform.SetParent(transform);
-                Destroy(instanceR, 0.25f);
-                break;
-            case 1:
-                Debug.Log("Spawn Left");
-                GameObject vfxBlockInstanceL = Instantiate(vfxBlock, transform.position, Quaternion.identity);
-                Destroy(vfxBlockInstanceL, 0.25f);
-
-                GameObject instanceL = Instantiate(vfxShield, transform.position, Quaternion.identity);
-                instanceL.GetComponent<SpriteRenderer>().flipX = false;
-                instanceL.transform.SetParent(transform);
-                Destroy(instanceL, 0.25f);
-                break;
-        }
     }
 
     public void NormalSpeed()

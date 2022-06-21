@@ -196,17 +196,20 @@ public class PlayerAttack : MonoBehaviour
             switch (playerSprite.flipX)
             {
                 case true:
-                    //Debug.DrawRay(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down*0.5f,Color.blue,1);
-                    RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down, 0.5f);
+                    Debug.DrawRay(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down*1f,Color.blue,1);
+                    RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down, 1f);
+                    
+                    //Debug.Log(colGrounded.Length);
 
                     for (int i = 0; i < colGrounded.Length; i++)
                     {
-                        if (colGrounded[i].collider.gameObject.layer == 6)
+                        if (colGrounded[i].collider.gameObject.layer == 6 || colGrounded[i].collider.gameObject.layer == 9)
                         {
-                            //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left*4f,Color.blue,1);
+                            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left*4f,Color.blue,1);
                             RaycastHit2D colWallFacing = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left, 4f, mask);
 
-                            Debug.Log("canLeft");
+                            //Debug.Log("canLeft");
+                            //Debug.Log("colGrounded " + colGrounded[i].collider.name);
 
                             if (!colWallFacing)
                             {
@@ -226,7 +229,7 @@ public class PlayerAttack : MonoBehaviour
 
                                 wallEffect2.SetActive(true);
                                 wallEffect2.GetComponent<Animator>().SetBool("Build", true);
-                                GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y, transform.position.z), Quaternion.identity);
+                                GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y+0.1f, transform.position.z), Quaternion.identity);
                                 instance.GetComponent<SpriteRenderer>().flipX = true;
 
                                 float random = Random.value;
@@ -251,19 +254,20 @@ public class PlayerAttack : MonoBehaviour
 
                     break;
                 case false:
-                    //Debug.DrawRay(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down*0.5f,Color.blue,1);
-                    RaycastHit2D[] colGrounded2 = Physics2D.RaycastAll(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down, 0.5f);
+                    Debug.DrawRay(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down*1f,Color.blue,1);
+                    RaycastHit2D[] colGrounded2 = Physics2D.RaycastAll(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down, 1f);
 
                     //Debug.Log(colGrounded2.Length);
 
                     for (int i = 0; i < colGrounded2.Length; i++)
                     {
-                        if (colGrounded2[i].collider.gameObject.layer == 6)
+                        if (colGrounded2[i].collider.gameObject.layer == 6 || colGrounded2[i].collider.gameObject.layer == 9)
                         {
-                            //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right * 4f, Color.blue, 1);
+                            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right * 4f, Color.blue, 1);
                             RaycastHit2D colWallFacing2 = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.right, 4f, mask);
 
-                            Debug.Log("canRight");
+                            //Debug.Log("canRight");
+                            //Debug.Log("colGrounded2 " + colGrounded2[i].collider.name);
 
                             if (!colWallFacing2)
                             {
@@ -283,7 +287,7 @@ public class PlayerAttack : MonoBehaviour
 
                                 wallEffect.SetActive(true);
                                 wallEffect.GetComponent<Animator>().SetBool("Build", true);
-                                GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y, transform.position.z), Quaternion.identity);
+                                GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y+0.1f, transform.position.z), Quaternion.identity);
                                 instance2.GetComponent<SpriteRenderer>().flipX = false;
 
                                 float random2 = Random.value;
@@ -420,7 +424,7 @@ public class PlayerAttack : MonoBehaviour
 
                     if (col[i].gameObject.GetComponent<EnemyHealth2>() != null)
                     {
-                        col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage);
+                        col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage,"sword");
                     }
                     else
                     {
