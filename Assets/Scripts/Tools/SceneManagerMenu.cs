@@ -63,12 +63,10 @@ public class SceneManagerMenu : MonoBehaviour
                     switch (isPaused)
                     {
                         case true:
-                            //Debug.Log("UnPause");
                             HidePauseMenu();
                             isPaused = false;
                             break;
                         case false:
-                            //Debug.Log("Pause");
                             PauseMenu();
                             break;
                     }
@@ -77,11 +75,9 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (gameObject.GetComponent<PlayerInput>() != null)
             {
-                //Debug.Log("canReturn = " + canReturn);
 
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
-                    //Debug.Log("return");
                     HidePauseOption();
                 }
             }
@@ -93,7 +89,6 @@ public class SceneManagerMenu : MonoBehaviour
             {
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
-                    //Debug.Log("return");
                     SwitchMenu(1);
                 }
             }
@@ -109,7 +104,6 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void ShowOption()
     {
-        //Debug.Log("option");
         canReturn = true;
         menuCanvas.SetActive(false);
         optionCanvas.SetActive(true);
@@ -118,7 +112,6 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HideOptions()
     {
-        //Debug.Log("main menu");
         canReturn = false;
         menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
@@ -156,7 +149,6 @@ public class SceneManagerMenu : MonoBehaviour
         switch (index)
         {
             case 0:
-                Invoke("ShowOption", 0.26f);
                 childGlitch[1].GetComponent<Animator>().SetTrigger("isCut");
                 break;
             case 1:
@@ -165,10 +157,8 @@ public class SceneManagerMenu : MonoBehaviour
                     EventSystem eventSystem = EventSystem.current;
                     eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
                 }
-                Invoke("HideOptions", 0.3f);
                 break;
             case 2:
-                Invoke("ShowCredits", 0.26f);
                 childGlitch[2].GetComponent<Animator>().SetTrigger("isCut");
                 break;
             case 3:
@@ -177,7 +167,6 @@ public class SceneManagerMenu : MonoBehaviour
                     EventSystem eventSystem = EventSystem.current;
                     eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
                 }
-                Invoke("HideCredits", 0.3f);
                 break;
         }
         if (!isFading)
@@ -188,7 +177,7 @@ public class SceneManagerMenu : MonoBehaviour
 
     IEnumerator Fade(int i)
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         Color alphaMod = new Color();
         alphaMod.a = 0;
         isFading = true;
@@ -201,7 +190,7 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (alphaMod.a >= 1.5f)
             {
-                yield return new WaitForSeconds(0.1f);
+                isFading = false;
                 switch (i)
                 {
                     case 0:
@@ -217,11 +206,10 @@ public class SceneManagerMenu : MonoBehaviour
                         HideCredits();
                         break;
                 }
-                isFading = false;
             }
         }
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
 
         while (isFading == false)
         {
