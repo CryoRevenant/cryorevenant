@@ -16,13 +16,17 @@ public class Door : MonoBehaviour
 
     bool canDestroy;
     GameObject player;
+    private GameObject instance;
 
 
     void Start()
     {
-        for (int i = 0; i < doorDebris.transform.childCount; i++)
+        instance = Instantiate(doorDebris,transform.position,Quaternion.identity);
+        instance.transform.SetParent(this.transform);
+        
+        for (int i = 0; i < instance.transform.childCount; i++)
         {
-            childsDebris.Add(doorDebris.transform.GetChild(i).gameObject);
+            childsDebris.Add(instance.transform.GetChild(i).gameObject);
         }
 
         canDestroy = false;
@@ -34,12 +38,16 @@ public class Door : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("cutDoor");
 
         doorIdle.SetActive(false);
-        doorDebris.SetActive(true);
+        instance.SetActive(true);
+        //Debug.Log(childsDebris.Count);
+        instance.transform.SetParent(null);
+
         foreach (GameObject go in childsDebris)
         {
             dir.x = Random.Range(5, maxPush.x);
             dir.y = Random.Range(0, maxPush.y);
             go.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Impulse);
+            //Debug.Log("addForce " + go.name);
         }
         Invoke("DestroyGM", 1f);
     }
@@ -84,6 +92,25 @@ public class Door : MonoBehaviour
 
     void DestroyGM()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        doorIdle.SetActive(true);
+        doorDebris.SetActive(false);
+        GetComponent<BoxCollider2D>().enabled = true;
+
+        for (int i = 0; i < instance.transform.childCount; i++)
+        {
+            childsDebris.Remove(instance.transform.GetChild(i).gameObject);
+        }
+        Destroy(instance);
+
+        if(instance != null)
+        {
+            instance = Instantiate(doorDebris, transform.position, Quaternion.identity);
+            instance.transform.SetParent(this.transform);
+            for (int i = 0; i < instance.transform.childCount; i++)
+            {
+                childsDebris.Add(instance.transform.GetChild(i).gameObject);
+            }
+        }
     }
 }
