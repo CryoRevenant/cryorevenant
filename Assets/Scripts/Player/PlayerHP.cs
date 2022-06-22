@@ -7,6 +7,7 @@ public class PlayerHP : MonoBehaviour
     public bool isDead;
     public bool canDie;
     [SerializeField] Animator animator;
+    [SerializeField] List<GameObject> doors = new List<GameObject>();
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,6 +22,14 @@ public class PlayerHP : MonoBehaviour
         if (canDie)
         {
             //Debug.Log("die");
+            foreach (GameObject door in doors)
+            {
+                if (!door.activeSelf)
+                {
+                    door.SetActive(true);
+                }
+            }
+
             animator.SetTrigger("Death");
             animator.SetTrigger("isFalling");
 
