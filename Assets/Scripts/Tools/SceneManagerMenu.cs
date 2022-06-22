@@ -89,7 +89,7 @@ public class SceneManagerMenu : MonoBehaviour
             {
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
-                    SwitchMenu(1);
+                    Click(1);
                 }
             }
         }
@@ -144,40 +144,8 @@ public class SceneManagerMenu : MonoBehaviour
         curButton = btn;
     }
 
-    public void SwitchMenu(int index)
-    {
-        switch (index)
-        {
-            case 0:
-                childGlitch[1].GetComponent<Animator>().SetTrigger("isCut");
-                break;
-            case 1:
-                if (curButton != null)
-                {
-                    EventSystem eventSystem = EventSystem.current;
-                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
-                }
-                break;
-            case 2:
-                childGlitch[2].GetComponent<Animator>().SetTrigger("isCut");
-                break;
-            case 3:
-                if (curButton != null)
-                {
-                    EventSystem eventSystem = EventSystem.current;
-                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
-                }
-                break;
-        }
-        if (!isFading)
-        {
-            StartCoroutine(Fade(index));
-        }
-    }
-
     IEnumerator Fade(int i)
     {
-        yield return new WaitForSeconds(0.3f);
         Color alphaMod = new Color();
         alphaMod.a = 0;
         isFading = true;
@@ -193,16 +161,16 @@ public class SceneManagerMenu : MonoBehaviour
                 isFading = false;
                 switch (i)
                 {
-                    case 0:
-                        ShowOption();
-                        break;
                     case 1:
-                        HideOptions();
+                        ShowOption();
                         break;
                     case 2:
                         ShowCredits();
                         break;
                     case 3:
+                        HideOptions();
+                        break;
+                    case 4:
                         HideCredits();
                         break;
                 }
@@ -229,10 +197,54 @@ public class SceneManagerMenu : MonoBehaviour
         glitchObjects[i].GetComponent<Animator>().SetTrigger("Glitch");
     }
 
-    public void Click(int i)
+    public void Click(int index)
     {
-        childGlitch[i].GetComponent<Animator>().SetTrigger("isCut");
-        Invoke("StartGame", 0.5f);
+        childGlitch[index].GetComponent<Animator>().SetTrigger("isCut");
+
+        switch (index)
+        {
+            case 0:
+                Invoke("StartGame", 0.5f);
+                break;
+
+            case 1:
+                if (!isFading)
+                {
+                    StartCoroutine(Fade(index));
+                }
+                if (curButton != null)
+                {
+                    EventSystem eventSystem = EventSystem.current;
+                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+                }
+                break;
+
+            case 2:
+                if (!isFading)
+                {
+                    StartCoroutine(Fade(index));
+                }
+                if (curButton != null)
+                {
+                    EventSystem eventSystem = EventSystem.current;
+                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+                }
+                break;
+
+            case 3:
+                if (!isFading)
+                {
+                    StartCoroutine(Fade(index));
+                }
+                break;
+
+            case 4:
+                if (!isFading)
+                {
+                    StartCoroutine(Fade(index));
+                }
+                break;
+        }
     }
 
     #endregion
