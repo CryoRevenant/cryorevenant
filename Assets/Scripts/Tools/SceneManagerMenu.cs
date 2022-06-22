@@ -202,7 +202,6 @@ public class SceneManagerMenu : MonoBehaviour
             if (alphaMod.a >= 1.5f)
             {
                 yield return new WaitForSeconds(0.1f);
-                Debug.Log(alphaMod.a);
                 switch (i)
                 {
                     case 0:
@@ -233,7 +232,6 @@ public class SceneManagerMenu : MonoBehaviour
             if (alphaMod.a <= 0)
             {
                 StopAllCoroutines();
-                Debug.Log(alphaMod.a);
             }
         }
     }
