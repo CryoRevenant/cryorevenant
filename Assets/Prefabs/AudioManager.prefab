@@ -88,6 +88,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d9e2d34952870944181d521cf7013e61, type: 3}
     pitch: 1
     source: {fileID: 0}
+  - name: groundHit2
+    clip: {fileID: 8300000, guid: 84796301ef3879c4a8bb7a4d001741a1, type: 3}
+    pitch: 1
+    source: {fileID: 0}
   - name: iceWall
     clip: {fileID: 8300000, guid: ca7f775534ade754dafd7ca935771851, type: 3}
     pitch: 1

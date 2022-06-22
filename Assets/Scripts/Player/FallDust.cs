@@ -23,7 +23,16 @@ public class FallDust : MonoBehaviour
                 {
                     isGrounded = true;
                     //Debug.Log("Grounded");
-                    FindObjectOfType<AudioManager>().Play("groundHit");
+                    float random = Random.value;
+                    if(random > 0.5f)
+                    {
+                        FindObjectOfType<AudioManager>().Play("groundHit");
+                    }
+                    if (random <= 0.5f)
+                    {
+                        //Debug.Log("groundHit2");
+                        FindObjectOfType<AudioManager>().Play("groundHit2");
+                    }
                     instance = Instantiate(fallDust,new Vector2(transform.GetComponent<Rigidbody2D>().position.x, transform.GetComponent<Rigidbody2D>().position.y-0.25f),Quaternion.identity);
                     Destroy(instance,0.5f);
                 }
