@@ -580,7 +580,7 @@ public class PlayerAttack : MonoBehaviour
         }
 
         // UI sliding
-        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown * 2, 4, 106));
+        spikeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(spikeUI.padding.w - spikeCooldown * 2.5f, 4, 106));
         if (spikeUI.padding.w <= 15 && spikeUI.padding.w >= 13)
         {
             spikeUI.GetComponentInChildren<Animator>().SetTrigger("glitch");
@@ -603,7 +603,7 @@ public class PlayerAttack : MonoBehaviour
         #region mur de glace
         // UI sliding
         float w = wallUI.padding.w;
-        w -= wallCooldown / 2.05f;
+        w -= wallCooldown / 1.85f;
         wallUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(w, 0, 99));
         if (w <= 10 && w >= 9)
         {

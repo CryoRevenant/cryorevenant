@@ -36,7 +36,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float accelSpeed;
     [SerializeField] private float inertia;
     [SerializeField] private AnimationCurve accelCurve;
-    [Header("Dash")]
+    [Header("Right_Trigger")]
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCooldown;
@@ -46,15 +46,17 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private Sprite spriteDashLoad_R;
     [SerializeField] private Sprite spriteDashLoad_L;
     [SerializeField] private GameObject dashVFX;
-    [Header("Dodge")]
+    [Header("Left_Trigger")]
     [SerializeField] private float dodgeDistance;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
     [SerializeField] private RectMask2D dodgeUI;
-    [SerializeField] private Sprite spriteDodge_R;
-    [SerializeField] private Sprite spriteDodge_L;
-    [SerializeField] private Sprite spriteDodgeLoad_R;
-    [SerializeField] private Sprite spriteDodgeLoad_L;
+    [SerializeField] private Animator dodgeAnim;
+    [SerializeField] private RuntimeAnimatorController dodge_L;
+    [SerializeField] private RuntimeAnimatorController dash_L;
+    [SerializeField] private Animator dashAnim;
+    [SerializeField] private RuntimeAnimatorController dodge_R;
+    [SerializeField] private RuntimeAnimatorController dash_R;
 
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
@@ -303,22 +305,19 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(result);
 
-        // dash UI
+        #region dash UI
         switch (playerSprite.flipX)
         {
             case true:
-                dashUI.GetComponent<Image>().sprite = spriteDodge_R;
-                dashUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDodgeLoad_R;
-                dodgeUI.GetComponent<Image>().sprite = spriteDash_L;
-                dodgeUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDashLoad_L;
+                dodgeAnim.runtimeAnimatorController = dash_L;
+                dashAnim.runtimeAnimatorController = dodge_R;
                 break;
             case false:
-                dashUI.GetComponent<Image>().sprite = spriteDash_R;
-                dashUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDashLoad_R;
-                dodgeUI.GetComponent<Image>().sprite = spriteDodge_L;
-                dodgeUI.transform.GetChild(0).GetComponent<Image>().sprite = spriteDodgeLoad_L;
+                dodgeAnim.runtimeAnimatorController = dodge_L;
+                dashAnim.runtimeAnimatorController = dash_R;
                 break;
         }
+        #endregion
 
         #region gachette de droite
         timerDash -= Time.deltaTime;
@@ -551,7 +550,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if(isGroundedL || isGroundedR)
         {
-            Debug.Log("fall");
+            //Debug.Log("fall");
             StopAnim();
 
         }
@@ -852,16 +851,8 @@ public class PlayerControllerV2 : MonoBehaviour
         dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
         if (dashUI.padding.w > 15f && dashUI.padding.w < 16.5f)
         {
-            Debug.Log("full");
-            //switch (playerSprite.flipX)
-            //{
-            //    case true:
-            //        dashUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch");
-            //        break;
-            //    case false:
-            //        dashUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch2");
-            //        break;
-            //}
+            //Debug.Log("full");
+            dashAnim.SetTrigger("glitch");
         }
 
         //Debug.Log(curseurDash);
@@ -902,15 +893,7 @@ public class PlayerControllerV2 : MonoBehaviour
         if (dodgeUI.padding.w > 15f && dodgeUI.padding.w < 16.5f)
         {
             //Debug.Log("full");
-            //switch (playerSprite.flipX)
-            //{
-            //    case true:
-            //        dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch2");
-            //        break;
-            //    case false:
-            //        dodgeUI.transform.GetChild(0).GetComponent<Animator>().SetTrigger("glitch");
-            //        break;
-            //}
+            dodgeAnim.SetTrigger("glitch");
         }
 
         //Debug.Log(curseurDodge);
