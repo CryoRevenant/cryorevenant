@@ -263,7 +263,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2715406064789191864
 Transform:
   m_ObjectHideFlags: 0
@@ -830,7 +830,7 @@ MonoBehaviour:
   hp: 2
   elevatorToUnlock: Ascenceur2 (3)
   needUnlock: 0
-  indexIceBar: 5
+  indexIceBar: 10
   scoreToAdd: 400
   canRecoil: 0
   anim: {fileID: 3817621572848472142}
@@ -895,8 +895,8 @@ MonoBehaviour:
   bounds: 0.8
   showRays: 0
   walkSFX: {fileID: 0}
-  maxAttackDist: 10
-  overrideSpeed: 2.5
+  maxAttackDist: 5
+  overrideSpeed: 1.5
   baseSpeed: 10
   speedMove: 0
   canCall: 1
