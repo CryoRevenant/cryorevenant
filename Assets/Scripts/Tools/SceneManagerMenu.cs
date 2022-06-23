@@ -89,7 +89,15 @@ public class SceneManagerMenu : MonoBehaviour
             {
                 if (gameObject.GetComponent<PlayerInput>().currentActionMap.FindAction("Return").triggered && canReturn)
                 {
-                    Click(1);
+                    if (optionCanvas.activeSelf)
+                    {
+                        Click(3);
+                    }
+
+                    if (creditCanvas.activeSelf)
+                    {
+                        Click(4);
+                    }
                 }
             }
         }
@@ -214,6 +222,7 @@ public class SceneManagerMenu : MonoBehaviour
                 }
                 if (curButton != null)
                 {
+                    //Debug.Log("select Option");
                     EventSystem eventSystem = EventSystem.current;
                     eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
                 }
