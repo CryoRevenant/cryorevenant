@@ -2760,6 +2760,7 @@ MonoBehaviour:
   - {fileID: 187822229}
   - {fileID: 1192652297}
   - {fileID: 1544380432}
+  eventSystem: {fileID: 2553605}
   background: {fileID: 1331977745}
   speed: 30
   sceneIndex: 0

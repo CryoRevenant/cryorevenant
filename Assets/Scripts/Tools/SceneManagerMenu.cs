@@ -222,9 +222,8 @@ public class SceneManagerMenu : MonoBehaviour
                 }
                 if (curButton != null)
                 {
-                    //Debug.Log("select Option");
-                    EventSystem eventSystem = EventSystem.current;
-                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+                    Debug.Log("main menu = " + curButton.gameObject.name);
+                    Invoke("SelectCurrBtn", 0.5f);
                 }
                 break;
 
@@ -235,8 +234,8 @@ public class SceneManagerMenu : MonoBehaviour
                 }
                 if (curButton != null)
                 {
-                    EventSystem eventSystem = EventSystem.current;
-                    eventSystem.SetSelectedGameObject(curButton.gameObject, new BaseEventData(eventSystem));
+                    Debug.Log("main menu = " + curButton.gameObject.name);
+                    Invoke("SelectCurrBtn",0.5f);
                 }
                 break;
 
@@ -254,6 +253,11 @@ public class SceneManagerMenu : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    void SelectCurrBtn()
+    {
+        curButton.Select();
     }
 
     #endregion
