@@ -7,10 +7,10 @@ public class BossCam : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera baseVCam;
     [SerializeField] private CinemachineVirtualCamera bossVCam;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         //Debug.Log("hit");
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !bossVCam.gameObject.activeSelf)
         {
             baseVCam.gameObject.SetActive(false);
             bossVCam.gameObject.SetActive(true);
