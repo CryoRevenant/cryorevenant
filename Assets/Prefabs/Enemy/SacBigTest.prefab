@@ -895,9 +895,9 @@ MonoBehaviour:
   bounds: 0.8
   showRays: 0
   walkSFX: {fileID: 0}
-  maxAttackDist: 5
-  overrideSpeed: 1.5
-  baseSpeed: 10
+  maxAttackDist: 10
+  overrideSpeed: 1
+  baseSpeed: 2.5
   speedMove: 0
   canCall: 1
   sacWalkSFX: {fileID: 1736293938}
