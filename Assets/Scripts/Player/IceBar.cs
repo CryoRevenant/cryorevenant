@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Cinemachine;
 
 public class IceBar : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class IceBar : MonoBehaviour
     [SerializeField] private Image freezeUI;
     [SerializeField] RectMask2D rectMask;
     private Vector2Int softnessVect;
+
+    [SerializeField] private CinemachineVirtualCamera vcam;
 
     // Start is called before the first frame update
     void Start()
@@ -118,6 +121,8 @@ public class IceBar : MonoBehaviour
 
     public IEnumerator ResetBar()
     {
+        StartCoroutine(ShakeCamera(1f, 0.5f, 0.3f));
+
         FindObjectOfType<AudioManager>().Play("Hot");
 
         while (iceAmount <= 30)
@@ -134,4 +139,18 @@ public class IceBar : MonoBehaviour
         amountToLose = 0;
         StopCoroutine("ResetBar");
     }
+
+    public IEnumerator ShakeCamera(float intensity, float frequency, float time)
+    {
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
+
+        yield return new WaitForSeconds(time);
+
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
+        vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
+
+        yield break;
+    }
+
 }
