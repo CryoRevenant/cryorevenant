@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
     bool canDestroy;
     GameObject player;
     private GameObject instance;
+    [HideInInspector] public bool gbeDestroyed;
 
 
     void Start()
@@ -30,6 +31,7 @@ public class Door : MonoBehaviour
         }
 
         canDestroy = false;
+        gbeDestroyed = false;
     }
 
     public void DestroyDoor()
@@ -50,6 +52,7 @@ public class Door : MonoBehaviour
             //Debug.Log("addForce " + go.name);
         }
         Invoke("DestroyGM", 1f);
+        gbeDestroyed = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -90,9 +93,14 @@ public class Door : MonoBehaviour
         }
     }
 
-    void DestroyGM()
+    public void DestroyGM()
     {
-        gameObject.SetActive(false);
+        if (gbeDestroyed)
+        {
+            gameObject.SetActive(false);
+            gbeDestroyed = false;
+        }
+
         doorIdle.SetActive(true);
         doorDebris.SetActive(false);
         GetComponent<BoxCollider2D>().enabled = true;

@@ -24,9 +24,11 @@ public class PlayerHP : MonoBehaviour
             //Debug.Log("die");
             foreach (GameObject door in doors)
             {
-                if (!door.activeSelf)
+                if (!door.activeSelf || door.GetComponent<Door>().gbeDestroyed)
                 {
+                    door.GetComponent<Door>().gbeDestroyed = false;
                     door.SetActive(true);
+                    //Debug.Log("door name : " + door.gameObject.name);
                 }
             }
 
