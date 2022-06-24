@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SacMove : EnemyMove
 {
-    [SerializeField] float maxAttackDist;
-
+    [SerializeField] float maxAttackDist;   
     [SerializeField] float overrideSpeed;
     [SerializeField] float baseSpeed;
 
@@ -34,7 +33,7 @@ public class SacMove : EnemyMove
             //Tant que l'ennemi doit bouger
             while (Vector3.Distance(transform.position, posToGo) > maxStoppingDist)
             {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.fixedDeltaTime * speedMove);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(posToGo.x, transform.position.y, 0), Time.deltaTime * speedMove);
 
                 LookDirection(posToGo);
 
