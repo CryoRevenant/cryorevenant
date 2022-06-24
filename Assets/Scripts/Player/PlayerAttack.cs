@@ -69,11 +69,11 @@ public class PlayerAttack : MonoBehaviour
         timerAttack = attackCooldown;
         timerWall = wallCooldown;
         timerSpike = spikeCooldown;
-        wallUI.padding = new Vector4(0, 0, 0, 99);
+        wallUI.padding = new Vector4(0, 0, 0, 0);
         canSpawnWallfullBarVFX = true;
-        spikeUI.padding = new Vector4(0, 0, 0, 106);
+        spikeUI.padding = new Vector4(0, 0, 0, 4);
         canSpawnSpikefullBarVFX = true;
-        attackUI.padding = new Vector4(0, 0, 0, 113);
+        attackUI.padding = new Vector4(0, 0, 0, 3);
         canSpawnAttackfullBarVFX = true;
         #endregion
 

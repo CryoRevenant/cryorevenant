@@ -41,22 +41,26 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCooldown;
     [SerializeField] private RectMask2D dashUI;
-    [SerializeField] private Sprite spriteDash_R;
-    [SerializeField] private Sprite spriteDash_L;
-    [SerializeField] private Sprite spriteDashLoad_R;
-    [SerializeField] private Sprite spriteDashLoad_L;
-    [SerializeField] private GameObject dashVFX;
     [Header("Left_Trigger")]
     [SerializeField] private float dodgeDistance;
     [SerializeField] private float dodgeSpeed;
     [SerializeField] private float dodgeCooldown;
     [SerializeField] private RectMask2D dodgeUI;
+    [Header("Anim")]
+    [SerializeField] private GameObject dashVFX;
     [SerializeField] private Animator dodgeAnim;
     [SerializeField] private RuntimeAnimatorController dodge_L;
     [SerializeField] private RuntimeAnimatorController dash_L;
     [SerializeField] private Animator dashAnim;
     [SerializeField] private RuntimeAnimatorController dodge_R;
     [SerializeField] private RuntimeAnimatorController dash_R;
+    [Header("Trigger Font")]
+    [SerializeField] private Image left_Trigger_Font;
+    [SerializeField] private Image right_Trigger_Font;
+    [SerializeField] private Sprite spriteDodge_R;
+    [SerializeField] private Sprite spriteDodge_L;
+    [SerializeField] private Sprite spriteDash_R;
+    [SerializeField] private Sprite spriteDash_L;
 
     private Vector2 curSpeed;
     private Vector2 curDashSpeed;
@@ -122,9 +126,9 @@ public class PlayerControllerV2 : MonoBehaviour
         isPlayingStopAnim = false;
         canDoSFX_Run = false;
 
-        dashUI.padding = new Vector4(0, 0, 0, 73f);
-        dodgeUI.padding = new Vector4(0, 0, 0, 73f);
-        jumpUI.padding = new Vector4(0, 0, 0, 109);
+        dashUI.padding = new Vector4(0, 0, 0, 15);
+        dodgeUI.padding = new Vector4(0, 0, 0, 15);
+        jumpUI.padding = new Vector4(0, 0, 0, 0);
         timerDash = dashCooldown;
         timerDodge = dodgeCooldown;
 
@@ -309,11 +313,15 @@ public class PlayerControllerV2 : MonoBehaviour
         switch (playerSprite.flipX)
         {
             case true:
+                left_Trigger_Font.sprite = spriteDash_L;
                 dodgeAnim.runtimeAnimatorController = dash_L;
+                right_Trigger_Font.sprite = spriteDodge_R;
                 dashAnim.runtimeAnimatorController = dodge_R;
                 break;
             case false:
+                left_Trigger_Font.sprite = spriteDodge_L;
                 dodgeAnim.runtimeAnimatorController = dodge_L;
+                right_Trigger_Font.sprite = spriteDash_R;
                 dashAnim.runtimeAnimatorController = dash_R;
                 break;
         }
@@ -848,7 +856,17 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 3, false);
         }
 
-        dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
+        if (dashAnim.runtimeAnimatorController == dodge_R)
+        {
+            //Debug.Log("dodge_R");
+
+            dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI*2)), 15f, 73f));
+        }
+        else
+        {
+            dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
+        }
+
         if (dashUI.padding.w > 15f && dashUI.padding.w < 16.5f)
         {
             //Debug.Log("full");
@@ -889,7 +907,17 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 8, false);
         }
 
-        dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
+        if(dodgeAnim.runtimeAnimatorController == dodge_L)
+        {
+            //Debug.Log("dodge L");
+
+            dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI*2)), 15f, 73f));
+        }
+        else
+        {
+            dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI)), 15f, 73f));
+        }
+
         if (dodgeUI.padding.w > 15f && dodgeUI.padding.w < 16.5f)
         {
             //Debug.Log("full");
