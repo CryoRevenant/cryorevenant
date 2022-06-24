@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float firstAttackRange;
     [SerializeField] private float secondAttackRange;
     [SerializeField] private CinemachineVirtualCamera vcam;
+    [SerializeField] private CinemachineVirtualCamera bcam;
     [SerializeField] private LayerMask mask;
 
     [Header("IceBar")]
@@ -803,11 +804,15 @@ public class PlayerAttack : MonoBehaviour
     {
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
+        bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = intensity;
+        bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = frequency;
 
         yield return new WaitForSeconds(time);
 
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
+        bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
+        bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
 
         yield break;
     }

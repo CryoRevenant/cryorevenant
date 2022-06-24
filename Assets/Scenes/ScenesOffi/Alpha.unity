@@ -9443,6 +9443,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1692986902}
     - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: bcam
+      value: 
+      objectReference: {fileID: 1524633163}
+    - target: {fileID: 7778891271729684173, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: vcam
       value: 
       objectReference: {fileID: 1058006256}
@@ -12606,6 +12610,7 @@ MonoBehaviour:
   background: {fileID: 0}
   speed: 0
   sceneIndex: 1
+  eventSystem: {fileID: 0}
   pauseMenu: {fileID: 661073120}
   pauseButtons: {fileID: 888287430}
   optionMenu: {fileID: 1825354794}
@@ -24731,6 +24736,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1560311418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 21624266398159486, guid: 33ce38f4b3be6064f9f448ab40b013b1, type: 3}
+  m_PrefabInstance: {fileID: 1524633162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1560311422
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560311418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 61b736ecd7d06ff48a4a2593b70bab86, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1561260786
 GameObject:
   m_ObjectHideFlags: 0
