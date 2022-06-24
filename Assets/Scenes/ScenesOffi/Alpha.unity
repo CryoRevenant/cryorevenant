@@ -9335,6 +9335,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 077bb133b5342c14faea1df7fa5fbcaf, type: 3}
     - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: left_Trigger_Font
+      value: 
+      objectReference: {fileID: 119524975}
+    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: spriteDodgeLoad_L
       value: 
       objectReference: {fileID: 21300000, guid: 22ab2d64e176a30418c1e5900dd38c54, type: 3}
@@ -9342,6 +9346,10 @@ PrefabInstance:
       propertyPath: spriteDodgeLoad_R
       value: 
       objectReference: {fileID: 21300000, guid: ab4a06ccbc6a99349848dd037d01450c, type: 3}
+    - target: {fileID: 187057646, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: right_Trigger_Font
+      value: 
+      objectReference: {fileID: 643202953}
     - target: {fileID: 850882033, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_IsActive
       value: 1
