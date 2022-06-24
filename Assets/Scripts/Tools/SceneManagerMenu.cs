@@ -20,6 +20,7 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] float speed;
     bool isFading;
     [SerializeField] int sceneIndex;
+    [SerializeField] GameObject eventSystem;
 
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
@@ -164,7 +165,7 @@ public class SceneManagerMenu : MonoBehaviour
             background.color = alphaMod;
             yield return new WaitForSeconds(0.05f);
 
-            if (alphaMod.a >= 1.5f)
+            if (alphaMod.a >= 1f)
             {
                 isFading = false;
                 switch (i)
@@ -185,7 +186,6 @@ public class SceneManagerMenu : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.1f);
 
         while (isFading == false)
         {
@@ -195,6 +195,7 @@ public class SceneManagerMenu : MonoBehaviour
 
             if (alphaMod.a <= 0)
             {
+                eventSystem.SetActive(true);
                 StopAllCoroutines();
             }
         }
@@ -208,6 +209,7 @@ public class SceneManagerMenu : MonoBehaviour
     public void Click(int index)
     {
         childGlitch[index].GetComponent<Animator>().SetTrigger("isCut");
+        eventSystem.SetActive(false);
 
         switch (index)
         {
@@ -235,7 +237,7 @@ public class SceneManagerMenu : MonoBehaviour
                 if (curButton != null)
                 {
                     Debug.Log("main menu = " + curButton.gameObject.name);
-                    Invoke("SelectCurrBtn",0.5f);
+                    Invoke("SelectCurrBtn", 0.5f);
                 }
                 break;
 
