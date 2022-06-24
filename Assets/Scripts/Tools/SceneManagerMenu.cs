@@ -20,7 +20,7 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] float speed;
     bool isFading;
     [SerializeField] int sceneIndex;
-    [SerializeField] GameObject eventSystem;
+    //[SerializeField] GameObject eventSystem;
 
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
@@ -93,11 +93,13 @@ public class SceneManagerMenu : MonoBehaviour
                     if (optionCanvas.activeSelf)
                     {
                         Click(3);
+                        canReturn = false;
                     }
 
                     if (creditCanvas.activeSelf)
                     {
                         Click(4);
+                        canReturn = false;
                     }
                 }
             }
@@ -121,7 +123,6 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HideOptions()
     {
-        canReturn = false;
         menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(false);
@@ -137,7 +138,6 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void HideCredits()
     {
-        canReturn = false;
         menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(false);
@@ -155,48 +155,53 @@ public class SceneManagerMenu : MonoBehaviour
 
     IEnumerator Fade(int i)
     {
+        //Debug.Log("fade???");
         Color alphaMod = new Color();
         alphaMod.a = 0;
         isFading = true;
 
         while (isFading == true)
         {
+            //Debug.Log("fade true");
             alphaMod.a += Time.deltaTime * speed;
+            //Debug.Log(alphaMod.a);
             background.color = alphaMod;
             yield return new WaitForSeconds(0.05f);
 
             if (alphaMod.a >= 1f)
             {
                 isFading = false;
+                //Debug.Log("change display");
                 switch (i)
                 {
                     case 1:
-                        ShowOption();
+                        Invoke("ShowOption",0);
                         break;
                     case 2:
-                        ShowCredits();
+                        Invoke("ShowCredits", 0);
                         break;
                     case 3:
-                        HideOptions();
+                        //Debug.Log("a");
+                        Invoke("HideOptions", 0);
                         break;
                     case 4:
-                        HideCredits();
+                        Invoke("HideCredits", 0);
                         break;
                 }
             }
         }
 
-
         while (isFading == false)
         {
+            //Debug.Log("fade false");
             alphaMod.a -= Time.deltaTime * speed;
             background.color = alphaMod;
             yield return new WaitForSeconds(0.05f);
 
             if (alphaMod.a <= 0)
             {
-                eventSystem.SetActive(true);
-                StopAllCoroutines();
+                //eventSystem.SetActive(true);
+                //StopAllCoroutines();
             }
         }
     }
@@ -208,8 +213,13 @@ public class SceneManagerMenu : MonoBehaviour
 
     public void Click(int index)
     {
+        //if(background.color.a <= 0)
+        //{
+
+        //}
         childGlitch[index].GetComponent<Animator>().SetTrigger("isCut");
-        eventSystem.SetActive(false);
+        GameObject.FindObjectOfType<AudioManager>().Play("pressBtn");
+        //eventSystem.SetActive(false);
 
         switch (index)
         {
@@ -222,11 +232,11 @@ public class SceneManagerMenu : MonoBehaviour
                 {
                     StartCoroutine(Fade(index));
                 }
-                if (curButton != null)
-                {
-                    Debug.Log("main menu = " + curButton.gameObject.name);
-                    Invoke("SelectCurrBtn", 0.5f);
-                }
+                //if (curButton != null)
+                //{
+                //    //Debug.Log("main menu = " + curButton.gameObject.name);
+                //    Invoke("SelectCurrBtn", 0.5f);
+                //}
                 break;
 
             case 2:
@@ -234,11 +244,11 @@ public class SceneManagerMenu : MonoBehaviour
                 {
                     StartCoroutine(Fade(index));
                 }
-                if (curButton != null)
-                {
-                    Debug.Log("main menu = " + curButton.gameObject.name);
-                    Invoke("SelectCurrBtn", 0.5f);
-                }
+                //if (curButton != null)
+                //{
+                //    //Debug.Log("main menu = " + curButton.gameObject.name);
+                //    Invoke("SelectCurrBtn", 0.5f);
+                //}
                 break;
 
             case 3:
