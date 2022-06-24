@@ -415,6 +415,17 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             Invoke("IsDashUIStopped", 0.25f);
         }
+
+        if(dashValue > 0 && timerDash > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(dashUI));
+        }
+
+        if (dashValue > 0 && timerDodge > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(dashUI));
+        }
+
         #endregion
 
         #region gachette de gauche
@@ -485,6 +496,16 @@ public class PlayerControllerV2 : MonoBehaviour
                 isDodging = true;
             }
         }
+
+        if (dodgeValue > 0 && timerDodge > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(dodgeUI));
+        }
+
+        if (dodgeValue > 0 && timerDash > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(dodgeUI));
+        }
         #endregion
 
         #region saut
@@ -543,6 +564,11 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             yAxis = 0;
         }
+
+        //if (controls.currentActionMap.FindAction("Jump").triggered && (!isGroundedR || !isGroundedL))
+        //{
+        //    StartCoroutine(CannotPlaceWallFeedback(jumpUI));
+        //}
 
         //Debug.Log(jumpForce);
         #endregion
@@ -1040,5 +1066,21 @@ public class PlayerControllerV2 : MonoBehaviour
         movement = 0;
         leftDustSprite.enabled = false;
         rightDustSprite.enabled = false;
+    }
+
+    /// <summary>
+    /// red color feedback on input UI
+    /// </summary>
+    /// <param name="UI"></param>
+    /// <returns></returns>
+    IEnumerator CannotPlaceWallFeedback(RectMask2D UI)
+    {
+        UI.transform.GetChild(0).GetComponent<Image>().color = Color.red;
+
+        yield return new WaitForSeconds(0.25f);
+
+        UI.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+
+        yield break;
     }
 }

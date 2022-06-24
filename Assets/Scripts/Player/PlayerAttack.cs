@@ -186,6 +186,11 @@ public class PlayerAttack : MonoBehaviour
 
             timerAttack = attackCooldown;
         }
+
+        if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(attackUI));
+        }
         #endregion
 
         #region attack for sprites and ice bar and instance : with wallCooldown
@@ -250,7 +255,18 @@ public class PlayerAttack : MonoBehaviour
                                 timerWall = wallCooldown;
                                 break;
                             }
+                            else
+                            {
+                                Debug.Log("can't be placed!");
+                                StartCoroutine(CannotPlaceWallFeedback(wallUI));
+                            }
                         }
+                    }
+
+                    if (colGrounded.Length == 0)
+                    {
+                        Debug.Log("can't be placed!");
+                        StartCoroutine(CannotPlaceWallFeedback(wallUI));
                     }
 
                     break;
@@ -308,7 +324,18 @@ public class PlayerAttack : MonoBehaviour
                                 timerWall = wallCooldown;
                                 break;
                             }
+                            else
+                            {
+                                Debug.Log("can't be placed!");
+                                StartCoroutine(CannotPlaceWallFeedback(wallUI));
+                            }
                         }
+                    }
+
+                    if (colGrounded2.Length == 0)
+                    {
+                        Debug.Log("can't be placed!");
+                        StartCoroutine(CannotPlaceWallFeedback(wallUI));
                     }
 
                     break;
@@ -318,6 +345,11 @@ public class PlayerAttack : MonoBehaviour
         if (isWalling)
         {
             Invoke("StopWalling", 0.25f);
+        }
+
+        if(controls.currentActionMap.FindAction("Wall").triggered && timerWall > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(wallUI));
         }
         #endregion
 
@@ -385,6 +417,11 @@ public class PlayerAttack : MonoBehaviour
         if (isSpiking)
         {
             Invoke("StopSpiking", 0.25f);
+        }
+
+        if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike > 0)
+        {
+            StartCoroutine(CannotPlaceWallFeedback(spikeUI));
         }
 
         #endregion
@@ -744,6 +781,22 @@ public class PlayerAttack : MonoBehaviour
         bullet = Instantiate(bulletIce, transform.position, transform.rotation);
         bullet.GetComponent<IceParticle>().iceToAdd = iceToAdd;
         bullet.GetComponent<IceParticle>().player = gameObject;
+    }
+
+    /// <summary>
+    /// red color feedback on input UI
+    /// </summary>
+    /// <param name="UI"></param>
+    /// <returns></returns>
+    IEnumerator CannotPlaceWallFeedback(RectMask2D UI)
+    {
+        UI.transform.GetChild(0).GetComponent<Image>().color = Color.red;
+
+        yield return new WaitForSeconds(0.25f);
+
+        UI.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+
+        yield break;
     }
 
     public IEnumerator ShakeCamera(float intensity, float frequency, float time)
