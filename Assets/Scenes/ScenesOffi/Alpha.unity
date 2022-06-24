@@ -2442,38 +2442,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 807394783853909773, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 807394783853909775, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.85631055
-      objectReference: {fileID: 0}
-    - target: {fileID: 807394783853909775, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.12594259
-      objectReference: {fileID: 0}
-    - target: {fileID: 807394783853909775, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.07184473
-      objectReference: {fileID: 0}
     - target: {fileID: 3817621574512399977, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1000061691}
-    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: baseSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: maxAttackDist
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
-      propertyPath: overrideSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_Name
       value: SacBigTest
