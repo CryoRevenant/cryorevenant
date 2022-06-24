@@ -29,17 +29,13 @@ public class EnemyMove : MonoBehaviour
     public float rayCheckWall;
     public float rayLengthSideEnemy;
     public float bounds;
+    bool isWall;
 
     [Header("Debug")]
     public bool showRays;
 
     [Header("Audio")]
     [SerializeField] AudioSource walkSFX;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     public virtual void Update()
@@ -129,6 +125,27 @@ public class EnemyMove : MonoBehaviour
             GetComponent<EnemyHealth2>().canRecoil = false;
             Offset();
             GetComponent<EnemyHealth2>().StopCoroutine("RecoilHit");
+        }
+    }
+
+    void LookRay()
+    {
+        RaycastHit2D hit2D;
+
+        if (lookLeft)
+        {
+            hit2D = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left, rayCheckWall, 1 << 6);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left);
+        }
+        else
+        {
+            hit2D = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.right, rayCheckWall, 1 << 6);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - bounds), Vector2.left);
+        }
+
+        if (hit2D)
+        {
+            anim.SetBool("isRunning", false);
         }
     }
 
