@@ -14,7 +14,6 @@ public class Door : MonoBehaviour
     [SerializeField] Vector2 maxPush;
     Vector2 dir;
 
-    bool canDestroy;
     GameObject player;
     private GameObject instance;
     [HideInInspector] public bool gbeDestroyed;
@@ -30,7 +29,6 @@ public class Door : MonoBehaviour
             childsDebris.Add(instance.transform.GetChild(i).gameObject);
         }
 
-        canDestroy = false;
         gbeDestroyed = false;
     }
 
