@@ -109,12 +109,6 @@ public class EnemyHealth : MonoBehaviour
                 GetComponentInChildren<AimRay>().StopAim();
             }
 
-            if (GetComponent<EnemyDetect>() != null)
-            {
-                child.GetComponent<BoxCollider2D>().enabled = false;
-                child.sprite = resetSprite;
-            }
-
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar);
             GameManager.instance.AddScore(scoreToAdd);

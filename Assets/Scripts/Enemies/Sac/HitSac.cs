@@ -6,8 +6,6 @@ public class HitSac : MonoBehaviour
 {
     Animator animator;
 
-    public int attackIndex;
-
     [SerializeField] float timeMoveAgain;
     [SerializeField] SpriteRenderer parentColor;
     [SerializeField] GameObject hitTrigger;
@@ -23,16 +21,9 @@ public class HitSac : MonoBehaviour
         move = GetComponentInParent<EnemyMove>();
         animator = GetComponent<Animator>();
     }
-    void Incr()
-    {
-        attackIndex++;
-        animator.SetInteger("index", attackIndex);
-    }
 
-    public void Reset()
+    public void ResetAnim()
     {
-        attackIndex = 0;
-        animator.SetInteger("index", attackIndex);
         animator.SetBool("isAttacking", false);
         GetComponentInParent<SacMove>().EndAttack();
     }
@@ -91,7 +82,7 @@ public class HitSac : MonoBehaviour
 
     void Block()
     {
-        Reset();
+        ResetAnim();
         parentColor.color = Color.red;
         GetComponentInParent<EnemyHealth>().isBlocking = true;
     }
