@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
     //[SerializeField] private GameObject slashEffect2;
     [SerializeField] private float attackCooldown;
     [SerializeField] private Animator attackAnim;
+    [SerializeField] float timerStopAttack;
+    public bool isAttacking { get; private set; }
     [Header("Wall")]
     [SerializeField] private RectMask2D wallUI;
     [SerializeField] private GameObject wallEffect;
@@ -118,6 +120,8 @@ public class PlayerAttack : MonoBehaviour
         timerAttack -= Time.deltaTime;
         if (controls.currentActionMap.FindAction("Attack").triggered && timerAttack <= 0)
         {
+            isAttacking = true;
+            Invoke("StopAttack", timerStopAttack);
             for (int i = 0; i < 3; i++)
             {
                 CreateBullet();
@@ -202,16 +206,16 @@ public class PlayerAttack : MonoBehaviour
             switch (playerSprite.flipX)
             {
                 case true:
-                    Debug.DrawRay(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down*1f,Color.blue,1);
+                    Debug.DrawRay(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down * 1f, Color.blue, 1);
                     RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x - 4, transform.position.y - 1f, transform.position.z), Vector2.down, 1f);
-                    
+
                     //Debug.Log(colGrounded.Length);
 
                     for (int i = 0; i < colGrounded.Length; i++)
                     {
                         if (colGrounded[i].collider.gameObject.layer == 6 || colGrounded[i].collider.gameObject.layer == 9)
                         {
-                            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left*4f,Color.blue,1);
+                            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left * 4f, Color.blue, 1);
                             RaycastHit2D colWallFacing = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector2.left, 4f, mask);
 
                             //Debug.Log("canLeft");
@@ -235,7 +239,7 @@ public class PlayerAttack : MonoBehaviour
 
                                 wallEffect2.SetActive(true);
                                 wallEffect2.GetComponent<Animator>().SetBool("Build", true);
-                                GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y+0.1f, transform.position.z), Quaternion.identity);
+                                GameObject instance = Instantiate(wall, new Vector3(transform.position.x - 3, transform.position.y + 0.1f, transform.position.z), Quaternion.identity);
                                 instance.transform.rotation = Quaternion.Euler(0, 180, 0);
 
 
@@ -272,7 +276,7 @@ public class PlayerAttack : MonoBehaviour
 
                     break;
                 case false:
-                    Debug.DrawRay(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down*1f,Color.blue,1);
+                    Debug.DrawRay(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down * 1f, Color.blue, 1);
                     RaycastHit2D[] colGrounded2 = Physics2D.RaycastAll(new Vector3(transform.position.x + 4, transform.position.y - 1f, transform.position.z), Vector2.down, 1f);
 
                     //Debug.Log(colGrounded2.Length);
@@ -305,8 +309,8 @@ public class PlayerAttack : MonoBehaviour
 
                                 wallEffect.SetActive(true);
                                 wallEffect.GetComponent<Animator>().SetBool("Build", true);
-                                GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y+0.1f, transform.position.z), Quaternion.identity);
-                                instance2.transform.rotation = Quaternion.Euler(0,0,0);
+                                GameObject instance2 = Instantiate(wall, new Vector3(transform.position.x + 3, transform.position.y + 0.1f, transform.position.z), Quaternion.identity);
+                                instance2.transform.rotation = Quaternion.Euler(0, 0, 0);
 
                                 float random2 = Random.value;
                                 if (random2 <= 0.5f)
@@ -348,7 +352,7 @@ public class PlayerAttack : MonoBehaviour
             Invoke("StopWalling", 0.25f);
         }
 
-        if(controls.currentActionMap.FindAction("Wall").triggered && timerWall > 0)
+        if (controls.currentActionMap.FindAction("Wall").triggered && timerWall > 0)
         {
             StartCoroutine(CannotPlaceWallFeedback(wallUI));
         }
@@ -463,7 +467,7 @@ public class PlayerAttack : MonoBehaviour
 
                     if (col[i].gameObject.GetComponent<EnemyHealth2>() != null)
                     {
-                        col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage,"sword");
+                        col[i].gameObject.GetComponent<EnemyHealth2>().TakeDamage(damage, "sword");
                     }
                     else
                     {
@@ -815,5 +819,10 @@ public class PlayerAttack : MonoBehaviour
         bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
 
         yield break;
+    }
+
+    void StopAttack()
+    {
+        isAttacking = false;
     }
 }
