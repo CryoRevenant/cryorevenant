@@ -2870,7 +2870,6 @@ MonoBehaviour:
   background: {fileID: 1331977745}
   speed: 30
   sceneIndex: 0
-  eventSystem: {fileID: 2553603}
   pauseMenu: {fileID: 0}
   pauseButtons: {fileID: 0}
   optionMenu: {fileID: 0}

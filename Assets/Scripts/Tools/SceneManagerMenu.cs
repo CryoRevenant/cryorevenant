@@ -113,34 +113,46 @@ public class SceneManagerMenu : MonoBehaviour
         sceneIndex++;
     }
 
-    public void ShowOption()
+    public IEnumerator ShowOption()
     {
         canReturn = true;
         menuCanvas.SetActive(false);
+        creditCanvas.SetActive(false);
+
+        yield return new WaitForSeconds(0.25f);
         optionCanvas.SetActive(true);
-        creditCanvas.SetActive(false);
+        yield break;
     }
 
-    public void HideOptions()
+    public IEnumerator HideOptions()
     {
-        menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(false);
+
+        yield return new WaitForSeconds(0.25f);
+        menuCanvas.SetActive(true);
+        yield break;
     }
 
-    public void ShowCredits()
+    public IEnumerator ShowCredits()
     {
         canReturn = true;
         menuCanvas.SetActive(false);
         optionCanvas.SetActive(false);
+
+        yield return new WaitForSeconds(0.25f);
         creditCanvas.SetActive(true);
+        yield break;
     }
 
-    public void HideCredits()
+    public IEnumerator HideCredits()
     {
-        menuCanvas.SetActive(true);
         optionCanvas.SetActive(false);
         creditCanvas.SetActive(false);
+
+        yield return new WaitForSeconds(0.25f);
+        menuCanvas.SetActive(true);
+        yield break;
     }
 
     public void Quit()
@@ -175,17 +187,17 @@ public class SceneManagerMenu : MonoBehaviour
                 switch (i)
                 {
                     case 1:
-                        Invoke("ShowOption",0);
+                        StartCoroutine(ShowOption());
                         break;
                     case 2:
-                        Invoke("ShowCredits", 0);
+                        StartCoroutine(ShowCredits());
                         break;
                     case 3:
                         //Debug.Log("a");
-                        Invoke("HideOptions", 0);
+                        StartCoroutine(HideOptions());
                         break;
                     case 4:
-                        Invoke("HideCredits", 0);
+                        StartCoroutine(HideCredits());
                         break;
                 }
             }
