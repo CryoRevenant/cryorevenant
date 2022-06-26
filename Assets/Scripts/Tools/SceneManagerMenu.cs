@@ -20,12 +20,12 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] float speed;
     bool isFading;
     [SerializeField] int sceneIndex;
-    //[SerializeField] GameObject eventSystem;
 
     [Header("Pause")]
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject pauseButtons;
     [SerializeField] GameObject optionMenu;
+    [SerializeField] GameObject confirmMenu;
     GameObject player;
     PlayerInput controls;
     bool isPaused;
@@ -336,6 +336,18 @@ public class SceneManagerMenu : MonoBehaviour
         Time.timeScale = 1;
         sceneIndex--;
         SceneManager.LoadScene(0);
+    }
+
+    public void ShowConfirm()
+    {
+        confirmMenu.SetActive(true);
+        pauseButtons.SetActive(false);
+    }
+
+    public void HideConfirm()
+    {
+        confirmMenu.SetActive(false);
+        pauseButtons.SetActive(true);
     }
     #endregion
 }
