@@ -262,6 +262,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   vfxBlock: {fileID: 3166911455110256611, guid: 104eb40bff2a4fd49995cf9f82ca150a, type: 3}
   vfxShield: {fileID: 5460911089025255290, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
+  body1: {fileID: 7659524790125848018, guid: 7a178172c2bad764493beb266e7a709a, type: 3}
+  body2: {fileID: 4409854791765143391, guid: c645029768b16a94098e7815c6c94d31, type: 3}
   normalSpeed: {fileID: 9100000, guid: cb15e372458163844b6538d96603e4c9, type: 2}
   slowSpeed: {fileID: 9100000, guid: ea77c1ae83a48d942a4e820062cc26a6, type: 2}
   timeFreezing: 5
