@@ -29,7 +29,6 @@ public class SoldatAttack : EnemyAttack
         {
             PreAttack();
         }
-
     }
 
     public override void CheckAttack()
@@ -55,6 +54,7 @@ public class SoldatAttack : EnemyAttack
 
         if (i == 1)
         {
+            Debug.Log("dash");
             GetComponent<EnemyHealth2>().StopCoroutine("RecoilHit");
             GoDash();
         }
@@ -80,9 +80,16 @@ public class SoldatAttack : EnemyAttack
             parentAnim.SetBool("isBlocking", false);
             parentAnim.SetBool("isPreAttacking", true);
 
-            timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
-
-            Invoke("Attack", timer);
+            if (GetComponent<HitTrigger>().isInvincible)
+            {
+                timer = Random.Range(minMaxTimer.x / 2, minMaxTimer.y / 2);
+                Invoke("Attack", timer);
+            }
+            else
+            {
+                timer = Random.Range(minMaxTimer.x, minMaxTimer.y);
+                Invoke("Attack", timer);
+            }
         }
     }
 

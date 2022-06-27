@@ -10,6 +10,9 @@ public class HitTrigger : MonoBehaviour
     public BoxCollider2D trigger;
     [SerializeField] SpriteRenderer colorBox;
     [SerializeField] int fakeChance;
+    [SerializeField] int invAttackChance;
+    public GameObject shield;
+    public bool isInvincible;
 
     private void Start()
     {
@@ -49,7 +52,6 @@ public class HitTrigger : MonoBehaviour
 
     void isVulnerable()
     {
-        //colorBox.color = Color.green;
         move.canMove = false;
 
         move.LockMove(true);
@@ -60,10 +62,15 @@ public class HitTrigger : MonoBehaviour
         hp.isBlocking = false;
         hp.isAttacking = false;
 
+        Color newColor = new Vector4(250,220,114,255)/255;
+        shield.GetComponent<SpriteRenderer>().color = newColor;
+        shield.SetActive(false);
+
     }
 
     void isAttacking()
     {
+
         float random = Random.value;
 
         if (random > 0.5f)
@@ -75,7 +82,6 @@ public class HitTrigger : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("soldatAttack2");
         }
 
-        //colorBox.color = Color.red;
 
         move.LockMove(true);
 
@@ -83,14 +89,13 @@ public class HitTrigger : MonoBehaviour
         attack.parentAnim.SetBool("isAttacking", true);
     }
 
-    void TriggerOn()
+    public void TriggerOn()
     {
         trigger.enabled = true;
     }
 
     void isBlocking()
     {
-        //colorBox.color = Color.white;
         move.LockMove(false);
         hp.isBlocking = true;
     }
@@ -104,11 +109,36 @@ public class HitTrigger : MonoBehaviour
             GetComponentInParent<SoldatAttack>().SneakAttack();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             GetComponentInParent<EnemyAttack>().anim.SetBool("forceBlock", true);
+        }
+    }
+
+    void ChanceInvAttack()
+    {
+        int i = Random.Range(0, invAttackChance);
+
+        if (i == 1)
+        {
+            hp.anim.SetBool("invAttack", true);
+        }
+    }
+
+    void InvincibleAttack()
+    {
+        isInvincible = true;
+        shield.SetActive(true);
+    }
+
+    void UnInvincible()
+    {
+        if (isInvincible == true)
+        {
+            isInvincible = false;
         }
     }
 }

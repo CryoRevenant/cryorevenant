@@ -69,7 +69,6 @@ public class EnemyHealth2 : MonoBehaviour
 
     public void TakeDamage(float damage, string hitObject)
     {
-        //Debug.Log("damage");
         if (!isBlocking && !isAttacking)
         {
             currHP -= damage;
@@ -79,9 +78,13 @@ public class EnemyHealth2 : MonoBehaviour
         {
             Recoil();
         }
+        else if (GetComponent<HitTrigger>().isInvincible == true)
+        {
+            CounterAttack();
+        }
         else if (isBlocking)
         {
-            if(hitObject == "sword")
+            if (hitObject == "sword")
             {
                 //Debug.Log("sword");
 
@@ -109,14 +112,8 @@ public class EnemyHealth2 : MonoBehaviour
                         break;
                 }
 
-                Block();
             }
-
-            if (hitObject == "bullet")
-            {
-                //Debug.Log("bullet");
-                Block();
-            }
+            Block();
         }
 
         if (currHP <= 0)
@@ -201,7 +198,7 @@ public class EnemyHealth2 : MonoBehaviour
 
     public virtual void Block()
     {
-        if (canRecoil)
+        if (canRecoil && GetComponent<HitTrigger>().isInvincible == false)
         {
             if (move.lookLeft)
             {
@@ -237,6 +234,14 @@ public class EnemyHealth2 : MonoBehaviour
                 StartCoroutine(RecoilHit(0, 3));
             }
         }
+    }
+
+    void CounterAttack()
+    {
+        Color newColor = new Vector4(165,83,255,255)/255;
+        GetComponent<HitTrigger>().shield.GetComponent<SpriteRenderer>().color = newColor;
+        GetComponent<SoldatAttack>().anim.SetBool("isAttacking", true);
+        GetComponent<HitTrigger>().TriggerOn();
     }
 
     public void ResetPos()

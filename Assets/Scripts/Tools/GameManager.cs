@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject respawnMenu;
     [SerializeField] TextMeshProUGUI hintText;
+    public List<GameObject> turretTrash;
 
     bool isFading;
     bool canRespawn;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         }
 
         player = GameObject.Find("Player");
+
     }
 
     public void AddToList(int listIndex, GameObject newGameObject)
@@ -133,6 +135,10 @@ public class GameManager : MonoBehaviour
 
     public void RespawnEnemy()
     {
+        foreach (GameObject item in turretTrash)
+        {
+            Destroy(item);
+        }
         for (int i = 0; i < listEnemies.Count; i++)
         {
             foreach (ListOfLists list in listEnemies)
