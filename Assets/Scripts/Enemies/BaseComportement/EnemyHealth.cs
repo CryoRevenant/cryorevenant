@@ -89,15 +89,10 @@ public class EnemyHealth : MonoBehaviour
                 GameObject instanceR = Instantiate(vfxShield, transform.position, Quaternion.identity);
                 instanceR.transform.SetParent(transform);
                 Destroy(instanceR, 0.5f);
-
-                Block();
             }
 
-            if (hitObject == "bullet")
-            {
-                //Debug.Log("bullet");
-                Block();
-            }
+            Block();
+
         }
 
         if (currHP <= 0)
@@ -112,7 +107,11 @@ public class EnemyHealth : MonoBehaviour
                 GetComponentInChildren<AimRay>().StopAim();
             }
 
-            Instantiate(turretDeath,deathPos.position, transform.rotation);
+            if (GetComponent<AttackSniper>() != null)
+            {
+                Instantiate(turretDeath, deathPos.position, transform.rotation);
+            }
+
 
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar);
@@ -183,6 +182,7 @@ public class EnemyHealth : MonoBehaviour
             }
         }
     }
+
 
     public void ResetPos()
     {

@@ -55,11 +55,13 @@ public class SoldatAttack : EnemyAttack
 
         if (i == 1)
         {
+            Debug.Log("dash");
             GetComponent<EnemyHealth2>().StopCoroutine("RecoilHit");
             GoDash();
         }
         else
         {
+            Debug.Log("attack");
             parentAnim.SetBool("isBlocking", false);
 
             parentAnim.SetBool("isDashing", false);

@@ -199,7 +199,7 @@ public class Ascenceur : MonoBehaviour
 
     #region Triggers
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player") && isUnlocked == true)
         {
