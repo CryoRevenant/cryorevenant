@@ -1,0 +1,732 @@
+fileFormatVersion: 2
+guid: a8caf5f8b2b326040a83880aa8ab57b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2096322282877785769
+    second: Sac_Idle_V1_02_0
+  - first:
+      213: -5603200156646101359
+    second: Sac_Idle_V1_02_1
+  - first:
+      213: 5364368208971933732
+    second: Sac_Idle_V1_02_2
+  - first:
+      213: 5053404550939349726
+    second: Sac_Idle_V1_02_3
+  - first:
+      213: -1666743764684907087
+    second: Sac_Idle_V1_02_4
+  - first:
+      213: 3415061984763902309
+    second: Sac_Idle_V1_02_5
+  - first:
+      213: -403428117338161917
+    second: Sac_Idle_V1_02_6
+  - first:
+      213: 2948883957708836410
+    second: Sac_Idle_V1_02_7
+  - first:
+      213: 5643399655455979740
+    second: Sac_Idle_V1_02_8
+  - first:
+      213: -5007216577105018902
+    second: Sac_Idle_V1_02_9
+  - first:
+      213: -7465771678045131343
+    second: Sac_Idle_V1_02_10
+  - first:
+      213: 6371390710145506671
+    second: Sac_Idle_V1_02_11
+  - first:
+      213: 4371936716392865306
+    second: Sac_Idle_V1_02_12
+  - first:
+      213: 7243017186966221296
+    second: Sac_Idle_V1_02_13
+  - first:
+      213: 4662690249683064915
+    second: Sac_Idle_V1_02_14
+  - first:
+      213: 8196763631079527148
+    second: Sac_Idle_V1_02_15
+  - first:
+      213: -3042826501339829858
+    second: Sac_Idle_V1_02_16
+  - first:
+      213: -2941212606711938021
+    second: Sac_Idle_V1_02_17
+  - first:
+      213: 2886531816685596269
+    second: Sac_Idle_V1_02_18
+  - first:
+      213: 6001273902995387228
+    second: Sac_Idle_V1_02_19
+  - first:
+      213: -6251890871953093760
+    second: Sac_Idle_V1_02_20
+  - first:
+      213: 6582602369408839291
+    second: Sac_Idle_V1_02_21
+  - first:
+      213: 6096402019163598091
+    second: Sac_Idle_V1_02_22
+  - first:
+      213: 2602464435999993622
+    second: Sac_Idle_V1_02_23
+  - first:
+      213: -4049247072336838439
+    second: Sac_Idle_V1_02_24
+  - first:
+      213: 5844316376237569644
+    second: Sac_Idle_V1_02_25
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a69aad6202a71d10800000000000000
+      internalID: 2096322282877785769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_1
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e22b1052f6d32b0800000000000000
+      internalID: -5603200156646101359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_2
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428ab24e670127a40800000000000000
+      internalID: 5364368208971933732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_3
+      rect:
+        serializedVersion: 2
+        x: 3846
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed2151d3aac412640800000000000000
+      internalID: 5053404550939349726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_4
+      rect:
+        serializedVersion: 2
+        x: 5128
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bddb5670698ed8e0800000000000000
+      internalID: -1666743764684907087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_5
+      rect:
+        serializedVersion: 2
+        x: 6410
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 569fac708ccb46f20800000000000000
+      internalID: 3415061984763902309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_6
+      rect:
+        serializedVersion: 2
+        x: 7692
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d77a5c34cb66af0800000000000000
+      internalID: -403428117338161917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_7
+      rect:
+        serializedVersion: 2
+        x: 8974
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3e451fe55a8ce820800000000000000
+      internalID: 2948883957708836410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_8
+      rect:
+        serializedVersion: 2
+        x: 10256
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8f30d2612615e40800000000000000
+      internalID: 5643399655455979740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_9
+      rect:
+        serializedVersion: 2
+        x: 11538
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef35307d0bc28ab0800000000000000
+      internalID: -5007216577105018902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bda2f3d630446890800000000000000
+      internalID: -7465771678045131343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_11
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6d5273081abb6850800000000000000
+      internalID: 6371390710145506671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_12
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e9511b74d3cac30800000000000000
+      internalID: 4371936716392865306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_13
+      rect:
+        serializedVersion: 2
+        x: 3846
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1bb23a1cd548460800000000000000
+      internalID: 7243017186966221296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_14
+      rect:
+        serializedVersion: 2
+        x: 5128
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 358590ef31435b040800000000000000
+      internalID: 4662690249683064915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_15
+      rect:
+        serializedVersion: 2
+        x: 6410
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce2165a1811c0c170800000000000000
+      internalID: 8196763631079527148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_16
+      rect:
+        serializedVersion: 2
+        x: 7692
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99ae7a2b65b5c5d0800000000000000
+      internalID: -3042826501339829858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_17
+      rect:
+        serializedVersion: 2
+        x: 8974
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14c808a7b6be27d0800000000000000
+      internalID: -2941212606711938021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_18
+      rect:
+        serializedVersion: 2
+        x: 10256
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6e686ec4650f0820800000000000000
+      internalID: 2886531816685596269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_19
+      rect:
+        serializedVersion: 2
+        x: 11538
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c53bcd391dec84350800000000000000
+      internalID: 6001273902995387228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08b8aba3062dc39a0800000000000000
+      internalID: -6251890871953093760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_21
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7e22469af91a5b50800000000000000
+      internalID: 6582602369408839291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_22
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d68381655ca9450800000000000000
+      internalID: 6096402019163598091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_23
+      rect:
+        serializedVersion: 2
+        x: 3846
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61fed58bd9fcd1420800000000000000
+      internalID: 2602464435999993622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_24
+      rect:
+        serializedVersion: 2
+        x: 5128
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d08295dd3f2ec7c0800000000000000
+      internalID: -4049247072336838439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Idle_V1_02_25
+      rect:
+        serializedVersion: 2
+        x: 6410
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6673a897ce2b1150800000000000000
+      internalID: 5844316376237569644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
