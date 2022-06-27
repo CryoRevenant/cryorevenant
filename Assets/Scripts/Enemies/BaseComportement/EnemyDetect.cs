@@ -89,6 +89,10 @@ public class EnemyDetect : MonoBehaviour
                     StartCoroutine("PreventOther");
                 }
             }
+            else
+            {
+                move.anim.SetBool("isRunning", false);
+            }
         }
         else
         {

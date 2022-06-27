@@ -200,7 +200,6 @@ public class EnemyHealth2 : MonoBehaviour
     {
         if (canRecoil && GetComponent<HitTrigger>().isInvincible == false)
         {
-            Debug.Log("block");
             if (move.lookLeft)
             {
                 StopCoroutine(RecoilHit(0, 0));

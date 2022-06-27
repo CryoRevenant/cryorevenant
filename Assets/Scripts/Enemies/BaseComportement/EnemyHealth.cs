@@ -109,7 +109,9 @@ public class EnemyHealth : MonoBehaviour
 
             if (GetComponent<AttackSniper>() != null)
             {
-                Instantiate(turretDeath, deathPos.position, transform.rotation);
+                GameObject turretTrash;
+                turretTrash = Instantiate(turretDeath, deathPos.position, transform.rotation);
+                GameManager.instance.turretTrash.Add(turretTrash);
             }
 
 

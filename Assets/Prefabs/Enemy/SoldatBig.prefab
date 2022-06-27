@@ -235,7 +235,7 @@ MonoBehaviour:
   indexParent: 0
   willAttack: 0
   mustBlock: 0
-  minMaxTimer: {x: 0.2, y: 1.2}
+  minMaxTimer: {x: 0.5, y: 1.2}
   dashChance: 40
 --- !u!114 &7154254564743513250
 MonoBehaviour:
@@ -417,7 +417,7 @@ MonoBehaviour:
   trigger: {fileID: 5397808933184462115}
   colorBox: {fileID: 404204908336340052}
   fakeChance: 15
-  invAttackChance: 2
+  invAttackChance: 5
   shield: {fileID: 5460911089168738928}
   isInvincible: 0
 --- !u!1001 &414412042
