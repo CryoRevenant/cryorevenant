@@ -37,6 +37,10 @@ public class EnemyHealth2 : MonoBehaviour
     [SerializeField] GameObject vfxBlock;
     [SerializeField] GameObject vfxShield;
 
+    [Header("Dead Body")]
+    [SerializeField] GameObject body1;
+    [SerializeField] GameObject body2;
+
     private void Awake()
     {
         currHP = hp;
@@ -127,6 +131,40 @@ public class EnemyHealth2 : MonoBehaviour
             if (GetComponent<EnemyDetect>() != null)
             {
                 hitTrigger.enabled = false;
+            }
+
+            //Debug.Log(gameObject.transform.localRotation.y);
+
+            switch (gameObject.transform.localRotation.y)
+            {
+                case 0:
+                    GameObject instanceR = Instantiate(body1, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
+                    instanceR.GetComponent<SpriteRenderer>().flipX = true;
+                    instanceR.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1), ForceMode2D.Impulse);
+                    Destroy(instanceR.GetComponent<Collider2D>(), 0.05f);
+                    Destroy(instanceR, 0.5f);
+
+                    GameObject instanceR2 = Instantiate(body2, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
+                    instanceR2.GetComponent<SpriteRenderer>().flipX = true;
+                    instanceR2.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, -1), ForceMode2D.Impulse);
+                    Destroy(instanceR2.GetComponent<Collider2D>(), 0.05f);
+                    Destroy(instanceR2, 0.5f);
+                    //Debug.Log("right");
+                    break;
+                case 1:
+                    GameObject instanceL = Instantiate(body1, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
+                    instanceL.GetComponent<SpriteRenderer>().flipX = false;
+                    instanceL.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 1), ForceMode2D.Impulse);
+                    Destroy(instanceL.GetComponent<Collider2D>(), 0.05f);
+                    Destroy(instanceL, 0.5f);
+
+                    GameObject instanceL2 = Instantiate(body2, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
+                    instanceL2.GetComponent<SpriteRenderer>().flipX = false;
+                    instanceL2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, -1), ForceMode2D.Impulse);
+                    Destroy(instanceL2.GetComponent<Collider2D>(), 0.05f);
+                    Destroy(instanceL2, 0.5f);
+                    //Debug.Log("left");
+                    break;
             }
 
             gameObject.SetActive(false);

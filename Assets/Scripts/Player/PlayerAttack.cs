@@ -376,7 +376,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 case true:
                     curSpikeSpeed = 0;
-                    instance = Instantiate(spike, new Vector2(transform.position.x - 2, transform.position.y - 0f), Quaternion.identity);
+                    instance = Instantiate(spike, new Vector2(transform.position.x - 1.5f, transform.position.y - 0f), Quaternion.identity);
                     instance.GetComponent<SpriteRenderer>().flipX = true;
                     Destroy(instance, 1);
 
@@ -393,7 +393,7 @@ public class PlayerAttack : MonoBehaviour
                     break;
                 case false:
                     curSpikeSpeed = 0;
-                    instance2 = Instantiate(spike, new Vector2(transform.position.x + 2, transform.position.y - 0f), Quaternion.identity);
+                    instance2 = Instantiate(spike, new Vector2(transform.position.x + 1.5f, transform.position.y - 0f), Quaternion.identity);
                     instance2.GetComponent<SpriteRenderer>().flipX = false;
                     Destroy(instance2, 1);
 
