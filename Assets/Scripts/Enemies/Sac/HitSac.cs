@@ -30,15 +30,6 @@ public class HitSac : MonoBehaviour
 
     void TriggerOn()
     {
-        float random = Random.value;
-        if (random > 0.5f)
-        {
-            FindObjectOfType<AudioManager>().Play("sacAttack");
-        }
-        else if (random <= 0.5f)
-        {
-            FindObjectOfType<AudioManager>().Play("sacAttack2");
-        }
         hitTrigger.SetActive(true);
     }
 
@@ -52,6 +43,19 @@ public class HitSac : MonoBehaviour
         //Debug.Log("block spike");
         FindObjectOfType<AudioManager>().Play("sacCutSpike");
         blockSpike.enabled = true;
+    }
+
+    void Whoosh()
+    {
+        float random = Random.value;
+        if (random > 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("sacAttack");
+        }
+        else if (random <= 0.5f)
+        {
+            FindObjectOfType<AudioManager>().Play("sacAttack2");
+        }
     }
 
     void StopBlockSpike()

@@ -1785,6 +1785,11 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!95 &104675578 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2384921282100859598, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+  m_PrefabInstance: {fileID: 2141462785}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &116204722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,6 +2439,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1000061691}
+    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1449042814}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_Name
       value: SacBigTest
@@ -3987,7 +3996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &286203686
 Transform:
   m_ObjectHideFlags: 0
@@ -9193,7 +9202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3100029
+      value: 2.2100003
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9662,11 +9671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7778891271729684176, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17471,11 +17480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.87
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3100001
+      value: 2.21
       objectReference: {fileID: 0}
     - target: {fileID: 2702040783645361040, guid: 833a8bc5e04d0e440a3d215f286ac7f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20966,6 +20975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43843247a63684f4dae5a007d334a82d, type: 3}
+--- !u!95 &1241178451 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2384921282100859598, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+  m_PrefabInstance: {fileID: 2085695121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1242202938
 GameObject:
   m_ObjectHideFlags: 0
@@ -22523,6 +22537,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 2022682053}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_Name
       value: SacBigTest (1)
@@ -23536,6 +23554,11 @@ SpriteRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7530075567980534542, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
   m_PrefabInstance: {fileID: 2141462785}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1449042814 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2384921282100859598, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+  m_PrefabInstance: {fileID: 139187868}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1450969287
 PrefabInstance:
@@ -31116,11 +31139,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 186.11513
+      value: 185.49
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.98685
+      value: 26.93
       objectReference: {fileID: 0}
     - target: {fileID: 404204908336340055, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -31157,6 +31180,10 @@ PrefabInstance:
     - target: {fileID: 404204908336340059, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: m_Name
       value: SoldatBig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806867172069710268, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7154254564743513250, guid: c67bc611712a59145a6f6d5a4ac3e6bc, type: 3}
       propertyPath: needUnlock
@@ -32617,6 +32644,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aaf2e12a5c1124469384bb79ee367f4, type: 3}
+--- !u!95 &2022682053 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2384921282100859598, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+  m_PrefabInstance: {fileID: 1381830970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2025671742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33570,6 +33602,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1241178451}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_Name
       value: SacBigTest
@@ -34118,6 +34154,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HitTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 104675578}
     - target: {fileID: 3817621574512399980, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: baseSpeed
       value: 4

@@ -93,6 +93,11 @@ public class EnemyDetect : MonoBehaviour
         else
         {
             otherDetect = false;
+
+            if (GetComponent<SoldatAttack>() != null)
+            {
+                move.anim.SetBool("isRunning", false);
+            }
         }
         yield return new WaitForSeconds(waitTime);
         StartCoroutine("DetectAround");
