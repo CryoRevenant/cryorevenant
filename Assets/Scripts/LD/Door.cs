@@ -67,6 +67,7 @@ public class Door : MonoBehaviour
                 if (player != null)
                 {
                     StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
+                    StartCoroutine(player.GetComponent<PlayerAttack>().ShakeGamepad(1.5f, 1.5f, 0.15f));
                 }
             }
         }

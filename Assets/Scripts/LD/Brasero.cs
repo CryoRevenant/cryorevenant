@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Brasero : MonoBehaviour
 {
@@ -31,7 +32,11 @@ public class Brasero : MonoBehaviour
 
             if (passed)
             {
+                StartCoroutine(ShakeGamepad(2f, 2f, 0.3f));
+
                 Desactivate();
+
+                passed = false;
             }
         }
     }
@@ -48,5 +53,16 @@ public class Brasero : MonoBehaviour
         GetComponentInChildren<AudioSource>().Stop();
         fire.Stop(true);
         smoke.gameObject.SetActive(true);
+    }
+
+    public IEnumerator ShakeGamepad(float lowFreq, float highFreq, float duration)
+    {
+        Gamepad.current.SetMotorSpeeds(lowFreq, highFreq);
+
+        yield return new WaitForSeconds(duration);
+
+        Gamepad.current.SetMotorSpeeds(0, 0);
+
+        yield break;
     }
 }

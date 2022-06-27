@@ -69,9 +69,9 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         #region cooldowns
-        timerAttack = attackCooldown;
-        timerWall = wallCooldown;
-        timerSpike = spikeCooldown;
+        timerAttack = 0;
+        timerWall = 0;
+        timerSpike = 0;
         wallUI.padding = new Vector4(0, 0, 0, 0);
         canSpawnWallfullBarVFX = true;
         spikeUI.padding = new Vector4(0, 0, 0, 4);
@@ -455,6 +455,7 @@ public class PlayerAttack : MonoBehaviour
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit");
                             StartCoroutine(ShakeCamera(1f, 0.25f, 0.2f));
+                            StartCoroutine(ShakeGamepad(1.75f, 1.75f, 0.1f));
                         }
 
                         if (audioS[a].clip.name == "ice-sword2")
@@ -462,6 +463,7 @@ public class PlayerAttack : MonoBehaviour
                             audioS[a].Stop();
                             FindObjectOfType<AudioManager>().Play("iceSwordHit2");
                             StartCoroutine(ShakeCamera(1f, 0.5f, 0.3f));
+                            StartCoroutine(ShakeGamepad(1.5f, 1.5f, 0.1f));
                         }
                     }
 
@@ -516,6 +518,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 col[i].gameObject.GetComponent<Door>().DestroyDoor();
                 StartCoroutine(ShakeCamera(1f, 0.25f, 0.15f));
+                StartCoroutine(ShakeGamepad(1.5f, 1.5f, 0.15f));
             }
 
             if (col[i].gameObject.CompareTag("FuzeBox") && controls.currentActionMap.FindAction("Attack").triggered)
@@ -817,6 +820,17 @@ public class PlayerAttack : MonoBehaviour
         vcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
         bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
         bcam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = 0;
+
+        yield break;
+    }
+
+    public IEnumerator ShakeGamepad(float lowFreq, float highFreq, float duration)
+    {
+        Gamepad.current.SetMotorSpeeds(lowFreq, highFreq);
+
+        yield return new WaitForSeconds(duration);
+
+        Gamepad.current.SetMotorSpeeds(0, 0);
 
         yield break;
     }

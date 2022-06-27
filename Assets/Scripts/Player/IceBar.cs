@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class IceBar : MonoBehaviour
 {
@@ -152,5 +153,4 @@ public class IceBar : MonoBehaviour
 
         yield break;
     }
-
 }

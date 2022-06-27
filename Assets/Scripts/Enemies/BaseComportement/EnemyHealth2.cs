@@ -69,7 +69,7 @@ public class EnemyHealth2 : MonoBehaviour
 
     public void TakeDamage(float damage, string hitObject)
     {
-        Debug.Log("damage");
+        //Debug.Log("damage");
         if (!isBlocking && !isAttacking)
         {
             currHP -= damage;
