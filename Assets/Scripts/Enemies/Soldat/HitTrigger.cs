@@ -49,7 +49,7 @@ public class HitTrigger : MonoBehaviour
 
     void isVulnerable()
     {
-        colorBox.color = Color.green;
+        //colorBox.color = Color.green;
         move.canMove = false;
 
         move.LockMove(true);
@@ -75,7 +75,7 @@ public class HitTrigger : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("soldatAttack2");
         }
 
-        colorBox.color = Color.red;
+        //colorBox.color = Color.red;
 
         move.LockMove(true);
 
@@ -90,7 +90,7 @@ public class HitTrigger : MonoBehaviour
 
     void isBlocking()
     {
-        colorBox.color = Color.white;
+        //colorBox.color = Color.white;
         move.LockMove(false);
         hp.isBlocking = true;
     }

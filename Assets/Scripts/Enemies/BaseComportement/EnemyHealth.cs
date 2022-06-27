@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Animation")]
     public Animator anim;
-    public Animator parentAnim;
+    public Animator childAnim;
     public bool isBlocking;
     public bool isAttacking;
     [SerializeField] SpriteRenderer child;
@@ -36,6 +36,9 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] GameObject vfxBlock;
     [SerializeField] GameObject vfxShield;
+
+    [SerializeField] Transform deathPos;
+    [SerializeField] GameObject turretDeath;
 
     private void Awake()
     {
@@ -108,6 +111,8 @@ public class EnemyHealth : MonoBehaviour
             {
                 GetComponentInChildren<AimRay>().StopAim();
             }
+
+            Instantiate(turretDeath,deathPos.position, transform.rotation);
 
             gameObject.SetActive(false);
             GameManager.instance.RemoveFromList(indexIceBar);
@@ -213,7 +218,6 @@ public class EnemyHealth : MonoBehaviour
             newPos = new Vector3(transform.position.x + distDash, transform.position.y, 0);
         }
 
-        parentAnim.SetBool("isRecoil", true);
 
         float i = 0;
         while (transform.position.x != newPos.x)
@@ -226,6 +230,5 @@ public class EnemyHealth : MonoBehaviour
                 transform.position = newPos;
             }
         }
-        parentAnim.SetBool("isRecoil", false);
     }
 }
