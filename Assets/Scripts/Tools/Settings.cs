@@ -9,12 +9,12 @@ public class Settings : MonoBehaviour
     [SerializeField] Slider GV_Slider;
     [SerializeField] Slider MV_Slider;
 
-    private void Awake()
+    private void Start()
     {
         if (!PlayerPrefs.HasKey("G_volume") && !PlayerPrefs.HasKey("M_volume"))
         {
-            GeneralVolume(GV_Slider);
-            MusicVolume(MV_Slider);
+            StartGeneralVolume(0.5f);
+            StartMusicVolume(0.5f);
         }
 
         //Debug.Log("Reset");
@@ -58,5 +58,32 @@ public class Settings : MonoBehaviour
             FindObjectOfType<Music>().UpdateMusic();
         }
         //Debug.Log(PlayerPrefs.GetFloat("M_volume"));
+    }
+
+    private void StartGeneralVolume(float value)
+    {
+        PlayerPrefs.SetFloat("G_volume", value);
+        GV_Slider.value = value;
+        if (FindObjectOfType<AudioManager>())
+        {
+            foreach (AudioSource src in FindObjectsOfType<AudioSource>())
+            {
+                if (!src.GetComponent<Music>())
+                {
+                    src.volume = PlayerPrefs.GetFloat("G_volume");
+                }
+            }
+        }
+    }
+
+    private void StartMusicVolume(float value)
+    {
+        PlayerPrefs.SetFloat("M_volume", value);
+        MV_Slider.value = value;
+        if (FindObjectOfType<Music>())
+        {
+            //Debug.Log("Music find");
+            FindObjectOfType<Music>().UpdateMusic();
+        }
     }
 }
