@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image fadeImage;
     [SerializeField] float fadeSpeed;
     [SerializeField] float fadeWaitTime;
-    [SerializeField] TextMeshProUGUI scoreText;
 
     [SerializeField] GameObject respawnMenu;
     [SerializeField] TextMeshProUGUI hintText;
@@ -40,7 +39,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        scoreText.text = score.ToString();
         player = GameObject.Find("Player");
     }
 
@@ -69,14 +67,12 @@ public class GameManager : MonoBehaviour
     public void AddScore(float scoreToAdd)
     {
         score += scoreToAdd;
-        scoreText.text = score.ToString();
     }
 
     public void SaveScore(Transform checkpoint)
     {
         savedScore = score;
         respawnPoint = checkpoint;
-        scoreText.text = score.ToString();
     }
 
     public IEnumerator Fade()
