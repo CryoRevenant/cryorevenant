@@ -108,6 +108,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private bool isOnBox;
     private bool isPlayingStopAnim;
     private bool canDoSFX_Run;
+    private bool isGrounded;
 
     void Awake()
     {
@@ -125,6 +126,7 @@ public class PlayerControllerV2 : MonoBehaviour
         isOnBox = false;
         isPlayingStopAnim = false;
         canDoSFX_Run = false;
+        isGrounded = false;
 
         dashUI.padding = new Vector4(0, 0, 0, 15);
         dodgeUI.padding = new Vector4(0, 0, 0, 15);
@@ -575,6 +577,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
         #region fall
 
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), Vector2.down * 1f, Color.green, 1);
+        RaycastHit2D[] colGrounded = Physics2D.RaycastAll(new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), Vector2.down, 1f);
+
         if ((isGroundedL || isGroundedR) && rb.velocity.y < -5 && rb.position.y < curPosY && !isPlayingStopAnim && !canJump)
         {
             StartCoroutine(StopAnim());
@@ -582,11 +587,18 @@ public class PlayerControllerV2 : MonoBehaviour
             //Debug.Log("isGrounded");
         }
 
-        if(isGroundedL || isGroundedR)
+        for (int i = 0; i < colGrounded.Length; i++)
         {
-            //Debug.Log("fall");
-            StopAnim();
+            if (colGrounded[i].transform.CompareTag("Ground"))
+            {
+                isGrounded = true;
+                //Debug.Log("isGrounded2");
+            }
+        }
 
+        if(colGrounded.Length == 0)
+        {
+            isGrounded = false;
         }
 
         if (!isGroundedL && !isGroundedR)
@@ -594,7 +606,7 @@ public class PlayerControllerV2 : MonoBehaviour
             isPlayingJumpAnim = true;
         }
 
-        if (!isPlayingJumpAnim && !canDodge)
+        if (!isPlayingJumpAnim && !canDodge && !isGrounded)
         {
             animator.Play("Yuki_Fall");
             //Debug.Log("fall");

@@ -141,41 +141,31 @@ public class EnemyHealth2 : MonoBehaviour
             switch (gameObject.transform.localRotation.y)
             {
                 case 0:
-                    GameObject instanceR = Instantiate(body1, new Vector2(transform.position.x, transform.position.y + 1f), Quaternion.identity);
+                    GameObject instanceR = Instantiate(body1, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
                     instanceR.GetComponent<SpriteRenderer>().flipX = true;
-                    instanceR.GetComponent<Rigidbody2D>().AddForce(new Vector2(3, 0), ForceMode2D.Impulse);
-                    Destroy(instanceR.GetComponent<Collider2D>(), 0.1f);
+                    instanceR.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 1), ForceMode2D.Impulse);
+                    Destroy(instanceR.GetComponent<Collider2D>(), 0.05f);
                     Destroy(instanceR, 0.5f);
-                    Color alphaR = instanceR.GetComponent<SpriteRenderer>().color;
-                    alphaR.a -= Time.deltaTime*3;
-                    instanceR.GetComponent<SpriteRenderer>().color = alphaR;
-                    GameObject instanceR2 = Instantiate(body2, new Vector2(transform.position.x, transform.position.y - 1f), Quaternion.identity);
+
+                    GameObject instanceR2 = Instantiate(body2, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
                     instanceR2.GetComponent<SpriteRenderer>().flipX = true;
-                    instanceR2.GetComponent<Rigidbody2D>().AddForce(new Vector2(3, 0), ForceMode2D.Impulse);
-                    Destroy(instanceR2.GetComponent<Collider2D>(), 0.1f);
+                    instanceR2.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, -1), ForceMode2D.Impulse);
+                    Destroy(instanceR2.GetComponent<Collider2D>(), 0.05f);
                     Destroy(instanceR2, 0.5f);
-                    Color alphaR2 = instanceR2.GetComponent<SpriteRenderer>().color;
-                    alphaR2.a -= Time.deltaTime*3;
-                    instanceR2.GetComponent<SpriteRenderer>().color = alphaR2;
                     //Debug.Log("right");
                     break;
                 case 1:
-                    GameObject instanceL = Instantiate(body1, new Vector2(transform.position.x, transform.position.y + 1f), Quaternion.identity);
+                    GameObject instanceL = Instantiate(body1, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
                     instanceL.GetComponent<SpriteRenderer>().flipX = false;
-                    instanceL.GetComponent<Rigidbody2D>().AddForce(new Vector2(-3, 0), ForceMode2D.Impulse);
-                    Destroy(instanceL.GetComponent<Collider2D>(), 0.1f);
+                    instanceL.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 1), ForceMode2D.Impulse);
+                    Destroy(instanceL.GetComponent<Collider2D>(), 0.05f);
                     Destroy(instanceL, 0.5f);
-                    Color alphaL = instanceL.GetComponent<SpriteRenderer>().color;
-                    alphaL.a -= Time.deltaTime*3;
-                    instanceL.GetComponent<SpriteRenderer>().color = alphaL;
-                    GameObject instanceL2 = Instantiate(body2, new Vector2(transform.position.x, transform.position.y - 1f), Quaternion.identity);
+
+                    GameObject instanceL2 = Instantiate(body2, new Vector2(transform.position.x, transform.position.y - 0.5f), Quaternion.identity);
                     instanceL2.GetComponent<SpriteRenderer>().flipX = false;
-                    instanceL2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-3, 0), ForceMode2D.Impulse);
-                    Destroy(instanceL2.GetComponent<Collider2D>(), 0.1f);
+                    instanceL2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, -1), ForceMode2D.Impulse);
+                    Destroy(instanceL2.GetComponent<Collider2D>(), 0.05f);
                     Destroy(instanceL2, 0.5f);
-                    Color alphaL2 = instanceL2.GetComponent<SpriteRenderer>().color;
-                    alphaL2.a -= Time.deltaTime*3;
-                    instanceL2.GetComponent<SpriteRenderer>().color = alphaL2;
                     //Debug.Log("left");
                     break;
             }
