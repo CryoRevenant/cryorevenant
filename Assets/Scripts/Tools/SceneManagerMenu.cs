@@ -26,6 +26,8 @@ public class SceneManagerMenu : MonoBehaviour
     [SerializeField] GameObject pauseButtons;
     [SerializeField] GameObject optionMenu;
     [SerializeField] GameObject confirmMenu;
+    [SerializeField] GameObject confirmMenuRespawn;
+    [SerializeField] GameObject menuRespawn;
     GameObject player;
     PlayerInput controls;
     bool isPaused;
@@ -348,6 +350,18 @@ public class SceneManagerMenu : MonoBehaviour
     {
         confirmMenu.SetActive(false);
         pauseButtons.SetActive(true);
+    }
+
+    public void ShowConfirmRespawn()
+    {
+        confirmMenuRespawn.SetActive(true);
+        menuRespawn.SetActive(false);
+    }
+
+    public void HideConfirmRespawn()
+    {
+        confirmMenuRespawn.SetActive(false);
+        menuRespawn.SetActive(true);
     }
     #endregion
 }
