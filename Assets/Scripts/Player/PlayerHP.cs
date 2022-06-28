@@ -24,9 +24,11 @@ public class PlayerHP : MonoBehaviour
 
     public void Death()
     {
+        //Debug.Log("san goku");
         if (canDie)
         {
             //Debug.Log("die");
+            StopCoroutine(IceDeath());
 
             animator.SetTrigger("Death");
             animator.SetTrigger("isFalling");
@@ -44,6 +46,7 @@ public class PlayerHP : MonoBehaviour
 
     public IEnumerator IceDeath()
     {
+        //Debug.Log("freezer");
         if (canDie)
         {
             //Debug.Log("die");
