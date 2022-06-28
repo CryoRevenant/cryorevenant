@@ -16,11 +16,13 @@ public class SoldatHealth : EnemyHealth2
     [SerializeField] float timeBlocking;
     float timer;
 
-    float timerUnfreeze = 0.05f;
-    public int stopTime;
-
-    void Update()
+    private void Update()
     {
+        //if (vfxBlockInstance != null)
+        //{
+        //    vfxBlockInstance.transform.position = this.transform.position;
+        //}
+
         if (canGoDown)
         {
             timer -= Time.deltaTime;
@@ -125,29 +127,4 @@ public class SoldatHealth : EnemyHealth2
         Color newColor = new Color(colorVector.x, colorVector.y, colorVector.z);
         GetComponent<SpriteRenderer>().color = newColor;
     }
-
-    public void Freeze()
-    {
-        CheckTime();
-        Time.timeScale = 0.01f;
-    }
-
-    void Unfreeze()
-    {
-        Debug.Log("unfreeze");
-        Time.timeScale = 1;
-        timerUnfreeze = 0.05f;
-    }
-
-    void CheckTime()
-    {
-        while (timerUnfreeze >= 0)
-        {
-            timerUnfreeze -= 0.01f;
-            Debug.Log(timerUnfreeze);
-        }
-        Time.timeScale = 1;
-        timerUnfreeze = 0.05f;
-    }
 }
-

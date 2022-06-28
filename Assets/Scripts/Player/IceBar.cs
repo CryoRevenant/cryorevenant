@@ -14,19 +14,12 @@ public class IceBar : MonoBehaviour
 
     float timer;
     [SerializeField] float hurtTimer;
-    bool hurt;
 
     [SerializeField] Animator animator;
 
-    [SerializeField] GameObject backSlide;
+    [SerializeField] Slider backSlide;
     [SerializeField] Slider frontSlide;
     [SerializeField] float speed;
-    [SerializeField] Image redFill;
-    [SerializeField] float xVal;
-    [SerializeField] GameObject handle;
-    [SerializeField] AnimationCurve curve;
-    float curveVal;
-    Color newColor = new Vector4(1, 1, 1, 1);
 
     [SerializeField] Volume lowHP;
     [SerializeField] private Image freezeUI;
@@ -44,19 +37,15 @@ public class IceBar : MonoBehaviour
 
     void Update()
     {
-        if (hurt)
-        {
-            timer -= Time.deltaTime;
-            curveVal += Time.deltaTime;
-            newColor.a = curve.Evaluate(curveVal);
-            Debug.Log(newColor.a);
-            handle.GetComponent<Image>().color = newColor;
-        }
+        //if (hurt)
+        //{
+        //    timer -= Time.deltaTime;
+        //}
 
-        if (timer <= 0)
-        {
-            LoseBar();
-        }
+        //if (timer <= 0)
+        //{
+        //    LoseBar();
+        //}
 
         //Debug.Log(iceAmount);
 
@@ -94,7 +83,7 @@ public class IceBar : MonoBehaviour
         {
             vignette = v;
             vignette.intensity.value += 0.02f;
-            vignette.intensity.value = Mathf.Clamp(vignette.intensity.value, 0, 0.35f);
+            vignette.intensity.value = Mathf.Clamp(vignette.intensity.value,0, 0.35f);
             //Debug.Log("add intensity");
         }
 
@@ -108,13 +97,8 @@ public class IceBar : MonoBehaviour
         animator.SetTrigger("glitch");
 
         amountToLose += amount;
-        handle.SetActive(true);
 
         frontSlide.value = 30 - amountToLose;
-
-        redFill.GetComponent<RectTransform>().position -= new Vector3(xVal, 0, 0);
-
-        hurt = true;
 
         timer = hurtTimer;
 
@@ -126,20 +110,15 @@ public class IceBar : MonoBehaviour
         }
     }
 
-    void LoseBar()
-    {
-
-        if (backSlide.transform.position.x <= redFill.GetComponent<RectTransform>().position.x)
-        {
-            hurt = false;
-            handle.SetActive(false);
-            curveVal = 0;
-        }
-        else
-        {
-            backSlide.transform.position -= new Vector3(0.02f, 0, 0);
-        }
-    }
+    // void LoseBar()
+    // {
+    //backSlide.value = Mathf.Lerp(backSlide.value, 100 - amountToLose, 0.02f);
+    //     if (hurt)
+    //     {
+    //         hurt = false;
+    //     }
+    // backSlide.value = 100 - amountToLose;
+    // }
 
     public IEnumerator ResetBar()
     {
