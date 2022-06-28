@@ -112,6 +112,7 @@ public class SoldatAttack : EnemyAttack
 
         parentAnim.SetInteger("indexAttack", 0);
         parentAnim.SetBool("isAttacking", false);
+        parentAnim.SetBool("isBlocking", false);
     }
 
     public void CheckPlayer()

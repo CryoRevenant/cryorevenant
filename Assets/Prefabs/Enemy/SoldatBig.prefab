@@ -418,7 +418,7 @@ MonoBehaviour:
   trigger: {fileID: 5397808933184462115}
   colorBox: {fileID: 404204908336340052}
   fakeChance: 15
-  invAttackChance: 5
+  invAttackChance: 4
   shield: {fileID: 5460911089168738928}
   isInvincible: 0
 --- !u!1001 &414412042
@@ -441,12 +441,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 89a74a9980f8ce04ea399a6185db556b, type: 3}
     - target: {fileID: 5460911089025255291, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.44705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 5460911089025255291, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
       propertyPath: m_Color.g
-      value: 0.32452828
+      value: 0.8627451
       objectReference: {fileID: 0}
     - target: {fileID: 5460911089025255291, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
       propertyPath: m_Color.r
-      value: 0.6448745
+      value: 0.98039216
       objectReference: {fileID: 0}
     - target: {fileID: 5460911089025255292, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
       propertyPath: m_RootOrder
