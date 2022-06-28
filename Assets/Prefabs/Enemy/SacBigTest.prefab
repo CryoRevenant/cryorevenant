@@ -863,7 +863,7 @@ MonoBehaviour:
   canMove: 1
   lookLeft: 0
   maxStoppingDist: 1.5
-  anim: {fileID: 0}
+  anim: {fileID: 2384921282100859598}
   speedDash: 0
   distDash: 0
   isDashing: 0
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc7ad03078a11c428bcf098cfc8b320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeMoveAgain: 2
+  timeMoveAgain: 1
   parentColor: {fileID: 7530075567980534543}
   hitTrigger: {fileID: 807394783853909773}
   blockSpike: {fileID: 807394783685855078}
