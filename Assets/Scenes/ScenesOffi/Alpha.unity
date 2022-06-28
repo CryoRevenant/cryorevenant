@@ -9060,7 +9060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.7277746
+      value: 3.723979
       objectReference: {fileID: 0}
     - target: {fileID: 692843929573816820, guid: 22f9efb56b74eed45a5b9fa8eb94adcb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9231,6 +9231,10 @@ PrefabInstance:
       propertyPath: frontSlide
       value: 
       objectReference: {fileID: 542567209}
+    - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: iceParticle
+      value: 
+      objectReference: {fileID: 4874399159449640240, guid: 0a7609cbbcd5b3845abc83e67127c022, type: 3}
     - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: doors.Array.size
       value: 13

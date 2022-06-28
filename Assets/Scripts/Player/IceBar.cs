@@ -106,7 +106,7 @@ public class IceBar : MonoBehaviour
 
         if (iceAmount <= 0)
         {
-            GetComponent<PlayerHP>().Death();
+            StartCoroutine(GetComponent<PlayerHP>().IceDeath());
         }
     }
 
