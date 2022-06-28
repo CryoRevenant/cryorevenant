@@ -115,6 +115,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 GameObject turretTrash;
                 turretTrash = Instantiate(turretDeath, deathPos.position, transform.rotation);
+                GameObject.FindObjectOfType<AudioManager>().Play("sniperExplosion");
                 GameManager.instance.turretTrash.Add(turretTrash);
             }
 
