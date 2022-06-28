@@ -9226,11 +9226,19 @@ PrefabInstance:
     - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: iceParticle
       value: 
+      objectReference: {fileID: 758235307801036958, guid: b46c9d7e1e90e2446af2951047eb0643, type: 3}
+    - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: freezeParticle
+      value: 
       objectReference: {fileID: 4874399159449640240, guid: 0a7609cbbcd5b3845abc83e67127c022, type: 3}
     - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: doors.Array.size
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
+      propertyPath: iceCloudParticle
+      value: 
+      objectReference: {fileID: 8669489483881396668, guid: 88f707aecf4e9f84890f971d44c0772e, type: 3}
     - target: {fileID: 869028044059294363, guid: f99752e0ef8e60c4cbca264a8957f102, type: 3}
       propertyPath: doors.Array.data[0]
       value: 

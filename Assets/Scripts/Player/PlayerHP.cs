@@ -8,6 +8,11 @@ public class PlayerHP : MonoBehaviour
     public bool canDie;
     [SerializeField] Animator animator;
     [SerializeField] GameObject iceParticle;
+    [SerializeField] GameObject freezeParticle;
+    [SerializeField] GameObject iceCloudParticle;
+    private GameObject instanceIce;
+    private GameObject instanceFreeze;
+    private GameObject instanceIceCloud;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,21 +57,38 @@ public class PlayerHP : MonoBehaviour
             GetComponent<PlayerControllerV2>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
 
+            if (instanceIce == null)
+            {
+                instanceIce = Instantiate(iceParticle, transform.position, Quaternion.identity);
+                Destroy(instanceIce, 2f);
+            }
             transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.cyan;
 
             yield return new WaitForSeconds(1.5f);
 
-            gameObject.SetActive(false);
-            GameObject instance = Instantiate(iceParticle, transform.position, Quaternion.identity);
-            Destroy(instance,1);
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
 
-            yield return new WaitForSeconds(3);
+            if (instanceFreeze == null)
+            {
+                instanceFreeze = Instantiate(freezeParticle, transform.position, Quaternion.identity);
+                Destroy(instanceFreeze, 2f);
+            }
+
+            if (instanceIceCloud == null)
+            {
+                instanceIceCloud = Instantiate(iceCloudParticle, transform.position, Quaternion.identity);
+                Destroy(instanceIceCloud, 2f);
+            }
+
+            yield return new WaitForSeconds(0.75f);
 
             GameManager.instance.StopCoroutine("Fade");
             GameManager.instance.StartCoroutine("Fade");
 
+            yield return new WaitForSeconds(1);
+
             transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
-            gameObject.SetActive(true);
+            transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
             yield break;
         }
