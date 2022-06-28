@@ -60,7 +60,7 @@ public class SoldatAttack : EnemyAttack
         }
         else
         {
-            parentAnim.SetBool("isBlocking", false);
+            //parentAnim.SetBool("isBlocking", false);
 
             parentAnim.SetBool("isDashing", false);
 
@@ -112,7 +112,6 @@ public class SoldatAttack : EnemyAttack
 
         parentAnim.SetInteger("indexAttack", 0);
         parentAnim.SetBool("isAttacking", false);
-        parentAnim.SetBool("isBlocking", false);
     }
 
     public void CheckPlayer()

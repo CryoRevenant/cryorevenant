@@ -62,7 +62,7 @@ public class HitTrigger : MonoBehaviour
         hp.isBlocking = false;
         hp.isAttacking = false;
 
-        Color newColor = new Vector4(250,220,114,255)/255;
+        Color newColor = new Vector4(250, 220, 114, 255) / 255;
         shield.GetComponent<SpriteRenderer>().color = newColor;
         shield.SetActive(false);
 
@@ -136,9 +136,7 @@ public class HitTrigger : MonoBehaviour
 
     void UnInvincible()
     {
-        if (isInvincible == true)
-        {
-            isInvincible = false;
-        }
+        isInvincible = false;
+        hp.anim.SetBool("invAttack", false);
     }
 }
