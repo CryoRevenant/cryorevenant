@@ -824,6 +824,7 @@ MonoBehaviour:
   turretDeath: {fileID: 0}
   body1: {fileID: 5839518152889232194, guid: ffcad2aeee9540646944d431b6d7004d, type: 3}
   body2: {fileID: 563928682898230476, guid: 8606a4390661ae349b535bbc18658164, type: 3}
+  blood: {fileID: 2988259235361527863, guid: dbaab1ea70684d644975482b7f485df8, type: 3}
 --- !u!114 &3817621574512399977
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ public class EnemyHealth : MonoBehaviour
     [Header("Dead Body")]
     [SerializeField] GameObject body1;
     [SerializeField] GameObject body2;
+    [SerializeField] GameObject blood;
 
     private void Awake()
     {
@@ -121,6 +122,9 @@ public class EnemyHealth : MonoBehaviour
 
             if (gameObject.GetComponent<SacMove>())
             {
+                GameObject instance = Instantiate(blood, transform.position, Quaternion.identity);
+                Destroy(instance, 0.5f);
+
                 switch (gameObject.transform.localRotation.y)
                 {
                     case 0:

@@ -40,6 +40,7 @@ public class EnemyHealth2 : MonoBehaviour
     [Header("Dead Body")]
     [SerializeField] GameObject body1;
     [SerializeField] GameObject body2;
+    [SerializeField] GameObject blood;
 
     private void Awake()
     {
@@ -134,6 +135,8 @@ public class EnemyHealth2 : MonoBehaviour
             }
 
             //Debug.Log(gameObject.transform.localRotation.y);
+            GameObject instance = Instantiate(blood, transform.position, Quaternion.identity);
+            Destroy(instance, 0.5f);
 
             switch (gameObject.transform.localRotation.y)
             {
