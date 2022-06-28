@@ -1,0 +1,684 @@
+fileFormatVersion: 2
+guid: ce53bb25cdcd081459836cbecc2bbf8c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8601497584076167979
+    second: Sac_Walk_V1_0
+  - first:
+      213: -8463218205275190597
+    second: Sac_Walk_V1_1
+  - first:
+      213: 1938580570709286
+    second: Sac_Walk_V1_2
+  - first:
+      213: 561400829887238397
+    second: Sac_Walk_V1_3
+  - first:
+      213: 3486201658717472523
+    second: Sac_Walk_V1_4
+  - first:
+      213: -8351339118855878460
+    second: Sac_Walk_V1_5
+  - first:
+      213: 6476263489719310184
+    second: Sac_Walk_V1_6
+  - first:
+      213: 1502084574792333291
+    second: Sac_Walk_V1_7
+  - first:
+      213: -2146649114898169646
+    second: Sac_Walk_V1_8
+  - first:
+      213: 4299111393523375140
+    second: Sac_Walk_V1_9
+  - first:
+      213: -8248225379697808381
+    second: Sac_Walk_V1_10
+  - first:
+      213: -2308022334422353975
+    second: Sac_Walk_V1_11
+  - first:
+      213: 4761788009830200893
+    second: Sac_Walk_V1_12
+  - first:
+      213: 5204816642982018008
+    second: Sac_Walk_V1_13
+  - first:
+      213: 1244785523475047676
+    second: Sac_Walk_V1_14
+  - first:
+      213: -3043953871838405234
+    second: Sac_Walk_V1_15
+  - first:
+      213: -4580352293761781072
+    second: Sac_Walk_V1_16
+  - first:
+      213: 2034525392202761470
+    second: Sac_Walk_V1_17
+  - first:
+      213: 2976630655046490064
+    second: Sac_Walk_V1_18
+  - first:
+      213: 6880203231277927285
+    second: Sac_Walk_V1_19
+  - first:
+      213: 3744263934560694348
+    second: Sac_Walk_V1_20
+  - first:
+      213: -7113048778962269655
+    second: Sac_Walk_V1_21
+  - first:
+      213: -2212137228838624896
+    second: Sac_Walk_V1_22
+  - first:
+      213: 2543561770647618411
+    second: Sac_Walk_V1_23
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sac_Walk_V1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b9d33ea78ae5770800000000000000
+      internalID: 8601497584076167979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_1
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba04f1e1eb9c8a80800000000000000
+      internalID: -8463218205275190597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_2
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62d1946f023e60000800000000000000
+      internalID: 1938580570709286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_3
+      rect:
+        serializedVersion: 2
+        x: 3846
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df0d902941f7ac700800000000000000
+      internalID: 561400829887238397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_4
+      rect:
+        serializedVersion: 2
+        x: 5128
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b078b3b10f9716030800000000000000
+      internalID: 3486201658717472523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_5
+      rect:
+        serializedVersion: 2
+        x: 6410
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c885c591551a1c80800000000000000
+      internalID: -8351339118855878460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_6
+      rect:
+        serializedVersion: 2
+        x: 7692
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8671d88c45f40e950800000000000000
+      internalID: 6476263489719310184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_7
+      rect:
+        serializedVersion: 2
+        x: 8974
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be7371f56f978d410800000000000000
+      internalID: 1502084574792333291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_8
+      rect:
+        serializedVersion: 2
+        x: 10256
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d08611e0029532e0800000000000000
+      internalID: -2146649114898169646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_9
+      rect:
+        serializedVersion: 2
+        x: 11538
+        y: 2564
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c9bc4e80389ab30800000000000000
+      internalID: 4299111393523375140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c20c7d7ba688d80800000000000000
+      internalID: -8248225379697808381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_11
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c7761f4ae148ffd0800000000000000
+      internalID: -2308022334422353975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_12
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d36b4a547f4451240800000000000000
+      internalID: 4761788009830200893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_13
+      rect:
+        serializedVersion: 2
+        x: 3846
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dbfbf519293b3840800000000000000
+      internalID: 5204816642982018008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_14
+      rect:
+        serializedVersion: 2
+        x: 5128
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf46744a6dd564110800000000000000
+      internalID: 1244785523475047676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_15
+      rect:
+        serializedVersion: 2
+        x: 6410
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8d9564c414b1c5d0800000000000000
+      internalID: -3043953871838405234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_16
+      rect:
+        serializedVersion: 2
+        x: 7692
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b2fe284bd15f60c0800000000000000
+      internalID: -4580352293761781072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_17
+      rect:
+        serializedVersion: 2
+        x: 8974
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef402c890161c3c10800000000000000
+      internalID: 2034525392202761470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_18
+      rect:
+        serializedVersion: 2
+        x: 10256
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d795955fcd1f4920800000000000000
+      internalID: 2976630655046490064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_19
+      rect:
+        serializedVersion: 2
+        x: 11538
+        y: 1282
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57bc0dec2646b7f50800000000000000
+      internalID: 6880203231277927285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40fbc4e53c46f330800000000000000
+      internalID: 3744263934560694348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_21
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a8de372df594d90800000000000000
+      internalID: -7113048778962269655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_22
+      rect:
+        serializedVersion: 2
+        x: 2564
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08128a829e8ec41e0800000000000000
+      internalID: -2212137228838624896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sac_Walk_V1_23
+      rect:
+        serializedVersion: 2
+        x: 3846
+        y: 0
+        width: 1282
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6307bb34fb8c4320800000000000000
+      internalID: 2543561770647618411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -173,6 +173,11 @@ public class PlayerControllerV2 : MonoBehaviour
         #endregion
     }
 
+    void Start()
+    {
+        GameManager.instance.Reset();
+    }
+
     private void Update()
     {
         #region le deplacement
@@ -418,7 +423,7 @@ public class PlayerControllerV2 : MonoBehaviour
             Invoke("IsDashUIStopped", 0.25f);
         }
 
-        if(dashValue > 0 && timerDash > 0)
+        if (dashValue > 0 && timerDash > 0)
         {
             StartCoroutine(CannotPlaceWallFeedback(dashUI));
         }
@@ -596,7 +601,7 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
 
-        if(colGrounded.Length == 0)
+        if (colGrounded.Length == 0)
         {
             isGrounded = false;
         }
@@ -898,7 +903,7 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             //Debug.Log("dodge_R");
 
-            dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI*2)), 15f, 73f));
+            dashUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dashUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI * 2)), 15f, 73f));
         }
         else
         {
@@ -945,11 +950,11 @@ public class PlayerControllerV2 : MonoBehaviour
             Physics2D.IgnoreLayerCollision(0, 8, false);
         }
 
-        if(dodgeAnim.runtimeAnimatorController == dodge_L)
+        if (dodgeAnim.runtimeAnimatorController == dodge_L)
         {
             //Debug.Log("dodge L");
 
-            dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI*2)), 15f, 73f));
+            dodgeUI.padding = new Vector4(0, 0, 0, Mathf.Clamp(dodgeUI.padding.w - (dashCooldown * (Time.deltaTime * paddingSpeedUI * 2)), 15f, 73f));
         }
         else
         {

@@ -40,11 +40,6 @@ public class SoldatAttack : EnemyAttack
             {
                 willAttack = true;
             }
-            else
-            {
-                parentAnim.SetBool("isNear", false);
-                Reset();
-            }
         }
     }
 
@@ -82,7 +77,7 @@ public class SoldatAttack : EnemyAttack
 
             if (GetComponent<HitTrigger>().isInvincible)
             {
-                timer = Random.Range(minMaxTimer.x / 2, minMaxTimer.y / 2);
+                timer = 0.25f;
                 Invoke("Attack", timer);
             }
             else
