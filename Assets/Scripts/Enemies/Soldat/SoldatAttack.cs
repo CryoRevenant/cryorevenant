@@ -119,5 +119,4 @@ public class SoldatAttack : EnemyAttack
         }
         parentAnim.SetBool("isNear", true);
     }
-
 }

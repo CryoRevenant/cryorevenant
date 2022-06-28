@@ -241,7 +241,7 @@ public class EnemyHealth2 : MonoBehaviour
 
     void CounterAttack()
     {
-        Color newColor = new Vector4(165,83,255,255)/255;
+        Color newColor = new Vector4(165, 83, 255, 255) / 255;
         GetComponent<HitTrigger>().shield.GetComponent<SpriteRenderer>().color = newColor;
         GetComponent<SoldatAttack>().anim.SetBool("isAttacking", true);
         GetComponent<HitTrigger>().TriggerOn();
@@ -296,4 +296,5 @@ public class EnemyHealth2 : MonoBehaviour
         }
         anim.SetBool("isRecoil", false);
     }
+
 }
