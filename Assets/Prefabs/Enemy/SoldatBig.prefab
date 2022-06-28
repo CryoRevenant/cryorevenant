@@ -418,7 +418,7 @@ MonoBehaviour:
   trigger: {fileID: 5397808933184462115}
   colorBox: {fileID: 404204908336340052}
   fakeChance: 15
-  invAttackChance: 4
+  invAttackChance: 2
   shield: {fileID: 5460911089168738928}
   isInvincible: 0
 --- !u!1001 &414412042
