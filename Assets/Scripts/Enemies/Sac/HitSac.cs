@@ -7,9 +7,9 @@ public class HitSac : MonoBehaviour
     Animator animator;
 
     [SerializeField] float timeMoveAgain;
-    [SerializeField] SpriteRenderer parentColor;
     [SerializeField] GameObject hitTrigger;
     [SerializeField] BoxCollider2D blockSpike;
+    [SerializeField] GameObject shield;
 
     GameObject player;
 
@@ -87,13 +87,13 @@ public class HitSac : MonoBehaviour
     void Block()
     {
         ResetAnim();
-        parentColor.color = Color.red;
+        shield.SetActive(true);
         GetComponentInParent<EnemyHealth>().isBlocking = true;
     }
 
     void StopBlock()
     {
-        parentColor.color = Color.white;
+        shield.SetActive(false);
         GetComponentInParent<EnemyHealth>().isBlocking = false;
         GetComponentInParent<SacMove>().StopAllCoroutines();
     }
