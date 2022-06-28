@@ -811,7 +811,7 @@ MonoBehaviour:
   scoreToAdd: 400
   canRecoil: 0
   anim: {fileID: 2384921282100859598}
-  parentAnim: {fileID: 0}
+  childAnim: {fileID: 0}
   isBlocking: 0
   isAttacking: 0
   child: {fileID: 0}
@@ -820,6 +820,10 @@ MonoBehaviour:
   healthBar: {fileID: 2994820970407758858}
   vfxBlock: {fileID: 3166911455110256611, guid: 104eb40bff2a4fd49995cf9f82ca150a, type: 3}
   vfxShield: {fileID: 5460911089025255290, guid: a7f0eca994b1db7429daeff66371879a, type: 3}
+  deathPos: {fileID: 0}
+  turretDeath: {fileID: 0}
+  body1: {fileID: 5839518152889232194, guid: ffcad2aeee9540646944d431b6d7004d, type: 3}
+  body2: {fileID: 563928682898230476, guid: 8606a4390661ae349b535bbc18658164, type: 3}
 --- !u!114 &3817621574512399977
 MonoBehaviour:
   m_ObjectHideFlags: 0
