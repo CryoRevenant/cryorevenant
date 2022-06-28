@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Brasero : MonoBehaviour
 {
     bool state;
-    bool passed;
+    public bool passed;
 
     [SerializeField] int index;
     [SerializeField] ParticleSystem fire;
