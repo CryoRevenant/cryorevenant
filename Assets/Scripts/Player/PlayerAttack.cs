@@ -364,6 +364,10 @@ public class PlayerAttack : MonoBehaviour
 
         if (controls.currentActionMap.FindAction("Spike").triggered && timerSpike <= 0 && !gameObject.GetComponent<PlayerControllerV2>().isDashUIStarted && !IsWalling())
         {
+            hasAttacked = true;
+            timerSheathe = 0.2f;
+            attackAnim.Play("Yuki_1st_Attack_iceWall");
+
             isSpiking = true;
 
             for (int i = 0; i < 3; i++)
