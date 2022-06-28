@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -41,7 +40,6 @@ public class GameManager : MonoBehaviour
         }
 
         player = GameObject.Find("Player");
-
     }
 
     public void AddToList(int listIndex, GameObject newGameObject)
@@ -64,6 +62,11 @@ public class GameManager : MonoBehaviour
         {
             resetPoints[index].Activate();
         }
+    }
+
+    public void Reset()
+    {
+        fadeImage = GameObject.Find("FadeImage").GetComponent<Image>();
     }
 
     public void AddScore(float scoreToAdd)

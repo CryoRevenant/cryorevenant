@@ -104,7 +104,6 @@ public class SoldatAttack : EnemyAttack
     public void Reset()
     {
         indexParent = 0;
-        Debug.Log("reset");
 
         parentAnim.SetInteger("indexAttack", 0);
         parentAnim.SetBool("isAttacking", false);

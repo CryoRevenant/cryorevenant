@@ -663,11 +663,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 16814933371002822, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 16814933371002822, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_Name
@@ -675,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534542, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_RootOrder
@@ -2533,6 +2533,10 @@ PrefabInstance:
     - target: {fileID: 16814933371002822, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2384921282100859593, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
+      propertyPath: timeMoveAgain
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3817621574512399977, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: player
@@ -24968,11 +24972,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 16814933371002822, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 16814933371002822, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_Name
@@ -24980,7 +24984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534531, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7530075567980534542, guid: c0e9c77ac85df714f840439e99847f1f, type: 3}
       propertyPath: m_RootOrder
