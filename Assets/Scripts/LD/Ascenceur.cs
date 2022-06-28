@@ -185,7 +185,7 @@ public class Ascenceur : MonoBehaviour
     {
         player.tag = "Player";
         player.layer = 0;
-        player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 2;
+        player.GetComponentInChildren<SpriteRenderer>().sortingOrder = 3;
         player.GetComponent<PlayerAttack>().enabled = true;
     }
 
