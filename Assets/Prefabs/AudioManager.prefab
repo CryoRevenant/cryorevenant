@@ -204,3 +204,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c0c328d3cdb34ce44992d4c6cd3aee9d, type: 3}
     pitch: 1
     source: {fileID: 0}
+  - name: sniperExplosion
+    clip: {fileID: 8300000, guid: 9af8e7dea4fa3ac49b109db403a55f0c, type: 3}
+    pitch: 1
+    source: {fileID: 0}
