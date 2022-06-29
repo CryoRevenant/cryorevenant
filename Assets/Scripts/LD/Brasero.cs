@@ -33,7 +33,15 @@ public class Brasero : MonoBehaviour
 
             if (passed)
             {
-                StartCoroutine(ShakeGamepad(2f, 2f, 0.3f));
+                if(SceneManager.GetActiveScene().buildIndex == 1)
+                {
+                    StartCoroutine(ShakeGamepad(2f, 2f, 0.3f));
+                }
+
+                if (SceneManager.GetActiveScene().buildIndex == 0)
+                {
+                    StopCoroutine(ShakeGamepad(2f, 2f, 0.3f));
+                }
 
                 Desactivate();
 
