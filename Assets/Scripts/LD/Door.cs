@@ -30,16 +30,12 @@ public class Door : MonoBehaviour
         }
 
         gbeDestroyed = false;
-        gameObject.GetComponent<LineRenderer>().positionCount = points.Length;
-
-        for (int i = 0; i < points.Length; i++)
-        {
-            gameObject.GetComponent<LineRenderer>().SetPosition(i, points[i].position);
-        }
+        gameObject.GetComponent<LineRenderer>().enabled = false;
     }
 
     public void DestroyDoor()
     {
+        gameObject.GetComponent<LineRenderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         FindObjectOfType<AudioManager>().Play("cutDoor");
 
@@ -69,12 +65,21 @@ public class Door : MonoBehaviour
             player = collision.gameObject;
             if (player.GetComponent<PlayerControllerV2>().IsDashing())
             {
+                gameObject.GetComponent<LineRenderer>().enabled = false;
                 DestroyDoor();
                 if (player != null)
                 {
                     StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
                     StartCoroutine(player.GetComponent<PlayerAttack>().ShakeGamepad(1.5f, 1.5f, 0.15f));
                 }
+            }
+
+            gameObject.GetComponent<LineRenderer>().enabled = true;
+            gameObject.GetComponent<LineRenderer>().positionCount = points.Length;
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                gameObject.GetComponent<LineRenderer>().SetPosition(i, points[i].position);
             }
         }
     }
@@ -89,12 +94,21 @@ public class Door : MonoBehaviour
             player = collision.gameObject;
             if (player.GetComponent<PlayerControllerV2>().IsDashing())
             {
+                gameObject.GetComponent<LineRenderer>().enabled = false;
                 DestroyDoor();
                 if (player != null)
                 {
                     StartCoroutine(player.GetComponent<PlayerAttack>().ShakeCamera(1f, 0.25f, 0.35f));
                 }
             }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<LineRenderer>().enabled = false;
         }
     }
 
