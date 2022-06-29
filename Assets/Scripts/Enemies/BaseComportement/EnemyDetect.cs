@@ -92,6 +92,7 @@ public class EnemyDetect : MonoBehaviour
             else
             {
                 move.anim.SetBool("isRunning", false);
+                move.anim.SetBool("isNear", false);
             }
         }
         else
@@ -101,6 +102,7 @@ public class EnemyDetect : MonoBehaviour
             if (GetComponent<SoldatAttack>() != null)
             {
                 move.anim.SetBool("isRunning", false);
+                move.anim.SetBool("isNear", false);
             }
         }
         yield return new WaitForSeconds(waitTime);
