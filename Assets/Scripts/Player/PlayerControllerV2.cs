@@ -135,6 +135,7 @@ public class PlayerControllerV2 : MonoBehaviour
         timerDodge = dodgeCooldown;
 
         curSpeed = Vector2.zero;
+        goDownCooldown = 0;
 
         controls = gameObject.GetComponent<PlayerInput>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -758,21 +759,21 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(canGoDown);
 
-        if (!canGoDown && gameObject.layer != 6)
+        if (!canGoDown && gameObject.layer != 0 || isOnBox && gameObject.layer != 0)
         {
             gameObject.layer = 0;
         }
         else
         {
             goDownCooldown += Time.deltaTime;
-            if (goDownCooldown >= 1f)
+            if (goDownCooldown >= 0.25f)
             {
-                goDownCooldown = 0.25f;
+                goDownCooldown = 0f;
                 canGoDown = false;
             }
         }
 
-        if (canGoDown)
+        if (canGoDown && isOnBox)
         {
             //Debug.Log("ignore layer");
             gameObject.layer = 8;
