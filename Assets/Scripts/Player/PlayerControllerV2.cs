@@ -759,21 +759,21 @@ public class PlayerControllerV2 : MonoBehaviour
 
         //Debug.Log(canGoDown);
 
-        if (!canGoDown && gameObject.layer != 0 || isOnBox && gameObject.layer != 0)
+        if (!canGoDown && gameObject.layer != 0)
         {
             gameObject.layer = 0;
         }
         else
         {
             goDownCooldown += Time.deltaTime;
-            if (goDownCooldown >= 0.25f)
+            if (goDownCooldown >= 1f)
             {
                 goDownCooldown = 0f;
                 canGoDown = false;
             }
         }
 
-        if (canGoDown && isOnBox)
+        if (canGoDown)
         {
             //Debug.Log("ignore layer");
             gameObject.layer = 8;
