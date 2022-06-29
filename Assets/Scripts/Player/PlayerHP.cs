@@ -27,6 +27,7 @@ public class PlayerHP : MonoBehaviour
         if (canDie)
         {
             //Debug.Log("die");
+            StopCoroutine(IceDeath());
 
             animator.SetTrigger("Death");
             animator.SetTrigger("isFalling");
@@ -57,10 +58,10 @@ public class PlayerHP : MonoBehaviour
             GetComponent<PlayerControllerV2>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
 
-            if (instanceIce == null)
+            if (instanceIceCloud == null)
             {
-                instanceIce = Instantiate(iceParticle, transform.position, Quaternion.identity);
-                Destroy(instanceIce, 2f);
+                instanceIceCloud = Instantiate(iceCloudParticle, transform.position, Quaternion.identity);
+                Destroy(instanceIceCloud, 1.5f);
             }
             transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.cyan;
 
@@ -68,19 +69,25 @@ public class PlayerHP : MonoBehaviour
 
             transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
 
-            if (instanceFreeze == null)
-            {
-                instanceFreeze = Instantiate(freezeParticle, transform.position, Quaternion.identity);
-                Destroy(instanceFreeze, 2f);
-            }
-
             if (instanceIceCloud == null)
             {
                 instanceIceCloud = Instantiate(iceCloudParticle, transform.position, Quaternion.identity);
-                Destroy(instanceIceCloud, 2f);
+                Destroy(instanceIceCloud, 0.75f);
             }
 
-            yield return new WaitForSeconds(0.75f);
+            if (instanceFreeze == null)
+            {
+                instanceFreeze = Instantiate(freezeParticle, transform.position, Quaternion.identity);
+                Destroy(instanceFreeze, 0.75f);
+            }
+
+            if (instanceIce == null)
+            {
+                instanceIce = Instantiate(iceParticle, transform.position, Quaternion.identity);
+                Destroy(instanceIce, 0.75f);
+            }
+
+            yield return new WaitForSeconds(0.1f);
 
             GameManager.instance.StopCoroutine("Fade");
             GameManager.instance.StartCoroutine("Fade");
