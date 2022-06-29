@@ -75,7 +75,7 @@ public class EnemyHealth2 : MonoBehaviour
             currHP -= damage;
             CheckEnnemi();
         }
-        else if (isAttacking)
+        else if (isAttacking && GetComponent<HitTrigger>().isInvincible == false)
         {
             Recoil();
         }

@@ -49,7 +49,6 @@ public class SoldatAttack : EnemyAttack
 
         if (i == 1)
         {
-            Debug.Log("dash");
             GetComponent<EnemyHealth2>().StopCoroutine("RecoilHit");
             GoDash();
         }
