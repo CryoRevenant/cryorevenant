@@ -96,8 +96,7 @@ public class Door : MonoBehaviour
     {
         if (gbeDestroyed)
         {
-            gameObject.SetActive(false);
-            gbeDestroyed = false;
+            Destroy(gameObject);
         }
 
         doorIdle.SetActive(true);
