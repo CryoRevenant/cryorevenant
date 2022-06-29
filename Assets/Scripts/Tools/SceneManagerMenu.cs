@@ -54,7 +54,9 @@ public class SceneManagerMenu : MonoBehaviour
             item.GetComponent<Animator>().updateMode = AnimatorUpdateMode.UnscaledTime;
         }
 
+
     }
+
     private void Update()
     {
         if (sceneIndex == 1)
@@ -364,4 +366,9 @@ public class SceneManagerMenu : MonoBehaviour
         menuRespawn.SetActive(true);
     }
     #endregion
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        MainMenu();
+    }
 }
