@@ -17,7 +17,7 @@ public class Door : MonoBehaviour
     GameObject player;
     private GameObject instance;
     [HideInInspector] public bool gbeDestroyed;
-
+    [SerializeField] private Transform[] points;
 
     void Start()
     {
@@ -30,6 +30,12 @@ public class Door : MonoBehaviour
         }
 
         gbeDestroyed = false;
+        gameObject.GetComponent<LineRenderer>().positionCount = points.Length;
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            gameObject.GetComponent<LineRenderer>().SetPosition(i, points[i].position);
+        }
     }
 
     public void DestroyDoor()
