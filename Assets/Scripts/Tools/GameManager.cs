@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] List<ListOfLists> listEnemies = new List<ListOfLists>();
     [SerializeField] List<Brasero> resetPoints = new List<Brasero>();
+    [SerializeField] GameObject door;
+    GameObject isDoor;
+    [SerializeField] Transform posDoor;
 
     public static GameManager instance;
 
@@ -40,6 +43,9 @@ public class GameManager : MonoBehaviour
         }
 
         player = GameObject.Find("Player");
+
+        isDoor = Instantiate(door, posDoor.position, transform.rotation, posDoor);
+        isDoor.transform.localScale = Vector3.one;
     }
 
     public void AddToList(int listIndex, GameObject newGameObject)
@@ -138,6 +144,13 @@ public class GameManager : MonoBehaviour
 
     public void RespawnEnemy()
     {
+
+        if (isDoor == null)
+        {
+            isDoor = Instantiate(door, posDoor.position, transform.rotation, posDoor);
+            isDoor.transform.localScale = Vector3.one;
+        }
+
         foreach (GameObject item in turretTrash)
         {
             Destroy(item);

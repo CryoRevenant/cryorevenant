@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public bool hitPlayer = true;
     Rigidbody2D rigid;
 
-    float timer = 1f;
+    float timer = 1.5f;
 
     private void Start()
     {
@@ -66,7 +66,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void Reflect()
+    public void Reflect()
     {
         hitPlayer = false;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z +180);
