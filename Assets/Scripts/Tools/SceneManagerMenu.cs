@@ -369,6 +369,6 @@ public class SceneManagerMenu : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        MainMenu();
+        Invoke("MainMenu",0.31f);
     }
 }
