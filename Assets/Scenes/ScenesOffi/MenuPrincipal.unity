@@ -3079,7 +3079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Palma Brian, Pierre Timothe, Tessier Cyril, Steenssens Antonin
+  m_text: Palma Brian, Pierre Timothe, Teissier Cyril, Steenssens Antonin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b43287e5908309498d248612aa0eadc, type: 2}
   m_sharedMaterial: {fileID: 6243302460653074646, guid: 4b43287e5908309498d248612aa0eadc, type: 2}
